@@ -1,0 +1,107 @@
+name: friction-overseas
+
+# 摩擦材料/制动器行业 · 海外信源采集
+# 背景：VPS（腾讯云）出口 IP 被 Cloudflare 企业级挑战 / Akamai 拦截，
+#       这批美国行业媒体（Counterman / Tire Business / Fleet Owner ...）在 VPS 上抓不到。
+#       本工作流跑在 GitHub Actions（Azure 机房），用不同出口 IP 尝试突破。
+#
+# 步骤：探针（验证可达性）→ 采集 + 免费翻译 → 提交 news_overseas.json
+# 下游：VPS 定时拉取该文件并合并进 friction 站
+on:
+  schedule:
+    # 北京时间 08:30 / 20:30（UTC 00:30 / 12:30）
+    - cron: '30 0 * * *'
+    - cron: '30 12 * * *'
+  workflow_dispatch:        # 支持手动触发，方便随时验证
+    inputs:
+      probe_only:
+        description: '仅跑探针（验证 IP 可达性），不采集'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write           # 需要写权限才能 commit 结果
+
+concurrency:
+  group: friction-overseas
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 准备 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install --quiet requests beautifulsoup4
+
+      # ── 第 1 步：可达性探针 ────────────────────────────────────
+      # 这一步是决策依据：确认 Azure 出口 IP 能否突破 WAF。
+      # 无论结果如何都以 0 退出，只把结论写进 JSON 和 Step Summary。
+      - name: 可达性探针
+        run: python scripts/probe_overseas.py
+
+      - name: 显示探针结论
+        if: always()
+        run: |
+          if [ -f out/probe_result.json ]; then
+            python - <<'PY'
+          import json
+          d = json.load(open('out/probe_result.json', encoding='utf-8'))
+          s, r = d['summary'], d['runner']
+          print(f"出口 IP: {r['egress_ip']}")
+          print(f"可通 {s['ok']}/{s['total']}，WAF 拦截 {s['waf']} 个")
+          print(f"判定: {s['verdict']}")
+          PY
+          else
+            echo "探针未产出结果"
+          fi
+
+      # ── 第 2 步：采集 + 翻译 ───────────────────────────────────
+      - name: 采集海外信源
+        if: ${{ !inputs.probe_only }}
+        run: python scripts/collect_overseas.py
+
+      # ── 第 2b 步：WAF 站兜底（第三方聚合）──────────────────────
+      # 直连被 WAF 拦的站点，改走 Google/Bing News RSS 拿标题线索。
+      # 该步失败不影响前面的直采结果。
+      - name: 聚合兜底采集
+        if: ${{ !inputs.probe_only }}
+        continue-on-error: true
+        run: python scripts/collect_via_aggregator.py
+
+      # ── 第 3 步：提交结果 ──────────────────────────────────────
+      # 独立仓库，直接写 data/ 目录
+      - name: 提交 news_overseas.json
+        if: ${{ !inputs.probe_only }}
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p data
+          cp out/news_overseas.json data/news_overseas.json
+          git add data/news_overseas.json
+          if git diff --cached --quiet; then
+            echo "无变更，跳过提交"
+          else
+            CNT=$(python -c "import json;print(json.load(open('data/news_overseas.json',encoding='utf-8'))['count'])")
+            git commit -m "chore: 海外资讯同步 ${CNT} 条 [skip ci]"
+            git push
+          fi
+
+      - name: 上传探针结果（便于排查）
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-result
+          path: out/probe_result.json
+          if-no-files-found: warn
+          retention-days: 14
