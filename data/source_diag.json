@@ -1,0 +1,533 @@
+[
+  {
+    "name": "Aftermarket News",
+    "probes": [
+      {
+        "list_url": "https://www.aftermarketnews.com/",
+        "status": 200,
+        "len": 356898,
+        "blocked": false,
+        "final": "https://www.aftermarketnews.com/",
+        "internal_links": 278,
+        "hit": 34,
+        "hit_raw": 34,
+        "hit_samples": [
+          "/women-at-the-wheel/",
+          "/accessibility/",
+          "/mema-top-suppliers/",
+          "/submit-mema-top-suppliers-listing-information/",
+          "/edit-mema-top-suppliers-listing/"
+        ]
+      },
+      {
+        "list_url": "https://www.aftermarketnews.com/category/breaking-news/",
+        "status": 404,
+        "len": 217736,
+        "blocked": false,
+        "final": "https://www.aftermarketnews.com/category/breaking-news/"
+      }
+    ],
+    "verdict": "OK(34) / HTTP404"
+  },
+  {
+    "name": "BodyShop Business",
+    "probes": [
+      {
+        "list_url": "https://www.bodyshopbusiness.com/",
+        "status": 200,
+        "len": 353559,
+        "blocked": false,
+        "final": "https://www.bodyshopbusiness.com/",
+        "internal_links": 286,
+        "hit": 40,
+        "hit_raw": 40,
+        "hit_samples": [
+          "/buyers-guide/",
+          "/guess-the-car/",
+          "/renew-subscription",
+          "/accessibility/",
+          "/bg-edit-listing/"
+        ]
+      }
+    ],
+    "verdict": "OK(40)"
+  },
+  {
+    "name": "Bosch 新闻室",
+    "probes": [
+      {
+        "list_url": "https://www.bosch-presse.de/pressportal/de/en/",
+        "status": 200,
+        "len": 162555,
+        "blocked": false,
+        "final": "https://www.bosch-presse.de/pressportal/de/en/news/",
+        "internal_links": 202,
+        "hit": 16,
+        "hit_raw": 16,
+        "hit_samples": [
+          "/pressportal/de/en/personnel-announcements-for-executive-management-of-boschs-value-accelerator-and-portfolio-companies-division-285888.html",
+          "/pressportal/de/en/half-year-figures-2026-bosch-reaffirms-outlook-285632.html",
+          "/pressportal/de/en/bosch-at-the-iaa-mobility-2026-284864.html",
+          "/pressportal/de/en/bosch-at-ifa-2026-284672.html",
+          "/pressportal/de/en/hydrogen-new-bosch-fuel-cell-system-begins-test-operations-in-madrid-284032.html"
+        ]
+      }
+    ],
+    "verdict": "OK(16)"
+  },
+  {
+    "name": "Brake & Front End",
+    "probes": [
+      {
+        "list_url": "https://www.brakeandfrontend.com/",
+        "status": 200,
+        "len": 318980,
+        "blocked": false,
+        "final": "https://www.brakeandfrontend.com/",
+        "internal_links": 237,
+        "hit": 25,
+        "hit_raw": 25,
+        "hit_samples": [
+          "/accessibility/",
+          "/shopowners-september-digital-edition-available-now/",
+          "/adas-calibration-from-a-different-angle/",
+          "/you-moved-the-bumper-did-you-move-the-radar/",
+          "/brake-job-2020-2025-gm-t1xx-pickups/"
+        ]
+      },
+      {
+        "list_url": "https://www.brakeandfrontend.com/category/brakes/",
+        "status": 404,
+        "len": 198380,
+        "blocked": false,
+        "final": "https://www.brakeandfrontend.com/category/brakes/"
+      }
+    ],
+    "verdict": "OK(25) / HTTP404"
+  },
+  {
+    "name": "CCJ Digital",
+    "probes": [
+      {
+        "list_url": "https://www.ccjdigital.com/",
+        "status": 403,
+        "len": 5729,
+        "blocked": true,
+        "final": "https://www.ccjdigital.com/"
+      }
+    ],
+    "verdict": "WAF拦截",
+    "rss": [
+      {
+        "url": "https://www.ccjdigital.com/rss.xml",
+        "status": 403,
+        "ctype": "text/html; charset=UTF-8",
+        "len": 5771,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      },
+      {
+        "url": "https://www.ccjdigital.com/feed",
+        "status": 403,
+        "ctype": "text/html; charset=UTF-8",
+        "len": 5741,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      }
+    ]
+  },
+  {
+    "name": "Counterman",
+    "probes": [
+      {
+        "list_url": "https://www.counterman.com/",
+        "status": 200,
+        "len": 307903,
+        "blocked": false,
+        "final": "https://www.counterman.com/",
+        "internal_links": 226,
+        "hit": 26,
+        "hit_raw": 26,
+        "hit_samples": [
+          "/guess-the-car-archive/",
+          "/renew-subscription",
+          "/accessibility/",
+          "/momentum-usa-brake-parts-expansion/",
+          "/u-s-vehicle-sales-unlikely-to-regain-pre-pandemic-levels-this-decade/"
+        ]
+      },
+      {
+        "list_url": "https://www.counterman.com/category/brakes/",
+        "status": 404,
+        "len": 191182,
+        "blocked": false,
+        "final": "https://www.counterman.com/category/brakes/"
+      }
+    ],
+    "verdict": "OK(26) / HTTP404"
+  },
+  {
+    "name": "Fleet Owner",
+    "probes": [
+      {
+        "list_url": "https://www.fleetowner.com/",
+        "status": 200,
+        "len": 359054,
+        "blocked": false,
+        "final": "https://www.fleetowner.com/",
+        "internal_links": 194,
+        "hit": 10,
+        "hit_raw": 10,
+        "hit_samples": [
+          "/perspectives",
+          "/emissions-efficiency",
+          "/product-spotlight",
+          "/refrigerated-transporter",
+          "/fleets-explained"
+        ]
+      },
+      {
+        "list_url": "https://www.fleetowner.com/equipment/",
+        "status": 200,
+        "len": 164796,
+        "blocked": false,
+        "final": "https://www.fleetowner.com/equipment",
+        "internal_links": 78,
+        "hit": 8,
+        "hit_raw": 8,
+        "hit_samples": [
+          "/perspectives",
+          "/emissions-efficiency",
+          "/product-spotlight",
+          "/refrigerated-transporter",
+          "/fleets-explained"
+        ]
+      }
+    ],
+    "verdict": "OK(10) / OK(8)"
+  },
+  {
+    "name": "ImportCar",
+    "probes": [
+      {
+        "list_url": "https://www.import-car.com/",
+        "status": 200,
+        "len": 313094,
+        "blocked": false,
+        "final": "https://www.import-car.com/",
+        "internal_links": 243,
+        "hit": 30,
+        "hit_raw": 30,
+        "hit_samples": [
+          "/accessibility/",
+          "/the-transmission-fluid-myth-that-wont-go-away/",
+          "/dont-repair-that-o2-sensor/",
+          "/understanding-brake-pad-wear-sensors-for-imports/",
+          "/zf-6hp-valve-body-identification/"
+        ]
+      }
+    ],
+    "verdict": "OK(30)"
+  },
+  {
+    "name": "Miba AG",
+    "probes": [
+      {
+        "list_url": "https://www.miba.com/en/news",
+        "status": 200,
+        "len": 53519,
+        "blocked": false,
+        "final": "https://www.miba.com/en/news",
+        "internal_links": 159,
+        "hit": 4,
+        "hit_raw": 4,
+        "hit_samples": [
+          "/en/news/article/miba-increased-revenue-to-more-than-12-billion-euros-and-invested-120-million-euros-in-the-future",
+          "/en/news/article/herbert-steiner-joins-the-management-board-of-miba-ag",
+          "/en/news/article/new-plant-in-kirchbach",
+          "/en/news/news-releases"
+        ]
+      }
+    ],
+    "verdict": "OK(4)"
+  },
+  {
+    "name": "Ratchet+Wrench",
+    "probes": [
+      {
+        "list_url": "https://www.ratchetandwrench.com/home/latest",
+        "status": 404,
+        "len": 93651,
+        "blocked": false,
+        "final": "https://www.ratchetandwrench.com/home/latest"
+      },
+      {
+        "list_url": "https://www.ratchetandwrench.com/",
+        "status": 200,
+        "len": 291153,
+        "blocked": false,
+        "final": "https://www.ratchetandwrench.com/",
+        "internal_links": 162,
+        "hit": 1,
+        "hit_raw": 1,
+        "hit_samples": [
+          "/home/article/55387461/2026-ratchetwrench-industry-survey-report"
+        ]
+      }
+    ],
+    "verdict": "HTTP404 / OK(1)"
+  },
+  {
+    "name": "Repairer Driven News",
+    "probes": [
+      {
+        "list_url": "https://www.repairerdrivennews.com/",
+        "status": 200,
+        "len": 161822,
+        "blocked": false,
+        "final": "https://www.repairerdrivennews.com/",
+        "internal_links": 102,
+        "hit": 12,
+        "hit_raw": 12,
+        "hit_samples": [
+          "/2026/09/22/nhtsa-partners-with-sae-for-av-standards/",
+          "/2026/09/21/tdi-approves-consumer-auto-bill-of-rights-updates-to-include-mandatory-right-to-appraisal/",
+          "/2026/09/16/when-the-shop-is-slow-build-your-bench-californias-el-camino-college-looking-for-shops-to-hire-apprentices/",
+          "/2026/09/25/nebraska-community-college-opens-new-automotive-career-training-center/",
+          "/2026/09/17/florida-auto-insurer-agrees-to-settle-class-action-by-paying-storage-and-transfer-fees/"
+        ]
+      }
+    ],
+    "verdict": "OK(12)"
+  },
+  {
+    "name": "SAE International",
+    "probes": [
+      {
+        "list_url": "https://www.sae.org/news",
+        "status": 200,
+        "len": 15274,
+        "blocked": true,
+        "final": "https://www.sae.org/news",
+        "internal_links": 0,
+        "hit": 0,
+        "hit_raw": 0,
+        "hit_samples": [],
+        "path_samples": []
+      }
+    ],
+    "verdict": "WAF拦截",
+    "rss": [
+      {
+        "url": "https://www.sae.org/rss/news.xml",
+        "status": 200,
+        "ctype": "text/html",
+        "len": 15274,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      },
+      {
+        "url": "https://www.sae.org/news/rss",
+        "status": 200,
+        "ctype": "text/html",
+        "len": 15274,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      },
+      {
+        "url": "https://www.sae.org/rss",
+        "status": 200,
+        "ctype": "text/html",
+        "len": 15274,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      }
+    ]
+  },
+  {
+    "name": "TMD Friction",
+    "probes": [
+      {
+        "list_url": "https://www.tmdfriction.com/en/news/",
+        "status": 403,
+        "len": 5754,
+        "blocked": true,
+        "final": "https://www.tmdfriction.com/en/news/"
+      }
+    ],
+    "verdict": "WAF拦截",
+    "rss": [
+      {
+        "url": "https://www.tmdfriction.com/en/rss/",
+        "status": 403,
+        "ctype": "text/html; charset=UTF-8",
+        "len": 5751,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      },
+      {
+        "url": "https://www.tmdfriction.com/rss.xml",
+        "status": 403,
+        "ctype": "text/html; charset=UTF-8",
+        "len": 5751,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      },
+      {
+        "url": "https://www.tmdfriction.com/en/news/rss",
+        "status": 403,
+        "ctype": "text/html; charset=UTF-8",
+        "len": 5784,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      }
+    ]
+  },
+  {
+    "name": "Tire Business",
+    "probes": [
+      {
+        "list_url": "https://www.tirebusiness.com/",
+        "status": 403,
+        "len": 372,
+        "blocked": true,
+        "final": "https://www.tirebusiness.com/"
+      }
+    ],
+    "verdict": "WAF拦截",
+    "rss": [
+      {
+        "url": "https://www.tirebusiness.com/rss.xml",
+        "status": 403,
+        "ctype": "text/html",
+        "len": 383,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      },
+      {
+        "url": "https://www.tirebusiness.com/feed",
+        "status": 403,
+        "ctype": "text/html",
+        "len": 376,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      },
+      {
+        "url": "https://www.tirebusiness.com/rss/all",
+        "status": 403,
+        "ctype": "text/html",
+        "len": 383,
+        "blocked": true,
+        "items": 0,
+        "ok": false
+      }
+    ]
+  },
+  {
+    "name": "Tomorrow's Technician",
+    "probes": [
+      {
+        "list_url": "https://www.tomorrowstechnician.com/",
+        "status": 200,
+        "len": 371246,
+        "blocked": false,
+        "final": "https://www.tomorrowstechnician.com/",
+        "internal_links": 220,
+        "hit": 37,
+        "hit_raw": 37,
+        "hit_samples": [
+          "/20212022-blaster-instructor-of-the-year-finalists/",
+          "/blaster-instructor-of-the-year-finalists-2021-2022/",
+          "/about-school-of-the-year/",
+          "/guess-the-tool/",
+          "/guess-the-car/"
+        ]
+      },
+      {
+        "list_url": "https://www.tomorrowstechnician.com/category/brakes/",
+        "status": 404,
+        "len": 288931,
+        "blocked": false,
+        "final": "https://www.tomorrowstechnician.com/category/brakes/"
+      }
+    ],
+    "verdict": "OK(37) / HTTP404"
+  },
+  {
+    "name": "US EPA",
+    "probes": [
+      {
+        "list_url": "https://www.epa.gov/newsreleases",
+        "status": 200,
+        "len": 69752,
+        "blocked": false,
+        "final": "https://www.epa.gov/newsroom/browse-news-releases",
+        "internal_links": 154,
+        "hit": 0,
+        "hit_raw": 0,
+        "hit_samples": [],
+        "path_samples": [
+          "/alerts",
+          "/",
+          "/environmental-topics",
+          "/bedbugs",
+          "/emergency-response",
+          "/lead",
+          "/mold",
+          "/radon",
+          "/research",
+          "/topics-epa-web",
+          "/laws-regulations",
+          "/regulatory-information-sector",
+          "/regulatory-information-topic",
+          "/compliance",
+          "/enforcement",
+          "/guidance",
+          "/report-violation",
+          "/office-inspector-general/forms/epa-oig-hotline-complaint-form"
+        ]
+      }
+    ],
+    "verdict": "正则0命中(raw=0)"
+  },
+  {
+    "name": "Underhood Service",
+    "probes": [
+      {
+        "list_url": "https://www.underhoodservice.com/",
+        "status": 200,
+        "len": 319581,
+        "blocked": false,
+        "final": "https://www.underhoodservice.com/",
+        "internal_links": 243,
+        "hit": 35,
+        "hit_raw": 35,
+        "hit_samples": [
+          "/accessibility/",
+          "/read-the-september-digital-edition-of-shopowner-now/",
+          "/why-damaged-o2-sensors-cause-more-problems-than-you-think/",
+          "/cordless-vs-pneumatic-tools-the-battle-continues/",
+          "/anchor-industries-adds-more-gm-coverage/"
+        ]
+      },
+      {
+        "list_url": "https://www.underhoodservice.com/category/brakes/",
+        "status": 404,
+        "len": 202013,
+        "blocked": false,
+        "final": "https://www.underhoodservice.com/category/brakes/"
+      }
+    ],
+    "verdict": "OK(35) / HTTP404"
+  }
+]
