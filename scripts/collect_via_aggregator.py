@@ -38,6 +38,7 @@ AGG_TARGETS = [
     ("CCJ Digital",       "ccjdigital.com",        "brake"),
     ("Underhood Service", "underhoodservice.com",  "brake"),
     ("Aftermarket News",  "aftermarketnews.com",   "brake"),
+    ("Ratchet+Wrench",    "ratchetandwrench.com",  "brake"),
     ("TMD Friction",      "tmdfriction.com",       "brake pad"),
     ("Brake & Front End", "brakeandfrontend.com",  "brake"),
     ("ImportCar",         "import-car.com",        "brake"),

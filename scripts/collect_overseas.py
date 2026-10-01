@@ -45,10 +45,11 @@ SOURCES = [
     {"name": "Bosch 新闻室", "list_url": "https://www.bosch-presse.de/pressportal/de/en/",
      "link_re": r"/pressportal/de/en/[a-z0-9\-_]{10,}\.html",
      "base": "https://www.bosch-presse.de", "region": "海外", "tag": "制动系统", "translate": True},
-    # EPA 用 Drupal：新闻详情页是 /newsreleases/<region>/<slug>
-    # 或 /node/<id>（旧式），两者都要能匹配；排除频道页与静态资源。
+    # EPA 用 Drupal views：新闻列表靠 AJAX/JS 渲染，静态 <a> 里无任何文章链接
+    # （实测 browse-news-releases?page=1 整页仅 3 个导航 <a>）。直连抓取本质无解，
+    # 真实覆盖由 collect_via_aggregator 的 AGG_SPA_SITES「US EPA」兜底（已入库 5 条）。
+    # 直连入口保留为文档化占位（预期 hit=0），不再浪费请求在 ?page=1 重定向页。
     {"name": "US EPA", "list_url": "https://www.epa.gov/newsreleases",
-     "list_url2": "https://www.epa.gov/newsreleases?page=1",
      "link_re": r"epa\.gov/(?:newsreleases/[a-z0-9\-]+/[a-z0-9\-]{6,}|node/\d+)",
      "exclude_url": r"epa\.gov/(?:newsroom/|themes/|modules/|sites/|about|"
                     r"environmental-topics|laws-regulations|newsreleases/?$)",
@@ -97,9 +98,10 @@ SOURCES = [
      "link_re": r"miba\.com/en/news/(?!(?:archive|filter)/)[a-z0-9\-_]{6,}",
      "base": "https://www.miba.com", "region": "海外", "tag": "摩擦材料", "translate": True},
     # Informa 系 CMS：真实文章 URL 形如 /home/article/<8位数字ID>/<slug>
-    # 首页只挂 1 条（其余靠 JS 轮播），必须走列表页才有量。
-    {"name": "Ratchet+Wrench", "list_url": "https://www.ratchetandwrench.com/home/latest",
-     "list_url2": "https://www.ratchetandwrench.com/news",
+    # /home/latest 与 /news 列表页在 Actions 实测 404/403；首页 / 是唯一稳定入口
+    # （Actions 实测 HTTP200、挂 1 条 article）。部分 IP 段会被 WAF 拦 403，
+    # 故同时加入 AGG_TARGETS 走 Google News 兜底（直连失败时仍有聚合线索）。
+    {"name": "Ratchet+Wrench", "list_url": "https://www.ratchetandwrench.com/",
      "link_re": r"ratchetandwrench\.com/(?:home/)?article/\d{6,}/[a-z0-9\-]{4,}",
      "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.ratchetandwrench.com", "region": "海外", "tag": "售后技术", "translate": True},
