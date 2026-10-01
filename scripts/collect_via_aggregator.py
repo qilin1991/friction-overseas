@@ -152,7 +152,7 @@ def bing_rss(query: str, limit: int = 15):
     out = []
     for it in root.iter("item"):
         t = (it.findtext("title") or "").strip()
-        link = (it.findtext("link") or "").strip()
+        link = unwrap_url((it.findtext("link") or "").strip())
         if not t or not link:
             continue
         out.append({"title": t, "url": link,
@@ -162,15 +162,40 @@ def bing_rss(query: str, limit: int = 15):
     return out, None
 
 
+def unwrap_url(link: str) -> str:
+    """解 Bing 的 apiclick 跳转包装，拿到真实媒体直链。
+
+    Bing News RSS 多数直接给真实链接，但部分条目会裹成
+    bing.com/news/apiclick.aspx?...&url=<真实URL>，这里把 url 参数取出来。
+    """
+    if not link or "apiclick" not in link:
+        return link
+    try:
+        from urllib.parse import urlsplit, parse_qs, unquote
+        q = parse_qs(urlsplit(link).query)
+        if "url" in q:
+            return unquote(q["url"][0])
+    except Exception:
+        pass
+    return link
+
+
 def fetch_aggregated(query: str, limit: int = 15):
-    """先试 Google News，失败退 Bing News；都失败返回 ([], 原因)。"""
-    items, err_g = gnews_rss(query, limit)
-    if items:
-        return items, None, "google-news-rss"
+    """Bing 优先 → Google 兜底。都失败返回 ([], 原因)。
+
+    为什么换顺序（2026-10-01）：
+    Google News RSS 的 <link> 是 news.google.com/rss/articles/<加密串> 中转链，
+    靠 Google 非公开 batchexecute 接口解码实测 270/270 全失败（接口已变），
+    导致聚合条目点不回真实媒体页，与「每条都有真实来源链接」目标不符。
+    Bing News RSS 多数直接给真实媒体直链；Google 仍保留为 Bing 不可达时的兜底。
+    """
     items, err_b = bing_rss(query, limit)
     if items:
         return items, None, "bing-news-rss"
-    return [], f"google={err_g}; bing={err_b}", None
+    items, err_g = gnews_rss(query, limit)
+    if items:
+        return items, None, "google-news-rss"
+    return [], f"bing={err_b}; google={err_g}", None
 
 
 def main():
@@ -219,6 +244,10 @@ def main():
                 "via": via,
                 "collected_at": datetime.now(timezone.utc).isoformat(),
             }
+            # 站点限定任务（site:域名）已知真实域名，落库供前端展示
+            # 「来源：媒体名 · 真实域名」，即使 URL 仍是跳转链也能显示来源。
+            if dom:
+                rec["source_domain"] = dom
             zh = translate(it["title"])
             if zh and zh != it["title"]:
                 rec["title_zh"] = zh
