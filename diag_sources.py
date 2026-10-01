@@ -33,6 +33,7 @@ for _p in (_HERE, os.path.join(_HERE, "scripts")):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
+from bs4 import BeautifulSoup  # noqa: E402
 from collect_overseas import SOURCES, UA, _extract_from  # noqa: E402
 
 OUT_DIR = "out"

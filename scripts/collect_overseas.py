@@ -141,6 +141,112 @@ def is_relevant(title: str, content: str = "") -> bool:
     return any(k in t for k in FRICTION_KW)
 
 
+# ── 精选评分 + 聚簇（对标 AIHOT 的「精选评分流程 / 聚簇机制」）────────
+# 旧版只有 is_relevant 关键词硬过滤，好差新闻混排、跨站同事件重复。
+# 这里补两层：① 加权评分排序 ② 跨站同事件归并成簇（取代表源+站点数）。
+STOP = set(
+    "the a an of to in on for and or with new from at by is are be this that it as "
+    "up out over after before its their our your his her will would can could via "
+    "how what when why who which show shows says said into about than then they we you"
+    .split()
+)
+
+# 来源权威度：垂直站/原厂/标准组织权重高，聚合通稿权重低
+SOURCE_WEIGHT = {
+    "SAE International": 1.0, "US EPA": 0.95, "Bosch 新闻室": 0.9,
+    "Miba AG": 0.9, "TMD Friction": 0.9, "Brembo": 0.9,
+    "Counterman": 0.7, "Aftermarket News": 0.7, "Brake & Front End": 0.7,
+    "ImportCar": 0.7, "Underhood Service": 0.7, "Tomorrow's Technician": 0.7,
+    "BodyShop Business": 0.7, "Fleet Owner": 0.7, "Repairer Driven News": 0.7,
+    "Ratchet+Wrench": 0.7, "CCJ Digital": 0.65, "Tire Business": 0.65,
+    "行业通稿": 0.3,
+}
+
+
+def _title_tokens(title: str) -> set:
+    """英文标题轻量分词：去停用词，保留术语与实体。"""
+    toks = re.findall(r"[a-z0-9][a-z0-9'\-\.]{2,}", (title or "").lower())
+    return {t for t in toks if t not in STOP}
+
+
+def score_article(rec: dict) -> float:
+    """加权评分（0~5 区间，便于 VPS 排序 + 阈值过滤）。
+
+    三因子：
+      · 摩擦相关度  —— 标题命中 FRICTION_KW 的术语数（每个 +1.2）
+      · 来源权威度  —— SOURCE_WEIGHT 映射（×1.5）
+      · 时效性      —— 越新越高（30 天内线性衰减，×1.0）
+    """
+    t = (rec.get("title") or "").lower()
+    rel = sum(1.2 for k in FRICTION_KW if k in t)
+    # 标题命中的强实体（品牌/车型/法规号）额外加权
+    src_w = SOURCE_WEIGHT.get(rec.get("source"), 0.6)
+    try:
+        age = (datetime.now(timezone.utc)
+               - datetime.fromisoformat(rec["collected_at"])).days
+        fresh = max(0.0, 1.0 - age / 30.0)
+    except Exception:
+        fresh = 0.5
+    return round(rel * 1.0 + src_w * 1.5 + fresh * 1.0, 3)
+
+
+def cluster_articles(articles: list, th: float = 0.34) -> list:
+    """跨站同事件归并（聚簇）。
+
+    指纹 = 标题术语集合 ∪ 命中的摩擦关键词。两文指纹 Jaccard ≥ th 即同簇。
+    贪心并查集合并；簇内取「标题最长」一条作代表，输出跨站站点数与代表 URL。
+
+    幂等：同输入必得同输出（并查集 + 排序稳定），便于 VPS 侧按 event_key 去重。
+    """
+    recs = []
+    for a in articles:
+        if not a.get("url"):
+            continue
+        kw = {k for k in FRICTION_KW if k in (a.get("title") or "").lower()}
+        fp = kw | _title_tokens(a.get("title") or "")
+        if fp:
+            recs.append((a, fp))
+
+    n = len(recs)
+    parent = list(range(n))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(x, y):
+        parent[find(x)] = find(y)
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            a, b = recs[i][1], recs[j][1]
+            uni = len(a | b)
+            if uni and len(a & b) / uni >= th:
+                union(i, j)
+
+    groups = {}
+    for i, (a, _fp) in enumerate(recs):
+        groups.setdefault(find(i), []).append(a)
+
+    clusters = []
+    for mem in groups.values():
+        if len(mem) < 2:
+            continue  # 单条不成簇，仍作为独立文章在 articles 里展示
+        sources = sorted({m.get("source") for m in mem if m.get("source")})
+        rep = max(mem, key=lambda m: len(m.get("title", "")))
+        clusters.append({
+            "title": rep.get("title"),
+            "sources": sources,
+            "count": len(mem),
+            "urls": [m.get("url") for m in mem if m.get("url")],
+            "representative_url": rep.get("url"),
+        })
+    clusters.sort(key=lambda c: (-c["count"], c["title"] or ""))
+    return clusters
+
+
 def translate(text: str, retry: int = 2) -> str:
     """Google 免费翻译端点（无 key）。失败原样返回，绝不阻塞。"""
     text = (text or "").strip()
@@ -315,11 +421,22 @@ def main():
         stats.append({"source": src["name"], "fetched": len(items), "kept": kept})
         print(f"  ✅ {src['name']:<20} 抓 {len(items):>3} 条，相关 {kept:>3} 条")
 
+    # ── 精选评分 + 聚簇（对标 AIHOT）──
+    # 先给每条打加权分，再跨站聚簇；两条独立产出，VPS 侧各取所需。
+    for a in articles.values():
+        a["score"] = score_article(a)
+    clusters = cluster_articles(list(articles.values()))
+    print(f"  🔗 聚簇：{len(clusters)} 个跨站事件（涉及 "
+          f"{sum(c['count'] for c in clusters)} 条重复文章）")
+
     payload = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "generator": "friction-actions/collect_overseas.py",
         "count": len(articles),
-        "articles": sorted(articles.values(), key=lambda x: x["collected_at"], reverse=True),
+        "articles": sorted(articles.values(),
+                           key=lambda x: (x.get("score", 0), x["collected_at"]),
+                           reverse=True),
+        "clusters": clusters,
         "stats": stats,
         "errors": errors,
     }
