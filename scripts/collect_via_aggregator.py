@@ -233,9 +233,14 @@ def main():
             if not any(k in low for k in FRICTION_KW):
                 continue
             # 聚合结果标题末尾常带 " - 媒体名"，保留原样便于溯源
+            raw_url = it["url"]
+            # Google 中转链（news.google.com）在中国打不开：回落 Google 时
+            # 不再存死链，改成 Bing 新闻搜索该标题，保证可点击。
+            if "news.google.com" in raw_url:
+                raw_url = "https://www.bing.com/news/search?q=" + quote(it["title"])
             rec = {
                 "title": it["title"],
-                "url": it["url"],
+                "url": raw_url,
                 "source": label,
                 "region": "海外",
                 "tag": "聚合来源",
