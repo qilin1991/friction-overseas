@@ -1,0 +1,131 @@
+[
+  {
+    "id": "938",
+    "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5",
+    "step1_status": 302,
+    "step1_location": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5&hl=en-US&gl=US&ceid=US:en",
+    "final_status": 200,
+    "final_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5&hl=en-US&gl=US&ceid=US:en",
+    "final_len": 593761,
+    "final_ct": "text/html; charset=utf-8",
+    "html_saved": "out/gnews_938.html",
+    "ext_links": [
+      "http://www.w3.org/1999/xlink",
+      "http://www.w3.org/2000/svg",
+      "http://www.w3.org/XML/1998/namespace",
+      "https://angular.dev/license",
+      "https://fonts.gstatic.com/s/materialiconsextended/v154/kJEjBvgX7BgnkSrUwT8UnLVc38YydejYY-oE_LvJ.woff2)format(",
+      "https://fonts.gstatic.com/s/productsans/v9/pxiDypQkot1TnFhsFMOfGShVF9eO.woff2)format(",
+      "https://fonts.gstatic.com/s/productsans/v9/pxiDypQkot1TnFhsFMOfGShVGdeOcEg.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2)format(",
+      "https://www.gstatic.com/_/boq-dots/_/r/",
+      "https://www.gstatic.com/_/mss/boq-dots/_/js/k=boq-dots.DotsSplashUi_desktop_ms.en_US.aNal5IPQVWc.2018.O/am=GAKFAgAAAACZAAMR/d=1/excm=_b,_tp,syndicationarticleview/ed=1/dg=0/wt=2/ujg=1/rs=ALs0n2OqhlktBl4Bu7oq0q7Ec_CKTdlc-g/dti=1/m=_b,_tp",
+      "https://www.gstatic.com/_/mss/boq-dots/_/ss/k=boq-dots.DotsSplashUi_desktop_ms._nobHcvTISY.L.B1.O/am=GAKFAgQAgAGZAAMRIA/d=1/ed=1/rs=ALs0n2N7peGwk5Py3xwjBvyZOn1UE9t5Rw/m=syndicationarticleview,_b,_tp"
+    ],
+    "ext_link_count": 19,
+    "signals": {
+      "data-n-a-sg": [
+        "AbIaSL8ie4XH_Hyp1Nbg9ziPiK1M"
+      ],
+      "c-wiz-href": [
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w16",
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w24",
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w32"
+      ]
+    }
+  },
+  {
+    "id": "939",
+    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5",
+    "step1_status": 302,
+    "step1_location": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5&hl=en-US&gl=US&ceid=US:en",
+    "final_status": 200,
+    "final_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5&hl=en-US&gl=US&ceid=US:en",
+    "final_len": 594279,
+    "final_ct": "text/html; charset=utf-8",
+    "html_saved": "out/gnews_939.html",
+    "ext_links": [
+      "http://www.w3.org/1999/xlink",
+      "http://www.w3.org/2000/svg",
+      "http://www.w3.org/XML/1998/namespace",
+      "https://angular.dev/license",
+      "https://fonts.gstatic.com/s/materialiconsextended/v154/kJEjBvgX7BgnkSrUwT8UnLVc38YydejYY-oE_LvJ.woff2)format(",
+      "https://fonts.gstatic.com/s/productsans/v9/pxiDypQkot1TnFhsFMOfGShVF9eO.woff2)format(",
+      "https://fonts.gstatic.com/s/productsans/v9/pxiDypQkot1TnFhsFMOfGShVGdeOcEg.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2)format(",
+      "https://www.gstatic.com/_/boq-dots/_/r/",
+      "https://www.gstatic.com/_/mss/boq-dots/_/js/k=boq-dots.DotsSplashUi_desktop_ms.en_US.aNal5IPQVWc.2018.O/am=GAKFAgAAAACZAAMR/d=1/excm=_b,_tp,syndicationarticleview/ed=1/dg=0/wt=2/ujg=1/rs=ALs0n2OqhlktBl4Bu7oq0q7Ec_CKTdlc-g/dti=1/m=_b,_tp",
+      "https://www.gstatic.com/_/mss/boq-dots/_/ss/k=boq-dots.DotsSplashUi_desktop_ms._nobHcvTISY.L.B1.O/am=GAKFAgQAgAGZAAMRIA/d=1/ed=1/rs=ALs0n2N7peGwk5Py3xwjBvyZOn1UE9t5Rw/m=syndicationarticleview,_b,_tp"
+    ],
+    "ext_link_count": 19,
+    "signals": {
+      "data-n-a-sg": [
+        "AbIaSL_noHR7PuRK7_KvnTVAOmE8"
+      ],
+      "c-wiz-href": [
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w16",
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w24",
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w32"
+      ]
+    }
+  },
+  {
+    "id": "940",
+    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5",
+    "step1_status": 302,
+    "step1_location": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5&hl=en-US&gl=US&ceid=US:en",
+    "final_status": 200,
+    "final_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5&hl=en-US&gl=US&ceid=US:en",
+    "final_len": 592752,
+    "final_ct": "text/html; charset=utf-8",
+    "html_saved": "out/gnews_940.html",
+    "ext_links": [
+      "http://www.w3.org/1999/xlink",
+      "http://www.w3.org/2000/svg",
+      "http://www.w3.org/XML/1998/namespace",
+      "https://angular.dev/license",
+      "https://fonts.gstatic.com/s/materialiconsextended/v154/kJEjBvgX7BgnkSrUwT8UnLVc38YydejYY-oE_LvJ.woff2)format(",
+      "https://fonts.gstatic.com/s/productsans/v9/pxiDypQkot1TnFhsFMOfGShVF9eO.woff2)format(",
+      "https://fonts.gstatic.com/s/productsans/v9/pxiDypQkot1TnFhsFMOfGShVGdeOcEg.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2)format(",
+      "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2)format(",
+      "https://www.gstatic.com/_/boq-dots/_/r/",
+      "https://www.gstatic.com/_/mss/boq-dots/_/js/k=boq-dots.DotsSplashUi_desktop_ms.en_US.aNal5IPQVWc.2018.O/am=GAKFAgAAAACZAAMR/d=1/excm=_b,_tp,syndicationarticleview/ed=1/dg=0/wt=2/ujg=1/rs=ALs0n2OqhlktBl4Bu7oq0q7Ec_CKTdlc-g/dti=1/m=_b,_tp",
+      "https://www.gstatic.com/_/mss/boq-dots/_/ss/k=boq-dots.DotsSplashUi_desktop_ms._nobHcvTISY.L.B1.O/am=GAKFAgQAgAGZAAMRIA/d=1/ed=1/rs=ALs0n2N7peGwk5Py3xwjBvyZOn1UE9t5Rw/m=syndicationarticleview,_b,_tp"
+    ],
+    "ext_link_count": 19,
+    "signals": {
+      "data-n-a-sg": [
+        "AbIaSL_zSu8GmBT2QNkPMMBO9z6u"
+      ],
+      "c-wiz-href": [
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w16",
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w24",
+        "https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w32"
+      ]
+    }
+  }
+]

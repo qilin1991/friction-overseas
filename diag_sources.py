@@ -40,6 +40,53 @@ BLOCK_MARKERS = ["just a moment", "access denied", "cf-browser",
                  "checking your browser", "attention required",
                  "enable javascript", "captcha"]
 
+# WAF 站的 RSS 候选：RSS 端点常常不走 Cloudflare 的浏览器挑战，
+# 对「正文页被拦但 feed 可读」的 CMS 是最省事的突破口。
+RSS_CANDIDATES = {
+    "Tire Business": [
+        "https://www.tirebusiness.com/rss.xml",
+        "https://www.tirebusiness.com/feed",
+        "https://www.tirebusiness.com/rss/all",
+    ],
+    "CCJ Digital": [
+        "https://www.ccjdigital.com/rss.xml",
+        "https://www.ccjdigital.com/feed",
+    ],
+    "TMD Friction": [
+        "https://www.tmdfriction.com/en/rss/",
+        "https://www.tmdfriction.com/rss.xml",
+        "https://www.tmdfriction.com/en/news/rss",
+    ],
+    "SAE International": [
+        "https://www.sae.org/rss/news.xml",
+        "https://www.sae.org/news/rss",
+        "https://www.sae.org/rss",
+    ],
+}
+
+
+def probe_rss(url: str) -> dict:
+    """探一个 RSS 候选端点：200 且含 <item>/<entry> 才算通。"""
+    rec = {"url": url}
+    try:
+        r = requests.get(url, headers=UA, timeout=20)
+        rec["status"] = r.status_code
+        rec["ctype"] = r.headers.get("content-type", "")[:60]
+        rec["len"] = len(r.text)
+        low = r.text[:4000].lower()
+        rec["blocked"] = any(m in low for m in BLOCK_MARKERS)
+        n_item = low.count("<item") + low.count("<entry")
+        rec["items"] = n_item
+        rec["ok"] = (r.status_code == 200 and n_item > 0 and not rec["blocked"])
+        if rec["ok"]:
+            # 抽第一条的链接，确认是真 feed
+            m = re.search(r"<link[^>]*>\s*(https?://[^<\s]+)", r.text)
+            rec["first_link"] = m.group(1) if m else ""
+    except Exception as e:
+        rec["error"] = "%s: %s" % (type(e).__name__, e)
+        rec["ok"] = False
+    return rec
+
 
 def path_of(url, base):
     """把绝对 URL 压成站内路径，便于观察规律。"""
@@ -136,6 +183,15 @@ def diag_one(src):
         else:
             verdicts.append("正则0命中(raw=%s)" % p.get("hit_raw", "?"))
     rec["verdict"] = " / ".join(verdicts)
+
+    # WAF 站：额外探 RSS 出路
+    if "WAF拦截" in rec["verdict"] or any(
+            p.get("blocked") for p in rec["probes"]):
+        cands = RSS_CANDIDATES.get(name, [])
+        if cands:
+            rec["rss"] = [probe_rss(u) for u in cands]
+            if any(x.get("ok") for x in rec["rss"]):
+                rec["verdict"] += " + RSS可用"
     return rec
 
 
@@ -179,6 +235,14 @@ def main():
                      " [WAF]" if p.get("blocked") else ""))
             for s in (p.get("path_samples") or [])[:12]:
                 print("       ·", s)
+        for x in (r.get("rss") or []):
+            flag = "OK %d items" % x["items"] if x.get("ok") else \
+                   (x.get("error") or "HTTP%s items=%s%s"
+                    % (x.get("status"), x.get("items"),
+                       " [WAF]" if x.get("blocked") else ""))
+            print("   RSS %s -> %s" % (x["url"], flag))
+            if x.get("first_link"):
+                print("       首条: %s" % x["first_link"])
     return 0
 
 

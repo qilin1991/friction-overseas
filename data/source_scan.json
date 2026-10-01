@@ -1,0 +1,228 @@
+{
+  "generated_at": "2026-10-01 01:56:51 UTC",
+  "total": 20,
+  "reachable": 8,
+  "summary": "8/20 可直连",
+  "results": [
+    {
+      "name": "The BRAKE Report",
+      "url": "https://thebrakereport.com/",
+      "tag": "摩擦材料媒体",
+      "status": 403,
+      "blocked": true,
+      "art_links": 0,
+      "bytes": 5707,
+      "final_url": "https://thebrakereport.com/",
+      "verdict": "⛔ WAF"
+    },
+    {
+      "name": "Brake & Front End",
+      "url": "https://www.brakeandfrontend.com/",
+      "tag": "售后技术",
+      "status": 200,
+      "blocked": false,
+      "art_links": 3,
+      "bytes": 318936,
+      "final_url": "https://www.brakeandfrontend.com/",
+      "verdict": "🔶 可连·文章少"
+    },
+    {
+      "name": "ImportCar",
+      "url": "https://www.import-car.com/",
+      "tag": "售后技术",
+      "status": 200,
+      "blocked": false,
+      "art_links": 3,
+      "bytes": 313590,
+      "final_url": "https://www.import-car.com/",
+      "verdict": "🔶 可连·文章少"
+    },
+    {
+      "name": "Tomorrow's Technician",
+      "url": "https://www.tomorrowstechnician.com/",
+      "tag": "售后技术",
+      "status": 200,
+      "blocked": false,
+      "art_links": 5,
+      "bytes": 371215,
+      "final_url": "https://www.tomorrowstechnician.com/",
+      "verdict": "✅ 可直连"
+    },
+    {
+      "name": "Ratchet+Wrench",
+      "url": "https://www.ratchetandwrench.com/",
+      "tag": "售后技术",
+      "status": 200,
+      "blocked": false,
+      "art_links": 50,
+      "bytes": 291292,
+      "final_url": "https://www.ratchetandwrench.com/",
+      "verdict": "✅ 可直连"
+    },
+    {
+      "name": "Tyrepress",
+      "url": "https://www.tyrepress.com/",
+      "tag": "轮胎/排放",
+      "status": 403,
+      "blocked": true,
+      "art_links": 0,
+      "bytes": 5599,
+      "final_url": "https://www.tyrepress.com/",
+      "verdict": "⛔ WAF"
+    },
+    {
+      "name": "Knorr-Bremse",
+      "url": "https://www.knorr-bremse.com/en/company/press/press-releases/",
+      "tag": "制动Tier1",
+      "status": 404,
+      "blocked": false,
+      "art_links": 2,
+      "bytes": 115128,
+      "final_url": "https://www.knorr-bremse.com/en/company/press/press-releases/",
+      "verdict": "⛔ HTTP 404"
+    },
+    {
+      "name": "Haldex",
+      "url": "https://www.haldex.com/en/news/",
+      "tag": "制动Tier1",
+      "status": 404,
+      "blocked": false,
+      "art_links": 0,
+      "bytes": 68782,
+      "final_url": "https://www.haldex.com/en/news/",
+      "verdict": "⛔ HTTP 404"
+    },
+    {
+      "name": "Miba AG",
+      "url": "https://www.miba.com/en/news",
+      "tag": "摩擦材料",
+      "status": 200,
+      "blocked": false,
+      "art_links": 12,
+      "bytes": 53519,
+      "final_url": "https://www.miba.com/en/news",
+      "verdict": "✅ 可直连"
+    },
+    {
+      "name": "TMD Friction",
+      "url": "https://www.tmdfriction.com/en/news/",
+      "tag": "摩擦材料",
+      "status": 403,
+      "blocked": true,
+      "art_links": 0,
+      "bytes": 5711,
+      "final_url": "https://www.tmdfriction.com/en/news/",
+      "verdict": "⛔ WAF"
+    },
+    {
+      "name": "ISO",
+      "url": "https://www.iso.org/insights",
+      "tag": "标准",
+      "status": 403,
+      "blocked": true,
+      "art_links": 0,
+      "bytes": 5724,
+      "final_url": "https://www.iso.org/insights",
+      "verdict": "⛔ WAF"
+    },
+    {
+      "name": "ASTM",
+      "url": "https://www.astm.org/newsroom.html",
+      "tag": "标准",
+      "status": 404,
+      "blocked": false,
+      "art_links": 11,
+      "bytes": 248381,
+      "final_url": "https://store.astm.org/newsroom.html",
+      "verdict": "⛔ HTTP 404"
+    },
+    {
+      "name": "OICA",
+      "url": "https://www.oica.net/category/production-statistics/",
+      "tag": "协会",
+      "status": 404,
+      "blocked": false,
+      "art_links": 9,
+      "bytes": 130317,
+      "final_url": "https://oica.net/category/production-statistics/",
+      "verdict": "⛔ HTTP 404"
+    },
+    {
+      "name": "MEMA",
+      "url": "https://www.mema.org/press-releases/",
+      "tag": "协会",
+      "status": 403,
+      "blocked": true,
+      "art_links": 0,
+      "bytes": 5640,
+      "final_url": "https://www.mema.org/press-releases/",
+      "verdict": "⛔ WAF"
+    },
+    {
+      "name": "Auto Care Association",
+      "url": "https://www.autocare.org/news",
+      "tag": "协会",
+      "status": 200,
+      "blocked": false,
+      "art_links": 35,
+      "bytes": 64004,
+      "final_url": "https://www.autocare.org/news",
+      "verdict": "✅ 可直连"
+    },
+    {
+      "name": "Automotive World",
+      "url": "https://www.automotiveworld.com/news/",
+      "tag": "行业媒体",
+      "status": 403,
+      "blocked": true,
+      "art_links": 0,
+      "bytes": 5770,
+      "final_url": "https://www.automotiveworld.com/news/",
+      "verdict": "⛔ WAF"
+    },
+    {
+      "name": "Just Auto",
+      "url": "https://www.just-auto.com/news/",
+      "tag": "行业媒体",
+      "status": 403,
+      "blocked": false,
+      "art_links": 0,
+      "bytes": 425,
+      "final_url": "https://www.just-auto.com/news/",
+      "verdict": "⛔ HTTP 403"
+    },
+    {
+      "name": "Automotive News",
+      "url": "https://www.autonews.com/",
+      "tag": "行业媒体",
+      "status": 403,
+      "blocked": true,
+      "art_links": 0,
+      "bytes": 368,
+      "final_url": "https://www.autonews.com/",
+      "verdict": "⛔ WAF"
+    },
+    {
+      "name": "Repairer Driven News",
+      "url": "https://www.repairerdrivennews.com/",
+      "tag": "售后",
+      "status": 200,
+      "blocked": false,
+      "art_links": 31,
+      "bytes": 162445,
+      "final_url": "https://www.repairerdrivennews.com/",
+      "verdict": "✅ 可直连"
+    },
+    {
+      "name": "BodyShop Business",
+      "url": "https://www.bodyshopbusiness.com/",
+      "tag": "售后",
+      "status": 200,
+      "blocked": false,
+      "art_links": 21,
+      "bytes": 353699,
+      "final_url": "https://www.bodyshopbusiness.com/",
+      "verdict": "✅ 可直连"
+    }
+  ]
+}

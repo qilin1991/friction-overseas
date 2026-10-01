@@ -1,0 +1,32 @@
+[
+  {
+    "id": 938,
+    "article_id": "CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5",
+    "status": 200,
+    "len": 108,
+    "head": ")]}'\n\n[[\"wrb.fr\",\"Fbv4je\",null,null,null,[3],\"generic\"],[\"di\",21],[\"af.httprm\",20,\"-701733003522296920\",19]]",
+    "saved": "out/batch_raw_938.txt",
+    "parsed": [],
+    "literal_urls": []
+  },
+  {
+    "id": 939,
+    "article_id": "CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5",
+    "status": 200,
+    "len": 108,
+    "head": ")]}'\n\n[[\"wrb.fr\",\"Fbv4je\",null,null,null,[3],\"generic\"],[\"di\",26],[\"af.httprm\",25,\"6039089124988429902\",19]]",
+    "saved": "out/batch_raw_939.txt",
+    "parsed": [],
+    "literal_urls": []
+  },
+  {
+    "id": 940,
+    "article_id": "CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5",
+    "status": 200,
+    "len": 109,
+    "head": ")]}'\n\n[[\"wrb.fr\",\"Fbv4je\",null,null,null,[3],\"generic\"],[\"di\",15],[\"af.httprm\",15,\"-4939139122012770057\",19]]",
+    "saved": "out/batch_raw_940.txt",
+    "parsed": [],
+    "literal_urls": []
+  }
+]

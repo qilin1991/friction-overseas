@@ -96,8 +96,9 @@ SOURCES = [
      "link_re": r"miba\.com/en/news/(?!(?:archive|filter)/)[a-z0-9\-_]{6,}",
      "base": "https://www.miba.com", "region": "海外", "tag": "摩擦材料", "translate": True},
     # Informa 系 CMS：真实文章 URL 形如 /home/article/<8位数字ID>/<slug>
-    # （首页返回 200 且链接充足，只是 URL 结构与纯 slug 规则完全不同）
-    {"name": "Ratchet+Wrench", "list_url": "https://www.ratchetandwrench.com/",
+    # 首页只挂 1 条（其余靠 JS 轮播），必须走列表页才有量。
+    {"name": "Ratchet+Wrench", "list_url": "https://www.ratchetandwrench.com/home/latest",
+     "list_url2": "https://www.ratchetandwrench.com/",
      "link_re": r"ratchetandwrench\.com/(?:home/)?article/\d{6,}/[a-z0-9\-]{4,}",
      "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.ratchetandwrench.com", "region": "海外", "tag": "售后技术", "translate": True},

@@ -1,0 +1,98 @@
+{
+  "results": [
+    {
+      "name": "Tire Business",
+      "url": "https://www.tirebusiness.com/",
+      "channels": {
+        "r.jina.ai": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 403",
+          "sample": ""
+        },
+        "allorigins": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 522",
+          "sample": ""
+        }
+      }
+    },
+    {
+      "name": "CCJ Digital",
+      "url": "https://www.ccjdigital.com/",
+      "channels": {
+        "r.jina.ai": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 403",
+          "sample": ""
+        },
+        "allorigins": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 520",
+          "sample": ""
+        }
+      }
+    },
+    {
+      "name": "TMD Friction",
+      "url": "https://www.tmdfriction.com/en/news/",
+      "channels": {
+        "r.jina.ai": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 403",
+          "sample": ""
+        },
+        "allorigins": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 522",
+          "sample": ""
+        }
+      }
+    },
+    {
+      "name": "Automotive News",
+      "url": "https://www.autonews.com/",
+      "channels": {
+        "r.jina.ai": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 403",
+          "sample": ""
+        },
+        "allorigins": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 522",
+          "sample": ""
+        }
+      }
+    },
+    {
+      "name": "Counterman",
+      "url": "https://www.counterman.com/",
+      "channels": {
+        "r.jina.ai": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 403",
+          "sample": ""
+        },
+        "allorigins": {
+          "ok": false,
+          "bytes": 0,
+          "error": "HTTP 522",
+          "sample": ""
+        }
+      }
+    }
+  ],
+  "summary": {
+    "r.jina.ai": "0/5",
+    "allorigins": "0/5"
+  }
+}
