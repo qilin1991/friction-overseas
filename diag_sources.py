@@ -33,7 +33,7 @@ for _p in (_HERE, os.path.join(_HERE, "scripts")):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
-from collect_overseas import SOURCES, UA  # noqa: E402
+from collect_overseas import SOURCES, UA, _extract_from  # noqa: E402
 
 OUT_DIR = "out"
 BLOCK_MARKERS = ["just a moment", "access denied", "cf-browser",
@@ -120,20 +120,12 @@ def diag_one(src):
                 rec["probes"].append(p)
                 continue
 
-            # 统计页面里所有站内链接
-            base_host = urlsplit(src["base"]).netloc
-            all_links = re.findall(r'href=["\']([^"\']+)["\']', r.text)
-            internal = []
-            for h in all_links:
-                if h.startswith("#") or h.startswith("mailto:") \
-                        or h.startswith("javascript:"):
-                    continue
-                full = urljoin(lu, h)
-                if urlsplit(full).netloc == base_host:
-                    internal.append(full)
-            p["internal_links"] = len(internal)
-
-            # 用采集器的正则去匹配（含 exclude_url，与线上行为一致）
+            # ── 关键：诊断和采集用同一套提取逻辑（collect_overseas._extract_from）
+            # 早期诊断脚本自己用正则 re.findall(r'href=...') 提链接，会误抓到
+            # <link>/<script> 里的 href（如 EPA 的 /node/16767），而采集脚本只认
+            # 真正的 <a> 标签，于是「诊断说 OK(1) 但采集 0 命中」——虚报。
+            # 统一成 _extract_from 后，诊断结论 == 采集结论，可信。
+            soup = BeautifulSoup(r.text, "html.parser")
             try:
                 rx = re.compile(src["link_re"])
                 _exc = src.get("exclude_url")
@@ -142,23 +134,27 @@ def diag_one(src):
                 p["regex_error"] = str(e)
                 rec["probes"].append(p)
                 continue
-            raw_hit = [u for u in internal if rx.search(u)]
-            hit = [u for u in raw_hit if not (erx and erx.search(u))]
-            p["hit"] = len(hit)
-            p["hit_raw"] = len(raw_hit)
-            p["hit_samples"] = [path_of(u, src["base"]) for u in hit[:5]]
+            items = _extract_from(soup, rx, src["base"], 500, exclude=erx)
+            p["internal_links"] = len(soup.find_all("a", href=True))
+            p["hit"] = len(items)
+            p["hit_raw"] = len(items)  # 诊断本身已带 exclude，raw==hit
+            p["hit_samples"] = [path_of(it["url"], src["base"]) for it in items[:5]]
 
-            # 命中为 0：给出路径样本，供反推正则
-            if not hit:
+            # 命中为 0：给出站内路径样本，供反推正则
+            if not items:
                 seen, samples = set(), []
-                for u in internal:
-                    pp = path_of(u, src["base"])
-                    # 取一级路径做粗分类
-                    seg = pp.split("/")[1] if pp.count("/") >= 1 else ""
-                    key = seg
-                    if key in seen:
+                for a in soup.find_all("a", href=True):
+                    h = a["href"].split("#")[0].split("?")[0]
+                    if not h or h.startswith(("http", "#", "javascript:", "mailto:")):
                         continue
-                    seen.add(key)
+                    full = urljoin(lu, h)
+                    if urlsplit(full).netloc != urlsplit(src["base"]).netloc:
+                        continue
+                    pp = path_of(full, src["base"])
+                    seg = pp.split("/")[1] if pp.count("/") >= 1 else ""
+                    if seg in seen:
+                        continue
+                    seen.add(seg)
                     samples.append(pp[:90])
                     if len(samples) >= 18:
                         break
