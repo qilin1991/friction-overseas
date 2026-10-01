@@ -5,7 +5,7 @@
       {
         "list_url": "https://www.aftermarketnews.com/",
         "status": 200,
-        "len": 356898,
+        "len": 356864,
         "blocked": false,
         "final": "https://www.aftermarketnews.com/",
         "internal_links": 278,
@@ -81,7 +81,7 @@
       {
         "list_url": "https://www.brakeandfrontend.com/",
         "status": 200,
-        "len": 318980,
+        "len": 318769,
         "blocked": false,
         "final": "https://www.brakeandfrontend.com/",
         "internal_links": 237,
@@ -131,7 +131,7 @@
         "url": "https://www.ccjdigital.com/feed",
         "status": 403,
         "ctype": "text/html; charset=UTF-8",
-        "len": 5741,
+        "len": 5762,
         "blocked": true,
         "items": 0,
         "ok": false
@@ -144,7 +144,7 @@
       {
         "list_url": "https://www.counterman.com/",
         "status": 200,
-        "len": 307903,
+        "len": 307904,
         "blocked": false,
         "final": "https://www.counterman.com/",
         "internal_links": 226,
@@ -174,7 +174,7 @@
       {
         "list_url": "https://www.fleetowner.com/",
         "status": 200,
-        "len": 359054,
+        "len": 359032,
         "blocked": false,
         "final": "https://www.fleetowner.com/",
         "internal_links": 194,
@@ -214,7 +214,7 @@
       {
         "list_url": "https://www.import-car.com/",
         "status": 200,
-        "len": 313094,
+        "len": 313138,
         "blocked": false,
         "final": "https://www.import-car.com/",
         "internal_links": 243,
@@ -257,16 +257,9 @@
     "name": "Ratchet+Wrench",
     "probes": [
       {
-        "list_url": "https://www.ratchetandwrench.com/home/latest",
-        "status": 404,
-        "len": 93651,
-        "blocked": false,
-        "final": "https://www.ratchetandwrench.com/home/latest"
-      },
-      {
         "list_url": "https://www.ratchetandwrench.com/",
         "status": 200,
-        "len": 291153,
+        "len": 291175,
         "blocked": false,
         "final": "https://www.ratchetandwrench.com/",
         "internal_links": 162,
@@ -277,7 +270,7 @@
         ]
       }
     ],
-    "verdict": "HTTP404 / OK(1)"
+    "verdict": "OK(1)"
   },
   {
     "name": "Repairer Driven News",
@@ -285,18 +278,18 @@
       {
         "list_url": "https://www.repairerdrivennews.com/",
         "status": 200,
-        "len": 161822,
+        "len": 161860,
         "blocked": false,
         "final": "https://www.repairerdrivennews.com/",
         "internal_links": 102,
         "hit": 12,
         "hit_raw": 12,
         "hit_samples": [
-          "/2026/09/22/nhtsa-partners-with-sae-for-av-standards/",
+          "/2026/09/17/florida-auto-insurer-agrees-to-settle-class-action-by-paying-storage-and-transfer-fees/",
           "/2026/09/21/tdi-approves-consumer-auto-bill-of-rights-updates-to-include-mandatory-right-to-appraisal/",
-          "/2026/09/16/when-the-shop-is-slow-build-your-bench-californias-el-camino-college-looking-for-shops-to-hire-apprentices/",
-          "/2026/09/25/nebraska-community-college-opens-new-automotive-career-training-center/",
-          "/2026/09/17/florida-auto-insurer-agrees-to-settle-class-action-by-paying-storage-and-transfer-fees/"
+          "/2026/09/24/cfa-urges-states-to-prohibit-price-optimization-in-insurance/",
+          "/2026/09/29/state-farm-again-seeks-dismissal-of-north-carolina-actual-cash-value-lawsuit/",
+          "/2026/09/16/when-the-shop-is-slow-build-your-bench-californias-el-camino-college-looking-for-shops-to-hire-apprentices/"
         ]
       }
     ],
@@ -355,7 +348,7 @@
       {
         "list_url": "https://www.tmdfriction.com/en/news/",
         "status": 403,
-        "len": 5754,
+        "len": 5775,
         "blocked": true,
         "final": "https://www.tmdfriction.com/en/news/"
       }
@@ -397,7 +390,7 @@
       {
         "list_url": "https://www.tirebusiness.com/",
         "status": 403,
-        "len": 372,
+        "len": 374,
         "blocked": true,
         "final": "https://www.tirebusiness.com/"
       }
@@ -408,7 +401,7 @@
         "url": "https://www.tirebusiness.com/rss.xml",
         "status": 403,
         "ctype": "text/html",
-        "len": 383,
+        "len": 385,
         "blocked": true,
         "items": 0,
         "ok": false
@@ -426,7 +419,7 @@
         "url": "https://www.tirebusiness.com/rss/all",
         "status": 403,
         "ctype": "text/html",
-        "len": 383,
+        "len": 385,
         "blocked": true,
         "items": 0,
         "ok": false
@@ -439,7 +432,7 @@
       {
         "list_url": "https://www.tomorrowstechnician.com/",
         "status": 200,
-        "len": 371246,
+        "len": 371190,
         "blocked": false,
         "final": "https://www.tomorrowstechnician.com/",
         "internal_links": 220,
