@@ -1,0 +1,95 @@
+name: resolve-gnews
+
+# Google News 中转链接解码
+#
+# 背景：friction 站有 270 篇文章的 url 是 news.google.com/rss/articles/<加密串>，
+#       点开先到 Google 中转页再跳转。payload 是加密的（AU_yqL 前缀），
+#       无法离线 base64 解码，必须实际发请求才能拿到真实 URL。
+#       VPS（腾讯云·国内）和本地沙箱都连不上 Google，只有 GitHub Actions
+#       （Azure 机房）能访问，所以借用这个出口。
+#
+# 模式：
+#   diag    —— 诊断：抓 3 条样本，落盘原始 HTML + 跳转信号，用于确定提取方式
+#   resolve —— 解码：按 gnews_pending.txt 全量跟随，产出 gnews_resolved.jsonl
+#
+# 输入：gnews_pending.txt         每行  id|url
+# 输出：gnews_resolved.jsonl      每行  {"id":..,"orig":..,"final":..,"ok":..,"note":..}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '运行模式'
+        type: choice
+        options: [resolve, diag, diagsrc]
+        default: resolve
+      concurrency:
+        description: '并发数（resolve 模式）'
+        default: '8'
+      timeout:
+        description: '单条超时/秒'
+        default: '20'
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install --quiet requests beautifulsoup4
+
+      - name: 检查输入
+        if: ${{ inputs.mode != 'diagsrc' }}
+        run: |
+          if [ ! -f gnews_pending.txt ]; then
+            echo "::error::gnews_pending.txt 不存在"; exit 1
+          fi
+          echo "待处理：$(wc -l < gnews_pending.txt) 条"
+
+      - name: 信源配置诊断
+        if: ${{ inputs.mode == 'diagsrc' }}
+        run: python diag_sources.py
+
+      - name: 诊断
+        if: ${{ inputs.mode == 'diag' }}
+        run: python diag_gnews.py
+
+      - name: 解码
+        if: ${{ inputs.mode == 'resolve' }}
+        env:
+          CONC: ${{ inputs.concurrency || '8' }}
+          TMO:  ${{ inputs.timeout || '20' }}
+        run: python resolve_gnews.py
+
+      - name: 统计
+        if: always()
+        run: |
+          echo "=== out/ ==="
+          ls -la out/ 2>/dev/null || true
+          if [ -f gnews_resolved.jsonl ]; then
+            echo "--- 结果行数 ---"
+            wc -l gnews_resolved.jsonl
+            echo "--- 抽样 ---"
+            head -3 gnews_resolved.jsonl
+          fi
+
+      - name: 提交产物
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name  "gnews-resolver"
+          git config user.email "resolver@users.noreply.github.com"
+          git add -f out/ gnews_resolved.jsonl 2>/dev/null || true
+          git diff --cached --quiet && echo "无产物变更" || {
+            git commit -m "chore: gnews resolve artifacts [skip ci]"
+            git push
+          }

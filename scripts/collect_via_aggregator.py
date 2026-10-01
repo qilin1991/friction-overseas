@@ -28,17 +28,36 @@ UA = {
     "Accept": "application/rss+xml,application/xml,text/xml,*/*;q=0.8",
 }
 
-# 被 WAF 拦的站点 → 用「站点名 + 行业关键词」去聚合服务检索
+# 聚合检索目标：走 site: 限定，确保结果确实来自该站，
+# 避免泛关键词搜索把别的媒体算到它头上（归因不准的老问题）。
+# (显示名, 站点域名, 主题限定词)
 AGG_TARGETS = [
-    ("Counterman",        "Counterman brake pad"),
-    ("Tire Business",     "Tire Business brake"),
-    ("Fleet Owner",       "Fleet Owner truck brake"),
-    ("CCJ Digital",       "CCJ Digital brake"),
-    ("Underhood Service", "Underhood Service brake"),
-    ("Aftermarket News",  "Aftermarket News brake"),
-    ("TMD Friction",      "TMD Friction brake pad"),
-    ("UNECE WP.29",       "UNECE vehicle regulation braking"),
-    ("Espacenet",         "brake pad friction patent"),
+    ("Counterman",        "counterman.com",        "brake"),
+    ("Tire Business",     "tirebusiness.com",      "brake"),
+    ("Fleet Owner",       "fleetowner.com",        "brake"),
+    ("CCJ Digital",       "ccjdigital.com",        "brake"),
+    ("Underhood Service", "underhoodservice.com",  "brake"),
+    ("Aftermarket News",  "aftermarketnews.com",   "brake"),
+    ("TMD Friction",      "tmdfriction.com",       "brake pad"),
+    ("Brake & Front End", "brakeandfrontend.com",  "brake"),
+    ("ImportCar",         "import-car.com",        "brake"),
+    ("UNECE WP.29",       "unece.org",             "braking regulation"),
+]
+
+# 行业通稿：不限定站点，直接按行业主题检索（补充覆盖面）
+AGG_TOPICS = [
+    ("行业通稿", "friction material brake pad supplier"),
+    ("行业通稿", "brake caliper system OEM news"),
+    ("行业通稿", "ECE R90 brake pad regulation"),
+    ("行业通稿", "brake pad copper-free regulation"),
+    ("行业通稿", "NAO ceramic brake pad market"),
+]
+
+# SPA / JS 渲染站：requests 拿不到正文列表，直接走聚合
+# (显示名, 域名, 主题词)
+AGG_SPA_SITES = [
+    ("SAE International", "sae.org",      "brake"),
+    ("US EPA",            "epa.gov",      "vehicle brake"),
 ]
 
 FRICTION_KW = [
@@ -69,17 +88,40 @@ def translate(text: str, retry: int = 2) -> str:
     return text
 
 
+def _get_with_backoff(url: str, tries: int = 3, base_wait: float = 4.0):
+    """带指数退避的 GET。
+
+    Google News RSS 对高频查询会返回 503（临时限流，不是永久封禁），
+    退避几秒后重试通常能恢复。不重试的话，定时任务会随机缺数据。
+    """
+    last = None
+    for i in range(tries):
+        try:
+            r = requests.get(url, headers=UA, timeout=20)
+            if r.status_code == 200:
+                return r, None
+            last = f"HTTP {r.status_code}"
+            # 403/503 才值得退避重试；404 直接放弃
+            if r.status_code not in (403, 429, 503):
+                return None, last
+        except Exception as e:
+            last = f"{type(e).__name__}: {repr(e)[:50]}"
+        if i < tries - 1:
+            time.sleep(base_wait * (i + 1))
+    return None, last
+
+
 def gnews_rss(query: str, limit: int = 15):
     """Google News RSS（免费、无需 key）。"""
     url = (f"https://news.google.com/rss/search?q={quote(query)}"
            f"&hl=en-US&gl=US&ceid=US:en")
+    r, err = _get_with_backoff(url)
+    if r is None:
+        return [], err
     try:
-        r = requests.get(url, headers=UA, timeout=20)
-        if r.status_code != 200:
-            return [], f"HTTP {r.status_code}"
         root = ET.fromstring(r.content)
     except Exception as e:
-        return [], f"{type(e).__name__}: {repr(e)[:70]}"
+        return [], f"parse: {type(e).__name__}"
 
     out = []
     for it in root.iter("item"):
@@ -98,13 +140,13 @@ def bing_rss(query: str, limit: int = 15):
     """Bing News RSS —— Google News 不可达时的备用通道。"""
     url = (f"https://www.bing.com/news/search?q={quote(query)}"
            f"&format=RSS&count={limit}")
+    r, err = _get_with_backoff(url, tries=2, base_wait=3.0)
+    if r is None:
+        return [], err
     try:
-        r = requests.get(url, headers=UA, timeout=20)
-        if r.status_code != 200:
-            return [], f"HTTP {r.status_code}"
         root = ET.fromstring(r.content)
     except Exception as e:
-        return [], f"{type(e).__name__}: {repr(e)[:70]}"
+        return [], f"parse: {type(e).__name__}"
 
     out = []
     for it in root.iter("item"):
@@ -140,15 +182,27 @@ def main():
         store = {}
     articles = {a["url"]: a for a in store.get("articles", []) if a.get("url")}
 
+    # 组装检索任务：(显示名, 站点域名 or None, 查询串)
+    tasks = [(name, dom, f"site:{dom} {kw}") for name, dom, kw in AGG_TARGETS]
+    tasks += [(name, dom, f"site:{dom} {kw}") for name, dom, kw in AGG_SPA_SITES]
+    tasks += [(name, None, kw) for name, kw in AGG_TOPICS]
+
     stats, errors = [], []
-    for name, query in AGG_TARGETS:
+    for i, (name, dom, query) in enumerate(tasks):
         items, err, via = fetch_aggregated(query)
+        label = f"{name}(聚合)"
         if err:
-            errors.append({"source": f"{name}(聚合)", "error": err})
+            errors.append({"source": label, "error": err})
             print(f"  ⛔ {name:<20} {err[:80]}")
             continue
+
         kept = 0
         for it in items:
+            # 站点限定任务：标题或链接里必须出现该域名，确保归因正确
+            if dom:
+                blob = f"{it['title']} {it['url']}".lower()
+                if dom.lower() not in blob:
+                    continue
             low = it["title"].lower()
             if not any(k in low for k in FRICTION_KW):
                 continue
@@ -156,10 +210,11 @@ def main():
             rec = {
                 "title": it["title"],
                 "url": it["url"],
-                "source": f"{name}(聚合)",
+                "source": label,
                 "region": "海外",
                 "tag": "聚合来源",
                 "lang": "en",
+                "level": "headline",       # 标记：仅标题级，无正文
                 "via": via,
                 "collected_at": datetime.now(timezone.utc).isoformat(),
             }
@@ -171,6 +226,9 @@ def main():
         stats.append({"source": name, "via": via,
                       "fetched": len(items), "kept": kept})
         print(f"  ✅ {name:<20} [{via}] 取 {len(items):>3} 条，相关 {kept:>3} 条")
+        # 任务间节流：Google News 对密集查询敏感，放慢以降低 503 概率
+        if i < len(tasks) - 1:
+            time.sleep(2.0)
 
     store["articles"] = sorted(articles.values(),
                                key=lambda x: x["collected_at"], reverse=True)

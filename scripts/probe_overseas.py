@@ -132,10 +132,17 @@ def main():
         "ok": ok_n,
         "blocked": len(out["results"]) - ok_n,
         "waf": waf_n,
-        "waf_group_total": len(waf_targets),
-        "waf_group_ok": waf_ok,
-        "control_group_ok": f"{ctrl_ok}/{len(ctrl)}",
+        # WAF 组 = 真正要验证的目标；对照组只用于排除环境问题
+        "waf_ok": waf_ok,
+        "waf_total": len(waf_targets),
+        "ctrl_ok": ctrl_ok,
+        "ctrl_total": len(ctrl),
+        "egress_ip": out.get("runner", {}).get("egress_ip"),
         "verdict": verdict,
+        # 兼容旧字段名
+        "waf_group_ok": waf_ok,
+        "waf_group_total": len(waf_targets),
+        "control_group_ok": f"{ctrl_ok}/{len(ctrl)}",
     }
 
     os.makedirs("out", exist_ok=True)

@@ -45,32 +45,84 @@ SOURCES = [
     {"name": "Bosch 新闻室", "list_url": "https://www.bosch-presse.de/pressportal/de/en/",
      "link_re": r"/pressportal/de/en/[a-z0-9\-_]{10,}\.html",
      "base": "https://www.bosch-presse.de", "region": "海外", "tag": "制动系统", "translate": True},
+    # EPA 用 Drupal：新闻详情页是 /newsreleases/<region>/<slug>
+    # 或 /node/<id>（旧式），两者都要能匹配；排除频道页与静态资源。
     {"name": "US EPA", "list_url": "https://www.epa.gov/newsreleases",
-     "link_re": r"epa\.gov/newsreleases/(?!search)[a-z0-9\-]+/[a-z0-9\-]{6,}",
+     "link_re": r"epa\.gov/(?:newsreleases/[a-z0-9\-]+/[a-z0-9\-]{6,}|node/\d+)",
+     "exclude_url": r"epa\.gov/(?:newsroom/|themes/|modules/|sites/|about|"
+                    r"environmental-topics|laws-regulations|newsreleases/?$)",
      "base": "https://www.epa.gov", "region": "海外", "tag": "法规", "translate": True},
 
-    # ===== 待验证：VPS 上被 WAF 拦的（探针通过则自动收）=====
+    # ===== 探针通过：Azure IP 可访问的（用精确列表页规则提升命中率）=====
+    # 注意：这些站是 Informa / Babcox / Endeavor 系 CMS，
+    #       文章 URL 形如 /<channel>/<slug>-<id> 或 /<slug>/，需排除栏目/标签/作者页。
+    # exclude  : 命中即丢弃的路径片段（栏目、tag、author、page 等）
     {"name": "Counterman", "list_url": "https://www.counterman.com/",
-     "link_re": r"counterman\.com/[a-z0-9\-]{8,}/?$",
+     "list_url2": "https://www.counterman.com/category/brakes/",
+     "link_re": r"counterman\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.counterman.com", "region": "海外", "tag": "售后市场", "translate": True},
-    {"name": "Tire Business", "list_url": "https://www.tirebusiness.com/",
-     "link_re": r"tirebusiness\.com/[a-z0-9\-]{8,}",
-     "base": "https://www.tirebusiness.com", "region": "海外", "tag": "售后市场", "translate": True},
     {"name": "Fleet Owner", "list_url": "https://www.fleetowner.com/",
-     "link_re": r"fleetowner\.com/[a-z0-9\-]{8,}",
+     "list_url2": "https://www.fleetowner.com/equipment/",
+     "link_re": r"fleetowner\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.fleetowner.com", "region": "海外", "tag": "商用车", "translate": True},
-    {"name": "CCJ Digital", "list_url": "https://www.ccjdigital.com/",
-     "link_re": r"ccjdigital\.com/[a-z0-9\-]{8,}",
-     "base": "https://www.ccjdigital.com", "region": "海外", "tag": "商用车", "translate": True},
     {"name": "Underhood Service", "list_url": "https://www.underhoodservice.com/",
-     "link_re": r"underhoodservice\.com/[a-z0-9\-]{8,}",
+     "list_url2": "https://www.underhoodservice.com/category/brakes/",
+     "link_re": r"underhoodservice\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.underhoodservice.com", "region": "海外", "tag": "售后市场", "translate": True},
     {"name": "Aftermarket News", "list_url": "https://www.aftermarketnews.com/",
-     "link_re": r"aftermarketnews\.com/[a-z0-9\-]{8,}",
+     "list_url2": "https://www.aftermarketnews.com/category/breaking-news/",
+     "link_re": r"aftermarketnews\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.aftermarketnews.com", "region": "海外", "tag": "售后市场", "translate": True},
-    {"name": "TMD Friction", "list_url": "https://www.tmdfriction.com/en/news",
-     "link_re": r"tmdfriction\.com/[a-z0-9\-/]{8,}",
+
+    # ===== 直连被拦：保留配置，探针若哪天通过即自动生效 =====
+    {"name": "Tire Business", "list_url": "https://www.tirebusiness.com/",
+     "link_re": r"tirebusiness\.com/(?!(?:tag|author|category|page)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.tirebusiness.com", "region": "海外", "tag": "售后市场", "translate": True},
+    {"name": "CCJ Digital", "list_url": "https://www.ccjdigital.com/",
+     "link_re": r"ccjdigital\.com/(?!(?:tag|author|category|page)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.ccjdigital.com", "region": "海外", "tag": "商用车", "translate": True},
+    {"name": "TMD Friction", "list_url": "https://www.tmdfriction.com/en/news/",
+     "link_re": r"tmdfriction\.com/en/news/[a-z0-9\-]{6,}",
      "base": "https://www.tmdfriction.com", "region": "海外", "tag": "摩擦材料", "translate": True},
+
+    # ===== 2026-10-01 信源普查新增：Azure IP 实测可直连 =====
+    {"name": "Miba AG", "list_url": "https://www.miba.com/en/news",
+     "link_re": r"miba\.com/en/news/(?!(?:archive|filter)/)[a-z0-9\-_]{6,}",
+     "base": "https://www.miba.com", "region": "海外", "tag": "摩擦材料", "translate": True},
+    # Informa 系 CMS：真实文章 URL 形如 /home/article/<8位数字ID>/<slug>
+    # （首页返回 200 且链接充足，只是 URL 结构与纯 slug 规则完全不同）
+    {"name": "Ratchet+Wrench", "list_url": "https://www.ratchetandwrench.com/",
+     "link_re": r"ratchetandwrench\.com/(?:home/)?article/\d{6,}/[a-z0-9\-]{4,}",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.ratchetandwrench.com", "region": "海外", "tag": "售后技术", "translate": True},
+    {"name": "Tomorrow's Technician", "list_url": "https://www.tomorrowstechnician.com/",
+     "list_url2": "https://www.tomorrowstechnician.com/category/brakes/",
+     "link_re": r"tomorrowstechnician\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.tomorrowstechnician.com", "region": "海外", "tag": "售后技术", "translate": True},
+    {"name": "Brake & Front End", "list_url": "https://www.brakeandfrontend.com/",
+     "list_url2": "https://www.brakeandfrontend.com/category/brakes/",
+     "link_re": r"brakeandfrontend\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.brakeandfrontend.com", "region": "海外", "tag": "制动系统", "translate": True},
+    {"name": "ImportCar", "list_url": "https://www.import-car.com/",
+     "link_re": r"import-car\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.import-car.com", "region": "海外", "tag": "售后技术", "translate": True},
+    # WordPress 日期式 URL：/YYYY/MM/DD/slug/  —— 旧规则（纯 slug）匹配不到，已修正
+    {"name": "Repairer Driven News", "list_url": "https://www.repairerdrivennews.com/",
+     "link_re": r"repairerdrivennews\.com/\d{4}/\d{2}/\d{2}/[a-z0-9\-]{8,}/?$",
+     "base": "https://www.repairerdrivennews.com", "region": "海外", "tag": "售后市场", "translate": True},
+    {"name": "BodyShop Business", "list_url": "https://www.bodyshopbusiness.com/",
+     "link_re": r"bodyshopbusiness\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.bodyshopbusiness.com", "region": "海外", "tag": "售后市场", "translate": True},
 ]
 
 # 摩擦相关性过滤（与 friction-site 的 FRICTION_KEYWORDS 对齐）
@@ -109,24 +161,32 @@ def translate(text: str, retry: int = 2) -> str:
     return text
 
 
-def fetch_source(src: dict, limit: int = 20) -> tuple:
-    """抓一个源，返回 (items, error)。"""
-    try:
-        r = requests.get(src["list_url"], headers=UA, timeout=25)
-        if r.status_code != 200:
-            return [], f"HTTP {r.status_code}"
-        soup = BeautifulSoup(r.content, "html.parser")
-    except Exception as e:
-        return [], f"{type(e).__name__}: {repr(e)[:80]}"
+def _extract_from(soup, pat, base: str, limit: int, exclude=None) -> list:
+    """从一页 soup 里抽文章链接。
 
-    pat = re.compile(src["link_re"], re.I)
+    ⚠️ 关键点：**先把 href 展开成绝对 URL 再匹配正则**。
+    早期版本直接拿 href 去 search，而页面里的链接常常是相对路径
+    （如 "/emissions-efficiency"），而 link_re 是按完整域名写的
+    （如 r"fleetowner\\.com/..."），于是相对路径全部匹配失败，
+    表现为「入口可达 links=N hit=0」——看着像规则失效，其实只是
+    没做 urljoin。2026-10-01 修：Fleet Owner / Miba / US EPA 都栽在这。
+
+    exclude：命中该正则的 URL 直接丢弃（用于排除频道页 / 静态资源）。
+    """
     items, seen = [], set()
     for a in soup.find_all("a", href=True):
         href = a["href"].strip()
         if not href or href.startswith(("#", "javascript:", "mailto:")):
             continue
-        if not pat.search(href):
+
+        # 展开成绝对 URL 之后再匹配
+        full = href if href.startswith("http") else urljoin(base + "/",
+                                                           href.lstrip("/"))
+        if not pat.search(full):
             continue
+        if exclude is not None and exclude.search(full):
+            continue
+
         title = a.get_text(" ", strip=True)
         if not title:
             img = a.find("img")
@@ -134,14 +194,78 @@ def fetch_source(src: dict, limit: int = 20) -> tuple:
         title = re.sub(r"\s+", " ", title.lstrip("·•-—|>》 \t")).strip()
         if len(title) < 10:
             continue
-        url = href if href.startswith("http") else urljoin(src["base"] + "/", href.lstrip("/"))
+
+        # 去掉 query / fragment，避免同一文章多种形式重复
+        url = full.split("#")[0].split("?")[0]
         if url in seen:
             continue
         seen.add(url)
         items.append({"title": title, "url": url})
         if len(items) >= limit:
             break
-    return items, None
+    return items
+
+
+def fetch_source(src: dict, limit: int = 20) -> tuple:
+    """抓一个源，返回 (items, error)。
+
+    支持多入口：list_url（主）+ list_url2（备用/专题栏目）。
+    主入口失败或命中过少时，自动补试备用入口 —— 这对
+    「首页只有少量文章、专题栏目才密集」的 CMS 很关键。
+    """
+    entry_points = [u for u in (src.get("list_url"), src.get("list_url2")) if u]
+    pat = re.compile(src["link_re"], re.I)
+    # 排除规则：站点导航/栏目页/静态资源等「非文章」路径，防止正则放宽后混入杂链接
+    _exc = src.get("exclude_url")
+    exc_pat = re.compile(_exc, re.I) if _exc else None
+    items, seen = [], set()
+    last_err = None
+    diag = []  # 每个入口的诊断：HTTP 码 + 页面链接数 + 正则命中数
+
+    for idx, url in enumerate(entry_points):
+        try:
+            r = requests.get(url, headers=UA, timeout=25)
+            if r.status_code != 200:
+                last_err = f"HTTP {r.status_code} @ {url}"
+                diag.append(f"{url} -> HTTP {r.status_code}")
+                continue
+            soup = BeautifulSoup(r.content, "html.parser")
+        except Exception as e:
+            last_err = f"{type(e).__name__}: {repr(e)[:70]} @ {url}"
+            diag.append(f"{url} -> {type(e).__name__}")
+            continue
+
+        got = _extract_from(soup, pat, src["base"], limit,
+                            exclude=exc_pat)
+        # 诊断：页面共有多少站内链接、正则命中多少
+        n_links = len([a for a in soup.find_all("a", href=True)])
+        host = src["base"].split("//")[-1].split("/")[0]
+        # 收集站内链接的真实路径样本，便于反推正确的正则（关键排查手段）
+        sample = []
+        for a in soup.find_all("a", href=True):
+            h = a["href"].split("#")[0].split("?")[0]
+            if host in h and h not in sample:
+                sample.append(h)
+            if len(sample) >= 12:
+                break
+        diag.append(f"{url} -> HTTP200 links={n_links} hit={len(got)}")
+        if not got and sample:
+            diag.append("   路径样本: " + " | ".join(s[:70] for s in sample[:8]))
+        for it in got:
+            if it["url"] not in seen:
+                seen.add(it["url"])
+                items.append(it)
+        # 主入口已拿到足量，不再试备用
+        if idx == 0 and len(items) >= limit // 2:
+            break
+        time.sleep(0.6)
+
+    if not items and last_err:
+        return [], last_err + " | " + " ; ".join(diag)
+    if not items:
+        # 入口全通但正则一条没匹配上 —— 这是「规则失效」而非「网络不通」，要能区分
+        return [], "入口可达但正则 0 命中 | " + " ; ".join(diag)
+    return items[:limit], None
 
 
 def load_existing(path: str) -> dict:

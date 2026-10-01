@@ -60,6 +60,139 @@ friction/news_overseas.json               # 产出（自动生成）
 
 同时会打印**出口 IP**（对比腾讯云的，看是不是换了段）。
 
+探针结论会落盘到 `data/probe_result.json`，
+可以直接在仓库里查看，不必下载 artifact。
+
+## 实测结论（2026-10-01）
+
+**出口 IP：`134.33.76.4`（Azure）**
+
+| 站点 | 腾讯云 VPS | GitHub Actions |
+|---|---|---|
+| Counterman | ⛔ CF 挑战 | ✅ 200 |
+| Fleet Owner | ⛔ CF 挑战 | ✅ 200 |
+| Underhood Service | ⛔ CF 挑战 | ✅ 200 |
+| Aftermarket News | ⛔ CF 挑战 | ✅ 200 |
+| Bosch 新闻室 | ✅ | ✅ 200 |
+| SAE / US EPA | ✅ | ✅ 200 |
+| Tire Business | ⛔ | ⛔ 403（Akamai） |
+| CCJ Digital | ⛔ | ⛔ 403 |
+| TMD Friction | ⛔ | ⛔ 403 |
+| UNECE / Automotive News EU | ⛔ | ⛔ 403 |
+
+**结论**：Azure IP 对 Cloudflare 系有效（4/10 突破），对 Akamai 无效。
+
+### 两个坑（已在代码里处理）
+
+1. **探针 200 ≠ 能采集**
+   探针拿的是**首页**；文章列表页/详情页 WAF 更严。
+   例：Counterman 首页 200，但文章页命中率低。
+
+2. **Google News RSS 会限流**
+   高频 `site:` 查询会返回 **503**（临时限流，非永久封禁）。
+   代码里已加**指数退避重试 + 任务间 2s 节流**，不加会随机丢数据。
+
+### SPA 站说明
+
+SAE、US EPA 的列表页是 **JS 动态渲染**，`requests` 拿不到文章链接。
+这类站走聚合通道兜（`AGG_SPA_SITES`），只拿到标题级线索。
+
+## 数据分级
+
+采集结果分两级，`level` 字段标识：
+
+| level | 含义 | 来源 |
+|---|---|---|
+| （无 / `full`） | 有正文 | 直采 |
+| `headline` | 仅标题+链接 | 聚合兜底 |
+
+下游 VPS 侧可按级别做不同展示（标题级只做线索，不做正文渲染）。
+
+## 信源普查（找可用源的工具）
+
+沙箱和国内 VPS 的出口 IP 被大面积 WAF 封禁，本地测不准。
+想知道某个站**在 Azure IP 下到底通不通**，用信源普查：
+
+```bash
+# Actions → Run workflow → 勾上 source_scan
+```
+
+结论写入 `data/source_scan.json`。
+
+**2026-10-01 普查结果：8/20 可直连**
+
+| ✅ 可直连 | 用途 |
+|---|---|
+| Ratchet+Wrench | 售后技术（50 篇文章链接） |
+| Auto Care Association | 协会（35） |
+| Repairer Driven News | 售后（31） |
+| BodyShop Business | 售后（21） |
+| Miba AG | 摩擦材料（12） |
+| Tomorrow's Technician | 售后技术（5） |
+| Brake & Front End | 售后技术（3） |
+| ImportCar | 售后技术（3） |
+
+已加入 `collect_overseas.py` 直采。
+
+## 代理阅读器不可用（已实测）
+
+试过 `r.jina.ai` / `allorigins` 绕 WAF，**全军覆没**：
+
+| 通道 | 结果 | 原因 |
+|---|---|---|
+| r.jina.ai | 0/5，全部 403 | 免费版出口 IP 已被目标站拉黑 |
+| allorigins | 0/5，520/522 | 服务端不可达 |
+
+连在 Actions 里直连正常的 Counterman 都 403 —— 说明不是网络问题，
+是这些代理服务自己进了目标站的黑名单。**此路不通，勿再重试。**
+
+留 `scripts/probe_proxy.py` 备查（将来若有付费代理通道可复用）。
+
+## 已知边界
+
+以下站点**无法突破**，只能靠聚合拿标题：
+
+- **Akamai 系**：Tire Business、CCJ Digital、TMD Friction
+- **Cloudflare 企业版**：The BRAKE Report、Tyrepress、MEMA、ISO、Automotive World
+- **JS 渲染（SPA）**：SAE、US EPA（列表页动态加载，requests 拿不到）
+
+这些是 IP 层封锁，非技术手段可解。
+
+
+## 抓 0 条时的排查方法（这次用上的）
+
+**别猜，让 Azure 自己把链接打出来。**
+
+`fetch_source()` 在"入口可达但正则 0 命中"时，会把页面里的站内链接
+**路径样本**写进错误信息：
+
+```
+Ratchet+Wrench :: 入口可达但正则 0 命中
+  | https://www.ratchetandwrench.com/ -> HTTP200 links=163 hit=0
+  |    路径样本: https://www.ratchetandwrench.com/home/article/55387461/2026-ratchetwre...
+```
+
+看到样本，一眼就知道 URL 是 `/home/article/<8位ID>/<slug>`，
+正则改一行就通了 —— 比反复猜快得多。
+
+**这个方法区分了三种"抓 0 条"**（以前混在一起看不清）：
+
+| 症状 | 含义 | 处理 |
+|---|---|---|
+| `HTTP 403` | IP 被 WAF 拦 | 无解，转聚合 |
+| `HTTP200 links=163 hit=0` | **规则失效**（站点改版） | 看路径样本 → 改正则 ✅ |
+| `HTTP200 links=0` | JS 渲染（SPA） | 无解，转聚合 |
+
+**本次修正记录**：
+
+| 源 | 原因 | 处理 |
+|---|---|---|
+| Repairer Driven News | WordPress 日期式 URL `/2026/09/30/slug/`，旧规则要纯 slug | 改正则 → 抓 12 条 ✅ |
+| Ratchet+Wrench | Informa CMS `/home/article/<id>/<slug>` | 改正则 → 已入库 ✅ |
+| Miba AG | 首页链接全是图片/德语页，文章链接 JS 加载 | 保持，转聚合 |
+| SAE / US EPA | `links=0` / `links=154` 但无文章链接 | SPA，转聚合 |
+
+
 ## 设置
 
 **必须开启写权限**，否则无法自动提交结果：

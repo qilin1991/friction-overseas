@@ -18,6 +18,18 @@ on:
         description: '仅跑探针（验证 IP 可达性），不采集'
         type: boolean
         default: false
+      proxy_probe:
+        description: '额外测代理阅读器通道（r.jina.ai 等）'
+        type: boolean
+        default: false
+      source_scan:
+        description: '额外跑候选信源可达性普查'
+        type: boolean
+        default: false
+      diag_sources:
+        description: '诊断 SOURCES 每条规则（入口状态/命中数/路径样本）'
+        type: boolean
+        default: false
 
 permissions:
   contents: write           # 需要写权限才能 commit 结果
@@ -48,6 +60,92 @@ jobs:
       # 无论结果如何都以 0 退出，只把结论写进 JSON 和 Step Summary。
       - name: 可达性探针
         run: python scripts/probe_overseas.py
+
+      # ── 可选：代理阅读器探针 ──────────────────────────────────────
+      # 测 r.jina.ai / allorigins 能否绕过 WAF。失败不影响主流程。
+      - name: 代理阅读器探针
+        if: ${{ inputs.proxy_probe }}
+        continue-on-error: true
+        run: python scripts/probe_proxy.py
+
+      - name: 提交代理探针结论
+        if: ${{ always() && inputs.proxy_probe }}
+        continue-on-error: true
+        run: |
+          mkdir -p data
+          if [ -f out/proxy_probe.json ]; then
+            cp out/proxy_probe.json data/proxy_probe.json
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/proxy_probe.json
+            git diff --cached --quiet || git commit -m "chore: 代理探针结论 [skip ci]"
+            git push || true
+          fi
+
+      # ── 可选：逐源规则诊断 ────────────────────────────────────────
+      # 输出每个源「入口状态 / links / hit / 站内路径样本」。
+      # 用来区分「WAF 拦」「SPA 无链接」「正则失效」三种抓 0 条的原因。
+      - name: 逐源规则诊断
+        if: ${{ inputs.diag_sources }}
+        continue-on-error: true
+        run: python diag_sources.py
+
+      - name: 提交逐源诊断结论
+        if: ${{ always() && inputs.diag_sources }}
+        continue-on-error: true
+        run: |
+          mkdir -p data
+          if [ -f out/source_diag.json ]; then
+            cp out/source_diag.json data/source_diag.json
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/source_diag.json
+            git diff --cached --quiet || git commit -m "chore: 逐源诊断结论 [skip ci]"
+            git push || true
+          fi
+          if [ -f out/source_diag_error.txt ]; then
+            echo "=== 诊断脚本异常 ==="
+            cat out/source_diag_error.txt
+          fi
+
+      - name: 显示逐源诊断摘要
+        if: ${{ always() && inputs.diag_sources }}
+        continue-on-error: true
+        run: |
+          if [ -f out/source_diag.json ]; then
+            python - <<'PY'
+          import json
+          d = json.load(open('out/source_diag.json', encoding='utf-8'))
+          ok = [r for r in d if 'OK(' in r['verdict']]
+          bad = [r for r in d if 'OK(' not in r['verdict']]
+          print(f"诊断 {len(d)} 源：OK {len(ok)} / 需处理 {len(bad)}")
+          for r in bad:
+              print(f"  [{r['verdict']}] {r['name']}")
+          PY
+          else
+            echo "诊断未产出结果"
+          fi
+
+      # ── 可选：候选信源普查 ────────────────────────────────────────
+      # 探测一批候选站点在 Azure IP 下能否直连，用于决定加哪些源。
+      - name: 候选信源普查
+        if: ${{ inputs.source_scan }}
+        continue-on-error: true
+        run: python scripts/probe_sources.py
+
+      - name: 提交信源普查结论
+        if: ${{ always() && inputs.source_scan }}
+        continue-on-error: true
+        run: |
+          mkdir -p data
+          if [ -f out/source_scan.json ]; then
+            cp out/source_scan.json data/source_scan.json
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/source_scan.json
+            git diff --cached --quiet || git commit -m "chore: 信源普查结论 [skip ci]"
+            git push || true
+          fi
 
       - name: 显示探针结论
         if: always()
@@ -105,3 +203,25 @@ jobs:
           path: out/probe_result.json
           if-no-files-found: warn
           retention-days: 14
+
+      # ── 第 4 步：把探针结论也提交进仓库 ────────────────────────
+      # artifact 下载走 Azure blob，部分网络环境取不到；
+      # 落盘到 data/ 后可直接通过 GitHub 网页 / raw 链接查看。
+      - name: 提交探针结论
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p data
+          if [ -f out/probe_result.json ]; then
+            cp out/probe_result.json data/probe_result.json
+            git add data/probe_result.json
+            if git diff --cached --quiet; then
+              echo "探针结论无变化"
+            else
+              git commit -m "chore: 探针结论更新 [skip ci]"
+              git push
+            fi
+          else
+            echo "无探针结果文件"
+          fi
