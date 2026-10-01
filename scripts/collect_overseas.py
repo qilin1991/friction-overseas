@@ -48,6 +48,7 @@ SOURCES = [
     # EPA 用 Drupal：新闻详情页是 /newsreleases/<region>/<slug>
     # 或 /node/<id>（旧式），两者都要能匹配；排除频道页与静态资源。
     {"name": "US EPA", "list_url": "https://www.epa.gov/newsreleases",
+     "list_url2": "https://www.epa.gov/newsreleases?page=1",
      "link_re": r"epa\.gov/(?:newsreleases/[a-z0-9\-]+/[a-z0-9\-]{6,}|node/\d+)",
      "exclude_url": r"epa\.gov/(?:newsroom/|themes/|modules/|sites/|about|"
                     r"environmental-topics|laws-regulations|newsreleases/?$)",
@@ -98,7 +99,7 @@ SOURCES = [
     # Informa 系 CMS：真实文章 URL 形如 /home/article/<8位数字ID>/<slug>
     # 首页只挂 1 条（其余靠 JS 轮播），必须走列表页才有量。
     {"name": "Ratchet+Wrench", "list_url": "https://www.ratchetandwrench.com/home/latest",
-     "list_url2": "https://www.ratchetandwrench.com/",
+     "list_url2": "https://www.ratchetandwrench.com/news",
      "link_re": r"ratchetandwrench\.com/(?:home/)?article/\d{6,}/[a-z0-9\-]{4,}",
      "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.ratchetandwrench.com", "region": "海外", "tag": "售后技术", "translate": True},
