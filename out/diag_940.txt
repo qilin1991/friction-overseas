@@ -1,20 +1,25 @@
 TITLE: Friction Materials Market Size & Share, Growth Analysis 2038 - Research Nester
-[quoted] status=200 organic=10
-   sc=0.10 https://en.wikipedia.org/wiki/Friction | Friction - Wikipedia
-   sc=0.10 https://www.britannica.com/science/friction | Friction | Definition, Types, & Formula | Britannica
-   sc=0.10 https://www.sciencefacts.net/friction.html | Friction (Frictional Force): Definition, Formula, & Examples
-   sc=0.10 https://www.sciopen.com/journal/2223-7690 | Friction | SciOpen
-   sc=0.10 https://friction.graphics/ | Friction
-   sc=0.10 https://sciencenotes.org/friction-definition-types-formula-and-examples/ | Friction - Definition, Types, Formula, and Examples
-   sc=0.10 https://openstax.org/books/college-physics-2e/pages/5-1-friction | 5.1 Friction - College Physics 2e | OpenStax
-   sc=0.10 https://simple.wikipedia.org/wiki/Friction | Friction - Simple English Wikipedia , the free encyclopedia
-[plain] status=200 organic=10
-   sc=0.10 https://en.wikipedia.org/wiki/Friction | Friction - Wikipedia
-   sc=0.10 https://www.britannica.com/science/friction | Friction | Definition, Types, & Formula | Britannica
-   sc=0.10 https://www.sciencefacts.net/friction.html | Friction (Frictional Force): Definition, Formula, & Examples
-   sc=0.10 https://www.sciopen.com/journal/2223-7690 | Friction | SciOpen
-   sc=0.10 https://friction.graphics/ | Friction
-   sc=0.10 https://sciencenotes.org/friction-definition-types-formula-and-examples/ | Friction - Definition, Types, Formula, and Examples
-   sc=0.10 https://openstax.org/books/college-physics-2e/pages/5-1-friction | 5.1 Friction - College Physics 2e | OpenStax
-   sc=0.10 https://simple.wikipedia.org/wiki/Friction | Friction - Simple English Wikipedia , the free encyclopedia
-NO good match (best sc=0.10)
+ORIG: https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5
+landed: https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5&hl=en-US&gl=US&ceid=US:en
+reader status=200 len=592776
+CANDIDATES (71):
+  canonical: https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w16
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w24
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w32
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w48
+  href: https://www.google-analytics.com/analytics.js
+  href: https://fonts.googleapis.com/css?family=Google+Sans+Text:400,500,700,400i,500i,700i
+  href: https://www.gstatic.com/gnews/logo/google_news_192.png
+  href: https://www.gstatic.com/gnews/logo/google_news_512.png
+  href: https://www.gstatic.com/gnews/logo/google_news_1024.png
+  href: https://www.gstatic.com/gnews/logo/google_news_120.png
+  href: https://www.gstatic.com/gnews/logo/google_news_152.png
+  href: https://www.gstatic.com/gnews/logo/google_news_167.png
+  href: https://www.gstatic.com/gnews/logo/google_news_180.png
+  href: https://www.gstatic.com/gnews/logo/google_news_80.png
+  href: https://www.gstatic.com/gnews/logo/google_news_87.png
+  href: https://www.gstatic.com/gnews/logo/google_news_58.png
+  href: https://www.gstatic.com/gnews/logo/google_news_60.png
+  href: https://www.gstatic.com/gnews/logo/google_news_40.png
+  href: https://www.gstatic.com/_/mss/boq-dots/_/js/k=boq-dots.DotsSplashUi_desktop_ms.en_US.g1Yle7uU9lU.2018.O/am=GAIFAAAAAACZAAMR/d=1/excm=_b,_tp,syndicationarticleview/ed=1/dg=0/wt=2/ujg=1/rs=ALs0n2O1dzLKT

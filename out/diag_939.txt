@@ -1,20 +1,25 @@
 TITLE: Patent Patrol: SRAM’s anti-endo hydraulic brakes, plus one-piece “spray on” brake rotors - Bikerumor
-[quoted] status=200 organic=9
-   sc=0.07 https://www.uspto.gov/ | United States Patent and Trademark Office
-   sc=0.07 https://www.uspto.gov/patents/search | Search for patents | USPTO
-   sc=0.07 https://patentcenter.uspto.gov/#!/%C2%A0 | Home - Patent Center - USPTO
-   sc=0.07 https://en.wikipedia.org/wiki/Patent | Patent - Wikipedia
-   sc=0.07 https://www.wipo.int/en/web/patentscope | PATENTSCOPE - WIPO
-   sc=0.07 https://patentscope.wipo.int/search/en/search.jsf | WIPO - Search International and National Patent Collections
-   sc=0.07 https://patents.justia.com/ | U.S. Patent , Patent Application and Patent Search - Justia 
-   sc=0.07 https://worldwide.espacenet.com/ | Espacenet – patent search
-[plain] status=200 organic=9
-   sc=0.07 https://www.uspto.gov/ | United States Patent and Trademark Office
-   sc=0.07 https://www.uspto.gov/patents/search | Search for patents | USPTO
-   sc=0.07 https://patentcenter.uspto.gov/#!/%C2%A0 | Home - Patent Center - USPTO
-   sc=0.07 https://en.wikipedia.org/wiki/Patent | Patent - Wikipedia
-   sc=0.07 https://www.wipo.int/en/web/patentscope | PATENTSCOPE - WIPO
-   sc=0.07 https://patentscope.wipo.int/search/en/search.jsf | WIPO - Search International and National Patent Collections
-   sc=0.07 https://patents.justia.com/ | U.S. Patent , Patent Application and Patent Search - Justia 
-   sc=0.07 https://worldwide.espacenet.com/ | Espacenet – patent search
-NO good match (best sc=0.07)
+ORIG: https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5
+landed: https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5&hl=en-US&gl=US&ceid=US:en
+reader status=200 len=594281
+CANDIDATES (71):
+  canonical: https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w16
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w24
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w32
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w48
+  href: https://www.google-analytics.com/analytics.js
+  href: https://fonts.googleapis.com/css?family=Google+Sans+Text:400,500,700,400i,500i,700i
+  href: https://www.gstatic.com/gnews/logo/google_news_192.png
+  href: https://www.gstatic.com/gnews/logo/google_news_512.png
+  href: https://www.gstatic.com/gnews/logo/google_news_1024.png
+  href: https://www.gstatic.com/gnews/logo/google_news_120.png
+  href: https://www.gstatic.com/gnews/logo/google_news_152.png
+  href: https://www.gstatic.com/gnews/logo/google_news_167.png
+  href: https://www.gstatic.com/gnews/logo/google_news_180.png
+  href: https://www.gstatic.com/gnews/logo/google_news_80.png
+  href: https://www.gstatic.com/gnews/logo/google_news_87.png
+  href: https://www.gstatic.com/gnews/logo/google_news_58.png
+  href: https://www.gstatic.com/gnews/logo/google_news_60.png
+  href: https://www.gstatic.com/gnews/logo/google_news_40.png
+  href: https://www.gstatic.com/_/mss/boq-dots/_/js/k=boq-dots.DotsSplashUi_desktop_ms.en_US.g1Yle7uU9lU.2018.O/am=GAIFAAAAAACZAAMR/d=1/excm=_b,_tp,syndicationarticleview/ed=1/dg=0/wt=2/ujg=1/rs=ALs0n2O1dzLKT

@@ -1,14 +1,25 @@
 TITLE: New Chevrolet Brake Patent Is Heavy On The Bow Tie Badges - GM Authority
-[quoted] status=200 organic=5
-   sc=0.00 https://www.nytimes.com/ | The New York Times - Breaking News, US News, World News and 
-   sc=0.00 https://www.cnn.com/ | Breaking News, Latest News and Videos | CNN
-   sc=0.00 https://apnews.com/ | Associated Press News : Breaking News , Latest Headlines and
-   sc=0.00 https://www.nbcnews.com/ | NBC News – Breaking Headlines and Video Reports on World, U.
-   sc=0.00 https://www.cbsnews.com/ | CBS News | Breaking news, top stories & today's latest headl
-[plain] status=200 organic=5
-   sc=0.00 https://www.nytimes.com/ | The New York Times - Breaking News, US News, World News and 
-   sc=0.00 https://www.cnn.com/ | Breaking News, Latest News and Videos | CNN
-   sc=0.00 https://apnews.com/ | Associated Press News : Breaking News , Latest Headlines and
-   sc=0.00 https://www.nbcnews.com/ | NBC News – Breaking Headlines and Video Reports on World, U.
-   sc=0.00 https://www.cbsnews.com/ | CBS News | Breaking news, top stories & today's latest headl
-NO good match (best sc=0.00)
+ORIG: https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5
+landed: https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5&hl=en-US&gl=US&ceid=US:en
+reader status=200 len=593842
+CANDIDATES (71):
+  canonical: https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSEx
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w16
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w24
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w32
+  href: https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w48
+  href: https://www.google-analytics.com/analytics.js
+  href: https://fonts.googleapis.com/css?family=Google+Sans+Text:400,500,700,400i,500i,700i
+  href: https://www.gstatic.com/gnews/logo/google_news_192.png
+  href: https://www.gstatic.com/gnews/logo/google_news_512.png
+  href: https://www.gstatic.com/gnews/logo/google_news_1024.png
+  href: https://www.gstatic.com/gnews/logo/google_news_120.png
+  href: https://www.gstatic.com/gnews/logo/google_news_152.png
+  href: https://www.gstatic.com/gnews/logo/google_news_167.png
+  href: https://www.gstatic.com/gnews/logo/google_news_180.png
+  href: https://www.gstatic.com/gnews/logo/google_news_80.png
+  href: https://www.gstatic.com/gnews/logo/google_news_87.png
+  href: https://www.gstatic.com/gnews/logo/google_news_58.png
+  href: https://www.gstatic.com/gnews/logo/google_news_60.png
+  href: https://www.gstatic.com/gnews/logo/google_news_40.png
+  href: https://www.gstatic.com/_/mss/boq-dots/_/js/k=boq-dots.DotsSplashUi_desktop_ms.en_US.g1Yle7uU9lU.2018.O/am=GAKFAAAAAACZAAMR/d=1/excm=_b,_tp,syndicationarticleview/ed=1/dg=0/wt=2/ujg=1/rs=ALs0n2MgkTcE0
