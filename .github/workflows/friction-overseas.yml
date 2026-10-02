@@ -30,6 +30,10 @@ on:
         description: '诊断 SOURCES 每条规则（入口状态/命中数/路径样本）'
         type: boolean
         default: false
+      probe_newsources:
+        description: '探针四：候选新信源可达性 + Bing News RSS 覆盖普查'
+        type: boolean
+        default: false
 
 permissions:
   contents: write           # 需要写权限才能 commit 结果
@@ -147,8 +151,27 @@ jobs:
             git push || true
           fi
 
-      - name: 显示探针结论
-        if: always()
+      # ── 可选：候选新信源（2026-10-02）可达性 + 聚合覆盖普查 ────────
+      - name: 候选新信源普查
+        if: ${{ inputs.probe_newsources }}
+        continue-on-error: true
+        run: python scripts/probe_newsources.py
+
+      - name: 提交新信源普查结论
+        if: ${{ always() && inputs.probe_newsources }}
+        continue-on-error: true
+        run: |
+          mkdir -p data
+          if [ -f out/newsource_probe.json ]; then
+            cp out/newsource_probe.json data/newsource_probe.json
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/newsource_probe.json
+            git diff --cached --quiet || git commit -m "chore: 新信源普查结论 [skip ci]"
+            git push || true
+          fi
+
+      - name: 显示探针结论        if: always()
         run: |
           if [ -f out/probe_result.json ]; then
             python - <<'PY'
