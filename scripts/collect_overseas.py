@@ -127,33 +127,6 @@ SOURCES = [
      "link_re": r"bodyshopbusiness\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
      "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.bodyshopbusiness.com", "region": "海外", "tag": "售后市场", "translate": True},
-
-    # ===== 2026-10-02 信源普查新增：Azure 实测可直连且有文章列表 =====
-    # Truckinginfo / Progressive Railroading 与 Fleet Owner 同属 Babcox/Informa 系 CMS，
-    # URL 形如 /<channel>/<slug>，沿用同款排除规则。
-    {"name": "Truckinginfo", "list_url": "https://www.truckinginfo.com/",
-     "list_url2": "https://www.truckinginfo.com/news",
-     "link_re": r"truckinginfo\.com/(?:news/)?(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
-     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
-     "base": "https://www.truckinginfo.com", "region": "海外", "tag": "商用车", "translate": True},
-    {"name": "Progressive Railroading", "list_url": "https://www.progressiverailroading.com/",
-     "list_url2": "https://www.progressiverailroading.com/news",
-     "link_re": r"progressiverailroading\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
-     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
-     "base": "https://www.progressiverailroading.com", "region": "海外", "tag": "轨道", "translate": True},
-    # 竞品官网（Azure 实测 HTTP200、有新闻/IR 列表）：用 news|press 路径段兜底，
-    # 正则偏宽，靠 is_relevant 摩擦关键词二次过滤，避免混入非制动内容。
-    {"name": "Akebono", "list_url": "https://www.akebono-brake.com/",
-     "list_url2": "https://www.akebono-brake.com/en/news/",
-     "link_re": r"akebono-brake\.com/(?:en/)?(?:news|press|ir|topics)/[a-z0-9\-_/]{4,}",
-     "base": "https://www.akebono-brake.com", "region": "海外", "tag": "摩擦材料", "translate": True},
-    {"name": "Textar", "list_url": "https://www.textar.com/en/news/",
-     "link_re": r"textar\.com/(?:en/)?(?:news|press|media)/[a-z0-9\-_/]{4,}",
-     "base": "https://www.textar.com", "region": "海外", "tag": "摩擦材料", "translate": True},
-    {"name": "Ferodo", "list_url": "https://www.ferodo.com/",
-     "list_url2": "https://www.ferodo.com/en/news/",
-     "link_re": r"ferodo\.com/(?:en/)?(?:news|press|media)/[a-z0-9\-_/]{4,}",
-     "base": "https://www.ferodo.com", "region": "海外", "tag": "摩擦材料", "translate": True},
 ]
 
 # 摩擦相关性过滤（与 friction-site 的 FRICTION_KEYWORDS 对齐）
@@ -235,6 +208,33 @@ def _extract_from(soup, pat, base: str, limit: int, exclude=None) -> list:
         if len(items) >= limit:
             break
     return items
+
+
+def fetch_article_text(url: str, limit: int = 5000) -> str:
+    """进文章页抓正文（p/h2/li 段落拼接），失败返回空串。
+
+    让直连源不再只有标题：列表页拿到 URL 后进详情页抽正文，
+    desc 字段随条目入库，合并端据此标 content_level=full。
+    """
+    try:
+        r = requests.get(url, headers=UA, timeout=20)
+        if r.status_code != 200:
+            return ""
+        soup = BeautifulSoup(r.content, "html.parser")
+        for tag in soup(["script", "style", "nav", "header", "footer", "aside", "form"]):
+            tag.decompose()
+        art = soup.find("article") or soup.find("main") or soup
+        paras, total = [], 0
+        for el in art.find_all(["p", "h2", "li"]):
+            t = el.get_text(" ", strip=True)
+            if len(t) >= 40:
+                paras.append(t)
+                total += len(t)
+            if total > limit:
+                break
+        return "\n\n".join(paras)[:limit]
+    except Exception:
+        return ""
 
 
 def fetch_source(src: dict, limit: int = 20) -> tuple:
@@ -336,6 +336,10 @@ def main():
                 "lang": "en",
                 "collected_at": datetime.now(timezone.utc).isoformat(),
             }
+            body = fetch_article_text(it["url"])
+            if body:
+                rec["desc"] = body
+                time.sleep(0.4)
             if src.get("translate"):
                 zh = translate(it["title"])
                 if zh and zh != it["title"]:
