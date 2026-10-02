@@ -39,6 +39,8 @@ ENGINES = {
     "ask":       "https://www.ask.com/web?q={q}",
     "searx_be":  "https://searx.be/search?q={q}&format=json",
     "searx_tie": "https://search.rhscz.eu/search?q={q}&format=json",
+    "google_web": "https://www.google.com/search?q={q}&hl=en-US&gl=US&num=20",
+    "google_news":"https://www.google.com/search?q={q}&tbm=nws&hl=en-US&gl=US",
 }
 
 BLOCK = ("news.google.com", "bing.com", "duckduckgo.com", "yahoo.com",
@@ -105,6 +107,20 @@ def extract(engine, html, resp):
                 links = [i.get("url") for i in resp.json().get("results", []) if i.get("url")]
             except Exception:
                 links = []
+        elif engine.startswith("google"):
+            soup = BeautifulSoup(html, "html.parser")
+            for a in soup.select("a[href^='/url?q=']"):
+                m = re.search(r"[?&]q=(https?://[^&]+)", a.get("href", ""))
+                if m:
+                    links.append(requests.utils.unquote(m.group(1)))
+            for a in soup.select("a[href^='http']"):
+                h = a.get("href", "")
+                if h.startswith("http") and "google.com" not in h.lower() and "googleusercontent" not in h.lower():
+                    links.append(h)
+            for cite in soup.select("cite"):
+                t = cite.get_text(" ", strip=True)
+                if t.startswith("http"):
+                    links.append(t)
     except Exception:
         pass
     return [norm(x) for x in links if norm(x)]
