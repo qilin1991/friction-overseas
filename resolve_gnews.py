@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""发现信源（第二轮增强）：用 Bing（Azure 出口）搜索「摩擦材料 / 制动器」主题，
-第一轮泛关键词 + 第二轮制造商/技术词/论文源/法规市场，收集返回域名，过滤门户/社交/
-通用站，筛出行业信源并按类别预标注。
-输出：out/discover_report.txt(带频次+分类)、out/discover_domains.json(全量)、
-      out/discover_sources.jsonl(样本明细)
+"""补搜信源（第三轮）：针对第二轮漏网的制造商官网 + 市场报告站，用
+「official website」提升官网命中、「market report」命中专门市场站。
+收集返回域名去重，过滤噪音，按类别预标注。
+输出：out/discover_report.txt / out/discover_domains.json / out/discover_sources.jsonl
 """
 import json, os, re, base64, requests
 from bs4 import BeautifulSoup
@@ -14,80 +13,28 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 TOUT = 25
 os.makedirs("out", exist_ok=True)
 
-# ---------- 关键词（两轮合并）----------
+# ---------- 第三轮补搜关键词 ----------
 QUERIES = [
-    # 第一轮：泛主题
-    "friction material brake",
-    "brake pad friction material",
-    "automotive friction materials manufacturer",
-    "NAO brake pad non asbestos organic",
-    "brake friction industry news",
-    "friction technology braking",
-    "dry brake pad formulation",
-    "brake pad wear debris copper free",
-    "friction materials standards institute FMSI",
-    "brake noise vibration harshness NVH",
-    "ceramic brake pad formulation",
-    "brake lining friction",
-    "tribology friction brake",
-    "brake pad dynamometer testing",
-    "low metallic brake friction",
-    "brake pad aftermarket",
-    "rail friction material",
-    "clutch friction material",
-    # 第二轮 A：制造商官网
-    "Brembo brake pad friction material",
-    "Bosch brake pad",
-    "Ferodo brake pad",
-    "Textar brake pad",
-    "Carlisle brake friction",
-    "TMD Friction brake pad",
-    "Bendix brake pad",
-    "Akebono brake pad",
-    "Nisshinbo brake friction",
-    "Fras-le brake pad",
-    "Federal-Mogul brake pad",
-    "MAT Holdings brake pad",
-    "Sangsin brake pad",
-    "Continental brake pad",
-    "ATE brake pad",
-    "Pagid brake pad",
-    "Wagner brake pad",
-    "Raybestos brake pad",
-    "EBC brake pad",
-    "Hawk Performance brake pad",
-    "Wilwood brake pad",
-    "Centric brake pad",
-    "Power Stop brake pad",
-    "SBS braking brake pad",
-    "Galfer brake pad",
-    "Napa brake pad",
-    "O'Reilly brake pad",
-    # 第二轮 B：技术深词
-    "brake squeal noise NVH friction",
-    "brake judder hot judder",
-    "brake fade thermal stability friction",
-    "copper-free brake pad regulation California",
-    "brake pad eco-label environmental",
-    "low metallic brake pad formulation",
-    "semi-metallic brake pad formulation",
-    "ceramic brake pad versus organic",
-    "friction coefficient wear brake dynamometer",
-    "asbestos free friction material formulation",
-    "green strength friction material",
-    "brake pad FMSI code",
-    "ECE R90 brake pad regulation",
-    "brake friction material patent",
-    # 第二轮 C：论文源 / 标准 / 会议
-    "SAE International brake friction paper",
-    "Tribology International friction material",
-    "Wear journal brake friction",
-    "friction material conference brake",
-    "STLE friction lubrication engineers",
-    # 第二轮 D：法规 / 市场
-    "brake friction material market report aftermarket",
-    "brake pad market size forecast",
-    "California copper brake pad regulation",
+    # 制造商官网（official website 提升官网命中，避开聚合页）
+    "Ferodo brake pad official website",
+    "Textar brake pad official website",
+    "Pagid brake pad official website",
+    "Wagner brake pad official website",
+    "Centric brake pad official website",
+    "Hawk Performance brake pad official website",
+    "Federal-Mogul brake pad official website",
+    "Mintex brake pad official website",
+    "Jurid brake pad official website",
+    "ICER brake pad official website",
+    "Sangsin brake pad official website",
+    "Mak brake pad official website",
+    "Bosch brake pad official website",
+    "Carlisle brake friction official website",
+    # 市场报告站补搜
+    "brake pad market report CAGR",
+    "brake friction materials market size forecast",
+    "automotive brake pad aftermarket market report",
+    "brake lining market report global",
 ]
 
 BING_WEB = "https://www.bing.com/search?q={q}&setmkt=en-US&cc=US&count=50"
@@ -99,36 +46,36 @@ BLOCK = ("bing.com", "google.com", "googleusercontent", "yahoo.com", "yandex.com
          "microsoft.com", "apple.com", "amazon.com", "reddit.com", "pinterest.com",
          "instagram.com", "tiktok.com", "msn.com", "bingj", "goo.gl", "bit.ly",
          "googleapis", "gstatic", "cloudfront", "w3.org", "aka.ms", "wikihow.com",
-         "quora.com", "medium.com", "github.com", "stackoverflow.com", "pinterest",
-         "craigslist", "ebay.com")
+         "quora.com", "medium.com", "github.com", "stackoverflow.com")
 
 STATIC = (".js", ".css", ".png", ".jpg", ".jpeg", ".gif", ".ico", ".svg", ".json",
           ".woff", ".woff2", ".ttf", ".xml", ".pdf")
 
-# 域名 -> 类别预标注
 MANUF = ("brembo", "bosch", "ferodo", "textar", "carlisle", "tmd-friction", "tmd",
          "bendix", "akebono", "nisshinbo", "fras-le", "frasle", "federal-mogul",
          "fedmogul", "matholdings", "mat-holdings", "sangsin", "continental",
          "ate", "pagid", "wagner", "raybestos", "ebcbrakes", "ebc", "hawkperformance",
          "hawk", "wilwood", "centric", "powerstop", "sbs", "galfer", "napaonline",
          "napa", "oreillyauto", "oreilly", "brakepartsinc", "icer", "jurid", "mintex",
-         "hitachi", "fbk", "don-brake", "sponsor", "mak", "brembo", "fdb", "tarox",
-         "ecs", "rockauto", "advanceautoparts", "autozone", "partsgeek", "carparts")
+         "mak", "fdb", "tarox", "rockauto", "advanceautoparts", "autozone",
+         "partsgeek", "carparts")
 ACADEMIC = ("sciencedirect", "springer", "mdpi", "frontiersin", "tribology", "stle",
             "sae", "researchgate", "sciencedaily", "eurekalert", "nature", "wiley",
-            "tandfonline", "asm", "ceramics", "azom", "nasa", "ieee", "osti",
-            "researchsquare", "arxiv")
+            "tandfonline", "asm", "ceramics", "azom", "nasa", "ieee", "osti")
 GOVREG = ("epa.gov", "transport", "unece", "europa.eu", "gov", "nhtsa", "ec.europa",
-          "defra", "europarl")
+          "defra", "europarl", "bar.ca.gov")
 MEDIA = ("truckinginfo", "fleetowner", "ccjdigital", "trucknews", "automotiveworld",
          "just-auto", "hotrod", "autoevolution", "motortrend", "autoguide", "thedrive",
          "autoblog", "carthrottle", "evo.co", "zigwheels", "progressiverailroading",
          "railway-technology", "prnewswire", "businesswire", "wardsauto", "aftermarket",
-         "freightwaves", "fleetequipment", "fleetmaintenance", "truckersnews", "landline")
+         "freightwaves", "fleetequipment", "tirebusiness", "designnews", "jalopnik",
+         "caranddriver", "topspeed", "popularmechanics")
 MARKET = ("marketresearch", "grandviewresearch", "fortunebusinessinsights",
           "researchandmarkets", "marketsandmarkets", "persistencemarketresearch",
           "cognitivemarketresearch", "dataintelo", "verifiedmarketreports",
-          "thebrainyinsights", "maximizemarketresearch", "straitsresearch")
+          "thebrainyinsights", "maximizemarketresearch", "straitsresearch",
+          "mordorintelligence", "precedenceresearch", "futuremarketinsights",
+          "qyresearch", "towardsautomotive", "gminsights", "expertmarketresearch")
 
 def classify(d):
     if any(m in d for m in MANUF):
@@ -173,9 +120,7 @@ def extract_bing_news(html):
     soup = BeautifulSoup(html, "html.parser")
     for a in soup.select("a[href^='http']"):
         h = a.get("href", "")
-        if "bing.com" in h.lower():
-            continue
-        if h.lower().endswith(STATIC):
+        if "bing.com" in h.lower() or h.lower().endswith(STATIC):
             continue
         out.append(h)
     return out
@@ -211,20 +156,16 @@ with open(os.path.join("out", "discover_sources.jsonl"), "w", encoding="utf-8") 
         f.write(json.dumps(s, ensure_ascii=False) + "\n")
 
 ranked = sorted(domains.items(), key=lambda x: -x[1]["n"])
-
-# 全量域名 json
-alld = {}
-for d, v in domains.items():
-    alld[d] = {"n": v["n"], "sample": v["sample"], "cls": classify(d)}
+alld = {d: {"n": v["n"], "sample": v["sample"], "cls": classify(d)} for d, v in domains.items()}
 with open(os.path.join("out", "discover_domains.json"), "w", encoding="utf-8") as f:
     json.dump(alld, f, ensure_ascii=False, indent=1)
 
 with open(os.path.join("out", "discover_report.txt"), "w", encoding="utf-8") as f:
     f.write("queries=%d unique_domains=%d\n\n" % (len(QUERIES), len(domains)))
     for d, v in ranked:
-        f.write("  %3d  %-32s %s\n" % (v["n"], d, classify(d)))
+        f.write("  %3d  %-34s %s\n" % (v["n"], d, classify(d)))
 
 print("queries=%d unique_domains=%d" % (len(QUERIES), len(domains)))
-print("TOP40:")
-for d, v in ranked[:40]:
-    print("  %3d  %-32s %s" % (v["n"], d, classify(d)))
+print("ALL:")
+for d, v in ranked:
+    print("  %3d  %-34s %s  %s" % (v["n"], d, classify(d), v["sample"][:70]))
