@@ -19,6 +19,17 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 out = open("gnews_resolved.jsonl", "w", encoding="utf-8")
 ok = fail = 0
 
+STOP = set("the a an of to on in for and or with is are was were be by at from as it its new".split())
+
+def words(s):
+    return set(w for w in re.findall(r"[a-zA-Z0-9]+", s.lower()) if w not in STOP and len(w) > 2)
+
+def score(title, text):
+    tw = words(title); rw = words(text)
+    if not tw:
+        return 0.0
+    return len(tw & rw) / len(tw)
+
 def clean(u):
     return u and u.startswith("http") and "news.google.com" not in u and "bing.com/ck" not in u and "google.com" not in u and "bing.com" not in u and "msockid" not in u
 
@@ -26,8 +37,7 @@ def decode_ck_a(href):
     m = re.search(r"[?&]u=a1([^&]+)", href)
     if not m:
         return None
-    s = m.group(1)
-    s += "=" * (-len(s) % 4)
+    s = m.group(1) + "=" * (-len(m.group(1)) % 4)
     s = s.replace("-", "+").replace("_", "/")
     try:
         raw = base64.b64decode(s)
@@ -39,18 +49,19 @@ def decode_ck_a(href):
         pass
     return None
 
-def bing_web(title):
-    q = "https://www.bing.com/search?q=" + requests.utils.quote(title)
-    r = requests.get(q, headers={"User-Agent": UA}, timeout=25)
+def bing_search(title, quoted):
+    q = ('"' + title + '"') if quoted else title
+    url = "https://www.bing.com/search?q=" + requests.utils.quote(q)
+    r = requests.get(url, headers={"User-Agent": UA}, timeout=25)
     soup = BeautifulSoup(r.text, "html.parser")
     res = []
-    # organic results: li.b_algo ; title link in h2 > a
     for li in soup.select("li.b_algo"):
         a = li.select_one("h2 a")
         if not a:
             continue
         h = a.get("href", "")
         htxt = a.get_text(" ", strip=True)
+        snip = li.get_text(" ", strip=True)
         if "bing.com/ck/a" in h:
             u = decode_ck_a(h)
         elif h.startswith("http"):
@@ -58,49 +69,28 @@ def bing_web(title):
         else:
             u = None
         if u and clean(u):
-            res.append(("bing_organic", u, htxt))
-    # fallback: any ck/a link from a normal result link
-    if not res:
-        for a in soup.find_all("a", href=True):
-            h = a["href"]
-            if "bing.com/ck/a" in h:
-                u = decode_ck_a(h)
-                if u and clean(u):
-                    res.append(("bing_ck", u, a.get_text(" ", strip=True)[:80]))
-    return r.status_code, len(r.text), res[:6]
-
-def ddg_html(title):
-    q = "https://html.duckduckgo.com/html/?q=" + requests.utils.quote(title)
-    r = requests.get(q, headers={"User-Agent": UA}, timeout=25)
-    soup = BeautifulSoup(r.text, "html.parser")
-    res = []
-    for a in soup.select("a.result__a"):
-        h = a.get("href", "")
-        if h.startswith("http") and "duckduckgo.com" not in h:
-            res.append(("ddg", h, a.get_text(" ", strip=True)[:80]))
-    return r.status_code, len(r.text), res[:6]
+            sc = max(score(title, htxt), score(title, snip))
+            res.append((u, htxt, sc))
+    return r.status_code, res
 
 for pid, url, title in pending:
     final = url
     okf = False
     note = ""
     diag = [f"TITLE: {title}"]
+    best = None
     try:
-        st, ln, res = bing_web(title)
-        diag.append(f"BINGWEB status={st} len={ln} organic={len(res)}")
-        for k, u, t in res[:6]:
-            diag.append(f"  {k}: {u[:200]}  | {t[:70]}")
-        for k, u, t in res:
-            if clean(u):
-                final = u; okf = True; note = "bing_web_" + k; break
-        if not okf:
-            st2, ln2, res2 = ddg_html(title)
-            diag.append(f"DDG status={st2} len={ln2} results={len(res2)}")
-            for k, u, t in res2[:6]:
-                diag.append(f"  {k}: {u[:200]} | {t[:70]}")
-            for k, u, t in res2:
-                if clean(u):
-                    final = u; okf = True; note = "ddg"; break
+        for quoted in (True, False):
+            st, res = bing_search(title, quoted)
+            diag.append(f"[{'quoted' if quoted else 'plain'}] status={st} organic={len(res)}")
+            for u, t, sc in res[:8]:
+                diag.append(f"   sc={sc:.2f} {u[:130]} | {t[:60]}")
+                if best is None or sc > best[0]:
+                    best = (sc, u, "quoted" if quoted else "plain")
+        if best and best[0] >= 0.34:
+            final = best[1]; okf = True; note = f"bing_match_{best[2]}_sc{best[0]:.2f}"
+        else:
+            diag.append("NO good match (best sc=%.2f)" % (best[0] if best else 0))
         with open(f"out/diag_{pid}.txt", "w", encoding="utf-8") as d:
             d.write("\n".join(diag) + "\n")
         if okf:
