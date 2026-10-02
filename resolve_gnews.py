@@ -1,6 +1,5 @@
 import json, time, os, requests, base64, re
 from bs4 import BeautifulSoup
-import xml.etree.ElementTree as ET
 
 os.makedirs("out", exist_ok=True)
 
@@ -21,55 +20,76 @@ out = open("gnews_resolved.jsonl", "w", encoding="utf-8")
 ok = fail = 0
 
 def clean(u):
-    return u and u.startswith("http") and "news.google.com" not in u and "google.com" not in u and "bing.com" not in u
+    return u and u.startswith("http") and "news.google.com" not in u and "bing.com/ck" not in u and "google.com" not in u and "bing.com" not in u
 
-def try_decode_b64(tok):
-    # Google News RSS article base64url -> protobuf -> embedded url
+def decode_ck_a(href):
+    # bing /ck/a?...&u=a1<base64url>
+    m = re.search(r"[?&]u=a1([^&]+)", href)
+    if not m:
+        return None
+    s = m.group(1)
+    s += "=" * (-len(s) % 4)
+    s = s.replace("-", "+").replace("_", "/")
     try:
-        s = tok
-        s += "=" * (-len(s) % 4)
-        s = s.replace("-", "+").replace("_", "/")
         raw = base64.b64decode(s)
-        # search for http(s) urls in decoded bytes
-        for m in re.finditer(rb"https?://[^\x00-\x1f\s\"'<>]+", raw):
-            u = m.group(0).decode("latin1")
-            if clean(u):
-                return u
+        # real url is plaintext after some prefix bytes; find http
+        i = raw.find(b"http")
+        if i >= 0:
+            u = raw[i:].split(b"\x00")[0].split(b'"')[0].split(b"'")[0].split(b" ")[0]
+            return u.decode("latin1")
     except Exception:
         pass
-    return ""
+    return None
+
+def bing_web(title):
+    q = "https://www.bing.com/search?q=" + requests.utils.quote(title)
+    r = requests.get(q, headers={"User-Agent": UA}, timeout=25)
+    soup = BeautifulSoup(r.text, "html.parser")
+    res = []
+    for a in soup.find_all("a", href=True):
+        h = a["href"]
+        if "bing.com/ck/a" in h:
+            u = decode_ck_a(h)
+            if u and clean(u):
+                res.append(("bing_ck", u))
+        elif h.startswith("http") and "bing.com" not in h and "microsoft" not in h and "msn.com" not in h:
+            res.append(("bing_direct", h))
+    return r.status_code, len(r.text), res[:5]
+
+def ddg_html(title):
+    q = "https://html.duckduckgo.com/html/?q=" + requests.utils.quote(title)
+    r = requests.get(q, headers={"User-Agent": UA}, timeout=25)
+    soup = BeautifulSoup(r.text, "html.parser")
+    res = []
+    for a in soup.select("a.result__a"):
+        h = a.get("href", "")
+        if h.startswith("http") and "duckduckgo.com" not in h:
+            res.append(("ddg", h))
+    return r.status_code, len(r.text), res[:5]
 
 for pid, url, title in pending:
     final = url
     okf = False
     note = ""
+    diag = [f"TITLE: {title}"]
     try:
-        diag = []
-        # STRATEGY A: follow google news redirect
-        try:
-            rg = requests.get(url, headers={"User-Agent": UA}, timeout=25, allow_redirects=True)
-            chain = [h.url for h in rg.history] + [rg.url]
-            diag.append("REDIRECT chain:\n" + "\n".join(chain))
-            landed = rg.url
-            if clean(landed):
-                final = landed
-                okf = True
-                note = "gnews_redirect"
-            else:
-                diag.append("redirect landed on google, not publisher: " + landed)
-        except Exception as e:
-            diag.append("REDIRECT ERR: " + str(e)[:80])
-        # STRATEGY B: base64 protobuf decode of the token
+        st, ln, res = bing_web(title)
+        diag.append(f"BINGWEB status={st} len={ln} results={len(res)}")
+        for k, u in res[:5]:
+            diag.append(f"  {k}: {u[:200]}")
+        # pick first bing_ck or bing_direct
+        for k, u in res:
+            if clean(u):
+                final = u; okf = True; note = "bing_web_" + k; break
         if not okf:
-            tok = url.split("/articles/")[-1].split("?")[0]
-            du = try_decode_b64(tok)
-            diag.append("B64 decode -> " + (du or "(none)"))
-            if du:
-                final = du
-                okf = True
-                note = "gnews_b64"
+            st2, ln2, res2 = ddg_html(title)
+            diag.append(f"DDG status={st2} len={ln2} results={len(res2)}")
+            for k, u in res2[:5]:
+                diag.append(f"  {k}: {u[:200]}")
+            for k, u in res2:
+                if clean(u):
+                    final = u; okf = True; note = "ddg"; break
         with open(f"out/diag_{pid}.txt", "w", encoding="utf-8") as d:
-            d.write("TITLE: " + title + "\nORIG: " + url + "\n")
             d.write("\n".join(diag) + "\n")
         if okf:
             ok += 1
@@ -79,6 +99,8 @@ for pid, url, title in pending:
     except Exception as e:
         fail += 1
         note = "err:" + str(e)[:50]
+        with open(f"out/diag_{pid}.txt", "w", encoding="utf-8") as d:
+            d.write("\n".join(diag) + "\nERR:" + str(e) + "\n")
     out.write(json.dumps({"id": pid, "orig": url, "final": final, "ok": okf, "note": note}, ensure_ascii=False) + "\n")
     time.sleep(0.4)
 
