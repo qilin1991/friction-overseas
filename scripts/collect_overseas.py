@@ -127,6 +127,33 @@ SOURCES = [
      "link_re": r"bodyshopbusiness\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
      "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.bodyshopbusiness.com", "region": "海外", "tag": "售后市场", "translate": True},
+
+    # ===== 2026-10-02 信源普查新增：Azure 实测可直连且有文章列表 =====
+    # Truckinginfo / Progressive Railroading 与 Fleet Owner 同属 Babcox/Informa 系 CMS，
+    # URL 形如 /<channel>/<slug>，沿用同款排除规则。
+    {"name": "Truckinginfo", "list_url": "https://www.truckinginfo.com/",
+     "list_url2": "https://www.truckinginfo.com/news",
+     "link_re": r"truckinginfo\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.truckinginfo.com", "region": "海外", "tag": "商用车", "translate": True},
+    {"name": "Progressive Railroading", "list_url": "https://www.progressiverailroading.com/",
+     "list_url2": "https://www.progressiverailroading.com/news",
+     "link_re": r"progressiverailroading\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.progressiverailroading.com", "region": "海外", "tag": "轨道", "translate": True},
+    # 竞品官网（Azure 实测 HTTP200、有新闻/IR 列表）：用 news|press 路径段兜底，
+    # 正则偏宽，靠 is_relevant 摩擦关键词二次过滤，避免混入非制动内容。
+    {"name": "Akebono", "list_url": "https://www.akebono-brake.com/",
+     "list_url2": "https://www.akebono-brake.com/en/news/",
+     "link_re": r"akebono-brake\.com/(?:en/)?(?:news|press|ir|topics)/[a-z0-9\-_/]{4,}",
+     "base": "https://www.akebono-brake.com", "region": "海外", "tag": "摩擦材料", "translate": True},
+    {"name": "Textar", "list_url": "https://www.textar.com/en/news/",
+     "link_re": r"textar\.com/(?:en/)?(?:news|press|media)/[a-z0-9\-_/]{4,}",
+     "base": "https://www.textar.com", "region": "海外", "tag": "摩擦材料", "translate": True},
+    {"name": "Ferodo", "list_url": "https://www.ferodo.com/",
+     "list_url2": "https://www.ferodo.com/en/news/",
+     "link_re": r"ferodo\.com/(?:en/)?(?:news|press|media)/[a-z0-9\-_/]{4,}",
+     "base": "https://www.ferodo.com", "region": "海外", "tag": "摩擦材料", "translate": True},
 ]
 
 # 摩擦相关性过滤（与 friction-site 的 FRICTION_KEYWORDS 对齐）
