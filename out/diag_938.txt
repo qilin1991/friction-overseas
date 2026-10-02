@@ -1,7 +1,8 @@
 TITLE: New Chevrolet Brake Patent Is Heavy On The Bow Tie Badges - GM Authority
-BINGWEB status=200 len=128544 results=5
-  bing_ck: https://www.foxnews.com/?msockid=0a42b1baeb826ccc239aa65ceaee6d04
-  bing_ck: https://www.foxnews.com/?msockid=0a42b1baeb826ccc239aa65ceaee6d04
-  bing_ck: https://www.cnn.com/
-  bing_ck: https://www.cnn.com/
-  bing_ck: https://www.nbcnews.com/
+BINGWEB status=200 len=126219 organic=6
+  bing_organic: https://www.cnn.com/  | Breaking News, Latest News and Videos | CNN
+  bing_organic: https://www.nbcnews.com/  | NBC News – Breaking Headlines and Video Reports on World, U.S ...
+  bing_organic: https://www.nytimes.com/  | The New York Times - Breaking News, US News, World News and ...
+  bing_organic: https://apnews.com/  | Associated Press News : Breaking News , Latest Headlines and ...
+  bing_organic: https://www.10tv.com/local  | Columbus Local News | Columbus, Ohio | 10tv.com
+  bing_organic: https://www.npr.org/sections/news/  | News : U.S. and World News Headlines : NPR

@@ -1,7 +1,8 @@
 TITLE: Friction Materials Market Size & Share, Growth Analysis 2038 - Research Nester
-BINGWEB status=200 len=131130 results=5
-  bing_ck: https://www.linncountyjournal.com/
-  bing_ck: https://www.linncountyjournal.com/
-  bing_ck: https://linncountynews.net/
-  bing_ck: https://linncountynews.net/
-  bing_ck: https://www.linncountyjournal.com/all-news/categories/recent-local-news
+BINGWEB status=200 len=121592 organic=6
+  bing_organic: https://www.britannica.com/science/friction  | Friction | Definition, Types, & Formula | Britannica
+  bing_organic: https://en.wikipedia.org/wiki/Friction  | Friction - Wikipedia
+  bing_organic: https://www.sciencefacts.net/friction.html  | Friction (Frictional Force): Definition, Formula, & Examples
+  bing_organic: https://www.geeksforgeeks.org/physics/what-is-friction/  | Friction - GeeksforGeeks
+  bing_organic: https://phys.libretexts.org/Bookshelves/College_Physics/College_Physics_1e_(OpenStax)/05:_Further_Applications_of_Newton  | 5.1: Friction - Physics LibreTexts
+  bing_organic: https://sciencenotes.org/friction-definition-types-formula-and-examples/  | Friction - Definition, Types, Formula, and Examples

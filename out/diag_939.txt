@@ -1,7 +1,8 @@
 TITLE: Patent Patrol: SRAM’s anti-endo hydraulic brakes, plus one-piece “spray on” brake rotors - Bikerumor
-BINGWEB status=200 len=132924 results=5
-  bing_ck: https://www.uspto.gov/patents/search
-  bing_ck: https://www.uspto.gov/patents/search
-  bing_ck: https://patentcenter.uspto.gov/#!/%C2%A0
-  bing_ck: https://patentcenter.uspto.gov/#!/%C2%A0
-  bing_ck: https://www.uspto.gov/patents/search/patent-public-search
+BINGWEB status=200 len=132545 organic=6
+  bing_organic: https://www.uspto.gov/  | United States Patent and Trademark Office
+  bing_organic: https://www.uspto.gov/patents/search  | Search for patents | USPTO
+  bing_organic: https://patentcenter.uspto.gov/#!/%C2%A0  | Home - Patent Center - USPTO
+  bing_organic: https://en.wikipedia.org/wiki/Patent  | Patent - Wikipedia
+  bing_organic: https://www.wipo.int/en/web/patentscope  | PATENTSCOPE - WIPO
+  bing_organic: https://patentscope.wipo.int/search/en/search.jsf  | WIPO - Search International and National Patent Collections
