@@ -11,6 +11,8 @@ VPS 合并端 fetch_friction_overseas.py 按 url 回填 article 表。
 策略：
 - 跳过聚合中转/搜索链（news.google.com / bing.com / duckduckgo.com）
 - 增量：news_content.json 已有的 url 不重抓
+- 直连优先；直连被 WAF 拦截/正文不足时，回落 r.jina.ai 阅读器代理兜底
+  （Actions 在 Azure 国际出口，可访问 jina，绕过源站 WAF）
 - 每轮限量 ENRICH_LIMIT（默认 250 条），workflow 定期调用逐步补齐
 - 失败/空正文记 FAILS（连续 2 轮失败自动放弃，避免反复打 WAF）
 """
@@ -28,12 +30,40 @@ UA = {
                    "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"),
 }
 SKIP_HOSTS = ("news.google.com", "bing.com", "duckduckgo.com")
+JINA = "https://r.jina.ai/"
 LIMIT = int(os.environ.get("ENRICH_LIMIT", "250"))
 IN_PATH = "out/news_overseas.json"
 OUT_PATH = "out/news_content.json"
 
+# jina 返回首部元数据行（Title/Published/URL/Image 等），正文前需剥掉
+_META_PREFIX = (
+    "title:", "published:", "url:", "image:", "description:",
+    "total tokens:", "warning:",
+)
 
-def fetch_text(url: str, limit: int = 6000) -> str:
+
+def _clean_jina(text: str) -> str:
+    """剥掉 jina 阅读器返回的首部元数据，保留正文 Markdown。"""
+    lines = text.splitlines()
+    out, in_meta = [], True
+    for ln in lines:
+        s = ln.strip()
+        if in_meta:
+            low = s.lower()
+            if any(low.startswith(p) for p in _META_PREFIX):
+                continue
+            if s.startswith("http://") or s.startswith("https://"):
+                continue
+            # 元数据区空行或极短行跳过
+            if not s or len(s) < 30:
+                if not out:
+                    continue
+            in_meta = False
+        out.append(ln)
+    return "\n".join(out).strip()
+
+
+def _direct(url: str, limit: int) -> str:
     try:
         r = requests.get(url, headers=UA, timeout=18)
         if r.status_code != 200:
@@ -53,6 +83,23 @@ def fetch_text(url: str, limit: int = 6000) -> str:
         return "\n\n".join(paras)[:limit]
     except Exception:
         return ""
+
+
+def fetch_text(url: str, limit: int = 6000) -> str:
+    # 1) 直连抓正文
+    txt = _direct(url, limit)
+    if len(txt) >= 200:
+        return txt
+    # 2) jina 阅读器代理兜底（绕过 WAF），仅当直连不足时
+    try:
+        r = requests.get(JINA + url, headers=UA, timeout=22)
+        if r.status_code == 200:
+            t = _clean_jina(r.text)
+            if len(t) >= 200:
+                return t[:limit]
+    except Exception:
+        pass
+    return ""
 
 
 def main():
