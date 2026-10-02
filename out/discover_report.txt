@@ -1,89 +1,307 @@
-queries=18 unique_domains=87
+queries=67 unique_domains=305
 
-   28  autozone.com
-   22  merriam-webster.com
-   20  jlaforums.com
-   18  dictionary.cambridge.org
-   16  visitseattle.org
-   14  oards.com
-   14  napaonline.com
-   14  theengineeringchoice.org
-   14  nubrakes.com
-    8  truckinginfo.com
-    8  hotrod.com
-    5  prnewswire.com
-    5  azom.com
-    4  fleetowner.com
-    4  ccjdigital.com
-    4  motortrend.com
-    4  nao.org
-    4  uploads.visitseattle.org
-    4  britannica.com
-    4  help.brother-usa.com
-    4  tenforums.com
-    4  yelp.com
-    4  sciencedirect.com
-    4  tribonet.org
-    4  ocw.mit.edu
-    4  lowes.com
-    4  clutch.co
-    4  clutch.ca
-    3  trucknews.com
-    3  autoguide.com
-    3  autoevolution.com
-    3  nasdaq.com
-    3  businesswire.com
-    3  slashgear.com
-    2  yorkautomotive.com
-    2  yorkcdjrofplainfield.com
-    2  r-mautomotive.com
-    2  campfieldsautorepair.com
-    2  stoopsbuickgmc.com
-    2  automotiveworld.com
-    2  autotrader.com
-    2  locations.oreillyauto.com
-    2  en.m.wiktionary.org
-    2  ncei.noaa.gov
-    2  thisnao.com
-    2  zigwheels.com
-    2  taiwannews.com.tw
-    2  thefreedictionary.com
-    2  dictionary.com
-    2  vocabulary.com
-    2  en.wiktionary.org
-    2  tirebusiness.com
-    2  menafn.com
-    2  eturbonews.com
-    2  sciencenotes.org
-    2  ceramics.org
-    2  depts.washington.edu
-    2  landoftile.com
-    2  autoblog.com
-    2  thedrive.com
-    2  carthrottle.com
-    2  brecorder.com
-    2  stle.org
-    2  sciengine.com
-    2  tribology.com
-    2  genius.com
-    2  whyy.org
-    2  progressiverailroading.com
-    2  railway-technology.com
-    2  clutch.com
-    2  theengineerspost.com
-    2  withclutch.com
-    1  forconstructionpros.com
-    1  northjersey.com
-    1  ad-hoc-news.de
-    1  sciencedaily.com
-    1  eurekalert.org
-    1  just-auto.com
-    1  epa.gov
-    1  spokesman.com
-    1  finanznachrichten.de
-    1  globalspec.com
-    1  cnet.com
-    1  financialexpress.com
-    1  straight.com
-    1  evo.co.uk
-    1  auto.economictimes.indiatimes.com
+   74  merriam-webster.com              OTHER
+   60  mrbrakelasvegas.com              OTHER
+   44  yelp.com                         OTHER
+   38  dictionary.cambridge.org         OTHER
+   36  napaonline.com                   MANUF
+   34  autozone.com                     MANUF
+   30  theengineeringchoice.org         OTHER
+   29  hotrod.com                       MEDIA
+   26  britannica.com                   OTHER
+   22  bronco6g.com                     OTHER
+   19  truckinginfo.com                 MEDIA
+   18  stle.org                         ACADEMIC
+   16  slashgear.com                    OTHER
+   14  sciencenotes.org                 OTHER
+   13  ccjdigital.com                   MEDIA
+   12  locations.traderjoes.com         OTHER
+   11  autoguide.com                    MEDIA
+   11  trucknews.com                    MEDIA
+   11  fleetowner.com                   MEDIA
+   10  sciencefacts.net                 OTHER
+   10  geeksforgeeks.org                OTHER
+   10  phys.libretexts.org              OTHER
+   10  phet.colorado.edu                OTHER
+   10  openstax.org                     OTHER
+   10  physicsbook.gatech.edu           MANUF
+   10  prnewswire.com                   MEDIA
+   10  tribonet.org                     OTHER
+    9  autoevolution.com                MEDIA
+    9  just-auto.com                    MEDIA
+    9  tirebusiness.com                 OTHER
+    9  motorcycle.com                   OTHER
+    8  businesswire.com                 MEDIA
+    8  ocw.mit.edu                      OTHER
+    8  lowes.com                        OTHER
+    8  traderjoes.com                   OTHER
+    8  wilwood.com                      MANUF
+    7  motortrend.com                   MEDIA
+    7  azom.com                         ACADEMIC
+    6  dictionary.com                   OTHER
+    6  vocabulary.com                   OTHER
+    6  thedrive.com                     MEDIA
+    6  carthrottle.com                  MEDIA
+    6  webmd.com                        OTHER
+    6  ece.org                          OTHER
+    5  ad-hoc-news.de                   OTHER
+    5  nasdaq.com                       OTHER
+    5  epa.gov                          GOVREG
+    5  menafn.com                       OTHER
+    5  autoblog.com                     MEDIA
+    4  nao.org                          OTHER
+    4  thefreedictionary.com            OTHER
+    4  finanznachrichten.de             OTHER
+    4  joinclayclub.com                 OTHER
+    4  ceramics.org                     ACADEMIC
+    4  ceramicprotracyelite.com         OTHER
+    4  ceramicgarage.com                OTHER
+    4  sciencedirect.com                ACADEMIC
+    4  wiki.anton-paar.com              OTHER
+    4  mae.ucmerced.edu                 OTHER
+    4  genius.com                       OTHER
+    4  baike.baidu.com                  OTHER
+    4  clutch.ca                        OTHER
+    4  brembo.com                       MANUF
+    4  brembostore.com                  MANUF
+    4  brembogroup.com                  MANUF
+    4  bosch.us                         MANUF
+    4  bosch-home.com                   MANUF
+    4  bosch.com                        MANUF
+    4  theautochannel.com               OTHER
+    4  helpx.adobe.com                  OTHER
+    4  adobe.com                        OTHER
+    4  carlisle.com                     MANUF
+    4  tmd.texas.gov                    MANUF
+    4  bendix.com                       MANUF
+    4  bendix-brakes.com                MANUF
+    4  b2bendix.com                     MANUF
+    4  akebonobrakes.com                MANUF
+    4  rockauto.com                     MANUF
+    4  buybrakes.com                    OTHER
+    4  nisshinbo.co.jp                  MANUF
+    4  nisshinbo-microdevices.co.jp     MANUF
+    4  safelifedefense.com              OTHER
+    4  mathworks.com                    OTHER
+    4  continental.com                  MANUF
+    4  continentaltire.com              MANUF
+    4  continental-tires.com            MANUF
+    4  raybestospowertrain.com          MANUF
+    4  raybestosus.com                  MANUF
+    4  friction1.com                    OTHER
+    4  summitracing.com                 OTHER
+    4  ebc.com                          MANUF
+    4  sbs.com.au                       MANUF
+    4  sbs.co.kr                        MANUF
+    4  galfer.com                       MANUF
+    4  galfer-aftermarket.com           MANUF
+    4  bikeradar.com                    OTHER
+    4  napa-benefits.org                MANUF
+    4  medicalnewstoday.com             OTHER
+    4  semi.org                         OTHER
+    4  asbestos.com                     OTHER
+    4  greennv.com                      OTHER
+    4  sae.org                          ACADEMIC
+    4  saemobilus.sae.org               ACADEMIC
+    4  ca.gov                           GOVREG
+    3  eurekalert.org                   ACADEMIC
+    3  taiwannews.com.tw                OTHER
+    3  railway-technology.com           MEDIA
+    2  forconstructionpros.com          OTHER
+    2  franksautomotiverepair.com       OTHER
+    2  bar.ca.gov                       GOVREG
+    2  chamberofcommerce.com            OTHER
+    2  ricardodiazautomotive.com        OTHER
+    2  groppettiauto.com                OTHER
+    2  masautocenter.com                OTHER
+    2  nonprofitoregon.org              OTHER
+    2  thisnao.com                      OTHER
+    2  ncei.noaa.gov                    GOVREG
+    2  zigwheels.com                    MEDIA
+    2  en.m.wiktionary.org              OTHER
+    2  yourdictionary.com               OTHER
+    2  eturbonews.com                   OTHER
+    2  financialexpress.com             OTHER
+    2  auto.economictimes.indiatimes.com OTHER
+    2  amtrak.com                       OTHER
+    2  rail.re                          OTHER
+    2  viarail.ca                       OTHER
+    2  iciba.com                        OTHER
+    2  nationalrail.co.uk               OTHER
+    2  railmapgen.org                   OTHER
+    2  progressiverailroading.com       MEDIA
+    2  clutch.co                        OTHER
+    2  clutch.com                       OTHER
+    2  withclutch.com                   OTHER
+    2  clutchcannabis.com               OTHER
+    2  theengineerspost.com             OTHER
+    2  bremboparts.com                  MANUF
+    2  carsbibles.com                   OTHER
+    2  boschtools.com                   MANUF
+    2  boschautoparts.com               MANUF
+    2  officer.com                      MANUF
+    2  realitypathing.com               OTHER
+    2  get.adobe.com                    OTHER
+    2  technobezz.com                   OTHER
+    2  carlislesyntec.com               MANUF
+    2  carlislefsp.com                  MANUF
+    2  carlile.biz                      OTHER
+    2  carlisleevents.com               MANUF
+    2  carlisleconstructionmaterials.com MANUF
+    2  discovercarlisle.co.uk           MANUF
+    2  hopkinsmedicine.org              OTHER
+    2  tmdstaffing.com                  MANUF
+    2  nidcr.nih.gov                    GOVREG
+    2  gotmd.com                        MANUF
+    2  my.clevelandclinic.org           OTHER
+    2  nhs.uk                           OTHER
+    2  bendixoem.com                    MANUF
+    2  acom.cojali.com                  OTHER
+    2  bendix.com.au                    MANUF
+    2  akebono-brake.com                MANUF
+    2  akebonooem.com                   MANUF
+    2  nisshinbo-brake.co.jp            MANUF
+    2  nisshinbo-brakes.com             MANUF
+    2  nisshinbo-mechatronics.co.jp     MANUF
+    2  nisshinbo-chem.co.jp             MANUF
+    2  ryanoconnellfinance.com          OTHER
+    2  dodfras.com                      OTHER
+    2  fras-le.com                      MANUF
+    2  iotafinance.com                  OTHER
+    2  supermoney.com                   OTHER
+    2  evolvefcu.org                    OTHER
+    2  firstlightfcu.org                OTHER
+    2  federalpremium.com               OTHER
+    2  federalreserve.gov               GOVREG
+    2  onesourcefcu.org                 OTHER
+    2  studentaid.gov                   GOVREG
+    2  irs.gov                          GOVREG
+    2  raiz.us                          OTHER
+    2  americanaddictioncenters.org     OTHER
+    2  myalabamataxes.alabama.gov       GOVREG
+    2  screening.mhanational.org        OTHER
+    2  target.com                       OTHER
+    2  clr.com                          OTHER
+    2  continental.aero                 MANUF
+    2  ate-brakes.com                   MANUF
+    2  theoi.com                        OTHER
+    2  ateautomotive.com                MANUF
+    2  greekmythology.com               OTHER
+    2  greekgodsandgoddesses.net        OTHER
+    2  mythus.fandom.com                OTHER
+    2  outlook.office.com               OTHER
+    2  m365.cloud.microsoft             OTHER
+    2  ebcbrakes.com                    MANUF
+    2  ebcec.com                        MANUF
+    2  ebc.group                        MANUF
+    2  zhch.ebcmt.com                   MANUF
+    2  ch.ebcmt.com                     MANUF
+    2  ebcbrakesdirect.com              MANUF
+    2  avibirds.com                     OTHER
+    2  ownyardlife.com                  OTHER
+    2  m.imdb.com                       OTHER
+    2  animals.net                      OTHER
+    2  wildlifeinformer.com             OTHER
+    2  learnbirdwatching.com            OTHER
+    2  birdadvisors.com                 OTHER
+    2  wildwoodpavilions.com            OTHER
+    2  shop.wilwood.com                 MANUF
+    2  speedwaymotors.com               OTHER
+    2  wilwoodbrakekits.com             MANUF
+    2  centricsoftware.com              MANUF
+    2  windsorcommunities.com           OTHER
+    2  centric.build                    MANUF
+    2  centricconsulting.com            MANUF
+    2  centricstl.com                   MANUF
+    2  centricfiber.com                 MANUF
+    2  centric-us.com                   MANUF
+    2  imdb.com                         OTHER
+    2  app.powerbi.com                  OTHER
+    2  starz.com                        OTHER
+    2  siliconvalleypower.com           OTHER
+    2  justwatch.com                    OTHER
+    2  hulu.com                         OTHER
+    2  disneyplus.com                   OTHER
+    2  statebasedsystems.com            MANUF
+    2  search.certifications.sba.gov    GOVREG
+    2  sbscyber.com                     MANUF
+    2  myaccount.sbs.com.au             MANUF
+    2  motorcyclistonline.com           OTHER
+    2  revzilla.com                     OTHER
+    2  cyclegear.com                    OTHER
+    2  jensonusa.com                    OTHER
+    2  bike24.com                       OTHER
+    2  napacanada.com                   MANUF
+    2  cityofnapa.org                   MANUF
+    2  visitnapavalley.com              MANUF
+    2  cdn-brand.napaonline.com         MANUF
+    2  ilifehacks.com                   OTHER
+    2  locations.oreillyauto.com        MANUF
+    2  en.wiktionary.org                OTHER
+    2  citizen.co.za                    OTHER
+    2  copperhome.com                   OTHER
+    2  internationalcopper.org          OTHER
+    2  copper.org                       OTHER
+    2  periodic-table.rsc.org           OTHER
+    2  metalcharts.org                  OTHER
+    2  copper.com                       OTHER
+    2  web.portal.semi.org              OTHER
+    2  connect.semi.org                 OTHER
+    2  store-us.semi.org                OTHER
+    2  tesla.com                        OTHER
+    2  discover.semi.org                OTHER
+    2  stg.portal.semi.org              OTHER
+    2  cancer.gov                       GOVREG
+    2  who.int                          OTHER
+    2  thisoldhouse.com                 OTHER
+    2  figma.com                        OTHER
+    2  color-meanings.com               OTHER
+    2  creativebooster.net              OTHER
+    2  thecoloratlas.org                OTHER
+    2  accounts.ece.org                 OTHER
+    2  certificates.ece.org             MANUF
+    2  caregistry.org                   OTHER
+    2  theconnection.ece.org            OTHER
+    2  college-ece.ca                   OTHER
+    2  training.sae.org                 ACADEMIC
+    2  portal.sae.net                   ACADEMIC
+    2  credentialdirectory.sae.org      ACADEMIC
+    2  wearbyea.com                     OTHER
+    2  wear.jp                          OTHER
+    2  wear-store.be                    OTHER
+    2  pathlms.com                      OTHER
+    2  visitcalifornia.com              OTHER
+    2  ontheworldmap.com                OTHER
+    2  sos.ca.gov                       GOVREG
+    2  gov.ca.gov                       GOVREG
+    2  nps.gov                          GOVREG
+    2  californiaview.org               OTHER
+    1  northjersey.com                  OTHER
+    1  sciencedaily.com                 ACADEMIC
+    1  heraldnews.com                   OTHER
+    1  spokesman.com                    OTHER
+    1  globalspec.com                   OTHER
+    1  cnet.com                         OTHER
+    1  straight.com                     OTHER
+    1  evo.co.uk                        MEDIA
+    1  brecorder.com                    OTHER
+    1  designnews.com                   OTHER
+    1  businessmirror.com.ph            OTHER
+    1  autocarindia.com                 OTHER
+    1  bizcommunity.com                 OTHER
+    1  pehub.com                        OTHER
+    1  stockhouse.com                   OTHER
+    1  krqe.com                         OTHER
+    1  thenorthernecho.co.uk            OTHER
+    1  thecourier.com.au                OTHER
+    1  mynewsdesk.com                   OTHER
+    1  prnewswire.co.uk                 MEDIA
+    1  morningstar.com                  OTHER
+    1  caranddriver.com                 OTHER
+    1  jalopnik.com                     OTHER
+    1  webbikeworld.com                 OTHER
+    1  racerxonline.com                 OTHER
+    1  popularmechanics.com             OTHER
+    1  topspeed.com                     OTHER
+    1  carsguide.com.au                 OTHER
+    1  powermag.com                     OTHER

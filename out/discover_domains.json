@@ -1,0 +1,1527 @@
+{
+ "britannica.com": {
+  "n": 26,
+  "sample": "https://www.britannica.com/science/friction",
+  "cls": "OTHER"
+ },
+ "sciencefacts.net": {
+  "n": 10,
+  "sample": "https://www.sciencefacts.net/friction.html",
+  "cls": "OTHER"
+ },
+ "sciencenotes.org": {
+  "n": 14,
+  "sample": "https://sciencenotes.org/friction-definition-types-formula-and-examples/",
+  "cls": "OTHER"
+ },
+ "geeksforgeeks.org": {
+  "n": 10,
+  "sample": "https://www.geeksforgeeks.org/physics/what-is-friction/",
+  "cls": "OTHER"
+ },
+ "phys.libretexts.org": {
+  "n": 10,
+  "sample": "https://phys.libretexts.org/Bookshelves/College_Physics/College_Physics_1e_(OpenStax)/05:_Further_Applications_of_Newton's_Laws-_Friction_Drag_and_Elasticity/5.01:_Friction",
+  "cls": "OTHER"
+ },
+ "merriam-webster.com": {
+  "n": 74,
+  "sample": "https://www.merriam-webster.com/dictionary/friction",
+  "cls": "OTHER"
+ },
+ "phet.colorado.edu": {
+  "n": 10,
+  "sample": "https://phet.colorado.edu/en/simulations/forces-and-motion-basics",
+  "cls": "OTHER"
+ },
+ "openstax.org": {
+  "n": 10,
+  "sample": "https://openstax.org/books/college-physics-2e/pages/5-1-friction",
+  "cls": "OTHER"
+ },
+ "physicsbook.gatech.edu": {
+  "n": 10,
+  "sample": "https://physicsbook.gatech.edu/Friction",
+  "cls": "MANUF"
+ },
+ "prnewswire.com": {
+  "n": 10,
+  "sample": "https://www.prnewswire.com/news-releases/automotive-oem-brake-friction-material-market-size-to-grow-at-2-93-cagr-and-to-hit-us-13-61-billion-by-2029--301790687.html",
+  "cls": "MEDIA"
+ },
+ "autoguide.com": {
+  "n": 11,
+  "sample": "https://www.autoguide.com/auto-news/2019/06/what-is-the-best-brake-pad-material-.html",
+  "cls": "MEDIA"
+ },
+ "trucknews.com": {
+  "n": 11,
+  "sample": "https://www.trucknews.com/products/tmd-introduces-new-disc-brake-friction-material-launches-program-to-reduce-relining-costs/",
+  "cls": "MEDIA"
+ },
+ "truckinginfo.com": {
+  "n": 19,
+  "sample": "https://www.truckinginfo.com/news/brake-manufacturers-council-names-brake-friction-material-registrar",
+  "cls": "MEDIA"
+ },
+ "fleetowner.com": {
+  "n": 11,
+  "sample": "https://www.fleetowner.com/equipment/article/21684940/tmd-friction-adds-brake-reline-program-new-friction-material",
+  "cls": "MEDIA"
+ },
+ "forconstructionpros.com": {
+  "n": 2,
+  "sample": "https://www.forconstructionpros.com/equipment/fleet-maintenance/other-components/product/10691256/tmd-friction-of-north-america-air-disc-brake-friction-material",
+  "cls": "OTHER"
+ },
+ "mrbrakelasvegas.com": {
+  "n": 60,
+  "sample": "https://mrbrakelasvegas.com/services/",
+  "cls": "OTHER"
+ },
+ "napaonline.com": {
+  "n": 36,
+  "sample": "https://www.napaonline.com/en/shop/replacement-parts/brakes/201579366",
+  "cls": "MANUF"
+ },
+ "yelp.com": {
+  "n": 44,
+  "sample": "https://www.yelp.com/biz/mr-brake-las-vegas?msockid=0732db9d89a467cb1f06cc7b88d56607",
+  "cls": "OTHER"
+ },
+ "autozone.com": {
+  "n": 34,
+  "sample": "https://www.autozone.com/diy/brakes/how-do-car-brakes-work?msockid=0732db9d89a467cb1f06cc7b88d56607",
+  "cls": "MANUF"
+ },
+ "theengineeringchoice.org": {
+  "n": 30,
+  "sample": "https://www.theengineeringchoice.org/what-is-brake/",
+  "cls": "OTHER"
+ },
+ "dictionary.cambridge.org": {
+  "n": 38,
+  "sample": "https://dictionary.cambridge.org/dictionary/english/brake",
+  "cls": "OTHER"
+ },
+ "autoevolution.com": {
+  "n": 9,
+  "sample": "https://www.autoevolution.com/news/brake-pads-organic-ceramic-and-semi-metallic-what-are-the-differences-112665.html",
+  "cls": "MEDIA"
+ },
+ "hotrod.com": {
+  "n": 29,
+  "sample": "https://www.hotrod.com/how-to/ctrp-1302-friction-and-you-understanding-brake-pad-technology",
+  "cls": "MEDIA"
+ },
+ "ccjdigital.com": {
+  "n": 13,
+  "sample": "https://www.ccjdigital.com/maintenance/article/14940109/brake-manufacturers-to-adjust-brake-pad-formulations",
+  "cls": "MEDIA"
+ },
+ "motortrend.com": {
+  "n": 7,
+  "sample": "https://www.motortrend.com/how-to/1604-clutch-disc-and-brake-pad-friction",
+  "cls": "MEDIA"
+ },
+ "franksautomotiverepair.com": {
+  "n": 2,
+  "sample": "https://franksautomotiverepair.com/",
+  "cls": "OTHER"
+ },
+ "bar.ca.gov": {
+  "n": 2,
+  "sample": "https://bar.ca.gov/",
+  "cls": "GOVREG"
+ },
+ "chamberofcommerce.com": {
+  "n": 2,
+  "sample": "https://www.chamberofcommerce.com/united-states/california/tulare/auto-repair-shop/32211759-frank-s-automotive-repair",
+  "cls": "OTHER"
+ },
+ "ricardodiazautomotive.com": {
+  "n": 2,
+  "sample": "https://ricardodiazautomotive.com/",
+  "cls": "OTHER"
+ },
+ "groppettiauto.com": {
+  "n": 2,
+  "sample": "https://www.groppettiauto.com/",
+  "cls": "OTHER"
+ },
+ "masautocenter.com": {
+  "n": 2,
+  "sample": "https://masautocenter.com/",
+  "cls": "OTHER"
+ },
+ "northjersey.com": {
+  "n": 1,
+  "sample": "https://www.northjersey.com/press-release/story/238529/top-friction-disc-manufacturer-advances-reliable-friction-material-solutions/",
+  "cls": "OTHER"
+ },
+ "ad-hoc-news.de": {
+  "n": 5,
+  "sample": "https://www.ad-hoc-news.de/boerse/news/ueberblick/fras-le-s-a-strengthens-its-brake-components-business-as-a-global/69674289",
+  "cls": "OTHER"
+ },
+ "nonprofitoregon.org": {
+  "n": 2,
+  "sample": "https://nonprofitoregon.org/",
+  "cls": "OTHER"
+ },
+ "nao.org": {
+  "n": 4,
+  "sample": "https://www.nao.org/",
+  "cls": "OTHER"
+ },
+ "thisnao.com": {
+  "n": 2,
+  "sample": "https://www.thisnao.com/",
+  "cls": "OTHER"
+ },
+ "ncei.noaa.gov": {
+  "n": 2,
+  "sample": "https://www.ncei.noaa.gov/access/monitoring/nao/",
+  "cls": "GOVREG"
+ },
+ "azom.com": {
+  "n": 7,
+  "sample": "https://www.azom.com/article.aspx?ArticleID=17940",
+  "cls": "ACADEMIC"
+ },
+ "zigwheels.com": {
+  "n": 2,
+  "sample": "https://www.zigwheels.com/news-features/tech-talk/different-types-of-brake-pads-and-brake-discs-explained/38410/",
+  "cls": "MEDIA"
+ },
+ "sciencedaily.com": {
+  "n": 1,
+  "sample": "https://www.sciencedaily.com/releases/2025/02/250214123739.htm",
+  "cls": "ACADEMIC"
+ },
+ "eurekalert.org": {
+  "n": 3,
+  "sample": "https://www.eurekalert.org/news-releases/1073762",
+  "cls": "ACADEMIC"
+ },
+ "taiwannews.com.tw": {
+  "n": 3,
+  "sample": "https://www.taiwannews.com.tw/news/5899355",
+  "cls": "OTHER"
+ },
+ "businesswire.com": {
+  "n": 8,
+  "sample": "https://www.businesswire.com/news/home/20200914005698/en/New-Friction-Products-Market-Research-Highlights-Recovery-Path-for-Businesses-from-COVID-19-based-on-Automotive-Industrial-and-Aerospace-End-Users-Technavio",
+  "cls": "MEDIA"
+ },
+ "nasdaq.com": {
+  "n": 5,
+  "sample": "https://www.nasdaq.com/press-release/carlisle-brake-friction-marks-100-years-braking-new-ground-motion-control-2025-01-06",
+  "cls": "OTHER"
+ },
+ "just-auto.com": {
+  "n": 9,
+  "sample": "https://www.just-auto.com/interview/qa-with-tmd-friction-2/",
+  "cls": "MEDIA"
+ },
+ "heraldnews.com": {
+  "n": 1,
+  "sample": "https://www.heraldnews.com/press-release/story/133734/local-auto-industry-sees-rising-need-for-professional-brake-repair/",
+  "cls": "OTHER"
+ },
+ "thefreedictionary.com": {
+  "n": 4,
+  "sample": "https://www.thefreedictionary.com/dry",
+  "cls": "OTHER"
+ },
+ "dictionary.com": {
+  "n": 6,
+  "sample": "https://www.dictionary.com/browse/dry",
+  "cls": "OTHER"
+ },
+ "vocabulary.com": {
+  "n": 6,
+  "sample": "https://www.vocabulary.com/dictionary/dry",
+  "cls": "OTHER"
+ },
+ "en.m.wiktionary.org": {
+  "n": 2,
+  "sample": "https://en.m.wiktionary.org/wiki/dry",
+  "cls": "OTHER"
+ },
+ "yourdictionary.com": {
+  "n": 2,
+  "sample": "https://www.yourdictionary.com/dry",
+  "cls": "OTHER"
+ },
+ "epa.gov": {
+  "n": 5,
+  "sample": "https://www.epa.gov/npdes/copper-free-brake-initiative",
+  "cls": "GOVREG"
+ },
+ "spokesman.com": {
+  "n": 1,
+  "sample": "https://www.spokesman.com/stories/2012/dec/09/brake-pad-copper-ban-begins-first-phase-jan-1/",
+  "cls": "OTHER"
+ },
+ "finanznachrichten.de": {
+  "n": 4,
+  "sample": "https://www.finanznachrichten.de/nachrichten-2026-02/67689052-tenneco-driv-expands-ferodo-premier-copper-free-brake-pads-for-commercial-vehicles-399.htm",
+  "cls": "OTHER"
+ },
+ "tirebusiness.com": {
+  "n": 9,
+  "sample": "https://www.tirebusiness.com/article/20110719/NEWS/307199988/brake-maker-centric-parts-gets-fmsi-award",
+  "cls": "OTHER"
+ },
+ "eturbonews.com": {
+  "n": 2,
+  "sample": "https://eturbonews.com/automotive-noise-vibration-harshness-nvh-materials-market-share-size-2019-global-industry-details-by-overview-supply-demand-and-shortage-overview-forecast-to-2028/",
+  "cls": "OTHER"
+ },
+ "menafn.com": {
+  "n": 5,
+  "sample": "https://menafn.com/1109931938/Noise-Vibration-Harshness-NVH-Testing-Industry-Report-Competitive-Landscape-And-Future-Prospects",
+  "cls": "OTHER"
+ },
+ "globalspec.com": {
+  "n": 1,
+  "sample": "https://www.globalspec.com/suppliers/4913/noise_vibration_harshness_nvh_test_equipment",
+  "cls": "OTHER"
+ },
+ "joinclayclub.com": {
+  "n": 4,
+  "sample": "https://www.joinclayclub.com/",
+  "cls": "OTHER"
+ },
+ "ceramics.org": {
+  "n": 4,
+  "sample": "https://ceramics.org/",
+  "cls": "ACADEMIC"
+ },
+ "ceramicprotracyelite.com": {
+  "n": 4,
+  "sample": "https://ceramicprotracyelite.com/",
+  "cls": "OTHER"
+ },
+ "ceramicgarage.com": {
+  "n": 4,
+  "sample": "https://ceramicgarage.com/locations/tracy-ca/",
+  "cls": "OTHER"
+ },
+ "slashgear.com": {
+  "n": 16,
+  "sample": "https://www.slashgear.com/1750665/brake-pad-different-materials-explained/",
+  "cls": "OTHER"
+ },
+ "autoblog.com": {
+  "n": 5,
+  "sample": "https://www.autoblog.com/features/best-ceramic-brake-pads",
+  "cls": "MEDIA"
+ },
+ "thedrive.com": {
+  "n": 6,
+  "sample": "https://www.thedrive.com/reviews/36681/ceramic-brake-pads",
+  "cls": "MEDIA"
+ },
+ "carthrottle.com": {
+  "n": 6,
+  "sample": "https://www.carthrottle.com/news/what-are-main-types-brake-pad-and-which-right-you",
+  "cls": "MEDIA"
+ },
+ "cnet.com": {
+  "n": 1,
+  "sample": "https://www.cnet.com/roadshow/how-to-keep-brake-dust-off-your-wheels/",
+  "cls": "OTHER"
+ },
+ "financialexpress.com": {
+  "n": 2,
+  "sample": "https://www.financialexpress.com/business/express-mobility-v-srinivasan-appointed-cfo-of-sundaram-brake-lining-2905284/",
+  "cls": "OTHER"
+ },
+ "stle.org": {
+  "n": 18,
+  "sample": "https://www.stle.org/files/About_STLE/Tribology/files/What_is_tribology/Tribology.aspx",
+  "cls": "ACADEMIC"
+ },
+ "tribonet.org": {
+  "n": 10,
+  "sample": "https://www.tribonet.org/wiki/introduction-to-tribology/",
+  "cls": "OTHER"
+ },
+ "ocw.mit.edu": {
+  "n": 8,
+  "sample": "https://ocw.mit.edu/courses/2-800-tribology-fall-2004/",
+  "cls": "OTHER"
+ },
+ "sciencedirect.com": {
+  "n": 4,
+  "sample": "https://www.sciencedirect.com/journal/tribology-international",
+  "cls": "ACADEMIC"
+ },
+ "wiki.anton-paar.com": {
+  "n": 4,
+  "sample": "https://wiki.anton-paar.com/en/basics-of-tribology/",
+  "cls": "OTHER"
+ },
+ "mae.ucmerced.edu": {
+  "n": 4,
+  "sample": "https://mae.ucmerced.edu/researchnews/tribology",
+  "cls": "OTHER"
+ },
+ "lowes.com": {
+  "n": 8,
+  "sample": "https://www.lowes.com/?msockid=1203035f6fc0608f31e114b96e8c616a",
+  "cls": "OTHER"
+ },
+ "genius.com": {
+  "n": 4,
+  "sample": "https://genius.com/Flo-rida-low-lyrics",
+  "cls": "OTHER"
+ },
+ "straight.com": {
+  "n": 1,
+  "sample": "https://www.straight.com/guides/automotive/best-rear-brake-pads/",
+  "cls": "OTHER"
+ },
+ "evo.co.uk": {
+  "n": 1,
+  "sample": "https://www.evo.co.uk/features/20716/aftermarket-car-brake-upgrades-do-performance-brakes-from-brembo-ap-racing-alcon-etc",
+  "cls": "MEDIA"
+ },
+ "auto.economictimes.indiatimes.com": {
+  "n": 2,
+  "sample": "https://auto.economictimes.indiatimes.com/news/auto-components/zf-aftermarket-new-range-of-brake-pads-for-evs/69440985",
+  "cls": "OTHER"
+ },
+ "amtrak.com": {
+  "n": 2,
+  "sample": "https://www.amtrak.com/home?msockid=329e3c63249264cf0c8c2b85255d65b9",
+  "cls": "OTHER"
+ },
+ "rail.re": {
+  "n": 2,
+  "sample": "https://rail.re/",
+  "cls": "OTHER"
+ },
+ "baike.baidu.com": {
+  "n": 4,
+  "sample": "https://baike.baidu.com/item/rail/19674784",
+  "cls": "OTHER"
+ },
+ "viarail.ca": {
+  "n": 2,
+  "sample": "https://www.viarail.ca/en",
+  "cls": "OTHER"
+ },
+ "iciba.com": {
+  "n": 2,
+  "sample": "https://www.iciba.com/word?w=rail",
+  "cls": "OTHER"
+ },
+ "nationalrail.co.uk": {
+  "n": 2,
+  "sample": "https://www.nationalrail.co.uk/",
+  "cls": "OTHER"
+ },
+ "railmapgen.org": {
+  "n": 2,
+  "sample": "https://railmapgen.org/",
+  "cls": "OTHER"
+ },
+ "progressiverailroading.com": {
+  "n": 2,
+  "sample": "https://www.progressiverailroading.com/mow/news/Greasing-the-skids-sustainably-Rail-lubrication-and-friction-modifiers-2024--72740",
+  "cls": "MEDIA"
+ },
+ "railway-technology.com": {
+  "n": 3,
+  "sample": "https://www.railway-technology.com/contractors/overhaul/elpa/pressreleases/mechanical-wayside-device-rail-friction/",
+  "cls": "MEDIA"
+ },
+ "clutch.co": {
+  "n": 2,
+  "sample": "https://clutch.co/",
+  "cls": "OTHER"
+ },
+ "clutch.ca": {
+  "n": 4,
+  "sample": "https://www.clutch.ca/",
+  "cls": "OTHER"
+ },
+ "clutch.com": {
+  "n": 2,
+  "sample": "https://www.clutch.com/",
+  "cls": "OTHER"
+ },
+ "withclutch.com": {
+  "n": 2,
+  "sample": "https://withclutch.com/",
+  "cls": "OTHER"
+ },
+ "clutchcannabis.com": {
+  "n": 2,
+  "sample": "https://www.clutchcannabis.com/",
+  "cls": "OTHER"
+ },
+ "theengineerspost.com": {
+  "n": 2,
+  "sample": "https://www.theengineerspost.com/what-is-clutch/",
+  "cls": "OTHER"
+ },
+ "brecorder.com": {
+  "n": 1,
+  "sample": "https://www.brecorder.com/news/40351485",
+  "cls": "OTHER"
+ },
+ "brembo.com": {
+  "n": 4,
+  "sample": "https://www.brembo.com/en",
+  "cls": "MANUF"
+ },
+ "bremboparts.com": {
+  "n": 2,
+  "sample": "https://www.bremboparts.com/america/en",
+  "cls": "MANUF"
+ },
+ "brembostore.com": {
+  "n": 4,
+  "sample": "https://www.brembostore.com/",
+  "cls": "MANUF"
+ },
+ "brembogroup.com": {
+  "n": 4,
+  "sample": "https://www.brembogroup.com/en",
+  "cls": "MANUF"
+ },
+ "carsbibles.com": {
+  "n": 2,
+  "sample": "https://carsbibles.com/what-is-a-brembo-brake-system/",
+  "cls": "OTHER"
+ },
+ "motorcycle.com": {
+  "n": 9,
+  "sample": "https://www.motorcycle.com/2020/11/17/industry-news/brembo-acquires-sbs-friction/",
+  "cls": "OTHER"
+ },
+ "bosch.us": {
+  "n": 4,
+  "sample": "https://www.bosch.us/",
+  "cls": "MANUF"
+ },
+ "bosch-home.com": {
+  "n": 4,
+  "sample": "https://www.bosch-home.com/us/en",
+  "cls": "MANUF"
+ },
+ "bosch.com": {
+  "n": 4,
+  "sample": "https://www.bosch.com/company/",
+  "cls": "MANUF"
+ },
+ "boschtools.com": {
+  "n": 2,
+  "sample": "https://www.boschtools.com/us/en/",
+  "cls": "MANUF"
+ },
+ "boschautoparts.com": {
+  "n": 2,
+  "sample": "https://www.boschautoparts.com/",
+  "cls": "MANUF"
+ },
+ "designnews.com": {
+  "n": 1,
+  "sample": "https://www.designnews.com/automotive-engineering/bosch-brake-control-pad-replaces-the-conventional-brake-pedal",
+  "cls": "OTHER"
+ },
+ "officer.com": {
+  "n": 2,
+  "sample": "https://www.officer.com/vehicles-fleet/vehicles-equipment/press-release/21229595/bosch-auto-parts-bosch-announces-new-high-performance-brake-pad-portfolio-to-meet-the-demanding-needs-of-police-vehicles",
+  "cls": "MANUF"
+ },
+ "theautochannel.com": {
+  "n": 4,
+  "sample": "https://www.theautochannel.com/news/2024/09/25/1434789-bosch-brake-by-wire-system.html",
+  "cls": "OTHER"
+ },
+ "businessmirror.com.ph": {
+  "n": 1,
+  "sample": "https://businessmirror.com.ph/2023/07/24/bosch-automotive-aftermarket-launches-blue-line-brake-pads-and-next-generation-everyday-bosch-autoparts/",
+  "cls": "OTHER"
+ },
+ "helpx.adobe.com": {
+  "n": 4,
+  "sample": "https://helpx.adobe.com/acrobat/using/opening-pdfs.html",
+  "cls": "OTHER"
+ },
+ "adobe.com": {
+  "n": 4,
+  "sample": "https://www.adobe.com/acrobat/pdf-reader.html?msockid=060d28e4c49160b70b5f3f02c56f6150",
+  "cls": "OTHER"
+ },
+ "realitypathing.com": {
+  "n": 2,
+  "sample": "https://realitypathing.com/adobe-acrobat-open-your-pdf-in-acrobat-where-to-click-and-what-to-check/",
+  "cls": "OTHER"
+ },
+ "get.adobe.com": {
+  "n": 2,
+  "sample": "https://get.adobe.com/reader/",
+  "cls": "OTHER"
+ },
+ "technobezz.com": {
+  "n": 2,
+  "sample": "https://www.technobezz.com/pdf-will-not-open-browser-acrobat-fix",
+  "cls": "OTHER"
+ },
+ "autocarindia.com": {
+  "n": 1,
+  "sample": "https://www.autocarindia.com/auto-features/sponsored-feature-ferodo-choose-the-power-of-performance-414038",
+  "cls": "OTHER"
+ },
+ "bizcommunity.com": {
+  "n": 1,
+  "sample": "https://www.bizcommunity.com/Article/196/489/97000.html",
+  "cls": "OTHER"
+ },
+ "carlisle.com": {
+  "n": 4,
+  "sample": "https://carlisle.com/",
+  "cls": "MANUF"
+ },
+ "carlislesyntec.com": {
+  "n": 2,
+  "sample": "https://www.carlislesyntec.com/",
+  "cls": "MANUF"
+ },
+ "carlislefsp.com": {
+  "n": 2,
+  "sample": "https://www.carlislefsp.com/",
+  "cls": "MANUF"
+ },
+ "carlile.biz": {
+  "n": 2,
+  "sample": "https://www.carlile.biz/",
+  "cls": "OTHER"
+ },
+ "carlisleevents.com": {
+  "n": 2,
+  "sample": "https://www.carlisleevents.com/",
+  "cls": "MANUF"
+ },
+ "carlisleconstructionmaterials.com": {
+  "n": 2,
+  "sample": "https://www.carlisleconstructionmaterials.com/",
+  "cls": "MANUF"
+ },
+ "discovercarlisle.co.uk": {
+  "n": 2,
+  "sample": "https://www.discovercarlisle.co.uk/",
+  "cls": "MANUF"
+ },
+ "pehub.com": {
+  "n": 1,
+  "sample": "https://www.pehub.com/one-rock-backed-centromotion-buys-carlisle-brake-friction/",
+  "cls": "OTHER"
+ },
+ "stockhouse.com": {
+  "n": 1,
+  "sample": "https://stockhouse.com/news/press-releases/2021/05/25/carlisle-companies-to-sell-carlisle-brake-friction",
+  "cls": "OTHER"
+ },
+ "krqe.com": {
+  "n": 1,
+  "sample": "https://www.krqe.com/business/press-releases/ein-presswire/776859054/carlisle-brake-friction-marks-100-years-of-braking-new-ground-in-motion-control/",
+  "cls": "OTHER"
+ },
+ "tmd.texas.gov": {
+  "n": 4,
+  "sample": "https://tmd.texas.gov/",
+  "cls": "MANUF"
+ },
+ "hopkinsmedicine.org": {
+  "n": 2,
+  "sample": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/temporomandibular-disorder-tmd",
+  "cls": "OTHER"
+ },
+ "tmdstaffing.com": {
+  "n": 2,
+  "sample": "https://www.tmdstaffing.com/",
+  "cls": "MANUF"
+ },
+ "nidcr.nih.gov": {
+  "n": 2,
+  "sample": "https://www.nidcr.nih.gov/health-info/tmd",
+  "cls": "GOVREG"
+ },
+ "gotmd.com": {
+  "n": 2,
+  "sample": "https://www.gotmd.com/",
+  "cls": "MANUF"
+ },
+ "webmd.com": {
+  "n": 6,
+  "sample": "https://www.webmd.com/oral-health/temporomandibular-disorders-tmd",
+  "cls": "OTHER"
+ },
+ "my.clevelandclinic.org": {
+  "n": 2,
+  "sample": "https://my.clevelandclinic.org/health/diseases/15066-temporomandibular-disorders-tmd-overview",
+  "cls": "OTHER"
+ },
+ "nhs.uk": {
+  "n": 2,
+  "sample": "https://www.nhs.uk/conditions/temporomandibular-disorder-tmd/",
+  "cls": "OTHER"
+ },
+ "thenorthernecho.co.uk": {
+  "n": 1,
+  "sample": "https://www.thenorthernecho.co.uk/news/23480044.2m-new-kit-brakepad-maker-tmd-friction/",
+  "cls": "OTHER"
+ },
+ "bendix.com": {
+  "n": 4,
+  "sample": "https://www.bendix.com/en/",
+  "cls": "MANUF"
+ },
+ "bendix-brakes.com": {
+  "n": 4,
+  "sample": "https://www.bendix-brakes.com/",
+  "cls": "MANUF"
+ },
+ "b2bendix.com": {
+  "n": 4,
+  "sample": "https://b2bendix.com/CA/en/USD/",
+  "cls": "MANUF"
+ },
+ "bendixoem.com": {
+  "n": 2,
+  "sample": "https://www.bendixoem.com/",
+  "cls": "MANUF"
+ },
+ "acom.cojali.com": {
+  "n": 2,
+  "sample": "https://acom.cojali.com/bendix/en/",
+  "cls": "OTHER"
+ },
+ "bendix.com.au": {
+  "n": 2,
+  "sample": "https://www.bendix.com.au/",
+  "cls": "MANUF"
+ },
+ "thecourier.com.au": {
+  "n": 1,
+  "sample": "https://www.thecourier.com.au/story/330434/bendix-produces-its-last-asbestos-brake-pad/",
+  "cls": "OTHER"
+ },
+ "akebonobrakes.com": {
+  "n": 4,
+  "sample": "https://www.akebonobrakes.com/",
+  "cls": "MANUF"
+ },
+ "akebono-brake.com": {
+  "n": 2,
+  "sample": "https://www.akebono-brake.com/english/",
+  "cls": "MANUF"
+ },
+ "rockauto.com": {
+  "n": 4,
+  "sample": "https://www.rockauto.com/en/parts/akebono",
+  "cls": "MANUF"
+ },
+ "akebonooem.com": {
+  "n": 2,
+  "sample": "https://www.akebonooem.com/",
+  "cls": "MANUF"
+ },
+ "buybrakes.com": {
+  "n": 4,
+  "sample": "https://www.buybrakes.com/akebono",
+  "cls": "OTHER"
+ },
+ "nisshinbo.co.jp": {
+  "n": 4,
+  "sample": "https://www.nisshinbo.co.jp/english/",
+  "cls": "MANUF"
+ },
+ "nisshinbo-microdevices.co.jp": {
+  "n": 4,
+  "sample": "https://www.nisshinbo-microdevices.co.jp/en/",
+  "cls": "MANUF"
+ },
+ "nisshinbo-brake.co.jp": {
+  "n": 2,
+  "sample": "https://www.nisshinbo-brake.co.jp/english/",
+  "cls": "MANUF"
+ },
+ "nisshinbo-brakes.com": {
+  "n": 2,
+  "sample": "https://nisshinbo-brakes.com/",
+  "cls": "MANUF"
+ },
+ "nisshinbo-mechatronics.co.jp": {
+  "n": 2,
+  "sample": "https://www.nisshinbo-mechatronics.co.jp/english/index.html",
+  "cls": "MANUF"
+ },
+ "nisshinbo-chem.co.jp": {
+  "n": 2,
+  "sample": "https://www.nisshinbo-chem.co.jp/english/index.html",
+  "cls": "MANUF"
+ },
+ "mynewsdesk.com": {
+  "n": 1,
+  "sample": "https://www.mynewsdesk.com/uk/companiesandmarkets-com/pressreleases/nisshinbo-dominating-the-friction-products-market-with-a-15-value-share-848921",
+  "cls": "OTHER"
+ },
+ "prnewswire.co.uk": {
+  "n": 1,
+  "sample": "https://www.prnewswire.co.uk/news-releases/tmd-friction-sa-acquired-by-tokyo-based-nisshinbo-holdings-inc-145093225.html",
+  "cls": "MEDIA"
+ },
+ "safelifedefense.com": {
+  "n": 4,
+  "sample": "https://safelifedefense.com/shop-category/fras-flexible-rifle-armor/",
+  "cls": "OTHER"
+ },
+ "ryanoconnellfinance.com": {
+  "n": 2,
+  "sample": "https://ryanoconnellfinance.com/forward-rate-agreements/",
+  "cls": "OTHER"
+ },
+ "dodfras.com": {
+  "n": 2,
+  "sample": "https://www.dodfras.com/",
+  "cls": "OTHER"
+ },
+ "fras-le.com": {
+  "n": 2,
+  "sample": "https://www.fras-le.com/us-ca/institucional/",
+  "cls": "MANUF"
+ },
+ "iotafinance.com": {
+  "n": 2,
+  "sample": "https://www.iotafinance.com/en/Article-Forward-rate-agreements-FRAs.html",
+  "cls": "OTHER"
+ },
+ "supermoney.com": {
+  "n": 2,
+  "sample": "https://www.supermoney.com/encyclopedia/forward-rate-agreements",
+  "cls": "OTHER"
+ },
+ "evolvefcu.org": {
+  "n": 2,
+  "sample": "https://www.evolvefcu.org/",
+  "cls": "OTHER"
+ },
+ "firstlightfcu.org": {
+  "n": 2,
+  "sample": "https://www.firstlightfcu.org/",
+  "cls": "OTHER"
+ },
+ "federalpremium.com": {
+  "n": 2,
+  "sample": "https://www.federalpremium.com/",
+  "cls": "OTHER"
+ },
+ "federalreserve.gov": {
+  "n": 2,
+  "sample": "https://www.federalreserve.gov/",
+  "cls": "GOVREG"
+ },
+ "onesourcefcu.org": {
+  "n": 2,
+  "sample": "https://www.onesourcefcu.org/",
+  "cls": "OTHER"
+ },
+ "studentaid.gov": {
+  "n": 2,
+  "sample": "https://studentaid.gov/",
+  "cls": "GOVREG"
+ },
+ "irs.gov": {
+  "n": 2,
+  "sample": "https://www.irs.gov/",
+  "cls": "GOVREG"
+ },
+ "raiz.us": {
+  "n": 2,
+  "sample": "https://raiz.us/",
+  "cls": "OTHER"
+ },
+ "americanaddictioncenters.org": {
+  "n": 2,
+  "sample": "https://americanaddictioncenters.org/addiction-medications",
+  "cls": "OTHER"
+ },
+ "mathworks.com": {
+  "n": 4,
+  "sample": "https://www.mathworks.com/products/matlab.html",
+  "cls": "OTHER"
+ },
+ "myalabamataxes.alabama.gov": {
+  "n": 2,
+  "sample": "https://myalabamataxes.alabama.gov/tap/_/",
+  "cls": "GOVREG"
+ },
+ "screening.mhanational.org": {
+  "n": 2,
+  "sample": "https://screening.mhanational.org/content/mat-the-medicine-assistance-tool/",
+  "cls": "OTHER"
+ },
+ "target.com": {
+  "n": 2,
+  "sample": "https://www.target.com/s/floor+mats+and+rugs",
+  "cls": "OTHER"
+ },
+ "traderjoes.com": {
+  "n": 8,
+  "sample": "https://www.traderjoes.com/home.html",
+  "cls": "OTHER"
+ },
+ "locations.traderjoes.com": {
+  "n": 12,
+  "sample": "https://locations.traderjoes.com/oh/kettering/673/",
+  "cls": "OTHER"
+ },
+ "continental.com": {
+  "n": 4,
+  "sample": "https://www.continental.com/en/",
+  "cls": "MANUF"
+ },
+ "continentaltire.com": {
+  "n": 4,
+  "sample": "https://continentaltire.com/",
+  "cls": "MANUF"
+ },
+ "continental-tires.com": {
+  "n": 4,
+  "sample": "https://www.continental-tires.com/us/en/",
+  "cls": "MANUF"
+ },
+ "clr.com": {
+  "n": 2,
+  "sample": "https://www.clr.com/",
+  "cls": "OTHER"
+ },
+ "continental.aero": {
+  "n": 2,
+  "sample": "https://continental.aero/",
+  "cls": "MANUF"
+ },
+ "ate-brakes.com": {
+  "n": 2,
+  "sample": "https://www.ate-brakes.com/",
+  "cls": "MANUF"
+ },
+ "theoi.com": {
+  "n": 2,
+  "sample": "https://www.theoi.com/Daimon/Ate.html",
+  "cls": "OTHER"
+ },
+ "ateautomotive.com": {
+  "n": 2,
+  "sample": "https://ateautomotive.com/",
+  "cls": "MANUF"
+ },
+ "greekmythology.com": {
+  "n": 2,
+  "sample": "https://www.greekmythology.com/Other_Gods/Minor_Gods/Ate/ate.html",
+  "cls": "OTHER"
+ },
+ "greekgodsandgoddesses.net": {
+  "n": 2,
+  "sample": "https://greekgodsandgoddesses.net/goddesses/ate/",
+  "cls": "OTHER"
+ },
+ "mythus.fandom.com": {
+  "n": 2,
+  "sample": "https://mythus.fandom.com/wiki/At%C3%AB",
+  "cls": "OTHER"
+ },
+ "outlook.office.com": {
+  "n": 2,
+  "sample": "https://outlook.office.com/mail/",
+  "cls": "OTHER"
+ },
+ "m365.cloud.microsoft": {
+  "n": 2,
+  "sample": "https://m365.cloud.microsoft/?origindomain=microsoft365",
+  "cls": "OTHER"
+ },
+ "bronco6g.com": {
+  "n": 22,
+  "sample": "https://www.bronco6g.com/forum/threads/wagner-tuning-high-mount-intercooler-installed.100981/",
+  "cls": "OTHER"
+ },
+ "morningstar.com": {
+  "n": 1,
+  "sample": "https://www.morningstar.com/news/pr-newswire/20260505cl50418/driv-expands-wagner-braking-portfolio-with-new-es-pads-es-rotors-premium-rotors-and-brake-bolt-kits",
+  "cls": "OTHER"
+ },
+ "raybestospowertrain.com": {
+  "n": 4,
+  "sample": "https://www.raybestospowertrain.com/",
+  "cls": "MANUF"
+ },
+ "raybestosus.com": {
+  "n": 4,
+  "sample": "https://www.raybestosus.com/",
+  "cls": "MANUF"
+ },
+ "friction1.com": {
+  "n": 4,
+  "sample": "https://www.friction1.com/programs/raybestos",
+  "cls": "OTHER"
+ },
+ "summitracing.com": {
+  "n": 4,
+  "sample": "https://www.summitracing.com/search/brand/raybestos",
+  "cls": "OTHER"
+ },
+ "ebc.com": {
+  "n": 4,
+  "sample": "https://www.ebc.com/zh/jinrong/zh-ebc-official/",
+  "cls": "MANUF"
+ },
+ "ebcbrakes.com": {
+  "n": 2,
+  "sample": "https://www.ebcbrakes.com/",
+  "cls": "MANUF"
+ },
+ "ebcec.com": {
+  "n": 2,
+  "sample": "https://www.ebcec.com/",
+  "cls": "MANUF"
+ },
+ "ebc.group": {
+  "n": 2,
+  "sample": "https://www.ebc.group/en/",
+  "cls": "MANUF"
+ },
+ "zhch.ebcmt.com": {
+  "n": 2,
+  "sample": "https://zhch.ebcmt.com/zh-cn.html",
+  "cls": "MANUF"
+ },
+ "ch.ebcmt.com": {
+  "n": 2,
+  "sample": "https://ch.ebcmt.com/",
+  "cls": "MANUF"
+ },
+ "ebcbrakesdirect.com": {
+  "n": 2,
+  "sample": "https://ebcbrakesdirect.com/",
+  "cls": "MANUF"
+ },
+ "avibirds.com": {
+  "n": 2,
+  "sample": "https://avibirds.com/types-of-hawks/",
+  "cls": "OTHER"
+ },
+ "ownyardlife.com": {
+  "n": 2,
+  "sample": "https://ownyardlife.com/26-types-of-hawks-with-pictures-and-identification/",
+  "cls": "OTHER"
+ },
+ "m.imdb.com": {
+  "n": 2,
+  "sample": "https://m.imdb.com/title/tt27550719/",
+  "cls": "OTHER"
+ },
+ "animals.net": {
+  "n": 2,
+  "sample": "https://animals.net/hawk/",
+  "cls": "OTHER"
+ },
+ "wildlifeinformer.com": {
+  "n": 2,
+  "sample": "https://wildlifeinformer.com/types-of-hawks/",
+  "cls": "OTHER"
+ },
+ "learnbirdwatching.com": {
+  "n": 2,
+  "sample": "https://learnbirdwatching.com/fun-facts-about-hawks/",
+  "cls": "OTHER"
+ },
+ "birdadvisors.com": {
+  "n": 2,
+  "sample": "https://www.birdadvisors.com/hawks-north-america/",
+  "cls": "OTHER"
+ },
+ "caranddriver.com": {
+  "n": 1,
+  "sample": "https://www.caranddriver.com/news/a18741756/performance-brake-pads-compared-hawk-hps-hawk-hp-plus-ebc-yellowstuff/",
+  "cls": "OTHER"
+ },
+ "wilwood.com": {
+  "n": 8,
+  "sample": "https://www.wilwood.com/",
+  "cls": "MANUF"
+ },
+ "wildwoodpavilions.com": {
+  "n": 2,
+  "sample": "https://wildwoodpavilions.com/",
+  "cls": "OTHER"
+ },
+ "shop.wilwood.com": {
+  "n": 2,
+  "sample": "https://shop.wilwood.com/pages/wilwood-brake-kits-calipers-and-components",
+  "cls": "MANUF"
+ },
+ "speedwaymotors.com": {
+  "n": 2,
+  "sample": "https://www.speedwaymotors.com/shop/wilwood~1-10029?msockid=1f1b3d7d13c365ca3c9b2a9b129c6430",
+  "cls": "OTHER"
+ },
+ "wilwoodbrakekits.com": {
+  "n": 2,
+  "sample": "https://wilwoodbrakekits.com/",
+  "cls": "MANUF"
+ },
+ "jalopnik.com": {
+  "n": 1,
+  "sample": "https://jalopnik.com/2080338/brembo-vs-wildwood-brakes-comparison-guide/",
+  "cls": "OTHER"
+ },
+ "centricsoftware.com": {
+  "n": 2,
+  "sample": "https://www.centricsoftware.com/",
+  "cls": "MANUF"
+ },
+ "windsorcommunities.com": {
+  "n": 2,
+  "sample": "https://www.windsorcommunities.com/properties/centric-lohi-by-windsor/",
+  "cls": "OTHER"
+ },
+ "centric.build": {
+  "n": 2,
+  "sample": "https://centric.build/",
+  "cls": "MANUF"
+ },
+ "centricconsulting.com": {
+  "n": 2,
+  "sample": "https://centricconsulting.com/",
+  "cls": "MANUF"
+ },
+ "centricstl.com": {
+  "n": 2,
+  "sample": "https://centricstl.com/",
+  "cls": "MANUF"
+ },
+ "centricfiber.com": {
+  "n": 2,
+  "sample": "https://www.centricfiber.com/",
+  "cls": "MANUF"
+ },
+ "centric-us.com": {
+  "n": 2,
+  "sample": "https://www.centric-us.com/",
+  "cls": "MANUF"
+ },
+ "imdb.com": {
+  "n": 2,
+  "sample": "https://www.imdb.com/title/tt3281796/",
+  "cls": "OTHER"
+ },
+ "app.powerbi.com": {
+  "n": 2,
+  "sample": "https://app.powerbi.com/home",
+  "cls": "OTHER"
+ },
+ "starz.com": {
+  "n": 2,
+  "sample": "https://www.starz.com/us/en/series/power/21220",
+  "cls": "OTHER"
+ },
+ "siliconvalleypower.com": {
+  "n": 2,
+  "sample": "https://www.siliconvalleypower.com/",
+  "cls": "OTHER"
+ },
+ "justwatch.com": {
+  "n": 2,
+  "sample": "https://www.justwatch.com/us/tv-show/power",
+  "cls": "OTHER"
+ },
+ "hulu.com": {
+  "n": 2,
+  "sample": "https://www.hulu.com/series/power-d99af3eb-5120-4b37-aba8-1b413b6ed0e8",
+  "cls": "OTHER"
+ },
+ "disneyplus.com": {
+  "n": 2,
+  "sample": "https://www.disneyplus.com/browse/entity-d99af3eb-5120-4b37-aba8-1b413b6ed0e8?msockid=37ad15d0a4216df01be40236a5da6caa",
+  "cls": "OTHER"
+ },
+ "sbs.com.au": {
+  "n": 4,
+  "sample": "https://www.sbs.com.au/",
+  "cls": "MANUF"
+ },
+ "statebasedsystems.com": {
+  "n": 2,
+  "sample": "https://www.statebasedsystems.com/solar/index.html",
+  "cls": "MANUF"
+ },
+ "search.certifications.sba.gov": {
+  "n": 2,
+  "sample": "https://search.certifications.sba.gov/",
+  "cls": "GOVREG"
+ },
+ "sbscyber.com": {
+  "n": 2,
+  "sample": "https://sbscyber.com/",
+  "cls": "MANUF"
+ },
+ "sbs.co.kr": {
+  "n": 4,
+  "sample": "https://www.sbs.co.kr/",
+  "cls": "MANUF"
+ },
+ "myaccount.sbs.com.au": {
+  "n": 2,
+  "sample": "https://myaccount.sbs.com.au/",
+  "cls": "MANUF"
+ },
+ "webbikeworld.com": {
+  "n": 1,
+  "sample": "https://www.webbikeworld.com/sbs-brakes-shows-off-ds-2-dual-sinter-brake-pad-compound/",
+  "cls": "OTHER"
+ },
+ "motorcyclistonline.com": {
+  "n": 2,
+  "sample": "https://www.motorcyclistonline.com/long-term-yamaha-r1-sbs-brake-pad-upgrade/",
+  "cls": "OTHER"
+ },
+ "galfer.com": {
+  "n": 4,
+  "sample": "https://galfer.com/",
+  "cls": "MANUF"
+ },
+ "galfer-aftermarket.com": {
+  "n": 4,
+  "sample": "https://www.galfer-aftermarket.com/",
+  "cls": "MANUF"
+ },
+ "revzilla.com": {
+  "n": 2,
+  "sample": "https://www.revzilla.com/galfer-brakes?msockid=1ff6d85360416ac22c41cfb561bf6b36",
+  "cls": "OTHER"
+ },
+ "cyclegear.com": {
+  "n": 2,
+  "sample": "https://www.cyclegear.com/galfer-brakes?msockid=1ff6d85360416ac22c41cfb561bf6b36",
+  "cls": "OTHER"
+ },
+ "jensonusa.com": {
+  "n": 2,
+  "sample": "https://www.jensonusa.com/galfer?msockid=1ff6d85360416ac22c41cfb561bf6b36",
+  "cls": "OTHER"
+ },
+ "bike24.com": {
+  "n": 2,
+  "sample": "https://www.bike24.com/brands/galfer",
+  "cls": "OTHER"
+ },
+ "racerxonline.com": {
+  "n": 1,
+  "sample": "https://racerxonline.com/2026/09/21/galfer-disc-shark-built-for-the-demands-of-motocross",
+  "cls": "OTHER"
+ },
+ "bikeradar.com": {
+  "n": 4,
+  "sample": "https://www.bikeradar.com/advertising-feature/galfer-shark-evo-advertorial",
+  "cls": "OTHER"
+ },
+ "napacanada.com": {
+  "n": 2,
+  "sample": "https://www.napacanada.com/en/napa-auto-parts-stores",
+  "cls": "MANUF"
+ },
+ "napa-benefits.org": {
+  "n": 4,
+  "sample": "https://www.napa-benefits.org/",
+  "cls": "MANUF"
+ },
+ "cityofnapa.org": {
+  "n": 2,
+  "sample": "https://www.cityofnapa.org/",
+  "cls": "MANUF"
+ },
+ "visitnapavalley.com": {
+  "n": 2,
+  "sample": "https://www.visitnapavalley.com/",
+  "cls": "MANUF"
+ },
+ "cdn-brand.napaonline.com": {
+  "n": 2,
+  "sample": "https://cdn-brand.napaonline.com/",
+  "cls": "MANUF"
+ },
+ "ilifehacks.com": {
+  "n": 2,
+  "sample": "https://ilifehacks.com/o-with-accent/",
+  "cls": "OTHER"
+ },
+ "locations.oreillyauto.com": {
+  "n": 2,
+  "sample": "https://locations.oreillyauto.com/en-us/ut/grantsville/autoparts-6065.html",
+  "cls": "MANUF"
+ },
+ "en.wiktionary.org": {
+  "n": 2,
+  "sample": "https://en.wiktionary.org/wiki/o",
+  "cls": "OTHER"
+ },
+ "popularmechanics.com": {
+  "n": 1,
+  "sample": "https://www.popularmechanics.com/cars/car-technology/a64431847/how-to-fix-squeaky-brakes/",
+  "cls": "OTHER"
+ },
+ "citizen.co.za": {
+  "n": 2,
+  "sample": "https://www.citizen.co.za/rekord/news-headlines/local-news/2025/12/30/brake-fade-dangers-highlighted-as-motorists-prepare-for-busy-festive-travel-season/",
+  "cls": "OTHER"
+ },
+ "medicalnewstoday.com": {
+  "n": 4,
+  "sample": "https://www.medicalnewstoday.com/articles/288165",
+  "cls": "OTHER"
+ },
+ "copperhome.com": {
+  "n": 2,
+  "sample": "https://copperhome.com/",
+  "cls": "OTHER"
+ },
+ "internationalcopper.org": {
+  "n": 2,
+  "sample": "https://internationalcopper.org/sustainable-copper/about-copper/",
+  "cls": "OTHER"
+ },
+ "copper.org": {
+  "n": 2,
+  "sample": "https://www.copper.org/resources/copper-101/",
+  "cls": "OTHER"
+ },
+ "periodic-table.rsc.org": {
+  "n": 2,
+  "sample": "https://periodic-table.rsc.org/element/29/copper",
+  "cls": "OTHER"
+ },
+ "metalcharts.org": {
+  "n": 2,
+  "sample": "https://metalcharts.org/copper-price",
+  "cls": "OTHER"
+ },
+ "copper.com": {
+  "n": 2,
+  "sample": "https://www.copper.com/",
+  "cls": "OTHER"
+ },
+ "web.portal.semi.org": {
+  "n": 2,
+  "sample": "https://web.portal.semi.org/",
+  "cls": "OTHER"
+ },
+ "semi.org": {
+  "n": 4,
+  "sample": "https://www.semi.org/en/semi-organization/worldwide",
+  "cls": "OTHER"
+ },
+ "connect.semi.org": {
+  "n": 2,
+  "sample": "https://connect.semi.org/home",
+  "cls": "OTHER"
+ },
+ "store-us.semi.org": {
+  "n": 2,
+  "sample": "https://store-us.semi.org/collections/standards",
+  "cls": "OTHER"
+ },
+ "tesla.com": {
+  "n": 2,
+  "sample": "https://www.tesla.com/semi",
+  "cls": "OTHER"
+ },
+ "discover.semi.org": {
+  "n": 2,
+  "sample": "https://discover.semi.org/Subscription-Center.html",
+  "cls": "OTHER"
+ },
+ "stg.portal.semi.org": {
+  "n": 2,
+  "sample": "https://stg.portal.semi.org/",
+  "cls": "OTHER"
+ },
+ "topspeed.com": {
+  "n": 1,
+  "sample": "https://www.topspeed.com/organic-vs-sintered-brake-pads-key-differences/",
+  "cls": "OTHER"
+ },
+ "asbestos.com": {
+  "n": 4,
+  "sample": "https://www.asbestos.com/asbestos/",
+  "cls": "OTHER"
+ },
+ "cancer.gov": {
+  "n": 2,
+  "sample": "https://www.cancer.gov/about-cancer/causes-prevention/risk/substances/asbestos/asbestos-fact-sheet",
+  "cls": "GOVREG"
+ },
+ "who.int": {
+  "n": 2,
+  "sample": "https://www.who.int/news-room/fact-sheets/detail/asbestos",
+  "cls": "OTHER"
+ },
+ "thisoldhouse.com": {
+  "n": 2,
+  "sample": "https://www.thisoldhouse.com/home-safety/remove-asbestos-in-homes",
+  "cls": "OTHER"
+ },
+ "greennv.com": {
+  "n": 4,
+  "sample": "https://greennv.com/",
+  "cls": "OTHER"
+ },
+ "figma.com": {
+  "n": 2,
+  "sample": "https://www.figma.com/colors/green/",
+  "cls": "OTHER"
+ },
+ "color-meanings.com": {
+  "n": 2,
+  "sample": "https://www.color-meanings.com/shades-of-green-color-names-html-hex-rgb-codes/",
+  "cls": "OTHER"
+ },
+ "creativebooster.net": {
+  "n": 2,
+  "sample": "https://creativebooster.net/blogs/colors/shades-of-green-color-names-hex-rgb-codes",
+  "cls": "OTHER"
+ },
+ "thecoloratlas.org": {
+  "n": 2,
+  "sample": "https://thecoloratlas.org/green-color-meaning/",
+  "cls": "OTHER"
+ },
+ "carsguide.com.au": {
+  "n": 1,
+  "sample": "https://www.carsguide.com.au/car-advice/q-and-a/nissan-maxima-aftermarket-brake-pad-code-58905",
+  "cls": "OTHER"
+ },
+ "ece.org": {
+  "n": 6,
+  "sample": "https://www.ece.org/",
+  "cls": "OTHER"
+ },
+ "accounts.ece.org": {
+  "n": 2,
+  "sample": "https://accounts.ece.org/Login",
+  "cls": "OTHER"
+ },
+ "certificates.ece.org": {
+  "n": 2,
+  "sample": "https://certificates.ece.org/welcome",
+  "cls": "MANUF"
+ },
+ "caregistry.org": {
+  "n": 2,
+  "sample": "https://www.caregistry.org/",
+  "cls": "OTHER"
+ },
+ "theconnection.ece.org": {
+  "n": 2,
+  "sample": "https://theconnection.ece.org/",
+  "cls": "OTHER"
+ },
+ "college-ece.ca": {
+  "n": 2,
+  "sample": "https://www.college-ece.ca/",
+  "cls": "OTHER"
+ },
+ "sae.org": {
+  "n": 4,
+  "sample": "https://www.sae.org/",
+  "cls": "ACADEMIC"
+ },
+ "saemobilus.sae.org": {
+  "n": 4,
+  "sample": "https://saemobilus.sae.org/",
+  "cls": "ACADEMIC"
+ },
+ "training.sae.org": {
+  "n": 2,
+  "sample": "https://training.sae.org/learn/signin",
+  "cls": "ACADEMIC"
+ },
+ "portal.sae.net": {
+  "n": 2,
+  "sample": "https://portal.sae.net/",
+  "cls": "ACADEMIC"
+ },
+ "credentialdirectory.sae.org": {
+  "n": 2,
+  "sample": "https://credentialdirectory.sae.org/",
+  "cls": "ACADEMIC"
+ },
+ "wearbyea.com": {
+  "n": 2,
+  "sample": "https://wearbyea.com/",
+  "cls": "OTHER"
+ },
+ "wear.jp": {
+  "n": 2,
+  "sample": "https://wear.jp/sp/",
+  "cls": "OTHER"
+ },
+ "wear-store.be": {
+  "n": 2,
+  "sample": "https://wear-store.be/",
+  "cls": "OTHER"
+ },
+ "pathlms.com": {
+  "n": 2,
+  "sample": "https://www.pathlms.com/stle",
+  "cls": "OTHER"
+ },
+ "powermag.com": {
+  "n": 1,
+  "sample": "https://www.powermag.com/press-releases/stle-launches-new-podcast-potential-benefits-of-tribochemistry/",
+  "cls": "OTHER"
+ },
+ "ca.gov": {
+  "n": 4,
+  "sample": "https://www.ca.gov/",
+  "cls": "GOVREG"
+ },
+ "visitcalifornia.com": {
+  "n": 2,
+  "sample": "https://www.visitcalifornia.com/",
+  "cls": "OTHER"
+ },
+ "ontheworldmap.com": {
+  "n": 2,
+  "sample": "https://ontheworldmap.com/usa/state/california/",
+  "cls": "OTHER"
+ },
+ "sos.ca.gov": {
+  "n": 2,
+  "sample": "https://www.sos.ca.gov/",
+  "cls": "GOVREG"
+ },
+ "gov.ca.gov": {
+  "n": 2,
+  "sample": "https://www.gov.ca.gov/",
+  "cls": "GOVREG"
+ },
+ "nps.gov": {
+  "n": 2,
+  "sample": "https://www.nps.gov/state/ca/index.htm",
+  "cls": "GOVREG"
+ },
+ "californiaview.org": {
+  "n": 2,
+  "sample": "https://californiaview.org/",
+  "cls": "OTHER"
+ }
+}
