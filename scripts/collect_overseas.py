@@ -133,7 +133,7 @@ SOURCES = [
     # URL 形如 /<channel>/<slug>，沿用同款排除规则。
     {"name": "Truckinginfo", "list_url": "https://www.truckinginfo.com/",
      "list_url2": "https://www.truckinginfo.com/news",
-     "link_re": r"truckinginfo\.com/(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
+     "link_re": r"truckinginfo\.com/(?:news/)?(?!(?:tag|author|category|page|about|contact|subscribe)/)[a-z0-9\-]{12,}/?$",
      "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.truckinginfo.com", "region": "海外", "tag": "商用车", "translate": True},
     {"name": "Progressive Railroading", "list_url": "https://www.progressiverailroading.com/",
