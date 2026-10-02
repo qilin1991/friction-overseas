@@ -13,8 +13,10 @@ VPS 合并端 fetch_friction_overseas.py 按 url 回填 article 表。
 - 增量：news_content.json 已有的 url 不重抓
 - 直连优先；直连被 WAF 拦截/正文不足时，回落 r.jina.ai 阅读器代理兜底
   （Actions 在 Azure 国际出口，可访问 jina，绕过源站 WAF）
+- 直连已多次失败（prev_fail>=2，典型 WAF 站）的条目，本轮不再直连源站，
+  仅用 jina 代理尝试兜底，避免反复触发 WAF
 - 每轮限量 ENRICH_LIMIT（默认 250 条），workflow 定期调用逐步补齐
-- 失败/空正文记 FAILS（连续 2 轮失败自动放弃，避免反复打 WAF）
+- 失败/空正文记 FAILS（连续失败自动放弃，避免反复打 WAF）
 """
 import json
 import os
@@ -85,12 +87,8 @@ def _direct(url: str, limit: int) -> str:
         return ""
 
 
-def fetch_text(url: str, limit: int = 6000) -> str:
-    # 1) 直连抓正文
-    txt = _direct(url, limit)
-    if len(txt) >= 200:
-        return txt
-    # 2) jina 阅读器代理兜底（绕过 WAF），仅当直连不足时
+def _jina_only(url: str, limit: int = 6000) -> str:
+    """仅走 jina 阅读器代理（不直连源站），用于直连已多次失败的 WAF 站。"""
     try:
         r = requests.get(JINA + url, headers=UA, timeout=22)
         if r.status_code == 200:
@@ -100,6 +98,15 @@ def fetch_text(url: str, limit: int = 6000) -> str:
     except Exception:
         pass
     return ""
+
+
+def fetch_text(url: str, limit: int = 6000) -> str:
+    # 1) 直连抓正文
+    txt = _direct(url, limit)
+    if len(txt) >= 200:
+        return txt
+    # 2) jina 阅读器代理兜底（绕过 WAF），仅当直连不足时
+    return _jina_only(url, limit)
 
 
 def main():
@@ -139,9 +146,8 @@ def main():
         if any(h in host for h in SKIP_HOSTS):
             continue
         prev_fail = fails.get(url, 0)
-        if prev_fail >= 2:
-            continue
-        text = fetch_text(url)
+        # 直连已多次失败的（WAF 站），本轮不再直连源站，仅用 jina 代理尝试兜底
+        text = _jina_only(url) if prev_fail >= 2 else fetch_text(url)
         if len(text) >= 200:
             store[url] = text
             fails.pop(url, None)
