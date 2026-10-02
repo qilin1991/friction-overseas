@@ -171,7 +171,8 @@ jobs:
             git push || true
           fi
 
-      - name: 显示探针结论        if: always()
+      - name: 显示探针结论
+        if: always()
         run: |
           if [ -f out/probe_result.json ]; then
             python - <<'PY'
