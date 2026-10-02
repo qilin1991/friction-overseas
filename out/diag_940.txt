@@ -1,0 +1,12 @@
+TITLE: Friction Materials Market Size & Share, Growth Analysis 2038 - Research Nester
+QUERY: https://www.bing.com/news/search?q=Friction%20Materials%20Market%20Size%20%26%20Share%2C%20Growth%20Analysis%202038%20-%20Research%20Nester&format=rss&setmkt=en-US
+STATUS: 200
+CT: application/xml; charset=utf-8
+URL: https://www.bing.com/news/search?q=Friction%20Materials%20Market%20Size%20%26%20Share%2C%20Growth%20Analysis%202038%20-%20Research%20Nester&format=rss&setmkt=en-US
+LEN: 2149
+--- HEAD 1500 ---
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:News="https://www.bing.com/news/search?q=Friction%20Materials%20Market%20Size%20%26%20Share%2C%20Growth%20Analysis%202038%20-%20Research%20Nester&amp;format=rss&amp;setmkt=en-US"><channel><title>Friction Materials Market Size &amp; Share, Growth Analysis 2038 - Research Nester - BingNews</title><link>https://www.bing.com/news/search?q=Friction%20Materials%20Market%20Size%20%26%20Share%2C%20Growth%20Analysis%202038%20-%20Research%20Nester&amp;format=rss&amp;setmkt=en-US</link><description>Search results</description><image><url>http://www.bing.com/rsslogo.gif</url><title>Friction Materials Market Size &amp; Share, Growth Analysis 2038 - Research Nester</title><link>https://www.bing.com/news/search?q=Friction%20Materials%20Market%20Size%20%26%20Share%2C%20Growth%20Analysis%202038%20-%20Research%20Nester&amp;format=rss&amp;setmkt=en-US</link></image><copyright>Copyright \xc2\xa9 2026 Microsoft. All rights reserved. These XML results may not be used, reproduced or transmitted in any manner or for any purpose other than rendering Bing results within an RSS aggregator for your personal, non-commercial use. Any other use of these results requires express written permission from Microsoft Corporation. By accessing this web page or using these results in any manner whatsoever, you agree to be bound by the foregoing restrictions.</copyright><item><title>Global Friction Stir Welding (FSW) Machine Market Size to Surpass $320
+--- RSS items=1 ---
+[0] url=
+     link=http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abf131940ec4fc28df795f5b66d16c7&url=https%3a%2f%2ffinance.yahoo.com%2fnews%2fglobal-friction-stir-we
+     source=
