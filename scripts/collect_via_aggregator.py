@@ -43,6 +43,18 @@ AGG_TARGETS = [
     ("Brake & Front End", "brakeandfrontend.com",  "brake"),
     ("ImportCar",         "import-car.com",        "brake"),
     ("UNECE WP.29",       "unece.org",             "braking regulation"),
+    # ===== 2026-10-02 信源普查新增：Azure 直连被 WAF 拦，但 Bing News RSS
+    # site:域名 有命中（11~14 条），走聚合兜底拿标题线索 =====
+    ("Trucknews",              "trucknews.com",             "brake"),
+    ("Automotive World",       "automotiveworld.com",        "brake"),
+    ("Just Auto",              "just-auto.com",              "brake"),
+    ("Railway Technology",      "railway-technology.com",     "brake friction"),
+    ("Hot Rod",                "hotrod.com",                 "brake pad"),
+    ("AutoEvolution",          "autoevolution.com",          "brake pad"),
+    ("Tyrepress",              "tyrepress.com",              "brake"),
+    ("AZoM",                   "azom.com",                   "brake friction material"),
+    ("PR Newswire",            "prnewswire.com",             "brake pad"),
+    ("Business Wire",          "businesswire.com",           "brake pad"),
 ]
 
 # 行业通稿：不限定站点，直接按行业主题检索（补充覆盖面）
