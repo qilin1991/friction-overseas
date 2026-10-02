@@ -1,8 +1,20 @@
 TITLE: Patent Patrol: SRAM’s anti-endo hydraulic brakes, plus one-piece “spray on” brake rotors - Bikerumor
-BINGWEB status=200 len=132545 organic=6
-  bing_organic: https://www.uspto.gov/  | United States Patent and Trademark Office
-  bing_organic: https://www.uspto.gov/patents/search  | Search for patents | USPTO
-  bing_organic: https://patentcenter.uspto.gov/#!/%C2%A0  | Home - Patent Center - USPTO
-  bing_organic: https://en.wikipedia.org/wiki/Patent  | Patent - Wikipedia
-  bing_organic: https://www.wipo.int/en/web/patentscope  | PATENTSCOPE - WIPO
-  bing_organic: https://patentscope.wipo.int/search/en/search.jsf  | WIPO - Search International and National Patent Collections
+[quoted] status=200 organic=9
+   sc=0.07 https://www.uspto.gov/ | United States Patent and Trademark Office
+   sc=0.07 https://www.uspto.gov/patents/search | Search for patents | USPTO
+   sc=0.07 https://patentcenter.uspto.gov/#!/%C2%A0 | Home - Patent Center - USPTO
+   sc=0.07 https://en.wikipedia.org/wiki/Patent | Patent - Wikipedia
+   sc=0.07 https://www.wipo.int/en/web/patentscope | PATENTSCOPE - WIPO
+   sc=0.07 https://patentscope.wipo.int/search/en/search.jsf | WIPO - Search International and National Patent Collections
+   sc=0.07 https://patents.justia.com/ | U.S. Patent , Patent Application and Patent Search - Justia 
+   sc=0.07 https://worldwide.espacenet.com/ | Espacenet – patent search
+[plain] status=200 organic=9
+   sc=0.07 https://www.uspto.gov/ | United States Patent and Trademark Office
+   sc=0.07 https://www.uspto.gov/patents/search | Search for patents | USPTO
+   sc=0.07 https://patentcenter.uspto.gov/#!/%C2%A0 | Home - Patent Center - USPTO
+   sc=0.07 https://en.wikipedia.org/wiki/Patent | Patent - Wikipedia
+   sc=0.07 https://www.wipo.int/en/web/patentscope | PATENTSCOPE - WIPO
+   sc=0.07 https://patentscope.wipo.int/search/en/search.jsf | WIPO - Search International and National Patent Collections
+   sc=0.07 https://patents.justia.com/ | U.S. Patent , Patent Application and Patent Search - Justia 
+   sc=0.07 https://worldwide.espacenet.com/ | Espacenet – patent search
+NO good match (best sc=0.07)
