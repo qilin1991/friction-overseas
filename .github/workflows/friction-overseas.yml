@@ -200,6 +200,14 @@ jobs:
         continue-on-error: true
         run: python scripts/collect_via_aggregator.py
 
+      # ── 第 2c 步：存量补正文（enrich）──────────────────────────
+      # 对历史仅标题条目进原文页抓正文（Azure 出口），增量每轮 250 条，
+      # 产出 out/news_content.json → VPS 合并端按 url 回填 article 表。
+      - name: 存量补正文
+        if: ${{ !inputs.probe_only }}
+        continue-on-error: true
+        run: python scripts/enrich_content.py
+
       # ── 第 3 步：提交结果 ──────────────────────────────────────
       # 独立仓库，直接写 data/ 目录
       - name: 提交 news_overseas.json
@@ -217,6 +225,26 @@ jobs:
             CNT=$(python -c "import json;print(json.load(open('data/news_overseas.json',encoding='utf-8'))['count'])")
             git commit -m "chore: 海外资讯同步 ${CNT} 条 [skip ci]"
             git push
+          fi
+
+      - name: 提交正文回填数据
+        if: ${{ !inputs.probe_only }}
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p data
+          if [ -f out/news_content.json ]; then
+            cp out/news_content.json data/news_content.json
+            git add data/news_content.json
+            if git diff --cached --quiet; then
+              echo "正文回填数据无变化"
+            else
+              git commit -m "chore: 正文回填数据 [skip ci]"
+              git push
+            fi
+          else
+            echo "无 news_content.json"
           fi
 
       - name: 上传探针结果（便于排查）
