@@ -43,6 +43,9 @@ AGG_TARGETS = [
     ("Brake & Front End", "brakeandfrontend.com",  "brake"),
     ("ImportCar",         "import-car.com",        "brake"),
     ("UNECE WP.29",       "unece.org",             "braking regulation"),
+    ("Tire Review",        "tirereview.com",        "brake"),
+    ("Auto Service World", "autoserviceworld.com",  "brake"),
+    ("Vehicle Service Pros","vehicleservicepros.com","brake"),
 ]
 
 # 行业通稿：不限定站点，直接按行业主题检索（补充覆盖面）
