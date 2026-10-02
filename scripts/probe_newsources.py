@@ -10,6 +10,7 @@ import concurrent.futures as cf
 import json
 import os
 import re
+import sys
 import time
 import xml.etree.ElementTree as ET
 from urllib.parse import quote
