@@ -60,7 +60,15 @@ def main():
         with open(IN_PATH, encoding="utf-8") as f:
             rows = json.load(f).get("articles", [])
     except Exception:
-        print("no news_overseas.json")
+        rows = []
+    # 补充：存量仅标题队列（VPS 导出到 data/enrich_queue.json，按 url 补齐历史条目）
+    try:
+        with open("data/enrich_queue.json", encoding="utf-8") as f:
+            rows += json.load(f)
+    except Exception:
+        pass
+    if not rows:
+        print("no source urls")
         return 0
 
     store, fails = {}, {}
