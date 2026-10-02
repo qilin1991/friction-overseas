@@ -248,14 +248,12 @@ def main():
             if not any(k in low for k in FRICTION_KW):
                 continue
             # 聚合结果标题末尾常带 " - 媒体名"，保留原样便于溯源
-            raw_url = it["url"]
-            # Google 中转链（news.google.com）在中国打不开：回落 Google 时
-            # 不再存死链，改成 Bing 新闻搜索该标题，保证可点击。
-            if "news.google.com" in raw_url:
-                raw_url = "https://html.duckduckgo.com/html/?q=" + quote(it["title"])
+            # 入库 url 始终存真实媒体直链（Bing 已解包），便于存量 enrich 按 url 回填正文。
+            # 展示层「可点击外链」由模板 orig_link 过滤器负责（news.google.com 中转链/搜索页
+            # 自动转 DDG 搜索），不要在此覆盖成 DDG 链，否则 url 字段与 enrich 真链不一致、回填失效。
             rec = {
                 "title": it["title"],
-                "url": raw_url,
+                "url": it["url"],
                 "source": label,
                 "region": "海外",
                 "tag": "聚合来源",
