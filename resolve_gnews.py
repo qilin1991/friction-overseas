@@ -1,6 +1,8 @@
-import json, time, requests
+import json, time, os, requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
+
+os.makedirs("out", exist_ok=True)
 
 # 读取待处理: gnews_pending.txt 每行 id|url|title
 pending = []
@@ -27,9 +29,24 @@ for pid, url, title in pending:
         if title:
             q = "https://www.bing.com/news/search?q=" + requests.utils.quote(title) + "&format=rss&setmkt=en-US"
             r = requests.get(q, headers={"User-Agent": UA}, timeout=25)
+            # ---- DIAG ----
+            with open(f"out/diag_{pid}.txt", "w", encoding="utf-8") as d:
+                d.write(f"TITLE: {title}\nQUERY: {q}\nSTATUS: {r.status_code}\nCT: {r.headers.get('content-type')}\nURL: {r.url}\nLEN: {len(r.content)}\n")
+                d.write("--- HEAD 1500 ---\n")
+                d.write(r.text[:1500] + "\n")
+            with open(f"out/raw_{pid}.xml", "w", encoding="utf-8") as d:
+                d.write(r.text)
             # 1) 优先 RSS XML 的 <url> 真实直链
             try:
                 root = ET.fromstring(r.content)
+                items = list(root.iter("item"))
+                with open(f"out/diag_{pid}.txt", "a", encoding="utf-8") as d:
+                    d.write(f"--- RSS items={len(items)} ---\n")
+                    for idx, it in enumerate(items[:8]):
+                        u = (it.findtext("url") or "").strip()
+                        l = (it.findtext("link") or "").strip()
+                        s = (it.findtext("source") or "").strip()
+                        d.write(f"[{idx}] url={u[:160]}\n     link={l[:160]}\n     source={s[:160]}\n")
                 for it in root.iter("item"):
                     u = (it.findtext("url") or it.findtext("link") or "").strip()
                     if u and u.startswith("http") and "news.google.com" not in u and "bing.com" not in u:
@@ -39,6 +56,8 @@ for pid, url, title in pending:
                         break
             except Exception as e:
                 note = "rss_parse_fail:" + str(e)[:40]
+                with open(f"out/diag_{pid}.txt", "a", encoding="utf-8") as d:
+                    d.write("RSS PARSE EXC: " + str(e) + "\n")
             # 2) 退化: HTML 里的 apiclick 解码 / data-url / 真实 a 标签
             if not okf:
                 soup = BeautifulSoup(r.text, "html.parser")
