@@ -46,6 +46,7 @@ AGG_TARGETS = [
     # ===== 2026-10-02 信源普查新增：Azure 直连被 WAF 拦，但 Bing News RSS
     # site:域名 有命中（11~14 条），走聚合兜底拿标题线索 =====
     ("Trucknews",              "trucknews.com",             "brake"),
+    ("Truckinginfo",          "truckinginfo.com",          "brake"),
     ("Automotive World",       "automotiveworld.com",        "brake"),
     ("Just Auto",              "just-auto.com",              "brake"),
     ("Railway Technology",      "railway-technology.com",     "brake friction"),
