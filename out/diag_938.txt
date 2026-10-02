@@ -1,7 +1,7 @@
 TITLE: New Chevrolet Brake Patent Is Heavy On The Bow Tie Badges - GM Authority
-ORIG: https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5
-REDIRECT chain:
-https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5
-https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5&hl=en-US&gl=US&ceid=US:en
-redirect landed on google, not publisher: https://news.google.com/rss/articles/CBMimwFBVV95cUxPMHoyUFlwRGhwU3FfaUhZQnpKeHZ5dkVXSVdwcEprUWE3Qlh1ZlpnRnZZRDdTMmRlYmJTM0x1TGhSUEE0c1hHelZ0WU0tcHdtSmloVFpUUjAwMnV6cW5KZFFka0liUTV3ZER0eUVFenR6WS1KSExndGRfZXZUbmJvb2hlNmd2X2FlM2NSVm1rMXlZWG1OTFpzb1NmTQ?oc=5&hl=en-US&gl=US&ceid=US:en
-B64 decode -> (none)
+BINGWEB status=200 len=128544 results=5
+  bing_ck: https://www.foxnews.com/?msockid=0a42b1baeb826ccc239aa65ceaee6d04
+  bing_ck: https://www.foxnews.com/?msockid=0a42b1baeb826ccc239aa65ceaee6d04
+  bing_ck: https://www.cnn.com/
+  bing_ck: https://www.cnn.com/
+  bing_ck: https://www.nbcnews.com/

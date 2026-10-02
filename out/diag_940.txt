@@ -1,7 +1,7 @@
 TITLE: Friction Materials Market Size & Share, Growth Analysis 2038 - Research Nester
-ORIG: https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5
-REDIRECT chain:
-https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5
-https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5&hl=en-US&gl=US&ceid=US:en
-redirect landed on google, not publisher: https://news.google.com/rss/articles/CBMieEFVX3lxTE1NVTRyVE80NU5OWmVuS0Rvc0FOT3VGXzgzR0xDQXdZSjdJRjBLSUl2a3BlbHZ0ZlQ0ZkxrdkEtNk0zT0pfanFRYW53aFkwYWY3M2FULTBCempSM0RvTDMzdUg0ajh5SzBJQ3Bpc0hXcW93VkhkRVE5Tg?oc=5&hl=en-US&gl=US&ceid=US:en
-B64 decode -> (none)
+BINGWEB status=200 len=131130 results=5
+  bing_ck: https://www.linncountyjournal.com/
+  bing_ck: https://www.linncountyjournal.com/
+  bing_ck: https://linncountynews.net/
+  bing_ck: https://linncountynews.net/
+  bing_ck: https://www.linncountyjournal.com/all-news/categories/recent-local-news

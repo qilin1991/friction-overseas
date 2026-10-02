@@ -1,7 +1,7 @@
 TITLE: Patent Patrol: SRAM’s anti-endo hydraulic brakes, plus one-piece “spray on” brake rotors - Bikerumor
-ORIG: https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5
-REDIRECT chain:
-https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5
-https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5&hl=en-US&gl=US&ceid=US:en
-redirect landed on google, not publisher: https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTUNJT2tkSW91TUxfMTlRczhobVJCTG1yTExyY2FfMTRzWlVUZU4tM0ZBbTJKSk1Ba3Q5b05JVVRtVDRGbUhCQlI1dC13dE11RHJHdVhBMHhPT2Y1dm5wc3FYQTdNVGVfQTB2QURjekVUeTgtRkd0bDMtM2RSNXhXRXpUVS14MnR6aGxXU082WWk2RUx5Z3Nna0hpNHQ0SVpoNko5T0JKUlc0QQ?oc=5&hl=en-US&gl=US&ceid=US:en
-B64 decode -> (none)
+BINGWEB status=200 len=132924 results=5
+  bing_ck: https://www.uspto.gov/patents/search
+  bing_ck: https://www.uspto.gov/patents/search
+  bing_ck: https://patentcenter.uspto.gov/#!/%C2%A0
+  bing_ck: https://patentcenter.uspto.gov/#!/%C2%A0
+  bing_ck: https://www.uspto.gov/patents/search/patent-public-search
