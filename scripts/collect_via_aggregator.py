@@ -115,6 +115,16 @@ def _get_with_backoff(url: str, tries: int = 3, base_wait: float = 4.0):
     return None, last
 
 
+def _clean_html(s: str) -> str:
+    """RSS description 里的 HTML 片段 -> 纯文本摘要。"""
+    if not s:
+        return ""
+    from html import unescape
+    s = re.sub(r"<[^>]+>", " ", s)
+    s = unescape(re.sub(r"\s+", " ", s)).strip()
+    return s[:1200]
+
+
 def gnews_rss(query: str, limit: int = 15):
     """Google News RSS（免费、无需 key）。"""
     url = (f"https://news.google.com/rss/search?q={quote(query)}"
@@ -134,7 +144,8 @@ def gnews_rss(query: str, limit: int = 15):
         pub = (it.findtext("pubDate") or "").strip()
         if not t or not link:
             continue
-        out.append({"title": t, "url": link, "published": pub})
+        out.append({"title": t, "url": link, "published": pub,
+                    "desc": _clean_html(it.findtext("description") or "")})
         if len(out) >= limit:
             break
     return out, None
@@ -159,7 +170,8 @@ def bing_rss(query: str, limit: int = 15):
         if not t or not link:
             continue
         out.append({"title": t, "url": link,
-                    "published": (it.findtext("pubDate") or "").strip()})
+                    "published": (it.findtext("pubDate") or "").strip(),
+                    "desc": _clean_html(it.findtext("description") or "")})
         if len(out) >= limit:
             break
     return out, None
@@ -248,7 +260,8 @@ def main():
                 "region": "海外",
                 "tag": "聚合来源",
                 "lang": "en",
-                "level": "headline",       # 标记：仅标题级，无正文
+                "level": "headline",       # 标记：仅标题级（无正文时）
+                "desc": (it.get("desc") or "")[:3000],
                 "via": via,
                 "collected_at": datetime.now(timezone.utc).isoformat(),
             }
