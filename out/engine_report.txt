@@ -1,0 +1,23 @@
+engine reach / hits (sim>=0.3):
+  ddg_html   reach=3 hits=0
+  ddg_lite   reach=3 hits=0
+  yahoo      reach=3 hits=0
+  yandex     reach=3 hits=0
+  startpage  reach=3 hits=0
+  mojeek     reach=3 hits=0
+  bing_web   reach=3 hits=0
+  aol        reach=3 hits=0
+  ask        reach=3 hits=0
+  searx_be   reach=3 hits=0
+  searx_tie  reach=3 hits=0
+
+link samples:
+  id=938 eng=yandex https://yandex.cloud/en/services/smartcaptcha?utm_source=captcha&utm_medium=chbx&utm_campaign=security
+  id=938 eng=startpage https://twitter.com/startpage | https://www.reddit.com/r/StartpageSearch/
+  id=938 eng=bing_web https://www.foxnews.com/?msockid=00d98bcfeee2681935029c29ef4a6922 | https://www.foxnews.com/?msockid=00d98bcfeee2681935029c29ef4a6922
+  id=939 eng=yandex https://yandex.cloud/en/services/smartcaptcha?utm_source=captcha&utm_medium=chbx&utm_campaign=security
+  id=939 eng=startpage https://twitter.com/startpage | https://www.reddit.com/r/StartpageSearch/
+  id=939 eng=bing_web https://www.uspto.gov/ | https://www.uspto.gov/
+  id=940 eng=yandex https://yandex.cloud/en/services/smartcaptcha?utm_source=captcha&utm_medium=chbx&utm_campaign=security
+  id=940 eng=startpage https://twitter.com/startpage | https://www.reddit.com/r/StartpageSearch/
+  id=940 eng=bing_web https://worldwideinterpreters.com.au/2025/09/22/how-shakespeare-shaped-the-english-language-we-speak-today/ | https://worldwideinterpreters.com.au/2025/09/22/how-shakespeare-shaped-the-english-language-we-speak-today/
