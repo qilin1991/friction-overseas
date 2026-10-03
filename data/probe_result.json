@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-10-03T00:44:33.429804+00:00",
+  "probed_at": "2026-10-03T00:55:27.642070+00:00",
   "runner": {
     "hostname": "runnervm8df0l",
-    "egress_ip": "172.178.118.85"
+    "egress_ip": "20.109.95.98"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 61800,
+      "bytes": 61802,
       "verdict": "OK",
       "ok": true
     },
@@ -19,7 +19,7 @@
       "url": "https://www.tirebusiness.com/",
       "kind": "Akamai",
       "status": 403,
-      "bytes": 372,
+      "bytes": 374,
       "verdict": "WAF 拒绝",
       "ok": false
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 56617,
+      "bytes": 56234,
       "verdict": "OK",
       "ok": true
     },
@@ -37,7 +37,7 @@
       "url": "https://www.ccjdigital.com/",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3228,
+      "bytes": 3229,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -46,7 +46,7 @@
       "url": "https://www.underhoodservice.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 61991,
+      "bytes": 61992,
       "verdict": "OK",
       "ok": true
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 66907,
+      "bytes": 66871,
       "verdict": "OK",
       "ok": true
     },
@@ -64,7 +64,7 @@
       "url": "https://www.tmdfriction.com/en/news",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3289,
+      "bytes": 3238,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -73,7 +73,7 @@
       "url": "https://unece.org/transport/vehicle-regulations",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3190,
+      "bytes": 3188,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -82,7 +82,7 @@
       "url": "https://www.autonews.com/europe/",
       "kind": "Akamai",
       "status": 403,
-      "bytes": 379,
+      "bytes": 381,
       "verdict": "WAF 拒绝",
       "ok": false
     },
@@ -132,7 +132,7 @@
     "waf_total": 10,
     "ctrl_ok": 3,
     "ctrl_total": 3,
-    "egress_ip": "172.178.118.85",
+    "egress_ip": "20.109.95.98",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
