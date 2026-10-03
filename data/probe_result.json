@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-10-03T01:31:25.886287+00:00",
+  "probed_at": "2026-10-03T01:43:06.213851+00:00",
   "runner": {
     "hostname": "runnervm8df0l",
-    "egress_ip": "40.116.72.211"
+    "egress_ip": "20.98.141.171"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 61789,
+      "bytes": 61850,
       "verdict": "OK",
       "ok": true
     },
@@ -19,7 +19,7 @@
       "url": "https://www.tirebusiness.com/",
       "kind": "Akamai",
       "status": 403,
-      "bytes": 374,
+      "bytes": 372,
       "verdict": "WAF 拒绝",
       "ok": false
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 56611,
+      "bytes": 56571,
       "verdict": "OK",
       "ok": true
     },
@@ -37,7 +37,7 @@
       "url": "https://www.ccjdigital.com/",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3246,
+      "bytes": 3237,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -46,7 +46,7 @@
       "url": "https://www.underhoodservice.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 62182,
+      "bytes": 62208,
       "verdict": "OK",
       "ok": true
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 67000,
+      "bytes": 67001,
       "verdict": "OK",
       "ok": true
     },
@@ -132,7 +132,7 @@
     "waf_total": 10,
     "ctrl_ok": 3,
     "ctrl_total": 3,
-    "egress_ip": "40.116.72.211",
+    "egress_ip": "20.98.141.171",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
