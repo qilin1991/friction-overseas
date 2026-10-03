@@ -208,6 +208,14 @@ jobs:
         continue-on-error: true
         run: python scripts/enrich_content.py
 
+      # ── 第 2d 步：免费翻译正文（Google 免费端点，无 LLM、无 key）─
+      # VPS 推送 data/translate_queue.json（待翻译存量清单），
+      # 本步分块翻译 → out/news_zh.json → 提交 data/ 供 VPS 回填 content_zh。
+      - name: 免费翻译正文
+        if: ${{ !inputs.probe_only }}
+        continue-on-error: true
+        run: python scripts/translate_content.py
+
       # ── 第 3 步：提交结果 ──────────────────────────────────────
       # 独立仓库，直接写 data/ 目录
       - name: 提交 news_overseas.json
@@ -245,6 +253,26 @@ jobs:
             fi
           else
             echo "无 news_content.json"
+          fi
+
+      - name: 提交翻译结果
+        if: ${{ !inputs.probe_only }}
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p data
+          if [ -f out/news_zh.json ]; then
+            cp out/news_zh.json data/news_zh.json
+            git add data/news_zh.json
+            if git diff --cached --quiet; then
+              echo "翻译结果无变化"
+            else
+              git commit -m "chore: 正文中文翻译（Google 免费端点）[skip ci]"
+              git push
+            fi
+          else
+            echo "无 news_zh.json"
           fi
 
       - name: 上传探针结果（便于排查）
