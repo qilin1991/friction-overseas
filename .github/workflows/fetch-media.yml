@@ -1,0 +1,80 @@
+name: fetch-media
+
+# 海外源正文 + 图片/视频补抓（GitHub Actions 侧）
+#
+# 背景：VPS（腾讯云）出口 IP 被 Cloudflare 企业级挑战拦截，
+#       import-car.com / fleetowner.com / aftermarketnews.com /
+#       brakeandfrontend.com / counterman.com 在 VPS 上只能拿到
+#       403 "Just a moment..." 挑战页 —— 既没正文也没配图。
+#       本工作流跑在 GitHub Actions（Azure 海外机房），用不同出口 IP 突破。
+#
+# 流程：读 data/media_queue.json → scripts/fetch_media.py
+#       （直连优先，被 CF 拦时回落 r.jina.ai 阅读器）
+#      → 提交 data/news_media.json
+#      → VPS 定时拉取该文件合并进 article / article_media 表，
+#        再由 localize_media.py 把图片下载到本地。
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '本轮最多抓多少条'
+        type: string
+        default: '30'
+  schedule:
+    # 北京时间 03:20 / 15:20（UTC 19:20 / 07:20）
+    - cron: '20 7 * * *'
+    - cron: '20 19 * * *'
+
+permissions:
+  contents: write           # 需要写权限才能 commit 结果
+
+concurrency:
+  group: fetch-media
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 准备 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install --quiet requests beautifulsoup4
+
+      - name: 打印出口 IP（确认未落在被封段）
+        run: curl -s https://api.ipify.org && echo
+
+      - name: 抓正文 + 图片视频
+        env:
+          MEDIA_LIMIT: ${{ github.event.inputs.limit || '30' }}
+        run: python3 scripts/fetch_media.py
+
+      - name: 提交结果
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news_media.json
+          if git diff --staged --quiet; then
+            echo "无变化，跳过提交"
+            exit 0
+          git commit -m "chore: 海外源正文+媒体补抓 [skip ci]"
+          git push
+
+      - name: 上传报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-media
+          path: |
+            data/news_media.json
+            out/news_media.json
+          retention-days: 7
+          if-no-files-found: ignore
