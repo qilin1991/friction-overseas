@@ -20,6 +20,10 @@ on:
         description: '本轮最多抓多少条'
         type: string
         default: '30'
+      use_jina:
+        description: '直连失败时是否回落 r.jina.ai（慢，默认关）'
+        type: string
+        default: '0'
   schedule:
     # 北京时间 03:20 / 15:20（UTC 19:20 / 07:20）
     - cron: '20 7 * * *'
@@ -55,6 +59,10 @@ jobs:
       - name: 抓正文 + 图片视频
         env:
           MEDIA_LIMIT: ${{ github.event.inputs.limit || '30' }}
+          # 实测：Actions 出口对 tyrepress/tirebusiness 也吃 Cloudflare 挑战，
+          # 而 r.jina.ai 对这两站同样 403 —— 兜底纯属白等 30s。
+          # 直连失败就下轮重试（IP 段轮换后常能过）。
+          USE_JINA: ${{ github.event.inputs.use_jina || '0' }}
         run: python3 scripts/fetch_media.py
 
       - name: 提交结果
