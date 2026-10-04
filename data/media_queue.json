@@ -1,1 +1,376 @@
-{"note": "queue file placeholder", "queue": []}
+{
+ "generated": "2026-10-04",
+ "note": "VPS 侧正文不足的海外文章，待 Actions 补抓正文+图片",
+ "queue": [
+  {
+   "id": 116,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-at-ifa-2026-284672.html",
+   "raw": 17
+  },
+  {
+   "id": 115,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-at-the-iaa-mobility-2026-284864.html",
+   "raw": 36
+  },
+  {
+   "id": 1132,
+   "url": "https://www.aftermarketnews.com/different-paths-to-aftermarket-growth/",
+   "raw": 37
+  },
+  {
+   "id": 132,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/automechanika-2026-284224.html",
+   "raw": 57
+  },
+  {
+   "id": 1261,
+   "url": "https://www.brakeandfrontend.com/what-you-should-ask-customers-who-want-aggressive-brake-pads/",
+   "raw": 62
+  },
+  {
+   "id": 3150,
+   "url": "https://www.tyrepress.com/2022/11/tmd-friction-launches-aftermarket-research-and-development-facility/",
+   "raw": 67
+  },
+  {
+   "id": 3152,
+   "url": "https://www.tyrepress.com/2022/11/proposed-euro-7-standards-include-tyre-and-brake-particle-emissions/",
+   "raw": 67
+  },
+  {
+   "id": 3151,
+   "url": "https://www.tyrepress.com/2020/08/trico-rebrands-as-first-brands-group-acquires-us-brakes-filtration-companies/",
+   "raw": 78
+  },
+  {
+   "id": 2085,
+   "url": "https://www.fleetowner.com/safety/news/55400720/cvsa-2026-roadcheck-results-show-top-truck-driver-and-eld-violations",
+   "raw": 79
+  },
+  {
+   "id": 1471,
+   "url": "https://www.repairerdrivennews.com/2026/09/30/survey-shows-gas-diesel-vehicles-most-driven-in-2025-hybrid-and-ev-miles-driven-up/",
+   "raw": 84
+  },
+  {
+   "id": 1985,
+   "url": "https://www.fleetowner.com/used-truck-market-quiz",
+   "raw": 239
+  },
+  {
+   "id": 2097,
+   "url": "https://www.tirebusiness.com/opinion/editorial/tb-ev-sales-editorial/",
+   "raw": 249
+  },
+  {
+   "id": 3720,
+   "url": "https://www.aftermarketnews.com/tmd-friction-announces-a-new-air-disc-brake-friction-material-for-heavy-duty-applications/",
+   "raw": 295
+  },
+  {
+   "id": 827,
+   "url": "https://www.tyrepress.com/2026/09/ikon-tyres-plant-reaches-200-million-milestone/",
+   "raw": 312
+  },
+  {
+   "id": 489,
+   "url": "https://www.tyrepress.com/2026/09/ultra-and-ultra-ultra-porsche-approves-continental-tyres-for-panamera-g3-ii/",
+   "raw": 360
+  },
+  {
+   "id": 494,
+   "url": "https://www.tyrepress.com/2026/09/cemb-previews-connected-wheel-balancers-and-new-tyre-equipment/",
+   "raw": 418
+  },
+  {
+   "id": 1984,
+   "url": "https://www.fleetowner.com/commercial-vehicle-development-quiz",
+   "raw": 433
+  },
+  {
+   "id": 1986,
+   "url": "https://www.fleetowner.com/fleets-explained",
+   "raw": 472
+  },
+  {
+   "id": 496,
+   "url": "https://www.tyrepress.com/2026/09/bosch-plans-to-cut-900-jobs-at-nuremberg-plant/",
+   "raw": 477
+  },
+  {
+   "id": 491,
+   "url": "https://www.tyrepress.com/2026/09/hankook-concepts-named-idea-2026-finalists/",
+   "raw": 508
+  },
+  {
+   "id": 493,
+   "url": "https://www.tyrepress.com/2026/09/dunlop-to-end-karting-tyre-supply-at-end-of-2027/",
+   "raw": 561
+  },
+  {
+   "id": 1987,
+   "url": "https://www.fleetowner.com/emissions-efficiency",
+   "raw": 569
+  },
+  {
+   "id": 492,
+   "url": "https://www.tyrepress.com/2026/09/brabus-bodo-cabriolet-gains-bespoke-pirelli-p-zero-fitment/",
+   "raw": 574
+  },
+  {
+   "id": 490,
+   "url": "https://www.tyrepress.com/2026/09/ace-laboratories-and-abdallah-consulting-launch-vericarbsm-rcb-certification/",
+   "raw": 634
+  },
+  {
+   "id": 497,
+   "url": "https://www.tyrepress.com/2026/09/dunlop-global-brand-strategy-office-opening-in-london/",
+   "raw": 662
+  },
+  {
+   "id": 498,
+   "url": "https://www.tyrepress.com/2026/09/italy-applies-golden-power-rules-to-pirelli-abet-extreme-terrain-rescue-vehicle-project/",
+   "raw": 702
+  },
+  {
+   "id": 118,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/christof-ehrhart-will-leave-position-as-boschs-head-of-communications-at-the-end-of-the-year-283783.html",
+   "raw": 713
+  },
+  {
+   "id": 117,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/hydrogen-new-bosch-fuel-cell-system-begins-test-operations-in-madrid-284032.html",
+   "raw": 731
+  },
+  {
+   "id": 495,
+   "url": "https://www.tyrepress.com/2026/09/first-stop-signs-national-wholesale-agreement-with-bond/",
+   "raw": 832
+  },
+  {
+   "id": 5050,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-toyota-bmw-and-repsol-launch-real-world-pilot-of-vehicles-running-on-100-renewable-gasoline-283776.html",
+   "raw": 886
+  },
+  {
+   "id": 2089,
+   "url": "https://www.fleetowner.com/equipment/media-gallery/21686886/a-tour-of-meritors-cwmbran-brake-factory-in-south-wales",
+   "raw": 898
+  },
+  {
+   "id": 114,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/half-year-figures-2026-bosch-reaffirms-outlook-285632.html",
+   "raw": 1429
+  },
+  {
+   "id": 1042,
+   "url": "https://www.counterman.com/momentum-usa-brake-parts-expansion/",
+   "raw": 1543
+  },
+  {
+   "id": 1260,
+   "url": "https://www.brakeandfrontend.com/momentum-usa-launches-77-brake-part-numbers/",
+   "raw": 1577
+  },
+  {
+   "id": 2563,
+   "url": "https://www.aftermarketnews.com/momentum-usa-brake-parts-expansion/",
+   "raw": 1594
+  },
+  {
+   "id": 2442,
+   "url": "https://www.aftermarketnews.com/category/aftermarket-news/distribution/",
+   "raw": 1600
+  },
+  {
+   "id": 2076,
+   "url": "https://www.aftermarketnews.com/driv-wagner-brake-caliper-portfolio-expands-547-skus/",
+   "raw": 1861
+  },
+  {
+   "id": 2091,
+   "url": "https://www.fleetowner.com/safety/news/55380728/cvsa-schedules-brake-safety-week-for-august-2329-focusing-on-truck-brake-inspections-and-violations",
+   "raw": 2221
+  },
+  {
+   "id": 3035,
+   "url": "https://www.aftermarketnews.com/hella-launches-brake-pads-for-trucks-and-buses/",
+   "raw": 2560
+  },
+  {
+   "id": 5035,
+   "url": "https://www.repairerdrivennews.com/2026/09/25/nebraska-community-college-opens-new-automotive-career-training-center/",
+   "raw": 2689
+  },
+  {
+   "id": 1978,
+   "url": "https://www.aftermarketnews.com/litens-aftermarkets-scott-howat-on-being-a-brand-champion/",
+   "raw": 2775
+  },
+  {
+   "id": 2493,
+   "url": "https://www.counterman.com/litens-aftermarkets-scott-howat-on-being-a-brand-champion/",
+   "raw": 2775
+  },
+  {
+   "id": 2460,
+   "url": "https://www.fleetowner.com/equipment/article/21704249/gm-recalls-34-million-pickups-and-suvs-over-brake-pump",
+   "raw": 2956
+  },
+  {
+   "id": 2075,
+   "url": "https://www.aftermarketnews.com/the-pronto-network-joins-2026-brakes-for-breasts-fundraiser/",
+   "raw": 3133
+  },
+  {
+   "id": 129,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-ventures-invests-in-asylon-to-advance-autonomous-physical-operations-285193.html",
+   "raw": 3134
+  },
+  {
+   "id": 2023,
+   "url": "https://www.fleetowner.com/equipment/article/21684940/tmd-friction-adds-brake-reline-program-new-friction-material",
+   "raw": 3195
+  },
+  {
+   "id": 1041,
+   "url": "https://www.counterman.com/u-s-vehicle-sales-unlikely-to-regain-pre-pandemic-levels-this-decade/",
+   "raw": 3435
+  },
+  {
+   "id": 3691,
+   "url": "https://www.manilatimes.net/2026/02/13/tmt-newswire/globenewswire/driv-expands-ferodo-premier-copper-free-brake-pads-for-commercial-vehicles/2277447",
+   "raw": 3466
+  },
+  {
+   "id": 1140,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/precision-redefined-expert-top-performance-class-laser-measure-from-bosch-283904.html",
+   "raw": 4035
+  },
+  {
+   "id": 2092,
+   "url": "https://www.fleetowner.com/equipment/trucks-trailers/article/21163678/jake-brake-turns-60-but-conceived-90-years-ago",
+   "raw": 4045
+  },
+  {
+   "id": 4270,
+   "url": "https://www.repairerdrivennews.com/2026/10/02/vehicle-sensors-body-types-and-collisions-how-technology-could-one-day-save-you/",
+   "raw": 4122
+  },
+  {
+   "id": 2004,
+   "url": "https://www.fleetowner.com/refrigerated-transporter/refrigerated-vehicles-equipment/article/21233015/epa-copper-free-brake-initiative-moves-to-next-phase",
+   "raw": 4362
+  },
+  {
+   "id": 1133,
+   "url": "https://www.aftermarketnews.com/mevotech-on-engineering-beyond-the-part/",
+   "raw": 4512
+  },
+  {
+   "id": 3529,
+   "url": "https://www.repairerdrivennews.com/2026/10/02/ceos-discuss-why-skilled-trades-are-essential-to-the-economy-during-ford-event/",
+   "raw": 4611
+  },
+  {
+   "id": 121,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/new-thermal-camera-in-top-performance-class-expert-from-bosch-285824.html",
+   "raw": 4801
+  },
+  {
+   "id": 2074,
+   "url": "https://www.aftermarketnews.com/why-visual-content-and-digital-asset-management-matter-more-than-ever-in-the-aftermarket/",
+   "raw": 4827
+  },
+  {
+   "id": 2095,
+   "url": "https://www.fleetowner.com/safety/article/55130749/brake-safety-week-2024-what-fleets-and-drivers-need-to-know",
+   "raw": 4897
+  },
+  {
+   "id": 126,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/industry-leaders-scale-full-value-chain-for-hydrogen-mobility-across-europe-285250.html",
+   "raw": 4899
+  },
+  {
+   "id": 86,
+   "url": "https://fisita.com/bosch-korea-confirmed-as-exclusive-global-mobility-insights-partner-for-fisita-world-mobility-summit-2026/",
+   "raw": 5118
+  },
+  {
+   "id": 1259,
+   "url": "https://www.import-car.com/understanding-brake-pad-wear-sensors-for-imports/",
+   "raw": 5132
+  },
+  {
+   "id": 2087,
+   "url": "https://www.fleetowner.com/equipment/news/55392149/nhtsa-issues-commercial-truck-recalls-for-critical-safety-defects",
+   "raw": 5167
+  },
+  {
+   "id": 1262,
+   "url": "https://www.brakeandfrontend.com/brake-job-2020-2025-gm-t1xx-pickups/",
+   "raw": 5449
+  },
+  {
+   "id": 120,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/changes-on-the-robert-bosch-gmbh-board-of-management-283584.html",
+   "raw": 5537
+  },
+  {
+   "id": 2096,
+   "url": "https://www.fleetowner.com/sponsored/article/55406660/why-fleet-managers-are-choosing-more-focus-over-more-footage",
+   "raw": 5537
+  },
+  {
+   "id": 2470,
+   "url": "https://www.fleetowner.com/equipment/news/55408994/international-motors-launches-fleetritecom-e-commerce-site-to-streamline-parts-ordering",
+   "raw": 5550
+  },
+  {
+   "id": 2441,
+   "url": "https://www.aftermarketnews.com/aumovio-distributed-brake-system/",
+   "raw": 5675
+  },
+  {
+   "id": 2090,
+   "url": "https://www.fleetowner.com/equipment/news/55316289/newly-equipped-updates-on-mack-anthem-cummins-x10-hpd-engine-brake-and-ex-guard-grille-guards",
+   "raw": 5975
+  },
+  {
+   "id": 2093,
+   "url": "https://www.fleetowner.com/equipment/article/21264365/the-disc-vs-drum-brake-debate",
+   "raw": 6018
+  },
+  {
+   "id": 2094,
+   "url": "https://www.fleetowner.com/equipment/article/21257658/2023-heavy-duty-truck-brake-technology",
+   "raw": 6021
+  },
+  {
+   "id": 1258,
+   "url": "https://www.import-car.com/2004-2013-mazda-3-brake-job/",
+   "raw": 6029
+  },
+  {
+   "id": 2086,
+   "url": "https://www.fleetowner.com/equipment/news/55375143/nhtsa-commercial-vehicle-recalls-ford-mack-volvo-tesla-and-trailers-impacted-by-safety-defects",
+   "raw": 6042
+  },
+  {
+   "id": 1257,
+   "url": "https://www.import-car.com/euro-7-compliant-vehicles-will-change-brake-and-tire-service/",
+   "raw": 6062
+  },
+  {
+   "id": 1043,
+   "url": "https://www.bosch-presse.de/pressportal/de/en/ten-years-of-bosch-smart-home-284416.html",
+   "raw": 7708
+  },
+  {
+   "id": 405,
+   "url": "https://autonews.gasgoo.com/articles/news/gasgoo-weekly-changan-partners-again-with-huawei-bosch-secures-major-project-awards-2089367206155800577",
+   "raw": 13982
+  }
+ ]
+}
