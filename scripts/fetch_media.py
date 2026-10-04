@@ -53,7 +53,17 @@ USE_JINA = os.environ.get("USE_JINA", "1") not in ("0", "false", "False")
 JUNK_IMG = re.compile(
     r"(logo|avatar|icon|spacer|blank|pixel|beacon|badge|banner-ad|advert|"
     r"social|share|favicon|sprite|placeholder|1x1|transparent|"
-    r"emoji|gravatar|profile|thumb_?blank|default[-_]img)", re.I)
+    r"emoji|gravatar|profile|thumb_?blank|default[-_]img|"
+    # 站点品牌装饰图（实测 bosch/AMN 这类站把 logo 塞进正文流）
+    r"monogram|invented-for-life|babcox-bug|"
+    # Google News / 订阅 CTA 按钮
+    r"preferred-source|follow-google|newsletter|subscribe[-_]?(btn|button)|"
+    r"google-preferred|follow-us|"
+    # 站点页眉页脚装饰
+    r"header|footer|masthead|wordmark|brandmark)", re.I)
+# 缩略图尺寸后缀：Bosch 这类 DAM 会给正文图加 _img_w386 / _img_w640，
+# 只拿到小图；保留原图（去掉后缀）更好，但先只过滤纯缩略尺寸
+THUMB_SUFFIX = re.compile(r"_img_w\d{2,4}\.(jpe?g|png|gif|webp)$", re.I)
 IMG_EXT = re.compile(r"\.(jpe?g|png|gif|webp|avif|bmp)(?:$|\?)", re.I)
 # 视频：YouTube / Vimeo / Dailymotion 的 iframe
 VID_HOST = re.compile(r"(youtube\.com|youtu\.be|vimeo\.com|dailymotion\.com|"
@@ -128,6 +138,8 @@ def extract_media(soup, base):
             continue
         bn = os.path.basename(urlsplit(u).path)
         if JUNK_IMG.search(bn) or JUNK_IMG.search(u):
+            continue
+        if THUMB_SUFFIX.search(bn):     # 缩略图，另找原图
             continue
         if len(bn) <= 4 and not IMG_EXT.search(u):   # 短名多为图标
             continue
