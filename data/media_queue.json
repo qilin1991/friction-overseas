@@ -1,376 +1,1354 @@
 {
  "generated": "2026-10-04",
- "note": "VPS 侧正文不足的海外文章，待 Actions 补抓正文+图片",
+ "note": "第二轮：全部 stub 外链（排除聚合中转）",
  "queue": [
   {
-   "id": 116,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-at-ifa-2026-284672.html",
-   "raw": 17
+   "id": 2081,
+   "url": "https://www.ccjdigital.com/regulations/safety-compliance/article/15293992/cvsa-brake-safety-week-eyes-brake-hose-chafing"
   },
   {
-   "id": 115,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-at-the-iaa-mobility-2026-284864.html",
-   "raw": 36
+   "id": 3013,
+   "url": "https://unece.org/info/Transport/Vehicle-Regulations/events/397262"
   },
   {
-   "id": 1132,
-   "url": "https://www.aftermarketnews.com/different-paths-to-aftermarket-growth/",
-   "raw": 37
+   "id": 2435,
+   "url": "https://unece.org/transport/events/wp29grva-working-party-automatedautonomous-and-connected-vehicles-26th-session"
   },
   {
-   "id": 132,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/automechanika-2026-284224.html",
-   "raw": 57
+   "id": 3838,
+   "url": "https://unece.org/info/events/event/412104"
   },
   {
-   "id": 1261,
-   "url": "https://www.brakeandfrontend.com/what-you-should-ask-customers-who-want-aggressive-brake-pads/",
-   "raw": 62
+   "id": 3242,
+   "url": "https://www.truckinginfo.com/news/nominations-open-for-hdt-emerging-leaders"
   },
   {
-   "id": 3150,
-   "url": "https://www.tyrepress.com/2022/11/tmd-friction-launches-aftermarket-research-and-development-facility/",
-   "raw": 67
+   "id": 295,
+   "url": "https://www.bwigroup.com/news/compressing-development-from-weeks-to-an-hour/"
   },
   {
-   "id": 3152,
-   "url": "https://www.tyrepress.com/2022/11/proposed-euro-7-standards-include-tyre-and-brake-particle-emissions/",
-   "raw": 67
+   "id": 3241,
+   "url": "https://www.truckinginfo.com/news/why-private-fleets-are-taking-more-freight"
   },
   {
-   "id": 3151,
-   "url": "https://www.tyrepress.com/2020/08/trico-rebrands-as-first-brands-group-acquires-us-brakes-filtration-companies/",
-   "raw": 78
+   "id": 860,
+   "url": "https://www.shengquan.com/detail/248.html"
   },
   {
-   "id": 2085,
-   "url": "https://www.fleetowner.com/safety/news/55400720/cvsa-2026-roadcheck-results-show-top-truck-driver-and-eld-violations",
-   "raw": 79
+   "id": 861,
+   "url": "https://www.shengquan.com/detail/204.html"
   },
   {
-   "id": 1471,
-   "url": "https://www.repairerdrivennews.com/2026/09/30/survey-shows-gas-diesel-vehicles-most-driven-in-2025-hybrid-and-ev-miles-driven-up/",
-   "raw": 84
+   "id": 426,
+   "url": "http://jg-zdq.com/articleinfo/25.html"
   },
   {
-   "id": 1985,
-   "url": "https://www.fleetowner.com/used-truck-market-quiz",
-   "raw": 239
+   "id": 425,
+   "url": "http://jg-zdq.com/articleinfo/40.html"
   },
   {
-   "id": 2097,
-   "url": "https://www.tirebusiness.com/opinion/editorial/tb-ev-sales-editorial/",
-   "raw": 249
+   "id": 863,
+   "url": "https://www.shengquan.com/detail/212.html"
   },
   {
-   "id": 3720,
-   "url": "https://www.aftermarketnews.com/tmd-friction-announces-a-new-air-disc-brake-friction-material-for-heavy-duty-applications/",
-   "raw": 295
+   "id": 864,
+   "url": "https://www.shengquan.com/detail/211.html"
   },
   {
-   "id": 827,
-   "url": "https://www.tyrepress.com/2026/09/ikon-tyres-plant-reaches-200-million-milestone/",
-   "raw": 312
+   "id": 862,
+   "url": "https://www.shengquan.com/detail/205.html"
   },
   {
-   "id": 489,
-   "url": "https://www.tyrepress.com/2026/09/ultra-and-ultra-ultra-porsche-approves-continental-tyres-for-panamera-g3-ii/",
-   "raw": 360
+   "id": 421,
+   "url": "http://jg-zdq.com/articleinfo/168.html"
   },
   {
-   "id": 494,
-   "url": "https://www.tyrepress.com/2026/09/cemb-previews-connected-wheel-balancers-and-new-tyre-equipment/",
-   "raw": 418
+   "id": 296,
+   "url": "https://www.bwigroup.com/news/bwi-group-launches-automated-semi-active-roll-control-system/"
   },
   {
-   "id": 1984,
-   "url": "https://www.fleetowner.com/commercial-vehicle-development-quiz",
-   "raw": 433
+   "id": 858,
+   "url": "https://www.shengquan.com/detail/938.html"
   },
   {
-   "id": 1986,
-   "url": "https://www.fleetowner.com/fleets-explained",
-   "raw": 472
+   "id": 297,
+   "url": "https://www.bwigroup.com/news/inside-bwi-groups-semi-active-roll-control-technology/"
   },
   {
-   "id": 496,
-   "url": "https://www.tyrepress.com/2026/09/bosch-plans-to-cut-900-jobs-at-nuremberg-plant/",
-   "raw": 477
+   "id": 293,
+   "url": "https://www.bwigroup.com/news/how-to-tune-a-damper/"
   },
   {
-   "id": 491,
-   "url": "https://www.tyrepress.com/2026/09/hankook-concepts-named-idea-2026-finalists/",
-   "raw": 508
+   "id": 307,
+   "url": "https://www.jzb-brake.com/news/450.html"
   },
   {
-   "id": 493,
-   "url": "https://www.tyrepress.com/2026/09/dunlop-to-end-karting-tyre-supply-at-end-of-2027/",
-   "raw": 561
+   "id": 306,
+   "url": "https://www.jzb-brake.com/news/451.html"
   },
   {
-   "id": 1987,
-   "url": "https://www.fleetowner.com/emissions-efficiency",
-   "raw": 569
+   "id": 305,
+   "url": "https://www.jzb-brake.com/news/452.html"
   },
   {
-   "id": 492,
-   "url": "https://www.tyrepress.com/2026/09/brabus-bodo-cabriolet-gains-bespoke-pirelli-p-zero-fitment/",
-   "raw": 574
+   "id": 304,
+   "url": "https://www.jzb-brake.com/news/453.html"
   },
   {
-   "id": 490,
-   "url": "https://www.tyrepress.com/2026/09/ace-laboratories-and-abdallah-consulting-launch-vericarbsm-rcb-certification/",
-   "raw": 634
+   "id": 303,
+   "url": "https://www.jzb-brake.com/news/454.html"
   },
   {
-   "id": 497,
-   "url": "https://www.tyrepress.com/2026/09/dunlop-global-brand-strategy-office-opening-in-london/",
-   "raw": 662
+   "id": 544,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5227936.html"
   },
   {
-   "id": 498,
-   "url": "https://www.tyrepress.com/2026/09/italy-applies-golden-power-rules-to-pirelli-abet-extreme-terrain-rescue-vehicle-project/",
-   "raw": 702
+   "id": 540,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5228372.html"
   },
   {
-   "id": 118,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/christof-ehrhart-will-leave-position-as-boschs-head-of-communications-at-the-end-of-the-year-283783.html",
-   "raw": 713
+   "id": 543,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5228319.html"
   },
   {
-   "id": 117,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/hydrogen-new-bosch-fuel-cell-system-begins-test-operations-in-madrid-284032.html",
-   "raw": 731
+   "id": 542,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5228320.html"
   },
   {
-   "id": 495,
-   "url": "https://www.tyrepress.com/2026/09/first-stop-signs-national-wholesale-agreement-with-bond/",
-   "raw": 832
+   "id": 539,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5228430.html"
   },
   {
-   "id": 5050,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-toyota-bmw-and-repsol-launch-real-world-pilot-of-vehicles-running-on-100-renewable-gasoline-283776.html",
-   "raw": 886
+   "id": 541,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5228368.html"
   },
   {
-   "id": 2089,
-   "url": "https://www.fleetowner.com/equipment/media-gallery/21686886/a-tour-of-meritors-cwmbran-brake-factory-in-south-wales",
-   "raw": 898
+   "id": 302,
+   "url": "https://www.jzb-brake.com/news/455.html"
   },
   {
-   "id": 114,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/half-year-figures-2026-bosch-reaffirms-outlook-285632.html",
-   "raw": 1429
+   "id": 301,
+   "url": "https://www.jzb-brake.com/news/456.html"
   },
   {
-   "id": 1042,
-   "url": "https://www.counterman.com/momentum-usa-brake-parts-expansion/",
-   "raw": 1543
+   "id": 300,
+   "url": "https://www.jzb-brake.com/news/457.html"
   },
   {
-   "id": 1260,
-   "url": "https://www.brakeandfrontend.com/momentum-usa-launches-77-brake-part-numbers/",
-   "raw": 1577
+   "id": 299,
+   "url": "https://www.jzb-brake.com/news/458.html"
   },
   {
-   "id": 2563,
-   "url": "https://www.aftermarketnews.com/momentum-usa-brake-parts-expansion/",
-   "raw": 1594
+   "id": 298,
+   "url": "https://www.jzb-brake.com/news/459.html"
   },
   {
-   "id": 2442,
-   "url": "https://www.aftermarketnews.com/category/aftermarket-news/distribution/",
-   "raw": 1600
+   "id": 531,
+   "url": "http://www.caam.org.cn/chn/4/cate_154/con_5237228.html"
   },
   {
-   "id": 2076,
-   "url": "https://www.aftermarketnews.com/driv-wagner-brake-caliper-portfolio-expands-547-skus/",
-   "raw": 1861
+   "id": 530,
+   "url": "http://www.caam.org.cn/chn/4/cate_154/con_5237227.html"
   },
   {
-   "id": 2091,
-   "url": "https://www.fleetowner.com/safety/news/55380728/cvsa-schedules-brake-safety-week-for-august-2329-focusing-on-truck-brake-inspections-and-violations",
-   "raw": 2221
+   "id": 529,
+   "url": "http://www.caam.org.cn/chn/4/cate_154/con_5237226.html"
   },
   {
-   "id": 3035,
-   "url": "https://www.aftermarketnews.com/hella-launches-brake-pads-for-trucks-and-buses/",
-   "raw": 2560
+   "id": 537,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5237223.html"
   },
   {
-   "id": 5035,
-   "url": "https://www.repairerdrivennews.com/2026/09/25/nebraska-community-college-opens-new-automotive-career-training-center/",
-   "raw": 2689
+   "id": 536,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5237224.html"
   },
   {
-   "id": 1978,
-   "url": "https://www.aftermarketnews.com/litens-aftermarkets-scott-howat-on-being-a-brand-champion/",
-   "raw": 2775
+   "id": 538,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5237222.html"
   },
   {
-   "id": 2493,
-   "url": "https://www.counterman.com/litens-aftermarkets-scott-howat-on-being-a-brand-champion/",
-   "raw": 2775
+   "id": 534,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5237331.html"
   },
   {
-   "id": 2460,
-   "url": "https://www.fleetowner.com/equipment/article/21704249/gm-recalls-34-million-pickups-and-suvs-over-brake-pump",
-   "raw": 2956
+   "id": 533,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5237332.html"
   },
   {
-   "id": 2075,
-   "url": "https://www.aftermarketnews.com/the-pronto-network-joins-2026-brakes-for-breasts-fundraiser/",
-   "raw": 3133
+   "id": 532,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5237333.html"
   },
   {
-   "id": 129,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/bosch-ventures-invests-in-asylon-to-advance-autonomous-physical-operations-285193.html",
-   "raw": 3134
+   "id": 535,
+   "url": "http://www.caam.org.cn/chn/4/cate_32/con_5237330.html"
   },
   {
-   "id": 2023,
-   "url": "https://www.fleetowner.com/equipment/article/21684940/tmd-friction-adds-brake-reline-program-new-friction-material",
-   "raw": 3195
+   "id": 846,
+   "url": "http://www.gloryfriction.com/news_dt/51.html"
   },
   {
-   "id": 1041,
-   "url": "https://www.counterman.com/u-s-vehicle-sales-unlikely-to-regain-pre-pandemic-levels-this-decade/",
-   "raw": 3435
+   "id": 294,
+   "url": "https://www.bwigroup.com/news/optimising-brake-pedal-feel-through-software/"
   },
   {
-   "id": 3691,
-   "url": "https://www.manilatimes.net/2026/02/13/tmt-newswire/globenewswire/driv-expands-ferodo-premier-copper-free-brake-pads-for-commercial-vehicles/2277447",
-   "raw": 3466
+   "id": 859,
+   "url": "https://www.shengquan.com/detail/929.html"
   },
   {
-   "id": 1140,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/precision-redefined-expert-top-performance-class-laser-measure-from-bosch-283904.html",
-   "raw": 4035
+   "id": 54,
+   "url": "https://www.carlislecbf.com/news-events/a-holiday-season-of-giving"
   },
   {
-   "id": 2092,
-   "url": "https://www.fleetowner.com/equipment/trucks-trailers/article/21163678/jake-brake-turns-60-but-conceived-90-years-ago",
-   "raw": 4045
+   "id": 469,
+   "url": "https://electrek.co/2026/09/29/silverado-ev-concert-tour-150-kwh-mobile-power-plant/"
   },
   {
-   "id": 4270,
-   "url": "https://www.repairerdrivennews.com/2026/10/02/vehicle-sensors-body-types-and-collisions-how-technology-could-one-day-save-you/",
-   "raw": 4122
+   "id": 83,
+   "url": "https://fisita.com/sustainable-mobility-moves-how-industry-leaders-are-turning-sustainability-into-a-competitive-advantage/"
   },
   {
-   "id": 2004,
-   "url": "https://www.fleetowner.com/refrigerated-transporter/refrigerated-vehicles-equipment/article/21233015/epa-copper-free-brake-initiative-moves-to-next-phase",
-   "raw": 4362
+   "id": 344,
+   "url": "https://www.astm.org/standards-and-solutions/enterprise-solutions/astm-compass"
   },
   {
-   "id": 1133,
-   "url": "https://www.aftermarketnews.com/mevotech-on-engineering-beyond-the-part/",
-   "raw": 4512
+   "id": 372,
+   "url": "https://oica.net/about/"
   },
   {
-   "id": 3529,
-   "url": "https://www.repairerdrivennews.com/2026/10/02/ceos-discuss-why-skilled-trades-are-essential-to-the-economy-during-ford-event/",
-   "raw": 4611
+   "id": 334,
+   "url": "https://www.mobis.com/en/aboutus/press.do#mobis_ad"
   },
   {
-   "id": 121,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/new-thermal-camera-in-top-performance-class-expert-from-bosch-285824.html",
-   "raw": 4801
+   "id": 267,
+   "url": "https://www.autocare.org/news/blog/advocacy-in-action"
   },
   {
-   "id": 2074,
-   "url": "https://www.aftermarketnews.com/why-visual-content-and-digital-asset-management-matter-more-than-ever-in-the-aftermarket/",
-   "raw": 4827
+   "id": 3159,
+   "url": "https://www.hotrod.com/how-to/affordable-brake-upgrade-80s-gbody-cars"
   },
   {
-   "id": 2095,
-   "url": "https://www.fleetowner.com/safety/article/55130749/brake-safety-week-2024-what-fleets-and-drivers-need-to-know",
-   "raw": 4897
+   "id": 2401,
+   "url": "https://www.forconstructionpros.com/equipment/fleet-maintenance/other-components/product/10691256/tmd-friction-of-north-america-air-disc-brake-friction-material"
   },
   {
-   "id": 126,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/industry-leaders-scale-full-value-chain-for-hydrogen-mobility-across-europe-285250.html",
-   "raw": 4899
+   "id": 2448,
+   "url": "https://www.ccjdigital.com/business/article/14899625/air-brake-basics"
   },
   {
-   "id": 86,
-   "url": "https://fisita.com/bosch-korea-confirmed-as-exclusive-global-mobility-insights-partner-for-fisita-world-mobility-summit-2026/",
-   "raw": 5118
+   "id": 2456,
+   "url": "https://www.ccjdigital.com/maintenance/article/15290514/the-anatomy-of-a-trucks-air-brake-system"
   },
   {
-   "id": 1259,
-   "url": "https://www.import-car.com/understanding-brake-pad-wear-sensors-for-imports/",
-   "raw": 5132
+   "id": 3176,
+   "url": "https://www.truckinginfo.com/news/alliedsignal-brake-systems-changes-name-to-bendix"
   },
   {
-   "id": 2087,
-   "url": "https://www.fleetowner.com/equipment/news/55392149/nhtsa-issues-commercial-truck-recalls-for-critical-safety-defects",
-   "raw": 5167
+   "id": 463,
+   "url": "https://electrek.co/2026/09/29/we-dont-need-more-e-bike-laws-this-11-year-olds-ticket-shows-why/"
   },
   {
-   "id": 1262,
-   "url": "https://www.brakeandfrontend.com/brake-job-2020-2025-gm-t1xx-pickups/",
-   "raw": 5449
+   "id": 323,
+   "url": "https://www.aisin.com/en/news/2026/010573.html"
   },
   {
-   "id": 120,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/changes-on-the-robert-bosch-gmbh-board-of-management-283584.html",
-   "raw": 5537
+   "id": 322,
+   "url": "https://www.aisin.com/en/news/2026/010574.html"
   },
   {
-   "id": 2096,
-   "url": "https://www.fleetowner.com/sponsored/article/55406660/why-fleet-managers-are-choosing-more-focus-over-more-footage",
-   "raw": 5537
+   "id": 791,
+   "url": "https://www.hitachiastemo.com/en/news/20260427-01/"
   },
   {
-   "id": 2470,
-   "url": "https://www.fleetowner.com/equipment/news/55408994/international-motors-launches-fleetritecom-e-commerce-site-to-streamline-parts-ordering",
-   "raw": 5550
+   "id": 3179,
+   "url": "https://www.truckinginfo.com/products/arrow-logger-simplifies-brake-adjustment"
   },
   {
-   "id": 2441,
-   "url": "https://www.aftermarketnews.com/aumovio-distributed-brake-system/",
-   "raw": 5675
+   "id": 85,
+   "url": "https://fisita.com/fisita-launches-new-smart-cockpit-expert-working-group/"
   },
   {
-   "id": 2090,
-   "url": "https://www.fleetowner.com/equipment/news/55316289/newly-equipped-updates-on-mack-anthem-cummins-x10-hpd-engine-brake-and-ex-guard-grille-guards",
-   "raw": 5975
+   "id": 314,
+   "url": "https://www.aisin.com/en/news/2026/010689.html"
   },
   {
-   "id": 2093,
-   "url": "https://www.fleetowner.com/equipment/article/21264365/the-disc-vs-drum-brake-debate",
-   "raw": 6018
+   "id": 313,
+   "url": "https://www.aisin.com/en/news/2026/010694.html"
   },
   {
-   "id": 2094,
-   "url": "https://www.fleetowner.com/equipment/article/21257658/2023-heavy-duty-truck-brake-technology",
-   "raw": 6021
+   "id": 315,
+   "url": "https://www.aisin.com/en/news/2026/010688.html"
   },
   {
-   "id": 1258,
-   "url": "https://www.import-car.com/2004-2013-mazda-3-brake-job/",
-   "raw": 6029
+   "id": 787,
+   "url": "https://www.hitachiastemo.com/en/news/20260806-01/index.html"
   },
   {
-   "id": 2086,
-   "url": "https://www.fleetowner.com/equipment/news/55375143/nhtsa-commercial-vehicle-recalls-ford-mack-volvo-tesla-and-trailers-impacted-by-safety-defects",
-   "raw": 6042
+   "id": 281,
+   "url": "https://www.autocare.org/news/latest-news/details/2026/01/14/auto-care-association-testifies-at-u.s.-house-subcommittee-hearing-highlighting-vehicle-repair-access--safety--affordability"
   },
   {
-   "id": 1257,
-   "url": "https://www.import-car.com/euro-7-compliant-vehicles-will-change-brake-and-tire-service/",
-   "raw": 6062
+   "id": 266,
+   "url": "https://www.autocare.org/news/blog"
   },
   {
-   "id": 1043,
-   "url": "https://www.bosch-presse.de/pressportal/de/en/ten-years-of-bosch-smart-home-284416.html",
-   "raw": 7708
+   "id": 278,
+   "url": "https://www.autocare.org/news/auto-care-insider"
   },
   {
-   "id": 405,
-   "url": "https://autonews.gasgoo.com/articles/news/gasgoo-weekly-changan-partners-again-with-huawei-bosch-secures-major-project-awards-2089367206155800577",
-   "raw": 13982
+   "id": 3137,
+   "url": "https://www.prnewswire.com/news-releases/autozone-dominates-auto-parts-industry-but-napa-takes-the-crown-in-customer-trust-market-force-study-covers-the-nuts-and-bolts-of-automotive-parts-retailing-302250095.html"
+  },
+  {
+   "id": 3685,
+   "url": "https://www.taiwannews.com.tw/news/5965924"
+  },
+  {
+   "id": 3684,
+   "url": "https://www.taiwannews.com.tw/en/news/5966124"
+  },
+  {
+   "id": 3680,
+   "url": "https://menafn.com/1101847153/Automotive-Brake-Pad-Market-Latest-Innovation-Advance-Technology-Top-Companies"
+  },
+  {
+   "id": 418,
+   "url": "http://jg-zdq.com/articleinfo/162.html"
+  },
+  {
+   "id": 460,
+   "url": "https://electrek.co/2026/09/29/byd-tests-ultra-luxury-ev-coach-doors-solid-state-battery/"
+  },
+  {
+   "id": 825,
+   "url": "https://www.kuraray.com/global-en/innovation/rd/statement/"
+  },
+  {
+   "id": 378,
+   "url": "https://oica.net/contact/"
+  },
+  {
+   "id": 3178,
+   "url": "https://www.truckinginfo.com/news/bendix-expands-2026-brake-school-schedule-with-more-advanced-tech-training"
+  },
+  {
+   "id": 3184,
+   "url": "https://www.truckinginfo.com/news/bendix-offers-online-training-for-brakes-and-more"
+  },
+  {
+   "id": 3168,
+   "url": "https://www.automotiveworld.com/news-releases/bendix-highlights-global-scalable-brake-control-during-advanced-clean-transportation-expo/"
+  },
+  {
+   "id": 3188,
+   "url": "https://www.trucknews.com/equipment/bendix-offers-s-cam-brake-maintenance-tips/1003066472/"
+  },
+  {
+   "id": 3722,
+   "url": "https://www.alliedmarketresearch.com/brake-friction-market-A08496"
+  },
+  {
+   "id": 3715,
+   "url": "https://www.transparencymarketresearch.com/brake-pad-market.html"
+  },
+  {
+   "id": 2025,
+   "url": "https://www.autoevolution.com/news/brake-pads-organic-ceramic-and-semi-metallic-what-are-the-differences-112665.html"
+  },
+  {
+   "id": 3190,
+   "url": "https://www.trucknews.com/equipment/brake-safety-week-begins-sunday-are-your-trucks-and-drivers-prepared/1003200880/"
+  },
+  {
+   "id": 4360,
+   "url": "https://www.tirereview.com/brake-system-scan-tools-the-new-essential-tool/"
+  },
+  {
+   "id": 2398,
+   "url": "https://www.ccjdigital.com/maintenance/article/14940109/brake-manufacturers-to-adjust-brake-pad-formulations"
+  },
+  {
+   "id": 2457,
+   "url": "https://www.ccjdigital.com/maintenance/article/15290509/brake-relining-and-restoration-basics"
+  },
+  {
+   "id": 1996,
+   "url": "https://www.taiwannews.com.tw/news/4875182"
+  },
+  {
+   "id": 2080,
+   "url": "https://www.ccjdigital.com/maintenance/article/15290524/ccjs-updated-air-brake-book-now-available-for-download"
+  },
+  {
+   "id": 53,
+   "url": "https://www.carlislecbf.com/news-events/100-years"
+  },
+  {
+   "id": 46,
+   "url": "https://www.carlislecbf.com/news-events/conexpo-con-agg-2026-recap"
+  },
+  {
+   "id": 2079,
+   "url": "https://www.ccjdigital.com/regulations/article/15747869/brake-safety-week-dates-set-with-focus-on-drums-rotors"
+  },
+  {
+   "id": 1969,
+   "url": "https://www.bodyshopbusiness.com/california-governor-signs-california-motor-vehicle-glass-act-into-law/"
+  },
+  {
+   "id": 60,
+   "url": "https://www.carlislecbf.com/news-events/carlisle-launches-el121-mine-haul-disc-brakes-for"
+  },
+  {
+   "id": 64,
+   "url": "https://www.carlislecbf.com/news-events/carlisle-presented-with-supplier-excellence-award"
+  },
+  {
+   "id": 62,
+   "url": "https://www.carlislecbf.com/news-events/h-e-parts-names-carlisle-brake-friction-supplier-o"
+  },
+  {
+   "id": 59,
+   "url": "https://www.carlislecbf.com/news-events/carlisle-releases-new-video-highlighting-latest-so"
+  },
+  {
+   "id": 58,
+   "url": "https://www.carlislecbf.com/news-events/carlisle-suzhou-achieves-caterpillar-supplier-exce"
+  },
+  {
+   "id": 61,
+   "url": "https://www.carlislecbf.com/news-events/carlisle-teams-up-with-local-community-youth-outre"
+  },
+  {
+   "id": 63,
+   "url": "https://www.carlislecbf.com/news-events/automatic-adjusters-intro-maintenance"
+  },
+  {
+   "id": 387,
+   "url": "https://www.automechanika-shanghai.com/shanghai/en/press/Case-studies.html"
+  },
+  {
+   "id": 49,
+   "url": "https://www.carlislecbf.com/news-events/carlislecbf-celebrates-100-year-anniversary-with-m"
+  },
+  {
+   "id": 48,
+   "url": "https://www.carlislecbf.com/news-events/centromotion-agritechnica-2025"
+  },
+  {
+   "id": 350,
+   "url": "https://www.astm.org/standards-and-solutions/certification"
+  },
+  {
+   "id": 483,
+   "url": "https://electrek.co/2026/09/28/omoda-jaecoo-canada-launch-late-2026-ev-lineup/"
+  },
+  {
+   "id": 820,
+   "url": "https://www.automotiveworld.com/topics/commercial-vehicle/"
+  },
+  {
+   "id": 774,
+   "url": "https://www.acea.auto/commercial-vehicle-board-of-directors/"
+  },
+  {
+   "id": 3166,
+   "url": "https://www.just-auto.com/news/continental-debuts-new-electronic-brake-system-in-china/"
+  },
+  {
+   "id": 776,
+   "url": "https://www.acea.auto/cookie-policy/"
+  },
+  {
+   "id": 381,
+   "url": "https://oica.net/cookies-policy/"
+  },
+  {
+   "id": 2006,
+   "url": "https://www.truckinginfo.com/digital-cover-features/copper-under-pressure-what-the-shift-to-copper-free-brake-pads-means-for-fleets"
+  },
+  {
+   "id": 346,
+   "url": "https://www.astm.org/standards-and-solutions/critical-and-emerging-technologies"
+  },
+  {
+   "id": 3181,
+   "url": "https://www.truckinginfo.com/news/cummins-launches-mflex4-air-disc-brake-pad-for-heavy-duty-aftermarket"
+  },
+  {
+   "id": 3169,
+   "url": "https://www.automotiveworld.com/news/cummins-confirms-wedge-capsule-brake-across-helm-engines/"
+  },
+  {
+   "id": 3140,
+   "url": "https://www.prnewswire.com/news-releases/dfc-4000-hybridynamic-brake-pads-bridging-the-gap---beyond-better-approaching-best-302103927.html"
+  },
+  {
+   "id": 3139,
+   "url": "https://www.prnewswire.com/news-releases/driv-expands-wagner-braking-portfolio-with-new-es-pads-es-rotors-premium-rotors-and-brake-bolt-kits-302761903.html"
+  },
+  {
+   "id": 3182,
+   "url": "https://www.truckinginfo.com/news/daimler-recalls-nearly-17-000-upfitted-trucks-for-possible-brake-light-issue"
+  },
+  {
+   "id": 4358,
+   "url": "https://www.tirereview.com/diagnose-soft-brake-pedal/"
+  },
+  {
+   "id": 345,
+   "url": "https://www.astm.org/standards-and-solutions/digital-library"
+  },
+  {
+   "id": 371,
+   "url": "https://oica.net/all-members/"
+  },
+  {
+   "id": 1136,
+   "url": "https://www.underhoodservice.com/dont-make-these-electric-vehicle-lifting-mistakes/"
+  },
+  {
+   "id": 660,
+   "url": "https://www.iso.org/drafting-standards.html"
+  },
+  {
+   "id": 3244,
+   "url": "https://www.truckinginfo.com/news/eeoc-sues-texas-trucking-company-over-driver-age-limits"
+  },
+  {
+   "id": 467,
+   "url": "https://electrek.co/2026/09/29/evgos-750-kw-charging-system-is-coming-in-2027/"
+  },
+  {
+   "id": 3163,
+   "url": "https://www.hotrod.com/how-to/easy-bolt-on-floater"
+  },
+  {
+   "id": 354,
+   "url": "https://www.astm.org/news/editorial-calendar-and-media-kit"
+  },
+  {
+   "id": 3148,
+   "url": "https://www.azom.com/article.aspx?ArticleID=14745"
+  },
+  {
+   "id": 2083,
+   "url": "https://www.ccjdigital.com/maintenance/article/15746467/electronic-brake-controls-getting-popular-in-heavy-trucks"
+  },
+  {
+   "id": 268,
+   "url": "https://www.autocare.org/news/blog/emerging-technology"
+  },
+  {
+   "id": 809,
+   "url": "https://www.meritor.com/en-na/engines/resources/emissions-testing"
+  },
+  {
+   "id": 343,
+   "url": "https://www.astm.org/standards-and-solutions/enterprise-solutions"
+  },
+  {
+   "id": 3162,
+   "url": "https://www.hotrod.com/how-to/understanding-disc-brake-rotors"
+  },
+  {
+   "id": 269,
+   "url": "https://www.autocare.org/news/blog/executive-update"
+  },
+  {
+   "id": 90,
+   "url": "https://fisita.com/fisita-webinar-explores-the-state-of-the-art-and-challenges-of-xr-in-the-automotive-industry/"
+  },
+  {
+   "id": 287,
+   "url": "http://www.acea.auto/nav/?content=facts-figures"
+  },
+  {
+   "id": 311,
+   "url": "https://www.vda.de/vda/en/news/facts-and-figures"
+  },
+  {
+   "id": 3144,
+   "url": "https://www.azom.com/article.aspx?ArticleID=13732"
+  },
+  {
+   "id": 328,
+   "url": "https://www.aisin.com/en/news/2026/010512.html"
+  },
+  {
+   "id": 327,
+   "url": "https://www.aisin.com/en/news/2026/010517.html"
+  },
+  {
+   "id": 325,
+   "url": "https://www.aisin.com/en/news/2026/010523.html"
+  },
+  {
+   "id": 326,
+   "url": "https://www.aisin.com/en/news/2026/010522.html"
+  },
+  {
+   "id": 324,
+   "url": "https://www.aisin.com/en/news/2026/010529.html"
+  },
+  {
+   "id": 330,
+   "url": "https://www.aisin.com/en/news/2026/010482.html"
+  },
+  {
+   "id": 329,
+   "url": "https://www.aisin.com/en/news/2026/010484.html"
+  },
+  {
+   "id": 3135,
+   "url": "https://www.businesswire.com/news/home/20260126446855/en/First-Brands-Group-Commences-Wind-Down-of-North-American-Brake-Parts-Inc.-Cardone-and-Autolite-Business-Units"
+  },
+  {
+   "id": 488,
+   "url": "https://electrek.co/2026/09/27/survey-sunday-when-self-driving-cars-crash-who-gets-the-blame/"
+  },
+  {
+   "id": 3153,
+   "url": "https://www.autoevolution.com/news/ford-gt-mk-ii-features-brembo-dyatom-carbon-ceramic-brake-discs-141933.html"
+  },
+  {
+   "id": 3155,
+   "url": "https://www.autoevolution.com/news/ford-recalls-escape-over-incorrectly-manufactured-brake-pads-259658.html"
+  },
+  {
+   "id": 3173,
+   "url": "https://www.automotiveworld.com/news-releases/ford-intensifies-china-growth-plan-smart-vehicles-expanded-local-production-leaner-business-structure/"
+  },
+  {
+   "id": 282,
+   "url": "https://www.autocare.org/news/latest-news/details/2025/09/10/fortune-media-great-place-to-work-add-auto-care-association-to-2025-best-workplaces-list"
+  },
+  {
+   "id": 3681,
+   "url": "https://www.sphericalinsights.com/es/reports/france-automotive-brake-pad-market"
+  },
+  {
+   "id": 847,
+   "url": "http://www.gloryfriction.com/news_dt/50.html"
+  },
+  {
+   "id": 461,
+   "url": "https://electrek.co/2026/09/29/gms-new-ev-battery-tech-cut-costs-without-sacrificing-range/"
+  },
+  {
+   "id": 824,
+   "url": "https://www.kuraray.com/global-en/sustainability/guidelines/"
+  },
+  {
+   "id": 3167,
+   "url": "https://www.just-auto.com/features/genesis-g70-shooting-brake-goes-global/"
+  },
+  {
+   "id": 3682,
+   "url": "https://menafn.com/1101781395/Global-Automobile-Brake-Pad-Market-Analysis-by-Recent-Scope-Latest-Innovation-Dynamics-Forecast-2025"
+  },
+  {
+   "id": 382,
+   "url": "https://www.automechanika-shanghai.com/shanghai/en/facts-figures/global-industry-news.html"
+  },
+  {
+   "id": 270,
+   "url": "https://www.autocare.org/news/blog/global-trade-and-supply-chain"
+  },
+  {
+   "id": 361,
+   "url": "https://www.miba.com/en/news/article/herbert-steiner-joins-the-management-board-of-miba-ag"
+  },
+  {
+   "id": 50,
+   "url": "https://www.carlislecbf.com/news-events/how-do-paper-based-friction-materials-power-modern"
+  },
+  {
+   "id": 3160,
+   "url": "https://www.hotrod.com/how-to/how-to-change-c4-corvette-disc-brake-pads-and-rotors"
+  },
+  {
+   "id": 3154,
+   "url": "https://www.autoevolution.com/news/how-to-check-your-honda-gold-wing-for-dragging-brake-issues-86367.html"
+  },
+  {
+   "id": 3177,
+   "url": "https://www.truckinginfo.com/articles/how-to-recognize-and-prevent-corrosion-and-rust-jacking-on-heavy-duty-brake-shoe"
+  },
+  {
+   "id": 2082,
+   "url": "https://www.ccjdigital.com/maintenance/components/video/15681888/how-well-do-you-know-the-20-rule-for-brake-violations"
+  },
+  {
+   "id": 2098,
+   "url": "https://www.bodyshopbusiness.com/hunter-engineering-enters-into-new-collaboration-for-remote-diagnostics-service-through-adaslink/"
+  },
+  {
+   "id": 468,
+   "url": "https://electrek.co/2026/09/29/hyundai-launches-electric-ioniq-v-for-under-15000-but-you-cant-have-it/"
+  },
+  {
+   "id": 470,
+   "url": "https://electrek.co/2026/09/29/hyundai-launching-two-new-evs-ioniq-4-ioniq-7/"
+  },
+  {
+   "id": 271,
+   "url": "https://www.autocare.org/news/blog/industry-profiles"
+  },
+  {
+   "id": 369,
+   "url": "https://oica.net/industry-topics/"
+  },
+  {
+   "id": 775,
+   "url": "https://www.acea.auto/industry-insights-expertise/"
+  },
+  {
+   "id": 656,
+   "url": "https://www.iso.org/standard/14001"
+  },
+  {
+   "id": 654,
+   "url": "https://www.iso.org/standard/37001"
+  },
+  {
+   "id": 2447,
+   "url": "https://www.ccjdigital.com/technology/cybersecurity/video/15740889/j2497-cyber-vulnerability-hackers-targeting-truck-trailers"
+  },
+  {
+   "id": 331,
+   "url": "https://www.aisin.com/en/news/2026/010457.html"
+  },
+  {
+   "id": 316,
+   "url": "https://www.aisin.com/en/news/2026/010671.html"
+  },
+  {
+   "id": 373,
+   "url": "https://oica.net/olivier-fontaine-oica-technical-director-speech-at-china-auto-forum-2026/"
+  },
+  {
+   "id": 319,
+   "url": "https://www.aisin.com/en/news/2026/010650.html"
+  },
+  {
+   "id": 317,
+   "url": "https://www.aisin.com/en/news/2026/010660.html"
+  },
+  {
+   "id": 318,
+   "url": "https://www.aisin.com/en/news/2026/010659.html"
+  },
+  {
+   "id": 789,
+   "url": "https://www.hitachiastemo.com/en/news/20260612-01/"
+  },
+  {
+   "id": 788,
+   "url": "https://www.hitachiastemo.com/en/news/20260616-01/"
+  },
+  {
+   "id": 374,
+   "url": "https://www.autosinnovate.org/posts/press-release/automakers-warn-vehicle-sales-at-risk-in-california"
+  },
+  {
+   "id": 653,
+   "url": "https://www.iso.org/standard/53001"
+  },
+  {
+   "id": 3170,
+   "url": "https://www.automotiveworld.com/news-releases/key-automotive-brake-system-manufacturers-choose-sensatas-force-sensing-technology-for-driving-innovation-in-electromechanical-brakes-emb/"
+  },
+  {
+   "id": 432,
+   "url": "https://www.smmt.co.uk/key-press-dates"
+  },
+  {
+   "id": 466,
+   "url": "https://electrek.co/2026/09/29/kia-adds-new-pv5-chassis-cab-endless-conversions/"
+  },
+  {
+   "id": 478,
+   "url": "https://electrek.co/2026/09/28/kias-new-interior-spotted-larger-screen-high-tech-software/"
+  },
+  {
+   "id": 3243,
+   "url": "https://www.truckinginfo.com/news/kodiak-hauls-produce-in-california-autonomous-truck-pilot"
+  },
+  {
+   "id": 3245,
+   "url": "https://www.truckinginfo.com/news/kodiak-targets-dallashouston-for-driverless-trucks"
+  },
+  {
+   "id": 348,
+   "url": "https://www.astm.org/standards-and-solutions/laboratory-services"
+  },
+  {
+   "id": 388,
+   "url": "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/en/press/press-releases/2026/AMS26_PR1.html"
+  },
+  {
+   "id": 3143,
+   "url": "https://www.prnewswire.com/news-releases/lectric-ebikes-upgrades-xp-3-0-with-hydraulic-brakes-301890795.html"
+  },
+  {
+   "id": 380,
+   "url": "https://oica.net/legal-notice/"
+  },
+  {
+   "id": 474,
+   "url": "https://electrek.co/2026/09/28/lexus-reveals-2027-tz-prices-start-65000-up-to-315-miles-range/"
+  },
+  {
+   "id": 3172,
+   "url": "https://www.automotiveworld.com/articles/lowering-the-limit-euro-7-brake-emissions-update/"
+  },
+  {
+   "id": 462,
+   "url": "https://electrek.co/2026/09/29/lucid-air-ux-3-0-update-950-hardware-upgrade/"
+  },
+  {
+   "id": 2393,
+   "url": "https://www.motorcycle.com/how-to/mo-wrenching-how-to-bleed-your-brakes"
+  },
+  {
+   "id": 3180,
+   "url": "https://www.truckinginfo.com/news/mack-introduces-powerleash-engine-brake-system"
+  },
+  {
+   "id": 826,
+   "url": "https://www.kuraray.com/global-en/ir/strategy/"
+  },
+  {
+   "id": 347,
+   "url": "https://www.astm.org/standards-and-solutions/market-insights-and-innovation"
+  },
+  {
+   "id": 272,
+   "url": "https://www.autocare.org/news/blog/market-insights-with-mike"
+  },
+  {
+   "id": 790,
+   "url": "https://www.hitachiastemo.com/en/news/20260521-01/"
+  },
+  {
+   "id": 321,
+   "url": "https://www.aisin.com/en/news/2026/010630.html"
+  },
+  {
+   "id": 320,
+   "url": "https://www.aisin.com/en/news/2026/010638.html"
+  },
+  {
+   "id": 3156,
+   "url": "https://www.autoevolution.com/news/mclaren-mp4-12-the-f1-car-that-used-two-different-brake-pedals-207645.html"
+  },
+  {
+   "id": 430,
+   "url": "https://www.smmt.co.uk/news/"
+  },
+  {
+   "id": 279,
+   "url": "https://www.autocare.org/news/media-contacts"
+  },
+  {
+   "id": 276,
+   "url": "https://www.autocare.org/news/media-coverage"
+  },
+  {
+   "id": 277,
+   "url": "https://www.autocare.org/news/media-kit"
+  },
+  {
+   "id": 273,
+   "url": "https://www.autocare.org/news/blog/meet-a-staffer"
+  },
+  {
+   "id": 364,
+   "url": "https://oica.net/members-news/"
+  },
+  {
+   "id": 3175,
+   "url": "https://www.automotiveworld.com/topics/commercial-vehicle/mercedes-benz-trucks-wins-900-truck-deal-from-girteka/"
+  },
+  {
+   "id": 652,
+   "url": "https://www.iso.org/home/insights-news/resources/standards-explained.html"
+  },
+  {
+   "id": 370,
+   "url": "https://oica.net/motor-shows/"
+  },
+  {
+   "id": 3161,
+   "url": "https://www.hotrod.com/how-to/mounting-wilwood-disc-brake-master-cylinder-old-ford"
+  },
+  {
+   "id": 1256,
+   "url": "https://www.bodyshopbusiness.com/insurance-institute-of-highway-safety-iihs-and-nearly-140-regional-first-responders-help-make-southeast-drivers-safer-on-the-road-through-national-auto-body-council-first-responder-emergency-e/"
+  },
+  {
+   "id": 45,
+   "url": "https://www.carlislecbf.com/news-events/new-facility-brings-off-highway-wet-friction-produ"
+  },
+  {
+   "id": 283,
+   "url": "https://www.autocare.org/news/latest-news/details/2025/06/13/new-report-5.1-growth-expected-for-auto-care-industry-in-2025-reaching-$664-billion-in-2028"
+  },
+  {
+   "id": 280,
+   "url": "https://www.autocare.org/news/latest-news/details/2026/06/11/new-report--5.4--growth-expected-for-total-auto-care-industry-in-2026--reaching--676.5-billion-in-2029"
+  },
+  {
+   "id": 2036,
+   "url": "https://unece.org/artificial-intelligence/press/new-un-regulations-target-pedal-misapplication-and-usher-new"
+  },
+  {
+   "id": 475,
+   "url": "https://electrek.co/2026/09/28/new-york-considering-20-new-e-bike-laws-including-outlawing-class-3-electric-bikes/"
+  },
+  {
+   "id": 113,
+   "url": "https://fisita.com/news-insights/"
+  },
+  {
+   "id": 284,
+   "url": "http://www.acea.auto/nav/?content=news-articles"
+  },
+  {
+   "id": 332,
+   "url": "https://www.mobis.com/en/aboutus/press.do"
+  },
+  {
+   "id": 822,
+   "url": "https://www.automotiveworld.com/data/oem-financials/"
+  },
+  {
+   "id": 823,
+   "url": "https://www.automotiveworld.com/data/oem-production/"
+  },
+  {
+   "id": 365,
+   "url": "https://oica.net/latest-news/"
+  },
+  {
+   "id": 3136,
+   "url": "https://www.prnewswire.com/news-releases/ordre-group-selects-alitheon-featureprint-technology-to-bring-transparency-traceability-and-trust-to-the-global-fashion-industry-302194650.html"
+  },
+  {
+   "id": 56,
+   "url": "https://www.carlislecbf.com/news-events/off-highway-brake-and-friction-excellence-is-all-i"
+  },
+  {
+   "id": 472,
+   "url": "https://electrek.co/2026/09/28/teslas-two-week-notice-volvos-autonomous-milestone-and-fun-with-lego/"
+  },
+  {
+   "id": 3191,
+   "url": "https://www.trucknews.com/regulations/ontario-to-standardize-entry-level-truck-driver-training-curriculum/1003222034/"
+  },
+  {
+   "id": 3185,
+   "url": "https://www.trucknews.com/blogs/ontarios-new-air-brake-endorsement-renewal-process-is-big-improvement/"
+  },
+  {
+   "id": 3186,
+   "url": "https://www.trucknews.com/transportation/ontarios-online-air-brake-learning-module-for-renewals-begins-sept-1/1003176875/"
+  },
+  {
+   "id": 3192,
+   "url": "https://www.trucknews.com/regulations/ottawa-enforcement-places-19-trucks-oos/1003221945/"
+  },
+  {
+   "id": 3686,
+   "url": "https://finance.yahoo.com/news/outlook-automotive-brake-pad-global-125800104.html"
+  },
+  {
+   "id": 3683,
+   "url": "https://uk.finance.yahoo.com/news/outlook-automotive-brake-pad-global-125800015.html"
+  },
+  {
+   "id": 3138,
+   "url": "https://www.prnewswire.com/news-releases/padsplit-surpasses-10-000-co-living-rooms-bringing-affordable-housing-to-23-000-people-throughout-the-country-302047619.html"
+  },
+  {
+   "id": 3142,
+   "url": "https://www.prnewswire.com/news-releases/pep-boys-data-reveals-the-us-cities-putting-the-most-stress-on-their-brakes-302860984.html"
+  },
+  {
+   "id": 310,
+   "url": "https://www.vda.de/vda/en/press/press-material"
+  },
+  {
+   "id": 353,
+   "url": "https://www.astm.org/news/podcasts"
+  },
+  {
+   "id": 681,
+   "url": "https://www.hlmando.com/en/media-policy.do"
+  },
+  {
+   "id": 435,
+   "url": "https://www.smmt.co.uk/press-pr/"
+  },
+  {
+   "id": 431,
+   "url": "https://www.smmt.co.uk/press-pr"
+  },
+  {
+   "id": 433,
+   "url": "https://www.smmt.co.uk/press-events/"
+  },
+  {
+   "id": 187,
+   "url": "https://newsroom.knorr-bremse.com/en/press-mailing-list/"
+  },
+  {
+   "id": 312,
+   "url": "https://www.vda.de/vda/en/press"
+  },
+  {
+   "id": 309,
+   "url": "https://www.vda.de/vda/en/press/press-contacts"
+  },
+  {
+   "id": 367,
+   "url": "https://oica.net/production-statistics/"
+  },
+  {
+   "id": 286,
+   "url": "http://www.acea.auto/nav/?content=publications"
+  },
+  {
+   "id": 3157,
+   "url": "https://www.hotrod.com/how-to/ctrp-0907-race-car-brake-system"
+  },
+  {
+   "id": 3149,
+   "url": "https://www.azom.com/article.aspx?ArticleID=18637"
+  },
+  {
+   "id": 657,
+   "url": "https://www.iso.org/standard/45001"
+  },
+  {
+   "id": 655,
+   "url": "https://www.iso.org/standard/27001"
+  },
+  {
+   "id": 658,
+   "url": "https://www.iso.org/standard/42001"
+  },
+  {
+   "id": 476,
+   "url": "https://electrek.co/2026/09/28/eia-83-gw-of-renewables-and-storage-coming-in-12-months-as-fossil-fuel-capacity-to-fall/"
+  },
+  {
+   "id": 368,
+   "url": "https://oica.net/sales-statistics/"
+  },
+  {
+   "id": 821,
+   "url": "https://www.automotiveworld.com/topics/software-defined-vehicle/"
+  },
+  {
+   "id": 351,
+   "url": "https://www.astm.org/news/standardization-news"
+  },
+  {
+   "id": 650,
+   "url": "https://www.iso.org/standards.html"
+  },
+  {
+   "id": 342,
+   "url": "https://www.astm.org/standards-and-solutions/standards-publications"
+  },
+  {
+   "id": 341,
+   "url": "https://www.astm.org/standards-and-solutions"
+  },
+  {
+   "id": 651,
+   "url": "https://www.iso.org/insights/standards-world"
+  },
+  {
+   "id": 366,
+   "url": "https://oica.net/statistics/"
+  },
+  {
+   "id": 2454,
+   "url": "https://www.ccjdigital.com/maintenance/article/15290515/inspecting-air-brakes-a-stepbystep-guide"
+  },
+  {
+   "id": 2037,
+   "url": "https://unece.org/sustainable-development/press/strengthened-un-regulation-emergency-braking-trucks-and-coaches-will"
+  },
+  {
+   "id": 3717,
+   "url": "https://www.waste360.com/industry-insights/tmd-friction-announces-a-new-air-disc-brake-friction-material-for-heavy-duty-applications"
+  },
+  {
+   "id": 3171,
+   "url": "https://www.automotiveworld.com/news-releases/targeting-brake-dust-brake-dust-particulate-filter-mannhummel/"
+  },
+  {
+   "id": 335,
+   "url": "https://www.mobis.com/en/aboutus/press.do#mobis_tech"
+  },
+  {
+   "id": 477,
+   "url": "https://electrek.co/2026/09/28/tesla-roadster-demo-delayed-october-15-weather/"
+  },
+  {
+   "id": 459,
+   "url": "https://electrek.co/2026/09/29/tesla-takes-on-30-billion-in-credit-as-it-approaches-unprofitability/"
+  },
+  {
+   "id": 471,
+   "url": "https://electrek.co/2026/09/29/tesla-electric-fan-car-patent-model-s-roadster/"
+  },
+  {
+   "id": 3145,
+   "url": "https://www.azom.com/article.aspx?ArticleID=11076"
+  },
+  {
+   "id": 3141,
+   "url": "https://www.prnewswire.com/news-releases/the-all-new-2022-sea-doo-switch-is-a-game-changer-in-the-pontoon-industry-301353530.html"
+  },
+  {
+   "id": 2078,
+   "url": "https://www.ccjdigital.com/business/article/14929907/the-bendix-guide-to-air-disc-brake-friction-replacement"
+  },
+  {
+   "id": 481,
+   "url": "https://electrek.co/2026/09/28/byd-overhauling-cheapest-ev-bigger/"
+  },
+  {
+   "id": 473,
+   "url": "https://electrek.co/2026/09/28/us-clean-energy-jobs-fell-for-the-first-time-since-the-pandemic/"
+  },
+  {
+   "id": 486,
+   "url": "https://electrek.co/2026/09/28/full-self-hauling-volvo-moves-3-million-tonnes-of-earth-autonomously/"
+  },
+  {
+   "id": 2084,
+   "url": "https://www.ccjdigital.com/maintenance/components/article/15680859/tips-to-avoid-brake-violations"
+  },
+  {
+   "id": 363,
+   "url": "https://oica.net/top-5-news/"
+  },
+  {
+   "id": 3189,
+   "url": "https://www.trucknews.com/equipment/trailer-brake-inspections-can-make-or-break-your-day/1003187480/"
+  },
+  {
+   "id": 349,
+   "url": "https://www.astm.org/standards-and-solutions/training-courses"
+  },
+  {
+   "id": 2455,
+   "url": "https://www.ccjdigital.com/maintenance/article/15290516/tips-for-troubleshooting-brake-imbalance"
+  },
+  {
+   "id": 3187,
+   "url": "https://www.trucknews.com/transportation/truck-tips-how-to-mark-and-measure-brake-adjustment-video/1003171964/"
+  },
+  {
+   "id": 3165,
+   "url": "https://www.just-auto.com/news/uk-sensotronic-brake-failure-signals-end-of-ehb-prospects-for-brake-by-wire-dim/"
+  },
+  {
+   "id": 2044,
+   "url": "https://unece.org/transport/documents/2023/07/standards/un-gtr-no24-laboratory-measurement-brake-emissions-light-duty"
+  },
+  {
+   "id": 3018,
+   "url": "https://unece.org/transport/documents/2021/08/standards/un-regulation-no-0-rev3-03-series"
+  },
+  {
+   "id": 2040,
+   "url": "https://unece.org/transport/documents/2021/12/standards/un-regulation-no-13h-rev4-amend2"
+  },
+  {
+   "id": 2043,
+   "url": "https://unece.org/transport/documents/2023/02/standards/un-regulation-no-144-rev1"
+  },
+  {
+   "id": 2042,
+   "url": "https://unece.org/transport/documents/2021/07/standards/un-regulation-no-159-moving-information-system-mois"
+  },
+  {
+   "id": 2041,
+   "url": "https://unece.org/transport/documents/2021/05/standards/un-regulation-no-28-amend6"
+  },
+  {
+   "id": 2557,
+   "url": "https://unece.org/transport/documents/2021/04/standards/un-regulation-no-90-rev3-amend6"
+  },
+  {
+   "id": 2038,
+   "url": "https://unece.org/sustainable-development/press/un-regulation-advanced-emergency-braking-systems-cars-significantly"
+  },
+  {
+   "id": 3158,
+   "url": "https://www.hotrod.com/how-to/underdash-lokar-emergency-brake-installation"
+  },
+  {
+   "id": 3147,
+   "url": "https://www.azom.com/article.aspx?ArticleID=12622"
+  },
+  {
+   "id": 3146,
+   "url": "https://www.azom.com/article.aspx?ArticleID=22133"
+  },
+  {
+   "id": 434,
+   "url": "https://www.smmt.co.uk/news"
+  },
+  {
+   "id": 47,
+   "url": "https://www.carlislecbf.com/news-events/visit-carlisle-brake-friction-at-conexpo"
+  },
+  {
+   "id": 55,
+   "url": "https://www.carlislecbf.com/news-events/visit-us-@-bauma-conexpo-india-2024"
+  },
+  {
+   "id": 51,
+   "url": "https://www.carlislecbf.com/news-events/visit-us-@agritechnica-2025"
+  },
+  {
+   "id": 57,
+   "url": "https://www.carlislecbf.com/news-events/visit-us-at-minexpo-international®-2024"
+  },
+  {
+   "id": 484,
+   "url": "https://electrek.co/2026/09/28/volkswagens-best-seller-electric-2027-replace-id-4-id-5-images/"
+  },
+  {
+   "id": 3164,
+   "url": "https://www.railway-technology.com/news/wabtec-masu-railway-friction-business/"
+  },
+  {
+   "id": 480,
+   "url": "https://electrek.co/2026/09/28/tesla-q3-2026-delivery-estimates-wall-street-split/"
+  },
+  {
+   "id": 2373,
+   "url": "https://www.nwnewsnetwork.org/environment-and-planning/2015-12-11/washington-state-says-give-salmon-a-break-with-copper-free-brakes"
+  },
+  {
+   "id": 379,
+   "url": "https://oica.net/beijing-auto-show-2026-press-conference-oica-caam/"
+  },
+  {
+   "id": 3183,
+   "url": "https://www.truckinginfo.com/articles/engine-brakes-101-part-i-how-engine-brakes-work"
+  },
+  {
+   "id": 274,
+   "url": "https://www.autocare.org/news/blog/wtt"
+  },
+  {
+   "id": 659,
+   "url": "https://www.iso.org/who-develops-standards.html"
+  },
+  {
+   "id": 2002,
+   "url": "https://www.msn.com/en-us/money/markets/why-copper-used-to-be-used-in-brake-pads-and-why-it-was-a-bad-idea/ar-AA27fJfm"
+  },
+  {
+   "id": 3240,
+   "url": "https://www.truckinginfo.com/news/wrong-repair-prompts-recall-of-freightliner-western-star-4x2-trucks"
+  },
+  {
+   "id": 275,
+   "url": "https://www.autocare.org/news/blog/yang-effect"
+  },
+  {
+   "id": 3193,
+   "url": "https://www.trucknews.com/transportation/ymx-outrider-ink-five-year-deal-to-deploy-autonomous-yard-trucks/1003222605/"
+  },
+  {
+   "id": 3174,
+   "url": "https://www.automotiveworld.com/news-releases/zf-the-industry-pioneer-in-electric-parking-brakes-surpasses-250-million-units/"
+  },
+  {
+   "id": 52,
+   "url": "https://www.carlislecbf.com/news-events/bauma-2025"
+  },
+  {
+   "id": 777,
+   "url": "http://www.acea.auto/cookie-policy/"
+  },
+  {
+   "id": 427,
+   "url": "https://www.jama.or.jp/release/"
+  },
+  {
+   "id": 428,
+   "url": "https://www.jama.or.jp/release/latest_update"
+  },
+  {
+   "id": 429,
+   "url": "https://www.jama.or.jp/release/news_release/2025/2959/"
+  },
+  {
+   "id": 258,
+   "url": "https://www.advics.co.jp/news/2026/0616/"
+  },
+  {
+   "id": 261,
+   "url": "https://www.advics.co.jp/news/2026/0522/"
+  },
+  {
+   "id": 256,
+   "url": "https://www.advics.co.jp/news/2026/260803/"
+  },
+  {
+   "id": 262,
+   "url": "https://www.advics.co.jp/news/2026/0518/"
+  },
+  {
+   "id": 263,
+   "url": "https://www.advics.co.jp/news/2026/0406/"
+  },
+  {
+   "id": 255,
+   "url": "https://www.advics.co.jp/news/2026/0827/"
+  },
+  {
+   "id": 148,
+   "url": "http://www.btl-auto.com/index.php/ournews/2026/09-23/1104.html"
+  },
+  {
+   "id": 410,
+   "url": "http://www.nasn-auto.com/news/46.html"
+  },
+  {
+   "id": 259,
+   "url": "https://www.advics.co.jp/news/2026/0609/"
+  },
+  {
+   "id": 260,
+   "url": "https://www.advics.co.jp/news/2026/0526/"
+  },
+  {
+   "id": 257,
+   "url": "https://www.advics.co.jp/news/2026/0702/"
+  },
+  {
+   "id": 409,
+   "url": "http://www.nasn-auto.com/news/47.html"
+  },
+  {
+   "id": 848,
+   "url": "http://www.gloryfriction.com/news_dt/46.html"
+  },
+  {
+   "id": 254,
+   "url": "https://www.advics.co.jp/news/2026/0929/"
   }
  ]
 }
