@@ -46,6 +46,8 @@ UA = {
 }
 JINA = "https://r.jina.ai/"
 LIMIT = int(os.environ.get("MEDIA_LIMIT", "60"))
+# jina 兜底开关：默认开；若日志显示 jina 也被上游拦（同 403），设 USE_JINA=0 省时间
+USE_JINA = os.environ.get("USE_JINA", "1") not in ("0", "false", "False")
 
 # 图片黑名单：文件名命中即丢
 JUNK_IMG = re.compile(
@@ -259,6 +261,7 @@ def main():
         print("[media] 无待抓 URL（缺 data/media_queue.json / out/media_urls.txt）")
         return
     res = load_existing()
+    FAILS = []
     print(f"[media] 队列 {len(queue)} 条，已有结果 {len(res)} 条")
     LIMIT_EFF = min(LIMIT, len(queue))
     ok = img_ok = 0
@@ -271,6 +274,10 @@ def main():
             ok += 1
             continue
         html, note = fetch_direct(url)
+        if not html and not USE_JINA:
+            print(f"[{i:>3}] FAIL direct={note}（jina 已禁用）{url[:60]}", flush=True)
+            FAILS.append({"url": url, "err": f"direct:{note}", "ts": time.strftime("%F %T")})
+            continue
         if html:
             # jina 返回的 markdown 化文本里没有 <img>，直接连的 HTML 才用 soup
             try:
@@ -286,8 +293,9 @@ def main():
             print(f"[{i:>3}] direct 失败({note})，试 jina: {url[:70]}", flush=True)
             jt, jn = fetch_jina(url)
             if not jt:
+                # 失败不落盘：留着下次重试（直连失败常是 IP 段轮换/临时挑战）
                 print(f"[{i:>3}] FAIL {jn} {url[:70]}", flush=True)
-                res[url] = {"error": jn, "text": "", "images": [], "videos": []}
+                FAILS.append({"url": url, "err": jn, "ts": time.strftime("%F %T")})
                 continue
             text, images, videos = _clean_jina(jt), [], []
             note = jn
@@ -298,6 +306,12 @@ def main():
                     images.append({"url": u, "caption": m.group(1)[:200]})
 
         text = (text or "").strip()[:40000]
+        if len(text) < 300 and not images:
+            print(f"[{i:>3}] THIN text={len(text)} img=0（疑似付费墙/动态渲染）{url[:60]}",
+                  flush=True)
+            FAILS.append({"url": url, "err": f"thin:{len(text)}",
+                          "ts": time.strftime("%F %T")})
+            continue
         res[url] = {"text": text, "images": images, "videos": videos,
                     "via": note, "id": item.get("id"),
                     "ts": time.strftime("%Y-%m-%d %H:%M:%S")}
@@ -317,6 +331,13 @@ def main():
     tot_vid = sum(len(v.get("videos") or []) for v in res.values())
     print(f"\n[media] 成功 {ok}/{LIMIT_EFF}，有图 {img_ok}；"
           f"库内合计 图片 {tot_img} / 视频 {tot_vid}")
+    if FAILS:
+        os.makedirs("out", exist_ok=True)
+        with open("out/media_fails.json", "w", encoding="utf-8") as f:
+            json.dump(FAILS, f, ensure_ascii=False, indent=1)
+        print(f"[media] 失败 {len(FAILS)} 条（未落盘，下轮重试）-> out/media_fails.json")
+        for x in FAILS[:10]:
+            print(f"    FAIL {x['err']:<22} {x['url'][:70]}")
 
 
 if __name__ == "__main__":
