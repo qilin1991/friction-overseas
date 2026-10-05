@@ -45,7 +45,7 @@ concurrency:
 jobs:
   translate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: 检出仓库
@@ -58,6 +58,29 @@ jobs:
 
       - name: 探测翻译源
         run: python scripts/probe_translate.py
+
+      - name: 正文翻译（多源）
+        if: ${{ !inputs.probe_only }}
+        env:
+          T_LIMIT: ${{ inputs.limit }}
+          MYMEMORY_EMAIL: ${{ inputs.mymemory_email }}
+        run: python scripts/translate_body.py
+
+      - name: 提交 news_zh.json
+        if: ${{ !inputs.probe_only }}
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news_zh.json
+          if git diff --cached --quiet; then
+            echo "无变更，跳过提交"
+          else
+            CNT=$(python -c "import json;print(json.load(open('data/news_zh.json',encoding='utf-8'))['count'])")
+            git commit -m "chore(friction): 正文译文同步 ${CNT} 条 [skip ci]"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
 
       - name: 上传探测结果
         if: always()
