@@ -114,29 +114,23 @@ def call_with_retry(fn, text, stats, key):
     raise RuntimeError("retry exhausted")
 
 
-def translate_paragraph(text, sources, stats, order=None):
-    """逐源尝试，返回 (译文, 使用的源)。全失败返回 (None, None)。"""
-    ph_in = len(IMG_ANY.findall(text))
-    for key, fn in (sources if order is None else [s for s in sources if s[0] in order]):
+def translate_plain(text, sources, stats):
+    """纯文本（不含占位符）逐源尝试，返回 (译文, 源)。全失败返回 (None, None)。"""
+    for key, fn in sources:
         try:
             out = call_with_retry(fn, text, stats, key)
-        except Exception as e:
+        except Exception:
             stats[key + "_err"] = stats.get(key + "_err", 0) + 1
-            last = str(e)[:80]
             continue
         if not out or not out.strip():
             stats[key + "_empty"] = stats.get(key + "_empty", 0) + 1
             continue
         out = norm_ph(out.strip())
-        # 门禁 1：占位符数量必须对齐
-        if len(IMG_ANY.findall(out)) != ph_in:
-            stats[key + "_phlost"] = stats.get(key + "_phlost", 0) + 1
-            continue
-        # 门禁 2：原样返回 = 没翻（源语言判错/被拒）
+        # 门禁 1：原样返回 = 没翻（源语言判错 / 被拒）
         if out == text.strip() and len(ASCII.findall(text)) > 20:
             stats[key + "_noop"] = stats.get(key + "_noop", 0) + 1
             continue
-        # 门禁 3：长度塌缩（疑似摘要/截断）
+        # 门禁 2：长度塌缩（疑似摘要 / 截断）
         if len(out) < max(4, len(text) * 0.10):
             stats[key + "_short"] = stats.get(key + "_short", 0) + 1
             continue
@@ -144,6 +138,34 @@ def translate_paragraph(text, sources, stats, order=None):
         time.sleep(SLEEP)
         return out, key
     return None, None
+
+
+def translate_paragraph(text, sources, stats):
+    """整段翻优先（上下文最完整）；占位符丢了就切开分段翻，保证 [IMG:n] 100% 不丢。"""
+    phs = list(IMG_ANY.finditer(text))
+    if not phs:
+        return translate_plain(text, sources, stats)
+
+    r, k = translate_plain(text, sources, stats)
+    if r is not None and len(IMG_ANY.findall(r)) == len(phs):
+        return r, k
+    if r is not None:
+        stats[(k or "?") + "_phlost"] = stats.get((k or "?") + "_phlost", 0) + 1
+
+    # 兜底：以占位符为界切开，逐片翻译，占位符原样插回
+    pieces = IMG_ANY.split(text)
+    out = []
+    for i, seg in enumerate(pieces):
+        s = seg.strip()
+        if s and len(ASCII.findall(s)) >= 3 and not is_zh(s):
+            rr, _ = translate_plain(s, sources, stats)
+            out.append(rr if rr else s)
+        else:
+            out.append(seg)
+        if i < len(phs):
+            out.append(phs[i].group(0))
+    stats["SEGSPLIT"] = stats.get("SEGSPLIT", 0) + 1
+    return "".join(out), "segmented"
 
 
 def translate_text(text, sources, stats):
