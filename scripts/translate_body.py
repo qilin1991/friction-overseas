@@ -41,6 +41,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 QUEUE = "data/translate_queue.json"
 OUT = "data/news_zh.json"
 CACHE = "data/translate_cache.json"
+DONE = "data/translate_done.json"   # VPS 回填成功后回传的清单，用来裁剪 OUT
 
 CJK = re.compile(r"[\u4e00-\u9fff]")
 ASCII = re.compile(r"[A-Za-z]")
@@ -354,13 +355,24 @@ def main():
         return
     sources = live
 
+    # VPS 已回填的清单：从产物里裁掉，防止 news_zh.json 越滚越大
+    # （2026-10-06 踩过：超过 1MB 后 Contents API 不再内联返回 content，VPS 拉不回去）
+    done = set()
+    if os.path.exists(DONE):
+        try:
+            done = set(json.load(open(DONE, encoding="utf-8")).get("urls", []))
+        except Exception:
+            done = set()
     old = {}
     if os.path.exists(OUT):
         try:
             old = json.load(open(OUT, encoding="utf-8")).get("zh", {}) or {}
         except Exception:
             old = {}
-    print("已有历史译文 %d 条" % len(old))
+    pruned = len(old) - len([k for k in old if k not in done])
+    old = {k: v for k, v in old.items() if k not in done}
+    print("已回填清单 %d 条｜产物裁剪掉 %d 条，保留待回填 %d 条"
+          % (len(done), pruned, len(old)))
 
     stats, done, left_total, t0 = {}, 0, 0, time.time()
     for i, it in enumerate(items, 1):
