@@ -1,12 +1,11 @@
 {
- "updated_at": "2026-10-05T16:58:33Z",
+ "updated_at": "2026-10-05T16:59:27Z",
  "generator": "friction-actions/translate_body.py",
  "count": 318,
  "done_this_run": 19,
- "seconds": 87.1,
+ "seconds": 0.0,
  "stats": {
-  "CACHE": 86,
-  "google-apis": 216,
+  "CACHE": 302,
   "BATCH": 45
  },
  "zh": {
