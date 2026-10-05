@@ -168,11 +168,19 @@ VPS 出口访问 Google 全线不通（实测 Network unreachable），这是死
 - 不动 `article` 表结构，新增需求用**侧表**（`translate_done`）
 - 改脚本前先 `.bak_*`
 
-### 5.8 幂等必须有显式标记（2026-10-06 刚踩）
-重翻战役跑了 9 轮，回填 468 条，**实际只翻了 52 篇**——
-因为"已重翻"没有标记，`ORDER BY id DESC` 每轮都取到同样 50 篇。
-教训：**任何"取一批来处理"的循环，都必须有"处理完"的落库标记**，
-否则就是空转。修法是加侧表 `translate_done(url PK, ts, engine)`。
+### 5.8 幂等必须有显式标记（2026-10-06 刚踩，一次踩两回）
+**第一回**：重翻战役跑 9 轮、回填 468 条，**实际只翻了 52 篇**——
+"已重翻"没有标记，`ORDER BY id DESC` 每轮取到同样 50 篇。
+修法：侧表 `translate_done(url PK, ts, engine)`。
+
+**第二回**：产物 `news_zh.json` 累积到 318 条、超过 1MB 后，
+GitHub Contents API **不再内联返回 content**（只给 sha），VPS 侧拉回是空的，
+于是"翻完了但回填 0 条"，又空转 4 轮。
+修法：① 用 Git Blob API 兜底取大文件；② VPS 回填成功后回传
+`data/translate_done.json`，Actions 侧按清单裁剪产物，文件不再滚大。
+
+教训：**凡是"取一批 → 处理 → 标记"的循环，标记必须真的落到库里，
+且产物体积要有上限控制**——否则两处都会静默空转。
 
 ---
 
@@ -192,30 +200,37 @@ VPS 出口访问 Google 全线不通（实测 Network unreachable），这是死
 
 ---
 
-## 7. 当前状态（2026-10-06 00:30）
+## 7. 当前状态（2026-10-06 01:10 收尾）
 
 | 项 | 值 |
 |---|---|
-| 文章总数 | 973（full 588） |
-| 已用 Google 翻译并标记 | 进行中（目标 300+ 篇 LT 译文全量重翻 + 41 篇缺口） |
-| 每日备份 | ✅ 已上线（04:00，COS `friction_backup/`） |
+| 文章总数 | 973（full 588，全文带译文 482） |
+| **用 Google 重翻并落库** | **320 篇**（`translate_done` 标记） |
+| 缺译文 | **0** ✅ |
+| 译文非中文 | **0** ✅ |
+| 含 LT 错词（卡路里/洗衣机/坚果…） | **0 篇**（换引擎前是 80+ 处） |
+| 段落塌陷 | 41 篇 → **10 篇**（余下 10 篇是 12 万字长文被 12000 上限截断，非塌陷） |
+| 每日备份 | ✅ 04:00 → COS `friction_backup/`（留 14 天） |
 | 伪文章清理 | ✅ 39 篇栏目页已删 |
 | 去重 | ✅ 29 篇已删 |
 | COS 密钥 | ✅ 已移出代码到 `.deploy.env` |
-| `/friction/api/kb` 鉴权 | ✅ 外部 401（nginx 挡），仅 loopback 免鉴——虚惊一场 |
+| 流水线 | ✅ 已改为 12 步，`translate_local.py`(LT) 摘除，换 qpush merge/push |
+| Actions 定时 | ✅ `cron '55 */2 * * *'`，与 VPS 推队列错开 31 分钟 |
 
 ---
 
 ## 8. 未决 / 待办
 
-- [ ] 重翻战役收尾后：跑 `fix_terms.py --apply` + `zh_guard.py` + `healthcheck.py`，
-      并 `restart friction` 后抽查 3-5 篇页面
-- [ ] 把 `translate_local.py`（LT）从 `fetch_and_translate.sh` 第 9 步摘掉，
-      改成 `qpush.py merge`（拉回）+ `qpush.py push 50 new`（推新），
-      并给 `friction-translate.yml` 加 schedule 形成自动闭环
+- [ ] **真正独立的第二翻译源**：现在 Google 一挂就只剩 MyMemory（质量差一档）。
+      建议注册 **DeepL API Free**（50 万字/月，免 key 的网页端点实测 429 不可用）
+      或 **Azure Translator F0**（200 万字/月），key 放 GitHub Secrets 当第二梯队。
+- [ ] 7 篇 12 万字超长文（市场报告页）被 `MAX_TEXT=12000` 截断 ——
+      想翻全就得放开上限，但那类页面 90% 是 boilerplate，可能不值得，待定。
+- [ ] 41 条 Carlisle 展会占位卡（`content_level='full'` 但正文仅 10–64 字符）
+      —— 建议降级为 `headline` 或清理，**需要你确认再动**（会删/改数据）。
 - [ ] MyMemory 提额邮箱（填 `mymemory_email` 可 5 千 → 5 万字/日）
 - [ ] `/opt/archive/.deploy.env` 权限 666 → 改 600
-- [ ] 504 张失败图片（下轮自动重试）、77 篇有图无占位符
+- [ ] 539 张失败图片（下轮自动重试）、77 篇有图无占位符
 - [ ] 歧义词待人工确认：转子(137) / 垫(600) / 鼓(102) / 脚(87) / 电流(61)
 - [ ] NAS 备份 `\\192.168.31.240\Home1\archive_backup` SMB 445/139 不通（VPS 侧无解）
 
