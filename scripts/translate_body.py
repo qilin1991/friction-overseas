@@ -111,11 +111,19 @@ def mymemory(text, email, sl):
 
 
 def make_sources(email=""):
-    return [
-        ("google-apis", lambda t, sl: google("translate.googleapis.com", t, sl)),
-        ("google-com", lambda t, sl: google("translate.google.com", t, sl)),
-        ("mymemory", lambda t, sl: mymemory(t, email, sl)),
-    ]
+    """梯队：Google 系多域名 → MyMemory。
+    2026-10-05 实测 runner 上可用：googleapis / google.com / mymemory。
+    其余（Edge / DeepL / Papago / 有道 / 百度 / Reverso / Lingva / LT 镜像）
+    全部不可用：404、429、空译文或原样返回。故不纳入。"""
+    src = [(k, (lambda h: (lambda t, sl: google(h, t, sl)))(h))
+           for k, h in (
+               ("google-apis", "translate.googleapis.com"),
+               ("google-com", "translate.google.com"),
+               ("google-hk", "translate.google.com.hk"),
+               ("google-jp", "translate.google.co.jp"),
+           )]
+    src.append(("mymemory", lambda t, sl: mymemory(t, email, sl)))
+    return src
 
 
 # ── 文本判定 ────────────────────────────────────────────────────────
