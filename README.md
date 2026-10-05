@@ -230,3 +230,16 @@ python scripts/collect_overseas.py    # 直采
 | 提交失败 | 缺写权限 | 见上面「设置」 |
 | 探针全红 | Azure IP 也被 WAF 识别 | 预期结果之一，走聚合兜底 |
 | 采集 0 条 | 站点改版，`link_re` 失效 | 改 `collect_overseas.py` 里对应源的规则 |
+
+---
+
+## 📘 接手指南（2026-10-06）
+
+**新会话 / 电脑版 WorkBuddy 先看这个**：[`docs/接手指南_WorkBuddy.md`](docs/接手指南_WorkBuddy.md)
+
+包含：架构总图、凭据清单、日常运维速查、正文翻译链路（2026-10-05 从 LibreTranslate
+切到 GitHub Actions 多源 Google）、**工作方法与思路**、已踩过的坑、当前状态与待办、
+电脑版接手的具体步骤。
+
+⚠️ 三条改翻译代码前必读的硬规则：`sl` 绝不设 `auto`；`[IMG:n]` 占位符不能丢；
+429 不许死等（退避重试会把 4 分钟的活拖到 25 分钟）。
