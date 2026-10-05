@@ -34,6 +34,10 @@ on:
         description: 'MyMemory 提额邮箱（可选，日限额 5千→5万字）'
         type: string
         default: ''
+      probe_backup:
+        description: '额外探测 Google 之外的备份源（Edge/DeepL/Papago/有道/百度）'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -58,6 +62,21 @@ jobs:
 
       - name: 探测翻译源
         run: python scripts/probe_translate.py
+
+      - name: 备份翻译源探测（Google 之外）
+        if: ${{ inputs.probe_backup }}
+        continue-on-error: true
+        run: python scripts/probe_more_sources.py
+
+      - name: 上传备份源探测结果
+        if: ${{ inputs.probe_backup }}
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-more-sources
+          path: out/probe_more_sources.json
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: 正文翻译（多源）
         if: ${{ !inputs.probe_only }}
