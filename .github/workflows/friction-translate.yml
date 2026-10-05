@@ -66,7 +66,9 @@ jobs:
       - name: 备份翻译源探测（Google 之外）
         if: ${{ inputs.probe_backup }}
         continue-on-error: true
-        run: python scripts/probe_more_sources.py
+        run: |
+          python scripts/probe_more_sources.py || true
+          python scripts/probe_backup2.py || true
 
       - name: 上传备份源探测结果
         if: ${{ inputs.probe_backup }}
@@ -74,7 +76,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: probe-more-sources
-          path: out/probe_more_sources.json
+          path: out/probe_*sources.json
           if-no-files-found: warn
           retention-days: 14
 
