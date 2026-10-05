@@ -20,6 +20,10 @@ name: friction-translate
 #    且只处理 lang='en' 的文章 —— zh_guard.py 会在 VPS 侧再兜一道。
 
 on:
+  schedule:
+    # 北京时间 01:55 / 03:55 / ...（VPS friction-translate.timer 在 :24 推队列，
+    # 这里延后 31 分钟拉起来翻，形成「VPS 推 → Actions 翻 → VPS 拉回」自动闭环）
+    - cron: '55 */2 * * *'
   workflow_dispatch:
     inputs:
       probe_only:
