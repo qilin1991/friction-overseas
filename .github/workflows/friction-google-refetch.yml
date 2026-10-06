@@ -1,0 +1,102 @@
+name: friction-google-refetch
+
+# 用途：给 VPS 上的「Google News 跳转壳」补正文。
+# VPS 在国内，访问 news.google.com 恒返回 000 —— 那 277 篇文章从入库那一刻起
+# 就只有标题，从未定位过真实地址。这条 workflow 借 GitHub 的美国 runner 出海，
+# 解析真 URL 并抓正文，结果 commit 回仓库的 data/ 目录，VPS 再 pull 落库。
+#
+# 为什么用「仓库中转」而不是 VPS 开端口：不用在 GitHub Secrets 里放 SSH 私钥，
+# VPS 也不用暴露任何入站端口。最小权限。
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '最多处理多少条（0=全部）'
+        required: false
+        default: '0'
+      mode:
+        description: '解析模式 auto/http/hooks/browser'
+        required: false
+        default: 'auto'
+  schedule:
+    # 北京时间 11:17，避开 VPS 的补抓 cron
+    - cron: '17 3 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  refetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml
+
+      - name: 装 Chromium（L3 浏览器兜底，装失败也不致命）
+        id: pw
+        continue-on-error: true
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: 导出待解析清单（若 VPS 没推过 pending 文件，就从 shopfront 备份兜底）
+        run: |
+          if [ ! -f data/pending_google.json ]; then
+            echo "::warning:: 没有 data/pending_google.json，本次无活可干"
+            echo '[]' > data/pending_google.json
+          fi
+          python -c "import json;d=json.load(open('data/pending_google.json'));print('待解析',len(d),'条')"
+
+      - name: 解析跳转壳 + 抓正文
+        env:
+          LIMIT: ${{ github.event.inputs.limit || '0' }}
+          MODE: ${{ github.event.inputs.mode || 'auto' }}
+        run: |
+          python scripts/google_refetch.py \
+            --pending data/pending_google.json \
+            --out data/google_refetch.json \
+            --limit "$LIMIT" --mode "$MODE"
+
+      - name: 汇总
+        run: |
+          python - <<'PY'
+          import json, collections
+          d = json.load(open('data/google_refetch.json'))
+          ok = [x for x in d if x.get('ok')]
+          print(f"总数 {len(d)}，成功 {len(ok)}，成功率 {100*len(ok)/max(1,len(d)):.1f}%")
+          print("解析手段:", dict(collections.Counter(x.get('stage') for x in ok)))
+          print("失败原因:", dict(collections.Counter(x.get('err') for x in d if not x.get('ok')).most_common(6)))
+          print("正文总字数:", sum(len(x.get('text') or '') for x in ok))
+          PY
+
+      - name: 结果归档（即使当天没 commit 也能下）
+        uses: actions/upload-artifact@v4
+        with:
+          name: google_refetch
+          path: data/google_refetch.json
+          retention-days: 14
+
+      - name: 提交回仓库
+        run: |
+          git config user.name  "friction-bot"
+          git config user.email "friction-bot@users.noreply.github.com"
+          git add data/google_refetch.json data/pending_google.json
+          if git diff --cached --quiet; then
+            echo "结果无变化，跳过提交"
+          else
+            git commit -m "chore(google-refetch): 回补跳转壳正文 [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
