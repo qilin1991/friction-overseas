@@ -276,6 +276,22 @@ python scripts/collect_overseas.py    # 直采
    现有 TITLE_ONLY：报告 / 企业动态 / 公司公告 / 产销数据 / 乘用车市场 /
    专利 / 商用车队 / 站点导航。
 
+### 库存治理（同日追加）
+
+| 项 | 状态 | 说明 |
+|---|---|---|
+| 导航页/栏目页清理 | ✅ | 删 28 篇（ASTM 培训班、OICA 统计、VDA 图片材料…），`clean_nav.py --apply` |
+| 入库拦截（堵源头） | ✅ | `pipeline.ingest()` 里只有「站点导航」标签的条目直接 skip |
+| 66 篇占位卡降级 | ✅ | 标着 full 却正文 <100 字符的，降为 headline 进重抓队列 |
+| 无正文文章重抓 | ✅ 第一轮 | `fetch_detail.py --limit 400`：200 篇处理、129 篇救回（64.5%） |
+
+**库存健康度**：945 篇里，正文 ≥800 字符的只有 327 篇（35%），
+**449 篇（47.5%）是空壳**。空壳里 **284 篇是 news.google.com** —— VPS 侧 curl 返回 000
+连不上，Google News RSS 只给标题 + `CBMi...` 跳转链接，**必须走 GitHub Actions 海外 runner 才救得回来**。
+
+⚠️ `fetch_detail.py` 更新 raw_content 后**不改 content_level**，重抓完必须跑 `fix_level.py`，
+否则列表页还按 headline 显示。
+
 ⚠️ 改 `scoring.py` 的 LEXICON 后，VPS 上必须按这个顺序跑：
 `tag_backfill.py`（dry-run 看统计）→ `tag_mischeck.py`（看误伤）→
 `tag_backfill.py --apply`（写库）→ `systemctl restart friction`。
