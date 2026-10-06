@@ -305,6 +305,29 @@ GitHub Contents API **不再内联返回 content**（只给 sha），VPS 侧拉�
       ⚠️ 未做（等用户拍板）：把插图密度从 `body_idx//3` 提到 `body_idx//2`。
           不建议再高——283 张 federalregister 扫描页图全插正文也没意义。
 
+- [x] **无标签文章 587 → 101（2026-10-06 第二轮补标签）**
+      用户：既然要补就补完，别留一半。分三轮加词条，每轮都先 dry-run 核误伤：
+      - 第 1 轮：企业动态 / 公司公告 / 维修技术 / 商用车队 / 专利 / 石棉 + UNECE→法规认证
+      - 第 2 轮：展会专名（CONEXPO/bauma/Agritechnica/MINExpo/Automechanika/车展）、
+        日文企业词（人事異動/役員/組織変更/就任/義援金/投資/工場/出展）、
+        产销数据、乘用车市场、ISO标准、产品型录（FMSI/前片/后片）、站点导航
+      - 第 3 轮：英文短讯（expands/launches/partnership/joint venture）、
+        国内企业文化软文（莅临/参观考察/蝉联/出海/华诞/校招）、
+        车队补充（卡车/货运/违规）、产品（制动产品/产品系列/高性能刹车）
+      结果：有标签文章 386 → 939（973 篇里只剩 101 篇无标签，多为纯日文软文
+      和品牌 slogan 页）。标签总数 33 → 49。
+
+      ⚠️ **关键教训：事件类标签必须 TITLE_ONLY**。
+         第一轮按正文匹配，误伤炸了：商用车队 +103、乘用车市场 +91、产销数据 +40，
+         「质领电驱 共筑未来」被打成乘用车市场、「新时代铸造工匠」被打成产销数据。
+         因为这些词（测量/上市/销量/车队）在正文里偶然出现就中招。
+         改成 `TITLE_ONLY_TAGS` 后误伤掉到个位数，覆盖只掉 4 篇。
+         现在 TITLE_ONLY 共 7 类：报告、企业动态、公司公告、产销数据、
+         乘用车市场、专利、商用车队、站点导航。
+         另删掉 2 个过泛词："测量"、"卡车运输"。
+      备份：`scoring.py.bak_lex4_*` / `.bak_lex5_*` / `.bak_lex6_*` /
+            `.bak_lex7_*` / `.bak_lex8_*`，DB：`data/friction.db.bak_tagall_*`
+
 - [x] **清理被翻译接口报错污染的译文**
       id=1996 的 `title_zh`、id=311 的 `content_zh` 被 MyMemory 报错串
       `NO QUERY SPECIFIED. EXAMPLE REQUEST: GET?Q=HELLO&LANGPAIR=EN|IT` 污染
