@@ -270,6 +270,47 @@ GitHub Contents API **不再内联返回 content**（只给 sha），VPS 侧拉�
       备份：`article.html.bak_tag_*`、`components.css.bak_tag_*`。
       ⚠️ 注意 `_macros.html` 卡片里的 chip 在整卡 `<a>` 内部，**不能**再嵌 a，故未动。
 
+- [x] **新增「报告」标签 + 全库补标签（2026-10-06 用户要求）**
+      用户诉求：市场研报类要能按「报告」标签直接筛选研读；顺带补齐漏打的标签。
+      改动 4 处（都有 `.bak_*` 备份）：
+      1. `app/services/scoring.py` LEXICON 加 31 条报告类词条
+         （market size/share/outlook/analysis/insights/research/dynamics/trends、
+          Size, Share / Size & Share / 规模与份额 / 市场展望 / 新报告 / CAGR /
+          复合年增长率 / 市场规模 / 半年度报告 / ESG报告 / CSR报告 / 审计报告 …），
+         tag=`报告` group=`研报` color=`#457B9D`。
+      2. 加 `TITLE_ONLY_TAGS = {"报告"}`：**只在标题命中才打，正文命中不算**。
+         原因：联邦法规全文 4~179 万字符，正文里 report / 年度报告 是必现词
+         （多是"须提交年度报告"类条款），按正文匹配会把法规整片误判成研报
+         ——实测按正文判命中 58 篇，其中 29 篇是误报；改标题判定后 38 篇基本全对。
+      3. `score_article()` 末尾加保底：标题命中的 TITLE_ONLY 标签强制进前 6，
+         否则长正文里高分词（热衰退/制动粉尘 10 分）会把「报告」(8 分) 挤出 top6。
+      4. 新脚本 `/opt/friction/tag_backfill.py`（dry-run 默认，`--apply` 写库）：
+         **只加不删**、不动 score/is_hot，已存在的标签权重一律保留。
+         本次结果：扫描 973 篇，补标签 287 篇 / 517 个，其中含「报告」39 篇。
+         ⚠️ 坑：判定标题时必须 `title_zh + title` 一起看——只看中文译题会漏掉
+         未翻译的英文研报（实测漏 1100/1165/280/283/3682）。
+      备份：`scoring.py.bak_lexicon_report_*` / `.bak_titleonly_*` /
+            `.bak_force_*` / `.bak_lex2_*` / `.bak_lex3_*`，
+            DB：`data/friction.db.bak_tagreport_10060938`
+
+- [x] **配图廊折叠（2026-10-06 用户：正文后面怎么这么多图）**
+      根因：`article.html` 把「正文没用到的图」全渲染进页脚 `📷 相关配图`；
+      而 `interleave_media.py` 的插图上限是 `len(body_idx)//3`
+      （约 14~16 个 `[IMG:n]`），所以 id=104 有 283 张图却只插了 16 个占位符，
+      剩下 267 张全堆在正文后面。
+      修复：默认只渲染前 12 张（`MG_FIRST`），其余加 `.mg-more{display:none}`，
+      底部给「▾ 展开剩余 N 张 / ▲ 收起配图」按钮（`components.css` 加 `.mg-toggle`）。
+      验证：`/friction/article/104` → 267 项中 255 项收起，按钮显示「展开剩余 255 张」。
+      备份：`article.html.bak_gallery_*`、`components.css.bak_gallery_*`
+      ⚠️ 未做（等用户拍板）：把插图密度从 `body_idx//3` 提到 `body_idx//2`。
+          不建议再高——283 张 federalregister 扫描页图全插正文也没意义。
+
+- [x] **清理被翻译接口报错污染的译文**
+      id=1996 的 `title_zh`、id=311 的 `content_zh` 被 MyMemory 报错串
+      `NO QUERY SPECIFIED. EXAMPLE REQUEST: GET?Q=HELLO&LANGPAIR=EN|IT` 污染
+      （历史 LT/MyMemory 通道残留）。已清空并撤销 `translate_done` 标记让其重翻。
+      检查脚本思路：`re.search(r'NO QUERY SPECIFIED|EXAMPLE REQUEST|LANGPAIR=|MYMEMORY WARNING|USAGE LIMIT')`
+
 ---
 
 ## 9. 电脑版 WorkBuddy 怎么接手
