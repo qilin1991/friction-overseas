@@ -284,10 +284,38 @@ python scripts/collect_overseas.py    # 直采
 | 入库拦截（堵源头） | ✅ | `pipeline.ingest()` 里只有「站点导航」标签的条目直接 skip |
 | 66 篇占位卡降级 | ✅ | 标着 full 却正文 <100 字符的，降为 headline 进重抓队列 |
 | 无正文文章重抓 | ✅ 第一轮 | `fetch_detail.py --limit 400`：200 篇处理、129 篇救回（64.5%） |
+| **东财公告 PDF 补抓** | ✅ **60/60** | `fetch_eastmoney.py --apply`，正文净增 **41.5 万字** |
+| `fetch_detail.py` bug 修复 | ✅ | `--url` 单篇模式 `UnboundLocalError: gi`；新增 `--skip-full` 开关 |
+| 归因诊断器 | ✅ | `diag_source.py`，把失败归到 A–E 五档 |
+| 出海补抓流水线 | 🟡 已上线未实跑 | `scripts/google_refetch.py` + workflow + `google_sync.py`，导出 304 条 |
 
-**库存健康度**：945 篇里，正文 ≥800 字符的只有 327 篇（35%），
-**449 篇（47.5%）是空壳**。空壳里 **284 篇是 news.google.com** —— VPS 侧 curl 返回 000
-连不上，Google News RSS 只给标题 + `CBMi...` 跳转链接，**必须走 GitHub Actions 海外 runner 才救得回来**。
+> 🟡 = 代码和清单都就位了，但还没在 Actions 上真正跑过一次，需手动触发验证。
+
+#### 核心判断：「抓不到」≠「没价值」
+
+第二轮通用补抓报 **「90 篇全部失败」**，看着像"这些源死了、文章是垃圾"。
+`curl` 一抽才看清 —— **HTTP 全是 200**。其中 60 篇是东财公告：页面是纯 JS 壳，
+但正文 PDF 有稳定地址 `https://pdf.dfcfw.com/pdf/H2_{AN码}_1.pdf`，
+重挖之后 **60/60 全成功**。
+
+**449 篇空壳的真实构成**（别一刀切）：
+
+| 桶 | 数量 | 真相 | 处置 |
+|---|---|---|---|
+| A. Google 跳转壳 | 284 | VPS 连 news.google.com 恒 **000**，从未定位过真地址 | 走 Actions 出海 |
+| B. Bing 搜索页 URL | 20 | 采集 bug——存的是 `bing.com/news/search?q=标题` | 出海反查 |
+| C. 原文就这么短 | ~150 | **不是空壳**，一句话企业新闻，300–500 字就是全部 | 保留，别反复重抓 |
+| D. 富源没挖（东财） | 60 | 正文在 PDF | ✅ 已救，100% |
+
+> 规则：只有 **C 桶**才涉及"要不要留"的取舍；**A/B/D 全是技术问题**，
+> 砍掉等于白扔数据。判别成本很低——抽 20 个 URL `curl` 一遍就清楚。
+> 另注意新版 `CBMi` 串是 AES 加密的，**离线 base64 解不开**，必须联网解析。
+
+**库存健康度**：945 篇里正文 ≥800 字符的 **385 篇（40.7%）**（东财补抓前是 327 / 35%）。
+
+出海流水线走**仓库中转**：VPS 不用开端口、GitHub Secrets 里不放 SSH 私钥。
+手动触发 → 看 artifacts → VPS `git pull` →
+`python3 google_sync.py import`（dry-run，`--apply` 才写库）。
 
 ⚠️ `fetch_detail.py` 更新 raw_content 后**不改 content_level**，重抓完必须跑 `fix_level.py`，
 否则列表页还按 headline 显示。
