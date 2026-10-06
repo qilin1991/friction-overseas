@@ -328,6 +328,33 @@ GitHub Contents API **不再内联返回 content**（只给 sha），VPS 侧拉�
       备份：`scoring.py.bak_lex4_*` / `.bak_lex5_*` / `.bak_lex6_*` /
             `.bak_lex7_*` / `.bak_lex8_*`，DB：`data/friction.db.bak_tagall_*`
 
+- [x] **导航页/栏目页清理 + 入库拦截（2026-10-06 用户：错了就改）**
+      26 篇「站点导航」里有 25 篇是协会站的栏目页（ASTM 培训班/标准和出版物、
+      OICA 统计/法律通知/汽车放映、VDA 图片材料、JAMA 更新履歴、
+      Automechanika 新闻材料、SMMT 新闻与公关指南、ACEA 行业洞察、
+      Auto Care 媒体包、TMD 媒体联系人）——采集器把站点导航链接当成文章抓了。
+      1. 修误伤：删掉过泛的「统计」词条（把 id=989 IndexBox 市场研报误判了），
+         只保留"生产统计"/"销售统计"；另补 主页/Home/首页/摩擦即艺术 等 8 个词。
+      2. 清存量：新脚本 `/opt/friction/clean_nav.py`（dry-run 默认，`--apply` 写库）。
+         判定逻辑与线上完全一致——用 LEXICON 重打分，**推导出的标签只有
+         「站点导航」** 才算导航页（不会出现"线上拦得住、存量清不掉"）。
+         本次删 28 篇（含<｜hy_place▁holder▁no▁813｜> slogan 页），连带清 article_tags / article_media /
+         translate_done。
+      3. 堵源头：`app/services/pipeline.py` 的 `ingest()` 加拦截——
+         只有「站点导航」标签的条目直接 skip 不入库。规则仍在 LEXICON 里维护，
+         不另开第二份黑名单。
+      4. 顺带：66 篇「标着 full 但正文 <100 字符」的历史占位卡降级为 headline。
+      备份：`scoring.py.bak_nav_*`、`pipeline.py.bak_nav_*`、
+            DB：`data/friction.db.bak_navclean_*`
+
+- [x] **无正文文章重抓（第一轮，2026-10-06）**
+      `fetch_detail.py --limit 400`：**200 篇处理，129 篇更新成功（64.5%）**。
+      新脚本 `/opt/friction/fix_level.py` 纠正 content_level（重抓后没跟着升级）。
+      ⚠️ 坑：`fetch_detail.py` 更新 raw_content 后**不改 content_level**，
+         必须手动跑 fix_level.py，否则列表页还按 headline 显示。
+      ⚠️ 坑：`fetch_detail_failed.json` 曾被 root 持有导致脚本末尾崩溃，
+         已 `chown archive:archive`（遇到用 sudo 跑过就要检查一遍）。
+
 - [x] **清理被翻译接口报错污染的译文**
       id=1996 的 `title_zh`、id=311 的 `content_zh` 被 MyMemory 报错串
       `NO QUERY SPECIFIED. EXAMPLE REQUEST: GET?Q=HELLO&LANGPAIR=EN|IT` 污染
