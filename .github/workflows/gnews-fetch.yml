@@ -40,6 +40,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install --quiet requests beautifulsoup4 lxml trafilatura
 
+      - name: 装 Chromium（Cloudflare JS 挑战兜底，装失败也不致命）
+        id: pw
+        continue-on-error: true
+        run: |
+          pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+
       - name: 检查输入
         run: |
           if [ ! -f data/pending_google.json ]; then
@@ -52,11 +59,14 @@ jobs:
           LIMIT: ${{ github.event.inputs.limit || '0' }}
           CONC: ${{ github.event.inputs.conc || '8' }}
           BUDGET: ${{ github.event.inputs.budget_min || '50' }}
+          USE_BROWSER: ${{ github.event.inputs.browser || '1' }}
         run: |
+          EXTRA=""
+          if [ "$USE_BROWSER" = "1" ]; then EXTRA="--browser"; fi
           python scripts/gnews_decode_fetch.py \
             --pending data/pending_google.json \
             --out data/gnews_content.jsonl \
-            --limit "$LIMIT" --conc "$CONC" --budget-min "$BUDGET"
+            --limit "$LIMIT" --conc "$CONC" --budget-min "$BUDGET" $EXTRA
 
       - name: 汇总
         if: always()
