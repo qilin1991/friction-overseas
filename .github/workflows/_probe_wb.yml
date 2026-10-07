@@ -1,0 +1,28 @@
+name: _probe_wb
+
+# 一次性探针（WorkBuddy）。验证 Actions 出口 IP 能否访问被 Cloudflare 按 IP 挡的
+# 发布站、以及 Google News 跳转链能否用 batchexecute 解码。只读，跑完即删。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml trafilatura
+
+      - name: 跑探针
+        run: python scripts/_probe_wb.py
