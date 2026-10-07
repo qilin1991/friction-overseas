@@ -1,0 +1,103 @@
+name: gnews-fetch
+
+# Google News 跳转链解码 + 正文回补。
+# 必须在 Actions 上跑：VPS 连不上 news.google.com，且目标发布站对 VPS 机房 IP
+# 直接 403（Cloudflare）。实测本 runner（Azure IP）news.google.com / counterman.com /
+# import-car.com 均 200，解码 5/5、正文 3/5 成功。
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '本轮最多处理多少条（0=全部）'
+        default: '0'
+      conc:
+        description: '并发数'
+        default: '8'
+      budget_min:
+        description: '整体预算/分钟'
+        default: '50'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gnews-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install --quiet requests beautifulsoup4 lxml trafilatura
+
+      - name: 检查输入
+        run: |
+          if [ ! -f data/pending_google.json ]; then
+            echo "::error::data/pending_google.json 不存在"; exit 1
+          fi
+          python -c "import json;d=json.load(open('data/pending_google.json'));print('清单',len(d),'条')"
+
+      - name: 解码 + 抓正文
+        env:
+          LIMIT: ${{ github.event.inputs.limit || '0' }}
+          CONC: ${{ github.event.inputs.conc || '8' }}
+          BUDGET: ${{ github.event.inputs.budget_min || '50' }}
+        run: |
+          python scripts/gnews_decode_fetch.py \
+            --pending data/pending_google.json \
+            --out data/gnews_content.jsonl \
+            --limit "$LIMIT" --conc "$CONC" --budget-min "$BUDGET"
+
+      - name: 汇总
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, collections, os
+          p = 'data/gnews_content.jsonl'
+          if not os.path.exists(p):
+              print('没有输出文件'); raise SystemExit
+          rows = [json.loads(l) for l in open(p, encoding='utf-8') if l.strip()]
+          latest = {}
+          for r in rows:
+              latest[str(r.get('article_id'))] = r
+          rows = list(latest.values())
+          ok = [r for r in rows if r.get('ok')]
+          print(f"累计处理 {len(rows)} 条，成功 {len(ok)} 条 "
+                f"({100*len(ok)/max(1,len(rows)):.1f}%)，正文共 "
+                f"{sum(r.get('chars') or 0 for r in ok)} 字")
+          print("失败原因:", dict(collections.Counter(
+              str(r.get('err'))[:40] for r in rows if not r.get('ok')
+          ).most_common(8)))
+          PY
+
+      - name: 结果归档
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gnews_content
+          path: data/gnews_content.jsonl
+          retention-days: 14
+
+      - name: 提交回仓库
+        if: always()
+        run: |
+          git config user.name  "friction-bot"
+          git config user.email "friction-bot@users.noreply.github.com"
+          git add data/gnews_content.jsonl
+          if git diff --cached --quiet; then
+            echo "结果无变化，跳过提交"
+          else
+            git commit -m "chore(gnews): 回补 Google 跳转链正文 [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
