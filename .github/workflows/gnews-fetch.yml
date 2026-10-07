@@ -16,6 +16,9 @@ on:
       budget_min:
         description: '整体预算/分钟'
         default: '50'
+      browser:
+        description: '对 requests 拿不下的用 Chromium 兜底（1=开 0=关）'
+        default: '1'
 
 permissions:
   contents: write
