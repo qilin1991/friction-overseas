@@ -1,0 +1,40 @@
+{
+ "rows": [
+  {
+   "tag": "cnki:https://chn.oversea.cnki.net/kns/brief/grid?dbcode=CJFD&kw=%E5%88%B9%E8%BD%A6%E7%89%87",
+   "code": 401,
+   "size": 108,
+   "body": "{\"timestamp\":\"2026-10-14T13:13:02.887+00:00\",\"status\":401,\"error\":\"Unauthorized\",\"path\":\"/kns8s/brief/grid\"}"
+  },
+  {
+   "tag": "cnki:https://chn.oversea.cnki.net/kns/brief/grid",
+   "code": 401,
+   "size": 108,
+   "body": "{\"timestamp\":\"2026-10-14T13:13:06.231+00:00\",\"status\":401,\"error\":\"Unauthorized\",\"path\":\"/kns8s/brief/grid\"}"
+  },
+  {
+   "tag": "cnki:https://chn.oversea.cnki.net/kns8s/brief/grid",
+   "code": 404,
+   "size": 1163,
+   "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=gb2312\"/>\r\n<title>404 - ÕÒ²»µ½ÎÄ¼þ»òÄ¿Â¼¡£</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px 10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;} \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{wid"
+  },
+  {
+   "tag": "xmol:https://www.x-mol.com/api/paper/search",
+   "code": 404,
+   "size": 9,
+   "body": "对不起，错误的链接"
+  },
+  {
+   "tag": "xmol:https://www.x-mol.com/paper/search/q?option=brake%20friction",
+   "code": 200,
+   "size": 59552,
+   "body": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"https://ncdn.x-mol.com/_x_static/_next/static/chunks/0~q-ej3krszl3.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"https://ncdn.x-mol.com/_x_static/_next/static/chunks/078o2yhl_g-wh.css\" data-precedence=\"next\"/><link rel=\"stylesheet"
+  },
+  {
+   "tag": "cnki_result",
+   "code": 200,
+   "size": 53768,
+   "body": ""
+  }
+ ]
+}
