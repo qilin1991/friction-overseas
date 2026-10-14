@@ -1,0 +1,109 @@
+{
+ "rows": [
+  {
+   "name": "wanfang_paper",
+   "url": "https://s.wanfangdata.com.cn/paper?q=%E5%88%B9%E8%BD%A6%E7%89%87",
+   "code": 200,
+   "size": 171424,
+   "final_url": "https://s.wanfangdata.com.cn/paper?q=%E5%88%B9%E8%BD%A6%E7%89%87",
+   "signals": [
+    "标题字段"
+   ],
+   "sample_titles": [
+    "è®ºæå²åºå æ²¹å"
+   ],
+   "title_count": 1,
+   "snippet": "<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content=\"IE=edge\"><meta name=renderer content=webkit><meta name=viewport content=\"width=1310\"><meta name=referrer content=unsafe-url><meta name=keywords content=ä¸æ¹æ°æ®ãè®ºæãæç®ãæåè®ºæãå­¦ä½è®ºæãå­¦æ¯ä¼è®®ãä¸­å¤æ åãæ³å¾æ³è§ãç§æææãä¸­å¤ä¸å©ãå¤ææç®><meta name=description content=ä¸æ¹æ°æ®ç¥è¯æå¡å¹³å°-ä¸­å¤å­¦æ¯è®ºæãä¸­å¤æ åãä¸­å¤ä¸å",
+   "elapsed": 1.9
+  },
+  {
+   "name": "wanfang_thesis",
+   "url": "https://s.wanfangdata.com.cn/thesis?q=%E6%91%A9%E6%93%A6%E6%9D%90%E6%96%99",
+   "code": 200,
+   "size": 171424,
+   "final_url": "https://s.wanfangdata.com.cn/thesis?q=%E6%91%A9%E6%93%A6%E6%9D%90%E6%96%99",
+   "signals": [
+    "标题字段"
+   ],
+   "sample_titles": [
+    "è®ºæå²åºå æ²¹å"
+   ],
+   "title_count": 1,
+   "snippet": "<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content=\"IE=edge\"><meta name=renderer content=webkit><meta name=viewport content=\"width=1310\"><meta name=referrer content=unsafe-url><meta name=keywords content=ä¸æ¹æ°æ®ãè®ºæãæç®ãæåè®ºæãå­¦ä½è®ºæãå­¦æ¯ä¼è®®ãä¸­å¤æ åãæ³å¾æ³è§ãç§æææãä¸­å¤ä¸å©ãå¤ææç®><meta name=description content=ä¸æ¹æ°æ®ç¥è¯æå¡å¹³å°-ä¸­å¤å­¦æ¯è®ºæãä¸­å¤æ åãä¸­å¤ä¸å",
+   "elapsed": 0.73
+  },
+  {
+   "name": "wanfang_api",
+   "url": "https://s.wanfangdata.com.cn/SearchService.SearchService.searchperfect.aspx?searchWord=%E5%88%B9%E8%BD%A6%E7%89%87&pageSize=20&page=1",
+   "code": 415,
+   "size": 40,
+   "final_url": "https://s.wanfangdata.com.cn/SearchService.SearchService.searchperfect.aspx?searchWord=%E5%88%B9%E8%BD%A6%E7%89%87&pageSize=20&page=1",
+   "signals": [],
+   "sample_titles": [],
+   "title_count": 0,
+   "snippet": "Content-Type is missing from the request",
+   "elapsed": 0.24
+  },
+  {
+   "name": "cqvip",
+   "url": "https://qikan.cqvip.com/Qikan/Search/Index?key=%E5%88%B9%E8%BD%A6%E7%89%87",
+   "code": 412,
+   "size": 2988,
+   "final_url": "https://qikan.cqvip.com/Qikan/Search/Index?key=%E5%88%B9%E8%BD%A6%E7%89%87",
+   "signals": [],
+   "sample_titles": [],
+   "title_count": 0,
+   "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"> <meta id=\"FbkwzLN5XOx0\" content=\"7QdiwOjVCCeXWpugQVYckTHTLJSddI56xq5KFanmyAH9WolvHY5gmviL0tkHi5zWpXDnektHgZ4xagFHmLYX9Zt0Z77Bp_4_bYFa9w2hiWXrGiAEjJO44jGxoWL6LH19hjvPRyfJZ5mxLersffXrJ7YTpiq5LYtgG6C4NCALe6eGF9PgNiRIkLCMctcUK13m\" r='m'><!--[if lt IE 9]><script r='m'>document.createElement(\"section\"",
+   "elapsed": 1.16
+  },
+  {
+   "name": "cnki_oversea",
+   "url": "https://chn.oversea.cnki.net/kns/defaultresult/index",
+   "code": 200,
+   "size": 53765,
+   "final_url": "https://oversea.cnki.net/kns8s/defaultresult/index?language=CHS",
+   "signals": [
+    "结果表格",
+    "海外入口"
+   ],
+   "sample_titles": [],
+   "title_count": 0,
+   "snippet": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <title>检索-中国知网</title> <link rel=\"stylesheet\" href=\"https://piccache.oversea.cnki.net/kdn/nxgp/kns8/202608282v2/oversea/chs/css_min/kindex.min.css\"> <link rel=\"stylesheet\" href=\"https://piccache.oversea.cnki.net/kdn/nxgp/kns8/202608282v2/oversea/chs/css_min/public.min.css\"> <link rel=\"stylesheet\" href=\"https://piccache.oversea.cnki.net/kdn/nxgp/k",
+   "elapsed": 2.23
+  },
+  {
+   "name": "xmol",
+   "url": "https://www.x-mol.com/paper/search/q?option=brake%20friction",
+   "code": 200,
+   "size": 59552,
+   "final_url": "https://www.x-mol.com/paper/search/q?option=brake%20friction",
+   "signals": [],
+   "sample_titles": [],
+   "title_count": 0,
+   "snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"https://ncdn.x-mol.com/_x_static/_next/static/chunks/0~q-ej3krszl3.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"https://ncdn.x-mol.com/_x_static/_next/static/chunks/078o2yhl_g-wh.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"https://ncdn.x-mol.com/_x_static/_next/static/chunks/184635sybn9h4.css\" data-precedence=\"nex",
+   "elapsed": 1.68
+  },
+  {
+   "name": "baidu_xueshu_m",
+   "url": "https://xueshu.baidu.com/s?wd=%E5%88%B9%E8%BD%A6%E7%89%87&ie=utf-8&tn=SE_baiduxueshu_c1gjeupa",
+   "code": 403,
+   "size": 2509,
+   "final_url": "https://xueshu.baidu.com/s?wd=%E5%88%B9%E8%BD%A6%E7%89%87&ie=utf-8&tn=SE_baiduxueshu_c1gjeupa",
+   "signals": [
+    "图形验证码"
+   ],
+   "sample_titles": [],
+   "title_count": 0,
+   "snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\"content=\"IE=edge\"><meta name=\"viewport\"content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\"><title>百度安全验证</title><style>body{margin:0;padding:0}</style></head><body></body><!--loadScript--><script>function ieOnEnd(script,cb){script.onreadystatechange=function(){if(this.readyState!=='complete'&&this.readyState!=='loaded'){return}this.onreadystatechange=null;cb(null,script)}",
+   "elapsed": 1.74
+  },
+  {
+   "name": "cnki_open",
+   "url": "https://kns.cnki.net/kcms2/article/abstract?v=test",
+   "code": 0,
+   "error": "SSLError: HTTPSConnectionPool(host='kns.cnki.net', port=443): Max retries exceeded with url: /kcms2/article/abstract?v=test (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FA",
+   "size": 0,
+   "elapsed": 1.45
+  }
+ ]
+}
