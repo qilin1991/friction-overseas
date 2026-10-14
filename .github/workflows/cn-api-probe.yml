@@ -1,0 +1,49 @@
+name: cn-api-probe
+
+# 中文文献源可解析性探测（借 Azure 出口）
+#
+# 上一轮（academic-probe）结论：Google Scholar / 百度学术 / ScienceDirect 在
+# Azure 出口同样 403 —— 三条路彻底堵死（本机 000/302、VPS 同、Azure 403）。
+# 但意外发现 **万方数据 s.wanfangdata.com.cn 在 Azure 出口 200**（171KB）。
+# 本 workflow 深挖：万方能否真解析出条目，以及维普/知网海外入口/X-MOL 等。
+#
+# 输出：out/cn_api_probe.json
+
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: '备注（可选）'
+        default: 'probe cn academic sources'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install --quiet requests
+
+      - name: 探测
+        run: python scripts/probe_cn_api.py
+
+      - name: 提交产物
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name  "cn-api-probe"
+          git config user.email "probe@users.noreply.github.com"
+          git add -f out/cn_api_probe.json 2>/dev/null || true
+          git diff --cached --quiet && echo "无产物变更" || {
+            git commit -m "chore: cn academic probe artifacts [skip ci]"
+            git push
+          }
