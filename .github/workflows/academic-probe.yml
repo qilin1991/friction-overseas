@@ -1,0 +1,51 @@
+name: academic-probe
+
+# 学术源可达性探测（借 Azure 出口）
+#
+# 为什么必须借 Actions：Google Scholar / 百度学术 / ScienceDirect 从本机（家宽）
+# 和 VPS（腾讯云）都拿不到 ——
+#   scholar.google.com   本机 curl 000（DNS 污染）
+#   xueshu.baidu.com     搜索页 302 → wappass 图形验证码；详情页 403
+#   sciencedirect.com    403（反爬）
+# Actions 出口是 Azure 机房 IP，与国内链路完全不同，能不能过必须先实测。
+#
+# 输出：out/academic_probe.json
+
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: '备注（可选）'
+        default: 'probe academic sources'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install --quiet requests
+
+      - name: 探测
+        run: python scripts/probe_academic.py
+
+      - name: 提交产物
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name  "academic-probe"
+          git config user.email "probe@users.noreply.github.com"
+          git add -f out/academic_probe.json 2>/dev/null || true
+          git diff --cached --quiet && echo "无产物变更" || {
+            git commit -m "chore: academic probe artifacts [skip ci]"
+            git push
+          }
