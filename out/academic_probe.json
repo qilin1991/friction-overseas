@@ -1,0 +1,158 @@
+{
+ "exit_ip": "13.83.42.64",
+ "rows": [
+  {
+   "name": "google_scholar",
+   "url": "https://scholar.google.com/scholar?hl=en&q=brake+friction+material",
+   "code": 403,
+   "final_url": "https://scholar.google.com/scholar?hl=en&q=brake+friction+material",
+   "size": 1103,
+   "title": "Sorry...",
+   "snippet": "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/><title>Sorry...</title><style> body { font-family: verdana, arial, sans-serif; background-color: #fff; color: #000; }</style></head><body><div><table><tr><td><b><font face=sans-serif size=10><font color=#4285f4>G</font><font color=#ea4335>o</font><font color=#fbbc05>o</font><font color=#4285f4>g</font><font color=#34a8",
+   "verdict": "BLOCKED",
+   "signal": "",
+   "elapsed": 0.38
+  },
+  {
+   "name": "google_scholar_cn",
+   "url": "https://scholar.google.com/scholar?hl=zh-CN&q=%E5%88%B9%E8%BD%A6%E7%89%87%20%E6%91%A9%E6%93%A6%E6%9D%90%E6%96%99",
+   "code": 403,
+   "final_url": "https://scholar.google.com/scholar?hl=zh-CN&q=%E5%88%B9%E8%BD%A6%E7%89%87%20%E6%91%A9%E6%93%A6%E6%9D%90%E6%96%99",
+   "size": 1103,
+   "title": "Sorry...",
+   "snippet": "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/><title>Sorry...</title><style> body { font-family: verdana, arial, sans-serif; background-color: #fff; color: #000; }</style></head><body><div><table><tr><td><b><font face=sans-serif size=10><font color=#4285f4>G</font><font color=#ea4335>o</font><font color=#fbbc05>o</font><font color=#4285f4>g</font><font color=#34a8",
+   "verdict": "BLOCKED",
+   "signal": "",
+   "elapsed": 0.46
+  },
+  {
+   "name": "baidu_xueshu",
+   "url": "https://xueshu.baidu.com/s?wd=brake+friction",
+   "code": 403,
+   "final_url": "https://xueshu.baidu.com/s?wd=brake+friction",
+   "size": 2440,
+   "title": "百度安全验证",
+   "snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\"content=\"IE=edge\"><meta name=\"viewport\"content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\"><title>百度安全验证</title><style>body{margin:0;padding:0}</style></head><body></body><!--loadScript--><script>function ieOnEnd(script,cb){script.onreadystatechange=function(){if(this.ready",
+   "verdict": "BLOCKED",
+   "signal": "",
+   "elapsed": 1.6
+  },
+  {
+   "name": "baidu_xueshu_cn",
+   "url": "https://xueshu.baidu.com/s?wd=%E5%88%B9%E8%BD%A6%E7%89%87%20%E6%91%A9%E6%93%A6%E6%9D%90%E6%96%99",
+   "code": 403,
+   "final_url": "https://xueshu.baidu.com/s?wd=%E5%88%B9%E8%BD%A6%E7%89%87%20%E6%91%A9%E6%93%A6%E6%9D%90%E6%96%99",
+   "size": 2492,
+   "title": "百度安全验证",
+   "snippet": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\"content=\"IE=edge\"><meta name=\"viewport\"content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\"><title>百度安全验证</title><style>body{margin:0;padding:0}</style></head><body></body><!--loadScript--><script>function ieOnEnd(script,cb){script.onreadystatechange=function(){if(this.ready",
+   "verdict": "BLOCKED",
+   "signal": "",
+   "elapsed": 0.19
+  },
+  {
+   "name": "sciencedirect_search",
+   "url": "https://www.sciencedirect.com/search?qs=brake%20friction",
+   "code": 403,
+   "final_url": "https://www.sciencedirect.com/search?qs=brake%20friction",
+   "size": 832801,
+   "title": "ScienceDirect",
+   "snippet": "<!DOCTYPE html> <html lang='en-us'> <head> <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\" > <meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\" > <meta content=\"1\" name=\"tdm-reservation\" > <meta content=\"https://www.elsevier.com/tdm/tdmrep-policy.json\" name=\"tdm-policy\" > <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" > <meta content=\"NOARCHIVE",
+   "verdict": "BLOCKED",
+   "signal": "",
+   "elapsed": 0.18
+  },
+  {
+   "name": "sciencedirect_api",
+   "url": "https://www.sciencedirect.com/search/api/search?qs=brake%20friction&show=25",
+   "code": 403,
+   "final_url": "https://www.sciencedirect.com/search/api/search?qs=brake%20friction&show=25",
+   "size": 832801,
+   "title": "ScienceDirect",
+   "snippet": "<!DOCTYPE html> <html lang='en-us'> <head> <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\" > <meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\" > <meta content=\"1\" name=\"tdm-reservation\" > <meta content=\"https://www.elsevier.com/tdm/tdmrep-policy.json\" name=\"tdm-policy\" > <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" > <meta content=\"NOARCHIVE",
+   "verdict": "BLOCKED",
+   "signal": "",
+   "elapsed": 0.09
+  },
+  {
+   "name": "sciencedirect_journal",
+   "url": "https://www.sciencedirect.com/journal/wear",
+   "code": 403,
+   "final_url": "https://www.sciencedirect.com/journal/wear",
+   "size": 832801,
+   "title": "ScienceDirect",
+   "snippet": "<!DOCTYPE html> <html lang='en-us'> <head> <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\" > <meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\" > <meta content=\"1\" name=\"tdm-reservation\" > <meta content=\"https://www.elsevier.com/tdm/tdmrep-policy.json\" name=\"tdm-policy\" > <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" > <meta content=\"NOARCHIVE",
+   "verdict": "BLOCKED",
+   "signal": "",
+   "elapsed": 0.1
+  },
+  {
+   "name": "crossref",
+   "url": "https://api.crossref.org/works?query.bibliographic=brake&rows=1",
+   "code": 200,
+   "final_url": "https://api.crossref.org/works?query.bibliographic=brake&rows=1",
+   "size": 1898,
+   "title": "",
+   "snippet": "{\"status\":\"ok\",\"message-type\":\"work-list\",\"message-version\":\"1.0.0\",\"message\":{\"facets\":{},\"total-results\":20876,\"items\":[{\"indexed\":{\"date-parts\":[[2025,10,7]],\"date-time\":\"2025-10-07T00:39:43Z\",\"timestamp\":1759797583047,\"version\":\"build-2065373602\"},\"publisher-location\":\"400 Commonwealth Drive, Warrendale, PA, United States\",\"standards-body\":{\"name\":\"SAE International\",\"acronym\":\"SAE\"},\"referenc",
+   "verdict": "OK",
+   "signal": "",
+   "elapsed": 1.6
+  },
+  {
+   "name": "europepmc",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=brake&format=json&pageSize=1",
+   "code": 200,
+   "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=brake&format=json&pageSize=1",
+   "size": 1162,
+   "title": "",
+   "snippet": "{\"version\":\"6.9\",\"hitCount\":46368,\"nextCursorMark\":\"AoIIQEwV/Cg1NjUzMjQ2OA==\",\"nextPageUrl\":\"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=brake&cursorMark=AoIIQEwV%2FCg1NjUzMjQ2OA%3D%3D&resultType=lite&pageSize=1&format=json\",\"request\":{\"queryString\":\"brake\",\"resultType\":\"lite\",\"cursorMark\":\"*\",\"pageSize\":1,\"sort\":\"\",\"synonym\":false},\"resultList\":{\"result\":[{\"id\":\"42812545\",\"sourc",
+   "verdict": "OK",
+   "signal": "",
+   "elapsed": 0.76
+  },
+  {
+   "name": "semanticscholar",
+   "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=brake%20friction&limit=3&fields=title,year,citationCount,venue",
+   "code": 429,
+   "final_url": "https://api.semanticscholar.org/graph/v1/paper/search?query=brake%20friction&limit=3&fields=title,year,citationCount,venue",
+   "size": 144,
+   "title": "",
+   "snippet": "Too Many Requests. Please wait and try again or apply for a key for higher rate limits. https://www.semanticscholar.org/product/api#api-key-form",
+   "verdict": "RATE_LIMITED",
+   "signal": "",
+   "elapsed": 0.08
+  },
+  {
+   "name": "cnki_home",
+   "url": "https://kns.cnki.net/kns8s/defaultresult/index",
+   "code": 0,
+   "verdict": "SSL_ERROR",
+   "snippet": "HTTPSConnectionPool(host='kns.cnki.net', port=443): Max retries exceeded with url: /kns8s/defaultresult/index (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certific",
+   "size": 0,
+   "elapsed": 0.43
+  },
+  {
+   "name": "wanfang",
+   "url": "https://s.wanfangdata.com.cn/paper?q=%E5%88%B9%E8%BD%A6%E7%89%87",
+   "code": 200,
+   "final_url": "https://s.wanfangdata.com.cn/paper?q=%E5%88%B9%E8%BD%A6%E7%89%87",
+   "size": 171424,
+   "title": "ä¸æ¹æ°æ®ç¥è¯æå¡å¹³å°",
+   "snippet": "<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content=\"IE=edge\"><meta name=renderer content=webkit><meta name=viewport content=\"width=1310\"><meta name=referrer content=unsafe-url><meta name=keywords content=ä¸æ¹æ°æ®ãè®ºæãæç®ãæåè®ºæãå­¦ä½è®ºæãå­¦æ¯ä¼è®®ãä¸­å¤æ åãæ³å¾æ³è§ãç§æææãä¸­å¤ä¸å©ãå¤ææç®><meta na",
+   "verdict": "OK_RESULTS",
+   "signal": "结果列表",
+   "elapsed": 1.26
+  },
+  {
+   "name": "cqvip",
+   "url": "https://qikan.cqvip.com/Qikan/Search/Index",
+   "code": 412,
+   "final_url": "https://qikan.cqvip.com/Qikan/Search/Index",
+   "size": 2844,
+   "title": "",
+   "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"> <meta id=\"FbkwzLN5XOx0\" content=\"fPmqnokUbOkJChN83BdxJ5SX_SFu.jyQk1fiKkSegFpbQRIqNrP6akeTWp7aW0TrciUQ5ZDBiC3\" r='m'><!--[if lt IE 9]><script r='m'>document.createElement(\"section\")</script><![endi",
+   "verdict": "HTTP_412",
+   "signal": "",
+   "elapsed": 0.6
+  }
+ ]
+}
