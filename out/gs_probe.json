@@ -1,0 +1,21 @@
+[
+ {
+  "step": "home",
+  "status": 403,
+  "bytes": 1103,
+  "results": 0,
+  "snippets": 0,
+  "authors": 0,
+  "captcha": false,
+  "cookie": false
+ },
+ {
+  "step": "q1",
+  "status": 403,
+  "bytes": 1103,
+  "results": 0,
+  "snippets": 0,
+  "authors": 0,
+  "captcha": false
+ }
+]
