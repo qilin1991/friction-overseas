@@ -1,0 +1,41 @@
+name: oa-incr
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "增量起点日期 YYYY-MM-DD（OpenAlex from_publication_date）"
+        required: true
+        default: "2026-10-16"
+      note:
+        description: "备注"
+        required: false
+        default: "openalex weekly incremental"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 抓取 OpenAlex 增量论文
+        run: python scripts/oa_incr_fetch.py --since "${{ inputs.since }}"
+
+      - name: 提交产物
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name  "oa-incr-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -f out/_oa_incr_works.jsonl 2>/dev/null || true
+          git diff --cached --quiet && echo "无产物变更" || {
+            git commit -m "chore: openalex incremental artifacts [skip ci]"
+            git push
+          }
