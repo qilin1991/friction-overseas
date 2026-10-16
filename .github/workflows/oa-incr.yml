@@ -10,6 +10,9 @@ on:
         description: "备注"
         required: false
         default: "openalex weekly incremental"
+  schedule:
+    # 每周一 UTC 00:00 = 北京时间周一 08:00 自动抓取（cron 无 inputs，默认 7 天前起）
+    - cron: '0 0 * * 1'
 
 permissions:
   contents: write
@@ -25,8 +28,17 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: 计算增量起点
+        id: since
+        run: |
+          if [ -n "${{ inputs.since }}" ]; then
+            echo "s=${{ inputs.since }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "s=$(date -u -d '7 days ago' +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: 抓取 OpenAlex 增量论文
-        run: python scripts/oa_incr_fetch.py --since "${{ inputs.since }}"
+        run: python scripts/oa_incr_fetch.py --since "${{ steps.since.outputs.s }}"
 
       - name: 提交产物
         if: always()
