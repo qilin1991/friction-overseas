@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-10-17T01:06:01.138536+00:00",
+  "probed_at": "2026-10-17T04:45:10.622178+00:00",
   "runner": {
     "hostname": "runnervm8k3b6",
-    "egress_ip": "20.55.163.177"
+    "egress_ip": "172.182.193.129"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 33201,
+      "bytes": 33204,
       "verdict": "OK",
       "ok": true
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 57301,
+      "bytes": 56279,
       "verdict": "OK",
       "ok": true
     },
@@ -37,7 +37,7 @@
       "url": "https://www.ccjdigital.com/",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3247,
+      "bytes": 3245,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -46,7 +46,7 @@
       "url": "https://www.underhoodservice.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 32880,
+      "bytes": 32799,
       "verdict": "OK",
       "ok": true
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 38077,
+      "bytes": 38378,
       "verdict": "OK",
       "ok": true
     },
@@ -64,7 +64,7 @@
       "url": "https://www.tmdfriction.com/en/news",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3230,
+      "bytes": 3286,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -100,7 +100,7 @@
       "url": "https://www.sae.org/news",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 3090,
+      "bytes": 3130,
       "verdict": "OK",
       "ok": true
     },
@@ -109,7 +109,7 @@
       "url": "https://www.epa.gov/newsreleases",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 14311,
+      "bytes": 14290,
       "verdict": "OK",
       "ok": true
     },
@@ -132,7 +132,7 @@
     "waf_total": 10,
     "ctrl_ok": 3,
     "ctrl_total": 3,
-    "egress_ip": "20.55.163.177",
+    "egress_ip": "172.182.193.129",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
