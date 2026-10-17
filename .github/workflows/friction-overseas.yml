@@ -232,6 +232,8 @@ jobs:
           else
             CNT=$(python -c "import json;print(json.load(open('data/news_overseas.json',encoding='utf-8'))['count'])")
             git commit -m "chore: 海外资讯同步 ${CNT} 条 [skip ci]"
+            # 仓库多 workflow 并写 main（friction-translate 每 3h 推一次），先 rebase 再 push
+            git pull --rebase --no-edit
             git push
           fi
 
@@ -249,6 +251,7 @@ jobs:
               echo "正文回填数据无变化"
             else
               git commit -m "chore: 正文回填数据 [skip ci]"
+              git pull --rebase --no-edit
               git push
             fi
           else
@@ -269,6 +272,9 @@ jobs:
               echo "翻译结果无变化"
             else
               git commit -m "chore: 正文中文翻译（Google 免费端点）[skip ci]"
+              # news_zh.json 有多个写手（friction-translate/VPS translate_local），
+              # 冲突时优先远端（丢的译文 VPS 本地翻译下一轮会补）
+              git pull --rebase -X theirs --no-edit
               git push
             fi
           else
@@ -300,6 +306,7 @@ jobs:
               echo "探针结论无变化"
             else
               git commit -m "chore: 探针结论更新 [skip ci]"
+              git pull --rebase --no-edit
               git push
             fi
           else
