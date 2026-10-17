@@ -230,3 +230,23 @@ python scripts/collect_overseas.py    # 直采
 | 提交失败 | 缺写权限 | 见上面「设置」 |
 | 探针全红 | Azure IP 也被 WAF 识别 | 预期结果之一，走聚合兜底 |
 | 采集 0 条 | 站点改版，`link_re` 失效 | 改 `collect_overseas.py` 里对应源的规则 |
+
+## 文献接口（OA PDF 全文本地化）
+
+把已采集的开放获取（OA）论文全文 PDF 落地到腾讯 COS，并在「文献」栏目（`/friction/papers`）直接在线阅读。
+**合规底线：拒绝 sci-hub 类途径**，只消费 OpenAlex 标 `is_oa=1` 且带 `oa_url` 的合法全文。
+
+> 该特性主要在 **VPS 侧**运行（非 Actions 任务）：VPS 出口 IP 对多数出版社仍是 WAF，但 arXiv + 跟随重定向的
+> BMC/Frontiers/Springer 等可真下到；MDPI/Wiley/ScienceDirect/Hindawi 被 403 属预期跳过。
+
+- 抓取脚本：`scripts/fetch_oa_pdfs.py`（默认 dry-run，加 `--apply` 才下载+上传；`--workers N` 并发，默认 8）
+- 库表新增列 `paper.pdf_cos_key TEXT`，COS 路径固定 `static/papers/paper_<id>.pdf`
+- 线上路由：`GET /friction/papers/<id>/pdf`（从 COS 拉取流式返回，inline 预览，继承 `/friction` 子站 Basic Auth `qilin:0805`）
+- 运维细节见《VPS_凭据与运维》§七（VPS 上的 `friction-vps-sync/VPS_凭据与运维.md`）
+
+```bash
+# VPS 上真正抓取（后台，日志 /tmp/foa_full.log）
+sudo -u archive /opt/friction/venv/bin/python -u /opt/friction/fetch_oa_pdfs.py --apply --workers 8 > /tmp/foa_full.log 2>&1 &
+# 查已落地数量
+sqlite3 /opt/friction/data/friction.db "select count(*) from paper where pdf_cos_key is not null"
+```
