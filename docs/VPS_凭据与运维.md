@@ -492,6 +492,9 @@ curl -s -u qilin:0805 http://127.0.0.1/tour/ -o /dev/null -w '%{http_code}\n'
   - 日期猜解 `guess_event_date()`：取摘要里的「M月D日」，**仅当与发布时间相差 -7~+180 天**才采信；只有「11/12月发布 → 1/2月活动」才跨年，避免把文中旧日期误当活动日
   - 前端状态徽标 `_status` 同步：只有活动日期过了才显示"已结束"，报名截止过了不显示已结束
 - ✅ 对照自测：插入「活动=明天、报名截止=昨天」→ 保留；插入「活动=昨天」→ 删除。
+- **去重（`dedup_duplicates`，每轮执行）**：政府 CMS 会把同一篇按栏目各生成一个 `art_id`（URL 不同），
+  且列表里有截断标题（带"..."）。所以 URL 去重抓不到，改为**同区域 + 标题归一化（去空格/标点/省略号）+ 截断前缀**判重，保留标题最完整的一条；
+  同时 `norm_url` 对 `/art/` 与 `/col/colN/art/` 两种形式统一按 `art_<id>.html` 归一。
 - **重抓不再清空补全字段**：`upsert` 改为 `INSERT ... ON CONFLICT(uid) DO UPDATE`，新值为空则沿用旧的 `event_date/location/signup_method/summary`（否则每次重跑 gov 都会把 enrich 的成果洗掉）。
 - ⚠️ 公众号文章正文抓不到（搜狗 `/link` 一跟就跳反爬页），所以活动时间**从搜索结果摘要**（`txt-info`）里抽，而非点进原文。
 - 功能自测：插入一条 `event_date=昨天` 的记录 → 跑 `--only expire` → 该记录被删（已验证）。

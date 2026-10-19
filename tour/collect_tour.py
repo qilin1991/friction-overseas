@@ -218,6 +218,11 @@ def norm_url(url):
         host = p.netloc.lower()
         if "sogou.com" in host:
             return u.lower()          # 保留完整 query 作为唯一标识
+        # 政府 JPAAS 文章：同一篇可能以 /art/2026/art_x.html 或 /col/colN/art/2026/art_x.html
+        # 出现，统一用 art_<id>.html 作为去重标识
+        m = re.search(r"art_[0-9A-Za-z_]+\.html", p.path)
+        if m:
+            return host + "/" + m.group(0)
         return p.scheme.lower() + "://" + host + p.path
     except Exception:
         return u.lower()
@@ -450,6 +455,44 @@ def expire_sweep(conn, undated_days=45):
 # 外域政务服务/信访/考试等挂件，非本区活动，直接丢弃
 NOISE_DOMAINS = ("zjzwfw.gov.cn", "zxts.zj.gov.cn", "liuyan.www.gov.cn",
                  "gwy.zjks.com", "zjks.com", "zj.gov.cn/col", "www.gov.cn")
+
+
+def _ntitle(t):
+    t = t or ""
+    for ch in " .．…·|｜:：,，。!！?？-—~～\"'“”‘’（）()【】[]":
+        t = t.replace(ch, "")
+    return t
+
+
+def dedup_duplicates(conn):
+    """同区域同标题（含截断前缀）去重，保留标题最完整的一条。
+    针对 CMS 按栏目复制导致同一篇有多个 art_id 的情况。"""
+    rows = [dict(r) for r in conn.execute(
+        "SELECT id,district,source,title FROM event").fetchall()]
+    delete = set()
+    for i in range(len(rows)):
+        if rows[i]["id"] in delete:
+            continue
+        ta = _ntitle(rows[i]["title"])
+        for j in range(i + 1, len(rows)):
+            if rows[j]["id"] in delete:
+                continue
+            if rows[i]["district"] != rows[j]["district"]:
+                continue
+            tb = _ntitle(rows[j]["title"])
+            if not ta or not tb:
+                continue
+            same = ta == tb or ta.startswith(tb) or tb.startswith(ta)
+            if same and min(len(ta), len(tb)) >= 6 and abs(len(ta) - len(tb)) <= 12:
+                if len(ta) >= len(tb):
+                    delete.add(rows[j]["id"])
+                else:
+                    delete.add(rows[i]["id"])
+                    break
+    for i in delete:
+        conn.execute("DELETE FROM event WHERE id=?", (i,))
+    conn.commit()
+    return len(delete)
 
 
 def crawl_portal(sess, base, district, source, limit_days, seen_cols, recs):
@@ -693,6 +736,9 @@ def main():
     removed = expire_sweep(conn)
     if removed:
         print("清理过期活动: %d 条" % removed)
+    dup = dedup_duplicates(conn)
+    if dup:
+        print("合并重复活动: %d 条" % dup)
     tot = conn.execute("SELECT COUNT(*) FROM event").fetchone()[0]
     print("DONE upserts=%d total=%d" % (n, tot))
     conn.close()
