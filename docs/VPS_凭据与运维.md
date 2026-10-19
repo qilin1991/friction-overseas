@@ -506,10 +506,12 @@ curl -s -u qilin:0805 http://127.0.0.1/tour/ -o /dev/null -w '%{http_code}\n'
   - **公众号**：搜狗微信（`source='公众号'`）
   - **豆瓣同城**：`source='豆瓣同城'`
 - **豆瓣同城采集**（`douban()`，VPS 可直接抓，无需登录）：
-  - 列表 `https://www.douban.com/location/hangzhou/events/?start=0/20/40/60/80`
+  - ⚠️ 首页默认/`?start=`/`?type=` 都只返回同样 **10 条**（分页与 type 参数已失效）
+  - 真正入口是**路径式分类页 + 区页**：`/events/week-all`、`future-all`、`week-kids`、`week-exhibition`、`week-drama`、`week-comedy`、`week-film`、`week-salon`、`week-party`、`week-course`、`week-sports`、`week-travel`、`week-commonweal`、`week-competition`、`week-others`，以及各区 `week-all-<区id>`（上城 129367 / 拱墅 129370 / 西湖 129371 / 滨江 129372 / 萧山 129373 / 余杭 129374 / 临平 131703 / 富阳 129378 / 临安 129379 / 桐庐 129375 / 淳安 129376 / 建德 129377 / 钱塘 129369）
   - 条目 `li.list-entry`：标题 `.title a`、`<time itemprop=startDate/endDate>`、地点 `meta[itemprop=location]`
-  - **用结束日期做 event_date**（多日活动不被提前删）；`published_at` 留空
-  - 当前杭州近期约 10 条（脱口秀/沉浸式剧/手作/评弹/读书会等）
+  - **用结束日期做 event_date**（多日活动不被提前删）；`published_at` 留空；按 `location` 归区
+  - 合并去重后 **杭州约 90 条**（脱口秀/戏剧/展览/亲子科学秀/手作/读书会等）
+  - 另有 RSS `.../events/feed/weekly`（50 条）可作补充
 - **区县归一（`norm_district` / `guess_district`）**：
   - 街道/社区并入所属区：**星桥 → 临平**（区域筛选只按"区"分，不出现"星桥"这种街道项）
   - 来源名归位：`文旅`（杭州文旅门户）→ 杭州

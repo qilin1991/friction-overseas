@@ -665,22 +665,36 @@ def enrich_details(sess, limit=60):
     return done
 
 
+# 豆瓣同城杭州：分类页 + 区页（合并后约 80 条唯一活动）
+DOUBAN_PATHS = [
+    "week-all", "future-all",
+    "week-kids", "week-exhibition", "week-drama", "week-comedy", "week-film",
+    "week-salon", "week-party", "week-course", "week-sports", "week-travel",
+    "week-commonweal", "week-competition", "week-others",
+    # 各区
+    "week-all-129367", "week-all-129369", "week-all-129370", "week-all-129371",
+    "week-all-129372", "week-all-129373", "week-all-129374", "week-all-131703",
+    "week-all-129378", "week-all-129379", "week-all-129375", "week-all-129376",
+    "week-all-129377",
+]
+
+
 def douban(sess, limit_days=180):
-    """豆瓣同城·杭州活动（商业/文化类），按结束日期过期。"""
+    """豆瓣同城·杭州活动（分类页 + 区页汇总），按结束日期过期。"""
     out = []
     seen = set()
-    for start in (0, 20, 40, 60, 80):
-        url = "https://www.douban.com/location/hangzhou/events/?start=%d" % start
+    for path in DOUBAN_PATHS:
+        url = "https://www.douban.com/location/hangzhou/events/" + path
         try:
             r = sess.get(url, timeout=20)
             r.encoding = r.apparent_encoding or "utf-8"
         except Exception as e:
             print("  douban err:", e)
-            break
+            continue
         soup = BeautifulSoup(r.text, "html.parser")
         lis = soup.select("li.list-entry")
         if not lis:
-            break
+            continue
         for li in lis:
             a = li.select_one(".title a")
             if not a:
