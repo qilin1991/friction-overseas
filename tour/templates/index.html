@@ -10,72 +10,88 @@
 <header class="hd">
   <div class="wrap">
     <h1>杭州亲子·活动汇 <span class="dot">·</span> <small>带娃去玩</small></h1>
-    <p class="sub">全杭州 13 区县 + 文旅 &nbsp;|&nbsp; 政府 / 街道 / 社区 / 共青团 发布的可报名参加的活动</p>
-    <div class="meta">共 <b>{{ total }}</b> 条 · 数据更新于 {{ last }} &nbsp;·&nbsp; <a href="{{ url_for('sources') }}" style="color:#fff;text-decoration:underline">数据源清单（公众号/网站）→</a></div>
+    <p class="sub">全杭州 13 区县 + 文旅 &nbsp;|&nbsp; 政府发布 / 公众号 / 豆瓣同城 的可参加活动</p>
+    <div class="meta">共 <b>{{ total }}</b> 条 · 数据更新于 {{ last }}</div>
   </div>
 </header>
 
-<main class="wrap">
-  <form class="filters" method="get" action="{{ url_for('index') }}">
-    <div class="row">
-      <span class="lbl">区域</span>
-      <a class="chip {{ 'on' if not district }}" href="{{ url_for('index', category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">全部</a>
-      {% for d in districts %}
-      <a class="chip {{ 'on' if district==d }}" href="{{ url_for('index', district=d, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">{{ d }}</a>
-      {% endfor %}
-    </div>
-    <div class="row">
-      <span class="lbl">类型</span>
-      <a class="chip {{ 'on' if not category and not family }}" href="{{ url_for('index', district=district, days=days, kw=kw, open=('1' if only_open else '')) }}">全部</a>
-      <a class="chip {{ 'on' if family }}" href="{{ url_for('index', district=district, days=days, kw=kw, open=('1' if only_open else ''), family='1') }}">🧸 亲子优先</a>
-      {% for c in cats %}
-      <a class="chip {{ 'on' if category==c }}" href="{{ url_for('index', district=district, category=c, days=days, kw=kw, open=('1' if only_open else '')) }}">{{ c }}</a>
-      {% endfor %}
-    </div>
-    <div class="row tools">
-      <input type="hidden" name="district" value="{{ district }}">
-      <input type="hidden" name="category" value="{{ category }}">
-      <input class="search" type="text" name="kw" value="{{ kw }}" placeholder="搜索活动关键词，如：亲子、志愿、暑期…">
-      <select name="days">
-        {% for opt, lab in [('7','近7天'),('30','近30天'),('90','近90天'),('120','近120天'),('365','近一年')] %}
-        <option value="{{ opt }}" {{ 'selected' if days==opt }}>{{ lab }}</option>
-        {% endfor %}
-      </select>
-      <label class="ck"><input type="checkbox" name="open" value="1" {{ 'checked' if only_open }}> 只看可报名</label>
-      <button class="go" type="submit">筛选</button>
-    </div>
-  </form>
+<main class="wrap layout">
+  <aside class="side">
+    <div class="side-h">来源</div>
+    <a class="side-i {{ 'on' if not stype }}" href="{{ url_for('index', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">全部 <em>{{ n_all }}</em></a>
+    <a class="side-i {{ 'on' if stype=='gov' }}" href="{{ url_for('index', stype='gov', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">政府发布 <em>{{ n_gov }}</em></a>
+    <a class="side-i {{ 'on' if stype=='wechat' }}" href="{{ url_for('index', stype='wechat', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">公众号 <em>{{ n_wechat }}</em></a>
+    <a class="side-i {{ 'on' if stype=='douban' }}" href="{{ url_for('index', stype='douban', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">豆瓣同城 <em>{{ n_douban }}</em></a>
 
-  {% if rows %}
-  <div class="grid">
-    {% for r in rows %}
-    <article class="card">
-      <div class="top">
-        <span class="badge cat-{{ r.category }}">{{ r.category }}</span>
-        {% if r.status2=='open' %}<span class="badge ok">报名中</span>{% elif r.status2=='recent' %}<span class="badge rec">近期</span>{% else %}<span class="badge end">已结束</span>{% endif %}
-        <span class="src">{{ r.district }}{% if r.column %} · {{ r.column }}{% elif r.source=='公众号' %} · 公众号{% endif %}</span>
+    <div class="side-h">快捷</div>
+    <a class="side-i {{ 'on' if family }}" href="{{ url_for('index', stype=stype, district=district, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if not family else '')) }}">🧸 亲子优先</a>
+    <a class="side-i {{ 'on' if only_open }}" href="{{ url_for('index', stype=stype, district=district, category=category, days=days, kw=kw, family=('1' if family else ''), open=('' if only_open else '1')) }}">✅ 只看可报名</a>
+
+    <div class="side-h">数据源</div>
+    <a class="side-i plain" href="{{ url_for('sources') }}">公众号 / 网站清单 →</a>
+  </aside>
+
+  <section class="content">
+    <form class="filters" method="get" action="{{ url_for('index') }}">
+      <input type="hidden" name="stype" value="{{ stype }}">
+      <div class="row">
+        <span class="lbl">区域</span>
+        <a class="chip {{ 'on' if not district }}" href="{{ url_for('index', stype=stype, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">全部</a>
+        {% for d in districts %}
+        <a class="chip {{ 'on' if district==d }}" href="{{ url_for('index', stype=stype, district=d, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">{{ d }}</a>
+        {% endfor %}
       </div>
-      <h2><a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.title }}</a></h2>
-      {% if r.summary and r.summary != r.title %}<p class="sum">{{ r.summary }}</p>{% endif %}
-      <div class="foot">
-        {% if r.event_date %}<span>🕒 {{ r.event_date }}</span>{% endif %}
-        {% if r.location %}<span>📍 {{ r.location }}</span>{% endif %}
-        {% if r.signup_method %}<span>✍️ {{ r.signup_method }}</span>{% endif %}
-        <span class="date">{{ r.published_at or '' }}</span>
+      <div class="row">
+        <span class="lbl">类型</span>
+        <a class="chip {{ 'on' if not category and not family }}" href="{{ url_for('index', stype=stype, district=district, days=days, kw=kw, open=('1' if only_open else '')) }}">全部</a>
+        {% for c in cats %}
+        <a class="chip {{ 'on' if category==c }}" href="{{ url_for('index', stype=stype, district=district, category=c, days=days, kw=kw, open=('1' if only_open else '')) }}">{{ c }}</a>
+        {% endfor %}
       </div>
-    </article>
-    {% endfor %}
-  </div>
-  {% else %}
-  <div class="empty">
-    <p>暂无符合条件的活动。</p>
-    <p class="hint">采集器每 3 小时自动抓取一次；也可点上方「全部 / 近一年」放宽条件。</p>
-  </div>
-  {% endif %}
+      <div class="row tools">
+        <input type="hidden" name="district" value="{{ district }}">
+        <input type="hidden" name="category" value="{{ category }}">
+        <input class="search" type="text" name="kw" value="{{ kw }}" placeholder="搜索活动关键词，如：亲子、志愿、暑期…">
+        <select name="days">
+          {% for opt, lab in [('7','近7天'),('30','近30天'),('90','近90天'),('120','近120天'),('365','近一年')] %}
+          <option value="{{ opt }}" {{ 'selected' if days==opt }}>{{ lab }}</option>
+          {% endfor %}
+        </select>
+        <button class="go" type="submit">筛选</button>
+      </div>
+    </form>
+
+    {% if rows %}
+    <div class="grid">
+      {% for r in rows %}
+      <article class="card">
+        <div class="top">
+          <span class="badge cat-{{ r.category }}">{{ r.category }}</span>
+          {% if r.status2=='open' %}<span class="badge ok">报名中</span>{% elif r.status2=='recent' %}<span class="badge rec">近期</span>{% else %}<span class="badge end">已结束</span>{% endif %}
+          <span class="src">{{ r.district }}{% if r.column %} · {{ r.column }}{% elif r.source=='公众号' %} · 公众号{% elif r.source=='豆瓣同城' %} · 豆瓣同城{% endif %}</span>
+        </div>
+        <h2><a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.title }}</a></h2>
+        {% if r.summary and r.summary != r.title %}<p class="sum">{{ r.summary }}</p>{% endif %}
+        <div class="foot">
+          {% if r.event_date %}<span>🕒 {{ r.event_date }}</span>{% endif %}
+          {% if r.location %}<span>📍 {{ r.location }}</span>{% endif %}
+          {% if r.signup_method %}<span>✍️ {{ r.signup_method }}</span>{% endif %}
+          <span class="date">{{ r.published_at or '' }}</span>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty">
+      <p>暂无符合条件的活动。</p>
+      <p class="hint">采集器每 3 小时自动抓取一次；也可点左侧「全部」或上方「近一年」放宽条件。</p>
+    </div>
+    {% endif %}
+  </section>
 </main>
 
 <footer class="ft wrap">
-  数据来源：全杭州政府门户（JPAAS 集约化平台 + 栏目跟进）+ 搜狗微信（公众号）· 每 3 小时自动采集 · 仅供个人参考，报名与活动细节请以官方原文为准。
+  数据来源：全杭州政府门户 + 微信公众号（搜狗）+ 豆瓣同城 · 每 3 小时自动采集 · 活动日期已过的自动清理 · 仅供个人参考，细节请以原文为准。
 </footer>
 </body>
 </html>

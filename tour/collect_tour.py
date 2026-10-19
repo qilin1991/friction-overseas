@@ -140,7 +140,8 @@ EXPLICIT = ["报名", "招募", "名额", "扫码", "开放报名", "报名中"]
 CAT_MAP = [
     ("亲子", ["亲子", "儿童", "少儿", "小朋友", "家长", "幼儿园", "小学", "暑期", "夏令营", "研学", "宝宝", "家庭", "少年", "幼儿"]),
     ("展览", ["展览", "展会", "画展", "摄影展", "书展", "博物", "美术馆", "非遗展"]),
-    ("演出", ["演出", "晚会", "话剧", "儿童剧", "音乐会", "演唱会", "戏曲", "文艺", "秀", "灯光秀", "烟花"]),
+    ("演出", ["演出", "晚会", "话剧", "儿童剧", "音乐会", "演唱会", "戏曲", "文艺", "秀", "灯光秀", "烟花",
+              "脱口秀", "相声", "音乐剧", "舞台剧", "livehouse", "乐队", "喜剧"]),
     ("市集", ["市集", "集市", "文创", "摊位", "跳蚤", "夜市"]),
     ("青年", ["青年", "团员", "团干", "大学生", "青年之家", "交友", "联谊", "青工"]),
     ("志愿", ["志愿", "义工", "公益", "文明实践", "雷锋", "服务队", "无偿献血", "义诊"]),
@@ -261,8 +262,7 @@ def ensure_schema():
 
 def upsert(conn, rec):
     """幂等写入；重抓时保留已 enrich 的活动时间/地点/报名/摘要（新值为空则沿用旧值）。"""
-    try:
-        conn.execute("""
+    sql = """
         INSERT INTO event(uid,title,url,source,account,district,column,category,published_at,
                           event_date,location,signup_deadline,signup_method,summary,status,last_seen)
         VALUES(:uid,:title,:url,:source,:account,:district,:column,:category,:published_at,
@@ -276,11 +276,21 @@ def upsert(conn, rec):
           signup_method=COALESCE(NULLIF(excluded.signup_method,''), event.signup_method),
           summary=COALESCE(NULLIF(excluded.summary,''), event.summary),
           last_seen=excluded.last_seen
-        """, rec)
-        return True
-    except Exception as e:
-        print("  upsert err:", e)
-        return False
+        """
+    for attempt in range(4):
+        try:
+            conn.execute(sql, rec)
+            return True
+        except sqlite3.OperationalError as e:
+            if "locked" in str(e).lower() and attempt < 3:
+                time.sleep(2)
+                continue
+            print("  upsert err:", e)
+            return False
+        except Exception as e:
+            print("  upsert err:", e)
+            return False
+    return False
 
 
 def _rec(title, url, source, account, district, col, pub, summary="", ev="", loc="", signup=""):
@@ -583,9 +593,46 @@ def enrich_details(sess, limit=60):
     return done
 
 
+def douban(sess, limit_days=180):
+    """豆瓣同城·杭州活动（商业/文化类），按结束日期过期。"""
+    out = []
+    seen = set()
+    for start in (0, 20, 40, 60, 80):
+        url = "https://www.douban.com/location/hangzhou/events/?start=%d" % start
+        try:
+            r = sess.get(url, timeout=20)
+            r.encoding = r.apparent_encoding or "utf-8"
+        except Exception as e:
+            print("  douban err:", e)
+            break
+        soup = BeautifulSoup(r.text, "html.parser")
+        lis = soup.select("li.list-entry")
+        if not lis:
+            break
+        for li in lis:
+            a = li.select_one(".title a")
+            if not a:
+                continue
+            title = clean_title(a.get("title") or a.get_text(" ", strip=True))
+            href = (a.get("href") or "").split("?")[0]
+            if len(title) < 4 or "douban.com/event/" not in href or href in seen:
+                continue
+            seen.add(href)
+            sd = li.select_one("time[itemprop=startDate]")
+            ed = li.select_one("time[itemprop=endDate]")
+            startd = (sd.get("datetime", "")[:10] if sd else "")
+            endd = (ed.get("datetime", "")[:10] if ed else "")
+            ev = endd or startd                       # 用结束日期做过期依据（多日活动不被提前删）
+            loc = li.select_one("meta[itemprop=location]")
+            location = (loc.get("content", "") if loc else "").replace("杭州 ", "").strip()
+            out.append(_rec(title, href, "豆瓣同城", "", "杭州", "", "", title, ev, location, ""))
+        time.sleep(1.2)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", choices=["gov", "sogou", "bdb", "enrich", "expire", "all"], default="all")
+    ap.add_argument("--only", choices=["gov", "sogou", "douban", "bdb", "enrich", "expire", "all"], default="all")
     ap.add_argument("--days", type=int, default=120)
     ap.add_argument("--enrich-limit", type=int, default=60)
     ap.add_argument("--delay", type=float, default=14.0, help="搜狗每查询间隔秒数")
@@ -606,6 +653,17 @@ def main():
                     n += 1
             conn.commit()
             print("gov   | %-6s %-12s -> %d 条" % (district, src, len(recs)))
+
+    if args.only in ("douban", "all"):
+        try:
+            ditems = douban(sess, args.days)
+            for it in ditems:
+                if upsert(conn, it):
+                    n += 1
+            conn.commit()
+            print("douban| 豆瓣同城 -> %d 条" % len(ditems))
+        except Exception as e:
+            print("  douban 失败:", e)
 
     if args.only in ("sogou", "all"):
         captcha = 0

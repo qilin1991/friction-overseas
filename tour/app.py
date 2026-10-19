@@ -60,6 +60,7 @@ def _status(row):
 def index():
     district = request.args.get("district") or ""
     category = request.args.get("category") or ""
+    stype = request.args.get("stype") or ""
     only_open = request.args.get("open") == "1"
     family = request.args.get("family") == "1"
     days = request.args.get("days") or "120"
@@ -70,6 +71,12 @@ def index():
         where.append("district=?"); args.append(district)
     if category:
         where.append("category=?"); args.append(category)
+    if stype == "gov":
+        where.append("source NOT IN ('公众号','豆瓣同城')")
+    elif stype == "wechat":
+        where.append("source='公众号'")
+    elif stype == "douban":
+        where.append("source='豆瓣同城'")
     if family:
         where.append("category IN ('亲子','展览','演出','市集','文体','志愿','文旅','培训')")
     try:
@@ -83,7 +90,12 @@ def index():
         args += ["%" + kw + "%", "%" + kw + "%"]
     w = " AND ".join(where)
 
-    rows = q("SELECT * FROM event WHERE %s ORDER BY COALESCE(published_at,'') DESC, id DESC LIMIT 400" % w, args)
+    # 排序：近期活动优先（活动日 >= 今天的，按活动日由近到远），其余按发布时间倒序
+    _sort = ("ORDER BY "
+             "CASE WHEN event_date<>'' AND event_date>=date('now') THEN 0 ELSE 1 END, "
+             "CASE WHEN event_date<>'' AND event_date>=date('now') THEN event_date END ASC, "
+             "COALESCE(published_at,'') DESC, id DESC")
+    rows = q("SELECT * FROM event WHERE %s %s LIMIT 400" % (w, _sort), args)
     rows = [dict(r) for r in rows]
     for r in rows:
         r["status2"] = _status(r)
@@ -98,10 +110,16 @@ def index():
         "GROUP BY category ORDER BY COUNT(*) DESC")]
     total = q("SELECT COUNT(*) FROM event")[0][0]
     last = q("SELECT MAX(last_seen) FROM event")[0][0] or "—"
+    n_all = total
+    n_gov = q("SELECT COUNT(*) FROM event WHERE source NOT IN ('公众号','豆瓣同城')")[0][0]
+    n_wechat = q("SELECT COUNT(*) FROM event WHERE source='公众号'")[0][0]
+    n_douban = q("SELECT COUNT(*) FROM event WHERE source='豆瓣同城'")[0][0]
 
     return render_template("index.html", rows=rows, districts=districts, cats=cats,
-                           district=district, category=category, only_open=only_open,
-                           family=family, days=days, kw=kw, total=total, last=last)
+                           district=district, category=category, stype=stype,
+                           only_open=only_open, family=family, days=days, kw=kw,
+                           total=total, last=last, n_all=n_all, n_gov=n_gov,
+                           n_wechat=n_wechat, n_douban=n_douban)
 
 
 @app.get("/tour/sources")

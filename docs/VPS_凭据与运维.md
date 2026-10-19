@@ -496,6 +496,20 @@ curl -s -u qilin:0805 http://127.0.0.1/tour/ -o /dev/null -w '%{http_code}\n'
 - ⚠️ 公众号文章正文抓不到（搜狗 `/link` 一跟就跳反爬页），所以活动时间**从搜索结果摘要**（`txt-info`）里抽，而非点进原文。
 - 功能自测：插入一条 `event_date=昨天` 的记录 → 跑 `--only expire` → 该记录被删（已验证）。
 
+### 8.7 多来源（政府 / 公众号 / 豆瓣同城）与左侧导航
+
+- 来源分三类，左侧栏切换（`?stype=gov|wechat|douban`）：
+  - **政府发布**：13 区县门户 + 文旅（`source` 不是"公众号/豆瓣同城"的）
+  - **公众号**：搜狗微信（`source='公众号'`）
+  - **豆瓣同城**：`source='豆瓣同城'`
+- **豆瓣同城采集**（`douban()`，VPS 可直接抓，无需登录）：
+  - 列表 `https://www.douban.com/location/hangzhou/events/?start=0/20/40/60/80`
+  - 条目 `li.list-entry`：标题 `.title a`、`<time itemprop=startDate/endDate>`、地点 `meta[itemprop=location]`
+  - **用结束日期做 event_date**（多日活动不被提前删）；`published_at` 留空
+  - 当前杭州近期约 10 条（脱口秀/沉浸式剧/手作/评弹/读书会等）
+- **排序**：活动日 >= 今天的按活动日**由近到远**排在前，其余按发布时间倒序（"近期可去"优先）。
+- VPS 定时任务现为 `gov → douban → enrich` 三步（均含过期清理）。
+
 ### 8.3 运维
 
 ```bash

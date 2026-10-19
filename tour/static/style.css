@@ -108,3 +108,31 @@ select{
   .filters{padding:12px}
   .tools .go{flex:1 1 100%}
 }
+
+/* 左侧来源导航 + 右侧内容 */
+.layout{display:flex; gap:20px; align-items:flex-start}
+.side{
+  flex:0 0 186px; width:186px; position:sticky; top:14px;
+  background:var(--card); border:1px solid var(--line); border-radius:12px;
+  padding:12px 10px; box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.side-h{font-size:12px; color:#9aa5b1; margin:10px 8px 6px; letter-spacing:.5px}
+.side-h:first-child{margin-top:2px}
+.side-i{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:7px 10px; border-radius:8px; color:#37474f; text-decoration:none;
+  font-size:14px; margin:2px 0;
+}
+.side-i em{font-style:normal; font-size:12px; color:#90a4ae; background:#f1f4f7; border-radius:8px; padding:0 7px}
+.side-i:hover{background:#f4f7fa}
+.side-i.on{background:#F37021; color:#fff}
+.side-i.on em{background:rgba(255,255,255,.25); color:#fff}
+.side-i.plain{color:#F37021; font-size:13px}
+.content{flex:1; min-width:0}
+.content .filters{margin-top:0}
+@media (max-width:820px){
+  .layout{flex-direction:column}
+  .side{position:static; width:100%; flex:none; display:flex; flex-wrap:wrap; gap:4px; align-items:center}
+  .side-h{width:100%; margin:6px 6px 2px}
+  .side-i{padding:6px 10px}
+}
