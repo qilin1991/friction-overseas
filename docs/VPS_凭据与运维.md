@@ -512,6 +512,12 @@ curl -s -u qilin:0805 http://127.0.0.1/tour/ -o /dev/null -w '%{http_code}\n'
   - 当前杭州近期约 10 条（脱口秀/沉浸式剧/手作/评弹/读书会等）
 - **排序**：活动日 >= 今天的按活动日**由近到远**排在前，其余按发布时间倒序（"近期可去"优先）。
 - VPS 定时任务现为 `gov → douban → enrich` 三步（均含过期清理）。
+- **大麦 / 活动行（必须住宅 IP）**：两者都按"云 IP"封禁——大麦返回阿里 `punish` 页（`cloud_ip_bl`），活动行 403，VPS/沙箱均进不去。
+  因此放在**电脑端** `pc_client/push_wechat.py` 的 `fetch_damai()` / `fetch_huodongxing()`：
+  - 大麦：`search.damai.cn/searchajax.html?cty=330100&keyword=亲子&currPage=1`，解析 `pageData.resultData`（name/projectid/showtime/venue/price_str）
+  - 活动行：`huodongxing.com/events?city=杭州`，正则取 `href=".../event/数字"` 的链接
+  - 抓到后 source 分别写 `大麦` / `活动行`，推 `/tour/api/ingest`；入库时这类"原生来源"跳过家庭关键词过滤
+  - ⚠️ 若电脑端日志显示"大麦被拦(非JSON)"或"活动行 HTTP 403"，说明该 IP 也被限，需再等或换网络
 
 ### 8.3 运维
 

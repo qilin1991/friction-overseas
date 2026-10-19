@@ -91,6 +91,75 @@ def parse_sogou(page, district, query):
     return out
 
 
+def fetch_damai(sess):
+    """大麦·杭州（JSON 接口，住宅 IP 才不被 punish）。杭州城市码 330100。"""
+    out, seen = [], set()
+    for kw in ("亲子", "儿童", "展览", "话剧", ""):
+        for page in (1, 2):
+            try:
+                r = sess.get("https://search.damai.cn/searchajax.html",
+                             params={"cty": "330100", "keyword": kw, "order": "1",
+                                     "pageSize": "30", "currPage": str(page), "tn": ""},
+                             headers={"Referer": "https://www.damai.cn/"}, timeout=20)
+            except Exception as e:
+                print("  大麦网络错误:", e)
+                return out
+            t = (r.text or "").strip()
+            if "punish" in t or not t.startswith("{"):
+                print("  大麦被拦(非JSON) len=%d（需住宅 IP）" % len(t))
+                return out
+            try:
+                j = json.loads(t)
+            except Exception:
+                return out
+            arr = ((j.get("pageData") or {}).get("resultData")) or []
+            if not arr:
+                break
+            for it in arr:
+                name = (it.get("name") or "").strip()
+                pid = str(it.get("projectid") or "")
+                if not name or not pid:
+                    continue
+                url = "https://detail.damai.cn/item.htm?id=%s" % pid
+                if url in seen:
+                    continue
+                seen.add(url)
+                show = it.get("showtime") or ""
+                m = re.search(r"(20\d{2})[.\-/](\d{1,2})[.\-/](\d{1,2})", show)
+                ev = ("%s-%02d-%02d" % (m.group(1), int(m.group(2)), int(m.group(3)))) if m else ""
+                out.append(dict(title=name, url=url, source="大麦", account="大麦",
+                                district="杭州", published_at="",
+                                summary=(it.get("price_str") or ""), event_date=ev,
+                                location=(it.get("venue") or ""), signup_method=""))
+            time.sleep(1)
+    return out
+
+
+def fetch_huodongxing(sess):
+    """活动行·杭州（HTML 列表，住宅 IP 才不被 403）。"""
+    out, seen = [], set()
+    try:
+        r = sess.get("https://www.huodongxing.com/events", params={"city": "杭州"}, timeout=20)
+    except Exception as e:
+        print("  活动行网络错误:", e)
+        return out
+    if r.status_code != 200:
+        print("  活动行 HTTP %s（云IP被拦，需住宅 IP）" % r.status_code)
+        return out
+    for m in re.finditer(r'<a[^>]+href="(https://www\.huodongxing\.com/event/\d+)"[^>]*>(.*?)</a>',
+                         r.text, re.S):
+        url = m.group(1)
+        title = html.unescape(re.sub(r"<[^>]+>", "", m.group(2))).strip()
+        title = clean_title(title)
+        if len(title) < 6 or url in seen:
+            continue
+        seen.add(url)
+        out.append(dict(title=title, url=url, source="活动行", account="活动行",
+                        district="杭州", published_at="", summary="",
+                        event_date="", location="", signup_method=""))
+    return out
+
+
 def get_queries(sess):
     try:
         r = sess.get(VPS_BASE + "/tour/api/queries", auth=AUTH, timeout=15)
@@ -128,6 +197,20 @@ def one_round(sess, delay):
         print("  [%02d] %-20s -> %d" % (i, q, len(got)))
         items += got
         time.sleep(delay + random.random() * 6)
+
+    # 商业活动平台（住宅 IP 才不被拦）
+    try:
+        dm = fetch_damai(sess)
+        print("大麦 -> %d 条" % len(dm))
+        items += dm
+    except Exception as e:
+        print("大麦异常:", e)
+    try:
+        hx = fetch_huodongxing(sess)
+        print("活动行 -> %d 条" % len(hx))
+        items += hx
+    except Exception as e:
+        print("活动行异常:", e)
 
     # 批内按标题去重
     seen, uniq = set(), []

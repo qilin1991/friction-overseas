@@ -22,6 +22,8 @@
     <a class="side-i {{ 'on' if stype=='gov' }}" href="{{ url_for('index', stype='gov', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">政府发布 <em>{{ n_gov }}</em></a>
     <a class="side-i {{ 'on' if stype=='wechat' }}" href="{{ url_for('index', stype='wechat', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">公众号 <em>{{ n_wechat }}</em></a>
     <a class="side-i {{ 'on' if stype=='douban' }}" href="{{ url_for('index', stype='douban', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">豆瓣同城 <em>{{ n_douban }}</em></a>
+    <a class="side-i {{ 'on' if stype=='damai' }}" href="{{ url_for('index', stype='damai', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">大麦 <em>{{ n_damai }}</em></a>
+    <a class="side-i {{ 'on' if stype=='huodongxing' }}" href="{{ url_for('index', stype='huodongxing', district=district, category=category, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if family else '')) }}">活动行 <em>{{ n_hx }}</em></a>
 
     <div class="side-h">快捷</div>
     <a class="side-i {{ 'on' if family }}" href="{{ url_for('index', stype=stype, district=district, days=days, kw=kw, open=('1' if only_open else ''), family=('1' if not family else '')) }}">🧸 亲子优先</a>

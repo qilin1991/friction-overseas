@@ -72,11 +72,15 @@ def index():
     if category:
         where.append("category=?"); args.append(category)
     if stype == "gov":
-        where.append("source NOT IN ('公众号','豆瓣同城')")
+        where.append("source NOT IN ('公众号','豆瓣同城','大麦','活动行')")
     elif stype == "wechat":
         where.append("source='公众号'")
     elif stype == "douban":
         where.append("source='豆瓣同城'")
+    elif stype == "damai":
+        where.append("source='大麦'")
+    elif stype == "huodongxing":
+        where.append("source='活动行'")
     if family:
         where.append("category IN ('亲子','展览','演出','市集','文体','志愿','文旅','培训')")
     try:
@@ -111,15 +115,17 @@ def index():
     total = q("SELECT COUNT(*) FROM event")[0][0]
     last = q("SELECT MAX(last_seen) FROM event")[0][0] or "—"
     n_all = total
-    n_gov = q("SELECT COUNT(*) FROM event WHERE source NOT IN ('公众号','豆瓣同城')")[0][0]
+    n_gov = q("SELECT COUNT(*) FROM event WHERE source NOT IN ('公众号','豆瓣同城','大麦','活动行')")[0][0]
     n_wechat = q("SELECT COUNT(*) FROM event WHERE source='公众号'")[0][0]
     n_douban = q("SELECT COUNT(*) FROM event WHERE source='豆瓣同城'")[0][0]
+    n_damai = q("SELECT COUNT(*) FROM event WHERE source='大麦'")[0][0]
+    n_hx = q("SELECT COUNT(*) FROM event WHERE source='活动行'")[0][0]
 
     return render_template("index.html", rows=rows, districts=districts, cats=cats,
                            district=district, category=category, stype=stype,
                            only_open=only_open, family=family, days=days, kw=kw,
                            total=total, last=last, n_all=n_all, n_gov=n_gov,
-                           n_wechat=n_wechat, n_douban=n_douban)
+                           n_wechat=n_wechat, n_douban=n_douban, n_damai=n_damai, n_hx=n_hx)
 
 
 @app.get("/tour/sources")
@@ -184,12 +190,16 @@ def api_ingest():
     try:
         for it in items:
             title = C.clean_title(it.get("title") or "")
-            if len(title) < 6 or not C.is_joinable(title):
+            _src = it.get("source") or "公众号"
+            _native = _src in ("大麦", "活动行", "豆瓣同城")   # 本身就是活动，不必按家庭关键词过滤
+            if len(title) < 4:
+                continue
+            if not _native and (len(title) < 6 or not C.is_joinable(title)):
                 continue
             _pub = (it.get("published_at") or "").strip()
             if _pub and _pub < cutoff:          # 过期老文章
                 continue
-            if any(w in title for w in OTHER_CITY) and not any(k in title for k in HZ_KW):
+            if not _native and any(w in title for w in OTHER_CITY) and not any(k in title for k in HZ_KW):
                 continue                          # 外地噪声
             _sum = it.get("summary") or ""
             _ev, _loc, _sg = C.extract_fields(_sum + " " + title)   # 从摘要抽活动时间/地点/报名
