@@ -1,0 +1,10 @@
+[Unit]
+Description=Collect Hangzhou activities into tour.db (gov + enrich + expire; wechat on user PC)
+
+[Service]
+Type=oneshot
+User=archive
+Group=archive
+WorkingDirectory=/opt/tour
+ExecStart=/opt/friction/venv/bin/python -u /opt/tour/collect_tour.py --only gov
+ExecStart=/opt/friction/venv/bin/python -u /opt/tour/collect_tour.py --only enrich

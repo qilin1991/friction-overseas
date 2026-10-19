@@ -1,0 +1,476 @@
+# Friction 摩擦材料站 · 接手指南（给电脑版 WorkBuddy）
+
+> 写于 2026-10-06 凌晨。目标：任何一个新的 WorkBuddy 会话（云端沙箱或电脑版）
+> 读完这份文件，就能直接接手继续干活，不用重新踩一遍坑。
+
+---
+
+## ★ 工作约定（用户 2026-10-06 指定，云端沙箱和电脑版 WorkBuddy 都要遵守）
+
+**每次对话里的任何改动（代码 / 配置 / 数据 / 排查结论），收尾时同步到三处：**
+
+| # | 位置 | 作用 |
+|---|---|---|
+| 1 | `/workspace/friction-vps-sync/接手指南_WorkBuddy.md`（本文件） | 方法论 + 状态 + 待办 |
+| 2 | `/workspace/friction-vps-sync/VPS_凭据与运维.md` | 凭据、流水线、坑清单 |
+| 3 | GitHub 仓库 `qilin1991/friction-overseas`（`docs/接手指南_WorkBuddy.md` + `README.md` 指针） | 电脑版 / 任何端都能看到 |
+
+目的：用户、云端会话、电脑版 WorkBuddy 三方看到的是同一份现场记录，
+谁接手都不用重新踩坑。**改完不写回来 = 没改完。**
+
+---
+
+## 0. 一句话说清这个项目
+
+一个 **摩擦材料 / 制动器行业的中文资讯聚合站**，跑在腾讯云 VPS `146.56.250.224`，
+路径 `/opt/friction`，对外 `http://146.56.250.224/friction`（Basic Auth 保护）。
+英文原文采集 → 翻译成中文 → 配图（存腾讯 COS）→ 建站展示。
+
+**核心矛盾：VPS 在国内，出不去；内容源和翻译源都在国外。**
+整个架构都是围绕这个矛盾设计的：能出去的活（采集、翻译）搬到 GitHub Actions 上做，
+VPS 只做"拉回来 + 存 + 展示"。
+
+---
+
+## 1. 架构总图
+
+```
+┌─ GitHub Actions（Azure 机房，能出国外）────────────────────────┐
+│  qilin1991/friction-overseas                                   │
+│   ├ friction-overseas.yml  海外信源采集 → data/news_overseas.json│
+│   ├ friction-translate.yml 正文多源翻译 → data/news_zh.json      │
+│   └ fetch-media.yml        媒体抓取                             │
+└────────────────────────┬──────────────────────────────────────┘
+                         │  VPS 侧定时 / 手动 pull（GitHub Contents API）
+                         ▼
+┌─ VPS 146.56.250.224 ──────────────────────────────────────────┐
+│  /opt/friction                                                 │
+│   ├ data/friction.db        SQLite，站点唯一数据源              │
+│   ├ fetch_and_translate.sh  流水线（11 步）                     │
+│   ├ qpush.py                翻译队列 push / merge 入口          │
+│   └ app/                    Flask（waitress 127.0.0.1:8084）    │
+│  nginx /friction → 反向代理 + Basic Auth                        │
+└────────────────────────┬──────────────────────────────────────┘
+                         │  图片只认 COS 直链
+                         ▼
+        腾讯 COS 桶 qilin-1449368663（ap-nanjing）
+        static/friction_media/  ← 图床
+        friction_backup/        ← 每日 04:00 数据库备份（留 14 天）
+```
+
+---
+
+## 2. 凭据清单
+
+| 项目 | 位置 / 值 | 说明 |
+|---|---|---|
+| VPS SSH | `ubuntu@146.56.250.224`，密码 `Lm~~1991cloud`，sudo 免密 | **不要**用 root |
+| 站点 Basic Auth | `qilin` / `0805` | nginx `.htpasswd_work` |
+| DB 文件 | `/opt/friction/data/friction.db` | 属主 archive |
+| COS 凭据 | `/opt/friction/.deploy.env`（chmod 600） | 由 `cos_cred.py` 加载，代码里已无 AKID |
+| GitHub Token | `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` | 登录 `qilin1991` |
+| 沙箱推送工具 | `/workspace/gh_push.py`、`gh_dispatch_translate.py` | Contents API 直更文件（git 直连不稳） |
+
+---
+
+## 3. 日常运维速查
+
+```bash
+# 连 VPS（沙箱里用 sshpass，电脑版直接用系统 ssh / Termius）
+sshpass -p 'Lm~~1991cloud' ssh -o StrictHostKeyChecking=no ubuntu@146.56.250.224
+
+sudo systemctl restart friction         # 改了数据后必须重启，页面才刷新（有缓存）
+sudo systemctl status friction archive-backup.timer friction-backup.timer
+sudo -u archive python3 /opt/friction/healthcheck.py     # 健康体检
+cd /opt/friction && sudo -u archive /opt/friction/venv/bin/python3 qpush.py push 50 all
+cd /opt/friction && sudo -u archive /opt/friction/venv/bin/python3 qpush.py merge
+```
+
+改 DB 的脚本**必须** `sudo -u archive` 跑，否则 `attempt to write a readonly database`。
+写不进 `/opt/friction` 就先 scp 到 `/tmp`，再 `sudo cp` + `sudo chown archive:archive`。
+
+---
+
+## 4. 正文翻译链路（2026-10-05 刚换过，最重要）
+
+### 4.1 为什么换
+
+| 指标 | LibreTranslate（旧） | Google 多源（新） |
+|---|---|---|
+| 行业术语 | caliper→**卡路里**、washer→**洗衣机**、nut→**坚果**、bleed→**出血** | 卡钳 / 密封垫圈 / 螺母 / 排气 |
+| 段落结构 | 317 篇里 41 篇塌陷（6 段压成 1 段） | 实测 100% 对齐 |
+| 速度 | 15 篇 263s | 15 篇 85s |
+| 成本 | ¥0 | ¥0 |
+
+**根因判断**：不是切分/处理器的问题，是引擎本身（Argos / OPUS 通用语料，
+不懂汽车领域，且不支持 glossary）。所以换引擎，而不是继续补术语表。
+（`fix_terms.py` 那种译后回改永远在追漏网字。）
+
+### 4.2 怎么跑
+
+```bash
+# 沙箱里一键跑完剩余批次（push → dispatch → merge 自动循环）
+cd /workspace && python3 -u run_batches.py 50 10
+```
+
+单轮三步：
+1. VPS `qpush.py push <N> <new|lt|all>` → `data/translate_queue.json`
+2. 触发 `friction-translate.yml`（`probe_only=false`）
+3. VPS `qpush.py merge` → 回填 `article.content_zh / title_zh`
+
+`scope` 含义：`new`=只补无译文缺口；`lt`=重翻有 LT 译文但未标记的；
+`all`=new 优先再 lt；`lt-force`=忽略标记强制重翻。
+**日常流水线只用 `new`**，否则会反复重翻同一批。
+
+### 4.3 三条硬规则（改代码前必读，写在 translate_body.py 头部）
+
+1. **`sl` 绝不设 `auto`** —— 中文源会被当英文译，产出「评选的(CFSMA)」乱码。
+   VPS 侧只推 `lang='en'`，脚本再按停用词判 es/fr/de/it/pt 并显式指定。
+2. **`[IMG:n]` 占位符绝不能丢** —— 整段翻优先，占位符数量对不上就把段落按占位符
+   切开、逐片翻再插回。（第一版没这么做，22 段整段回退成英文。）
+3. **429 不许死等** —— 一次失败立刻换域名/换源。第一版在 429 上退避重试，
+   把 4 分钟的活拖到 25 分钟还没完，只能手动取消。
+
+### 4.4 翻译源梯队（2026-10-05 在 Actions runner 上实测）
+
+| 梯队 | 源 | 状态 |
+|---|---|---|
+| 主力 | `translate.googleapis.com` | ✅ |
+| 备用 | `translate.google.com` / `.com.hk` / `.co.jp` | ✅（不同域名抗单点限流） |
+| 兜底 | MyMemory（不同引擎，带 email 可提到 5 万字/日） | ✅（占位符会被改成 `[IMG: 1]`，已归一） |
+| 不可用 | 微软 Edge(404)、DeepL 网页端(429)、Papago(404)、有道(非 JSON)、百度(空译文)、Reverso(403)、Lingva(原样返回)、LibreTranslate 镜像(400/DNS) | ❌ |
+
+---
+
+## 5. 工作方法与思路（给下一个接手的 AI / 人）
+
+这是用户明确要求留下的部分——**不是命令清单，是判断方式**。
+
+### 5.1 先证因，再动手
+翻译质量差时，第一反应不该是"再补几个术语映射"。我先写了 `lt_probe.py`：
+把句子**孤立**输入、**带上下文**输入、真实库里句子三种方式喂给 LT，
+三种全错 → 证明是引擎的错，不是切分/上下文丢失。然后才决定换引擎。
+**打补丁永远追不上根因。**
+
+### 5.2 探针先行，默认只读
+新增 workflow 时 `probe_only` 默认 `true`。先在目标环境（runner）上把可达性、
+可用性、质量测一遍，拿到数据再决定要不要写实施代码。
+沙箱到不了的 Google，就用 Actions 跑探针——**换环境验证，而不是猜**。
+
+### 5.3 dry-run → 小批量 → 全量
+`clean_pseudo.py` / `dedup.py` / `fix_terms.py` 全部带 `--apply` 开关，
+默认只打印。全量翻译战役先跑 15 篇做 LT vs Google 对照，
+确认段落结构、占位符、术语都对，才放行 300+ 篇。
+
+### 5.4 门禁比修复更重要
+不指望引擎永远正确，而是在管线里设卡：
+占位符数量、段落数、`out == input`（没翻）、长度塌缩（被摘要）。
+触发就换源，换不了就保底留原文让 `zh_guard.py` 兜。
+**宁可留一段英文，也不要产出结构坏掉的中文。**
+
+### 5.5 成本敏感，先算账
+用户在意"长回答单次 1 元都嫌贵"。所以换翻译方案时先算：
+全站重翻 308 篇 ≈ 162 万输入 + 211 万输出 token，LongCat ≈ ¥20、Google 官方 API ≈ ¥900。
+结论是**一分钱不花也能解决**（Actions + gtx 免费端点），就没有必要上 LLM。
+
+### 5.6 用架构绕开环境限制，而不是硬碰
+VPS 出口访问 Google 全线不通（实测 Network unreachable），这是死结，改不了一行代码。
+但 GitHub Actions runner 在 Azure，本来就通——把翻译搬过去，
+用 GitHub 当"海外出口 + 存储中转"，VPS 只管拉。
+
+### 5.7 每一步留回滚
+- 每日 04:00 备份 DB → COS（留 14 天），带 `PRAGMA integrity_check` 门禁
+- 不动 `article` 表结构，新增需求用**侧表**（`translate_done`）
+- 改脚本前先 `.bak_*`
+
+### 5.8 幂等必须有显式标记（2026-10-06 刚踩，一次踩两回）
+**第一回**：重翻战役跑 9 轮、回填 468 条，**实际只翻了 52 篇**——
+"已重翻"没有标记，`ORDER BY id DESC` 每轮取到同样 50 篇。
+修法：侧表 `translate_done(url PK, ts, engine)`。
+
+**第二回**：产物 `news_zh.json` 累积到 318 条、超过 1MB 后，
+GitHub Contents API **不再内联返回 content**（只给 sha），VPS 侧拉回是空的，
+于是"翻完了但回填 0 条"，又空转 4 轮。
+修法：① 用 Git Blob API 兜底取大文件；② VPS 回填成功后回传
+`data/translate_done.json`，Actions 侧按清单裁剪产物，文件不再滚大。
+
+教训：**凡是"取一批 → 处理 → 标记"的循环，标记必须真的落到库里，
+且产物体积要有上限控制**——否则两处都会静默空转。
+
+### 5.9 「抓不到」不等于「没价值」（2026-10-06，本轮最贵的一条）
+
+通用补抓器第二轮报 **「90 篇全部失败」**，第一反应会是"这些源死了、这些文章垃圾"。
+实际 `curl` 抽样一看 —— **HTTP 全是 200**。它们根本没死，是提取方式不对：
+东财公告是 JS 壳，正文在 **PDF** 里（`pdf.dfcfw.com/pdf/H2_{AN码}_1.pdf`）。
+按这条路径重写，**60/60 全成功，净增 41.5 万字**。
+
+同一轮里，`nasn-auto` / `hua-wu` / `jg-zdq` 这些 URL 也都返回 200，
+能抽出 300–1200 字，但它们**本来就是一句话企业新闻**，多抓也多不出。
+
+> **规则：判定一篇文章"要不要留"之前，先分清三种截然不同的情况 ——**
+> **① 从没定位到地址（跳转壳）② 原文就这么短 ③ 有更富的原文没挖。**
+> **只有第 ② 种才涉及取舍，①②是纯技术问题，砍掉等于白扔数据。**
+>
+> 这三类的占比见 **8.2**。判断成本很低：抽 20 个 URL `curl` 一遍就清楚了。
+
+配套工具：`diag_source.py`（A–E 五档归因）。先归因，再决定删还是救。
+
+---
+
+## 6. 已踩过的坑（按痛感排序）
+
+1. **改了数据页面不刷新** —— 必须 `sudo systemctl restart friction`（进程有缓存）。
+2. **图片必须传 COS 才显示** —— `_media_src()` 只认 COS 直链，本地有文件不算。
+   2026-10-05 踩过：2801 张 ok 图里 1117 张没传 COS，152 篇裂图。
+   用 `verify_cos.py` 对账，缺了就 `cos_helper.py --only-missing` 补传。
+3. **`/opt/friction` 属 archive** —— ubuntu 不能直接 scp 进去，先 `/tmp` 再 sudo cp。
+4. **改 DB 要 `sudo -u archive`** —— 否则 readonly。
+5. **`cos_helper.py` 要 PIL** —— friction 的 venv 没装，用 `/opt/study/venv/bin/python3`。
+6. **`sl="auto"` 会把中文源译烂** —— 见 4.3 第 1 条。
+7. **重翻循环没有标记会空转** —— 见 5.8。
+8. **EN→ZH 字符比 0.30 左右是正常的** —— 不要拿 1:1 当标准去判"被摘要"，
+   真正的反摘要检查是**段落数是否一致**。
+
+---
+
+## 7. 当前状态（2026-10-06 11:40 收尾）
+
+| 项 | 值 |
+|---|---|
+| 文章总数 | **945**（nav 页清理后：删 28、降级 66） |
+| **正文可读率（raw_content ≥ 800 字）** | **40.7%**（385 篇），补抓前是 35% |
+| 空壳（< 200 字） | 449 篇 —— 其中 304 是「跳转壳」，见 8.2 拆解 |
+| 已打标签 | 918 / 945（**97.1%**），49 个标签 / 10 个组 |
+| 缺译文 | **0** ✅ |
+| 含 LT 错词 | **0 篇** ✅ |
+| 每日备份 | ✅ 04:00 → COS `friction_backup/`（留 14 天） |
+| 去重 / 伪文章清理 | ✅ 已删 29 + 39（栏目页） |
+| COS 密钥 | ✅ 已移出代码到 `.deploy.env` |
+| Actions 定时 | ✅ 翻译 `cron '55 */2 * * *'`；出海补抓 `cron '17 3 * * *'` |
+| 文献接口（OA PDF 全文本地化） | ✅ 已上线，~240+ 篇落地 COS（见《VPS_凭据与运维》§七） |
+| 活动分站 `/tour/` | ✅ **全杭州版**（`qilin:0805`）：13 区县门户（JPAAS 逆向）+ 搜狗微信；公众号靠**用户电脑（住宅 IP）**跑 `push_wechat.py` 推 `/tour/api/ingest`（机房 IP 必被搜狗拦，详见《VPS_凭据与运维》§八） |
+
+---
+
+## 8. 未决 / 待办
+
+- [ ] **真正独立的第二翻译源**：现在 Google 一挂就只剩 MyMemory（质量差一档）。
+      建议注册 **DeepL API Free**（50 万字/月）或 **Azure Translator F0**（200 万字/月），
+      key 放 GitHub Secrets 当第二梯队（要用户拍板注册哪个）。
+- [ ] **7 篇超长文截断（2026-10-06 用户决定：先放着）** —— 都是 federalregister.gov
+      的法规原文（79万～179万字符）+ 1 篇市场报告页，`MAX_TEXT=12000` 只翻了开头。
+      全文翻译每篇要 100～1500 次请求，且九成是法条 boilerplate，不值得。
+
+  | id | 标题 | 原文规模 | 标签 |
+  |---|---|---|---|
+  | 104 | CAFE 燃油经济性标准（2024-06） | 179 万字 | 无（采集时没打上） |
+  | 101 | SAFE Vehicles Rule III（2026-09） | 149 万字 | 新能源车 |
+  | 107 | Fuels Regulatory Streamlining（2020-05） | 79 万字 | 新能源车 |
+  | 102 | MY2027 非合规罚则修正案（2026-07） | 72 万字 | 关键工序 |
+  | 94 | 锂电池微出行安全标准（2026-06） | 32 万字 | 关键工序 |
+  | 43 | FMVSS No.110 现代化（2026-06） | 12 万字 | 新能源车、关键工序 |
+  | 3715 | Brake Pad Market（TMR 报告页） | 3.3 万字 | 刹车片 |
+
+- [ ] 41 条 Carlisle 展会占位卡（`content_level='full'` 但正文仅 10–64 字符）
+      —— 2026-10-06 用户决定：**先放着**。
+- [ ] **304 篇跳转壳待出海补抓**（详见 8.2）—— 方案已上线但未实际跑过一次，
+      需要先在 GitHub Actions 手动触发验证（未启用状态，等用户点头）。
+- [ ] ~150 篇「原文就这么短」的一句话企业新闻，需要决定留/降级/剔。**见 8.2 第 C 桶。**
+- [ ] MyMemory 提额邮箱（填 `mymemory_email` 可 5 千 → 5 万字/日）
+- [ ] `/opt/archive/.deploy.env` 权限 666 → 改 600
+- [ ] 539 张失败图片（下轮自动重试）、77 篇有图无占位符
+- [ ] 歧义词待人工确认：转子(137) / 垫(600) / 鼓(102) / 脚(87) / 电流(61)
+- [ ] NAS 备份 `\\192.168.31.240\Home1\archive_backup` SMB 445/139 不通（VPS 侧无解）
+
+### 8.1 已修（本节挪进来的都闭环了）
+
+- [x] **文献接口：OA PDF 全文本地化（2026-10-17）**
+      用户诉求：把已采集论文的开放获取全文 PDF 拉到 COS，在「文献」栏目直接在线看（拒绝 sci-hub，只用合法 OA）。
+      落地：`paper` 表加 `pdf_cos_key` 列；新增 `fetch_oa_pdfs.py`（OA 全文下载→COS，带落地页探测/并发安全/体积校验）；
+      `app/routes/paper.py` 加 `GET /papers/<id>/pdf`（从 COS 拉取流式返回）；列表页/详情页按钮已接。
+      **两个坑已踩平**：① nginx 的 `friction_location.inc` 之前没被 active server include，导致 `/friction/**` 落到 8080 另一个站、接口 404
+      —— 已在 `sites-available/archive` 补 `include` 并 `reload nginx`；② `qcloud_cos` 的 `Body.read()` 不传大小只回 1024B 假 PDF
+      —— 改为 1MB 循环读，现单篇正常吐 3–60MB 真 PDF。
+      访问：`http://146.56.250.224/friction/papers/<id>/pdf`，鉴权用 `/friction` 子站口令 `qilin:0805`。
+      运维细节见《VPS_凭据与运维》§七。
+
+- [x] **文章详情页标签点不动（2026-10-06 用户截图反馈）**
+      根因：`article.html` 里标签渲染成 `<span class="chip">`，纯静态 ——
+      而首页标签云、资讯页侧栏都是链接，唯独详情页漏了。
+      修复：改成 `<a>` 跳 `/news?tag=<名>`，`components.css` 加 `a.chip` 去下划线。
+      备份：`article.html.bak_tag_*`、`components.css.bak_tag_*`。
+      ⚠️ 注意 `_macros.html` 卡片里的 chip 在整卡 `<a>` 内部，**不能**再嵌 a，故未动。
+
+- [x] **新增「报告」标签 + 全库补标签（2026-10-06 用户要求）**
+      用户诉求：市场研报类要能按「报告」标签直接筛选研读；顺带补齐漏打的标签。
+      改动 4 处（都有 `.bak_*` 备份）：
+      1. `app/services/scoring.py` LEXICON 加 31 条报告类词条
+         （market size/share/outlook/analysis/insights/research/dynamics/trends、
+          Size, Share / Size & Share / 规模与份额 / 市场展望 / 新报告 / CAGR /
+          复合年增长率 / 市场规模 / 半年度报告 / ESG报告 / CSR报告 / 审计报告 …），
+         tag=`报告` group=`研报` color=`#457B9D`。
+      2. 加 `TITLE_ONLY_TAGS = {"报告"}`：**只在标题命中才打，正文命中不算**。
+         原因：联邦法规全文 4~179 万字符，正文里 report / 年度报告 是必现词
+         （多是"须提交年度报告"类条款），按正文匹配会把法规整片误判成研报
+         ——实测按正文判命中 58 篇，其中 29 篇是误报；改标题判定后 38 篇基本全对。
+      3. `score_article()` 末尾加保底：标题命中的 TITLE_ONLY 标签强制进前 6，
+         否则长正文里高分词（热衰退/制动粉尘 10 分）会把「报告」(8 分) 挤出 top6。
+      4. 新脚本 `/opt/friction/tag_backfill.py`（dry-run 默认，`--apply` 写库）：
+         **只加不删**、不动 score/is_hot，已存在的标签权重一律保留。
+         本次结果：扫描 973 篇，补标签 287 篇 / 517 个，其中含「报告」39 篇。
+         ⚠️ 坑：判定标题时必须 `title_zh + title` 一起看——只看中文译题会漏掉
+         未翻译的英文研报（实测漏 1100/1165/280/283/3682）。
+      备份：`scoring.py.bak_lexicon_report_*` / `.bak_titleonly_*` /
+            `.bak_force_*` / `.bak_lex2_*` / `.bak_lex3_*`，
+            DB：`data/friction.db.bak_tagreport_10060938`
+
+- [x] **配图廊折叠（2026-10-06 用户：正文后面怎么这么多图）**
+      根因：`article.html` 把「正文没用到的图」全渲染进页脚 `📷 相关配图`；
+      而 `interleave_media.py` 的插图上限是 `len(body_idx)//3`
+      （约 14~16 个 `[IMG:n]`），所以 id=104 有 283 张图却只插了 16 个占位符，
+      剩下 267 张全堆在正文后面。
+      修复：默认只渲染前 12 张（`MG_FIRST`），其余加 `.mg-more{display:none}`，
+      底部给「▾ 展开剩余 N 张 / ▲ 收起配图」按钮（`components.css` 加 `.mg-toggle`）。
+      验证：`/friction/article/104` → 267 项中 255 项收起，按钮显示「展开剩余 255 张」。
+      备份：`article.html.bak_gallery_*`、`components.css.bak_gallery_*`
+      ⚠️ 未做（等用户拍板）：把插图密度从 `body_idx//3` 提到 `body_idx//2`。
+          不建议再高——283 张 federalregister 扫描页图全插正文也没意义。
+
+- [x] **无标签文章 587 → 101（2026-10-06 第二轮补标签）**
+      用户：既然要补就补完，别留一半。分三轮加词条，每轮都先 dry-run 核误伤：
+      - 第 1 轮：企业动态 / 公司公告 / 维修技术 / 商用车队 / 专利 / 石棉 + UNECE→法规认证
+      - 第 2 轮：展会专名（CONEXPO/bauma/Agritechnica/MINExpo/Automechanika/车展）、
+        日文企业词（人事異動/役員/組織変更/就任/義援金/投資/工場/出展）、
+        产销数据、乘用车市场、ISO标准、产品型录（FMSI/前片/后片）、站点导航
+      - 第 3 轮：英文短讯（expands/launches/partnership/joint venture）、
+        国内企业文化软文（莅临/参观考察/蝉联/出海/华诞/校招）、
+        车队补充（卡车/货运/违规）、产品（制动产品/产品系列/高性能刹车）
+      结果：有标签文章 386 → 939（973 篇里只剩 101 篇无标签，多为纯日文软文
+      和品牌 slogan 页）。标签总数 33 → 49。
+
+      ⚠️ **关键教训：事件类标签必须 TITLE_ONLY**。
+         第一轮按正文匹配，误伤炸了：商用车队 +103、乘用车市场 +91、产销数据 +40，
+         「质领电驱 共筑未来」被打成乘用车市场、「新时代铸造工匠」被打成产销数据。
+         因为这些词（测量/上市/销量/车队）在正文里偶然出现就中招。
+         改成 `TITLE_ONLY_TAGS` 后误伤掉到个位数，覆盖只掉 4 篇。
+         现在 TITLE_ONLY 共 7 类：报告、企业动态、公司公告、产销数据、
+         乘用车市场、专利、商用车队、站点导航。
+         另删掉 2 个过泛词："测量"、"卡车运输"。
+      备份：`scoring.py.bak_lex4_*` / `.bak_lex5_*` / `.bak_lex6_*` /
+            `.bak_lex7_*` / `.bak_lex8_*`，DB：`data/friction.db.bak_tagall_*`
+
+- [x] **导航页/栏目页清理 + 入库拦截（2026-10-06 用户：错了就改）**
+      26 篇「站点导航」里有 25 篇是协会站的栏目页（ASTM 培训班/标准和出版物、
+      OICA 统计/法律通知/汽车放映、VDA 图片材料、JAMA 更新履歴、
+      Automechanika 新闻材料、SMMT 新闻与公关指南、ACEA 行业洞察、
+      Auto Care 媒体包、TMD 媒体联系人）——采集器把站点导航链接当成文章抓了。
+      1. 修误伤：删掉过泛的「统计」词条（把 id=989 IndexBox 市场研报误判了），
+         只保留"生产统计"/"销售统计"；另补 主页/Home/首页/摩擦即艺术 等 8 个词。
+      2. 清存量：新脚本 `/opt/friction/clean_nav.py`（dry-run 默认，`--apply` 写库）。
+         判定逻辑与线上完全一致——用 LEXICON 重打分，**推导出的标签只有
+         「站点导航」** 才算导航页（不会出现"线上拦得住、存量清不掉"）。
+         本次删 28 篇（含<｜hy_place▁holder▁no▁813｜> slogan 页），连带清 article_tags / article_media /
+         translate_done。
+      3. 堵源头：`app/services/pipeline.py` 的 `ingest()` 加拦截——
+         只有「站点导航」标签的条目直接 skip 不入库。规则仍在 LEXICON 里维护，
+         不另开第二份黑名单。
+      4. 顺带：66 篇「标着 full 但正文 <100 字符」的历史占位卡降级为 headline。
+      备份：`scoring.py.bak_nav_*`、`pipeline.py.bak_nav_*`、
+            DB：`data/friction.db.bak_navclean_*`
+
+- [x] **无正文文章重抓（第一轮，2026-10-06）**
+      `fetch_detail.py --limit 400`：**200 篇处理，129 篇更新成功（64.5%）**。
+      新脚本 `/opt/friction/fix_level.py` 纠正 content_level（重抓后没跟着升级）。
+      ⚠️ 坑：`fetch_detail.py` 更新 raw_content 后**不改 content_level**，
+         必须手动跑 fix_level.py，否则列表页还按 headline 显示。
+      ⚠️ 坑：`fetch_detail_failed.json` 曾被 root 持有导致脚本末尾崩溃，
+         已 `chown archive:archive`（遇到用 sudo 跑过就要检查一遍）。
+
+- [x] **东方财富公告补抓 —— 60/60 全成功，净增 41.5 万字（2026-10-06，本轮最大收获）**
+      ⚠️ **教训：第二轮通用补抓报「90 篇全失败」，其实 90 篇里 60 篇是假失败。**
+      先 `curl` 抽样才发现它们 **HTTP 全是 200** —— 根本不是死链。
+      根因：`data.eastmoney.com/notices/detail/{股码}/{AN码}.html` 是**纯 JS 壳**
+      （HTML 里既无 `ctx-content` 也无 `__NEXT_DATA__`），BeautifulSoup 扫 `<p>`
+      一无所获。但公告**原文是 PDF**，且地址有稳定规律：
+
+          https://pdf.dfcfw.com/pdf/H2_{AN码}_1.pdf     ← 实测 200 / application/pdf
+
+      新脚本 `/opt/friction/fetch_eastmoney.py`（默认 dry-run，`--apply` 写库）：
+      抽 AN 码 → 下 PDF → **PyMuPDF(fitz)** 抽正文 → 写 raw_content + `content_level='full'`。
+      结果：**60/60 成功，0 失败**，正文净增 **415,491 字**
+      （其中 2 篇是年报原文：12.7 万字 / 14.8 万字）。重打标签后都归到「公司公告」。
+      💡 适用范围只有东财公告，所以**单独一个脚本**，没塞进通用器拖慢所有源。
+
+- [x] **`fetch_detail.py` 两个 bug（2026-10-06）**
+      1. **`UnboundLocalError: gi`** —— 单篇调试模式 `--url` 走到第 595 行必崩：
+         `--url` 时 `r["id"]` 恒为 0，走不到 `save_media` 分支，而下面的
+         `extra = f" 图{gi}/视{gv}"` 却要引用它。**导致 `--url` 调试模式一直不可用。**
+         修法：循环体开头 `gi = gv = 0`。
+      2. `select_rows` 里 `where.append("content_level='full'")` 语义存疑 ——
+         它是「只挑已标 full 的」，不是「跳过已完整的」。原意不可考，
+         **保守处理不猜**：加 `--skip-full` 开关，默认保持原行为。
+      备份：`fetch_detail.py.bak_gvbug_*`
+
+- [x] **新增 `diag_source.py` —— 「为什么抓不到正文」逐段诊断器**
+      以前 `fetch_detail.py` 只说「失败」，不说失败在哪一步。本脚本拆流水线，
+      输出 HTTP 码 / 跳转链 / 编码判定 / 容器选择器命中 / `<p>` 累计 / 可见文本，
+      然后把失败归到 **A-E 五档**：
+      A 网络层死 → 救不了，标记失效；B 跳转丢 → 改 follow 规则；
+      C 编码错 → 加嗅探；D 选择器不准 → 加容器；**E JS 渲染 → 要找 API 或 PDF 原文**。
+      用法：`python3 diag_source.py --limit 10 --host nasn-auto`
+      ⚠️ 坑：别用 200 字当「空壳」阈值，要和 `fetch_detail.py` 对齐用 800
+          （`--maxraw` 可调），否则查出来是空集。
+
+### 8.2 449 篇空壳的真实构成（2026-10-06 拆解，**重要认知**）
+
+用户问「这些文章有没有必要收集」。答案是：**问错了对象。**
+449 篇里真正的垃圾只有已经删掉的那 28 篇导航页，剩下 94% 是
+**「我们还没抓到」，不是「没有价值」**。拆完四桶：
+
+| 桶 | 数量 | 真相 | 处置 |
+|---|---|---|---|
+| **A. Google 跳转壳** | 284 | Google News RSS 给的是 `CBMi…` **加密跳转壳**，VPS 出国不通（恒 000），**从入库起就从未定位过真实地址** | 需海外 runner，方案已就绪（见下） |
+| **B. Bing 搜索页 URL** | 20 | **采集 bug**：存的是 `bing.com/news/search?q=标题`，根本不是文章页 | 同上，一并出海反查 |
+| **C. 原文就这么短** | ~150 | **不是空壳** —— 抓取已成功，原文就是 300–500 字的一句话企业新闻（拿森拿奖、华伍迎考察） | 保留，别反复重抓 |
+| **D. 富源没挖** | 60（东财） | 有 PDF 原文没利用 | ✅ **已救，100%** |
+
+**判断依据**：任何一波针对性修复，成功率都在 **64.5% ~ 100%**
+（第一轮通用 129/200、东财 60/60）。空壳是**采集侧的债**，不是内容侧的问题。
+
+**已上线的出海补抓方案（待手动触发验证，未经实跑）**：
+- `scripts/google_refetch.py`（GitHub 侧）—— 三级解析跳转壳：
+  L1 跟随重定向 → L2 POST `batchexecute` 用页面签名换真 URL → L3 Playwright 真浏览器兜底。
+  ⚠️ 新版 `CBMi` 串是 AES 加密的，**离线 base64 解不开**（实测剥出来只有乱码），必须联网。
+- `.github/workflows/friction-google-refetch.yml` —— 每天 03:17 UTC，也可手动dispatch。
+- `/opt/friction/google_sync.py`（VPS 侧）—— `export` 出清单、`import` 落结果，
+  **已导出 `data/pending_google.json` 304 条**。
+- 架构选择：**走仓库中转，不给 VPS 开端口、不在 GitHub Secrets 放 SSH 私钥**，最小攻击面。
+- 启用步骤：GitHub 上手动 Run workflow → 看 artifacts → VPS `git pull` →
+  `python3 google_sync.py import`（先 dry-run，`--apply` 才写库）。
+
+- [x] **清理被翻译接口报错污染的译文**
+      id=1996 的 `title_zh`、id=311 的 `content_zh` 被 MyMemory 报错串
+      `NO QUERY SPECIFIED. EXAMPLE REQUEST: GET?Q=HELLO&LANGPAIR=EN|IT` 污染
+      （历史 LT/MyMemory 通道残留）。已清空并撤销 `translate_done` 标记让其重翻。
+      检查脚本思路：`re.search(r'NO QUERY SPECIFIED|EXAMPLE REQUEST|LANGPAIR=|MYMEMORY WARNING|USAGE LIMIT')`
+
+---
+
+## 9. 电脑版 WorkBuddy 怎么接手
+
+1. **建目录**：在本机建一个工作目录（比如 `D:\friction`），把
+   `/workspace/friction-vps-sync/` 下这几个文件放进去：`接手指南_WorkBuddy.md`、
+   `VPS_凭据与运维.md`，以及 `/workspace` 下的 `run_batches.py`、`gh_push.py`、
+   `gh_dispatch_translate.py`、`cmp_lt_google.py`。
+2. **克隆仓库**：`git clone https://github.com/qilin1991/friction-overseas`
+   （或本机已有 `D:\workbuddy` 就在旁边建子目录）。
+3. **直接 SSH 操作**：电脑版可以装 OpenSSH / 用 Termius，
+   `ssh ubuntu@146.56.250.224`（密码见第 2 节）。本机能直连的话比沙箱稳。
+4. **让电脑版先读这份文件**：新会话第一句就说
+   「读一下 `D:\friction\接手指南_WorkBuddy.md`，然后继续未完成的事」。
+5. **电脑版更适合的活**（沙箱做不了的）：
+   - 用本机 Chromium 登录态抓知乎/小红书/微信（沙箱 headless 拿不到评论）
+   - 直接看截图反馈 UI 问题
+   - 处理本地 Excel / Word / PDF（材料测试数据、文献转 PPT）
+6. **沙箱更适合**：长时间后台跑批、http 服务预览、批量 API 调用。
+   两边都读同一份文档 + 同一个 GitHub 仓库，就不会各干各的。

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据源 · 杭州亲子·活动汇</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  .sect{margin:26px 0 10px;font-size:17px;font-weight:700;color:#222}
+  .sect small{font-weight:400;color:#888;font-size:13px;margin-left:8px}
+  table.src{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;
+            box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  table.src th,table.src td{padding:10px 12px;border-bottom:1px solid #eef1f4;font-size:14px;text-align:left}
+  table.src th{background:#f7f9fb;color:#666;font-weight:600;position:sticky;top:0}
+  table.src tr:last-child td{border-bottom:none}
+  table.src tr:hover td{background:#fafcff}
+  .tag{display:inline-block;padding:1px 8px;border-radius:9px;background:#eef4ff;color:#2b6cb0;font-size:12px}
+  table.src a{color:#F37021;text-decoration:none}
+  table.src a:hover{text-decoration:underline}
+  .dist{color:#555}
+  .back{margin:18px 0}
+  .back a{color:#fff;background:#F37021;padding:7px 14px;border-radius:8px;text-decoration:none;font-size:14px}
+</style>
+</head>
+<body>
+<header class="hd">
+  <div class="wrap">
+    <h1>数据源清单 <span class="dot">·</span> <small>公众号 + 网站</small></h1>
+    <p class="sub">杭州 {{ total }} 个公众号（按体系分组）+ {{ sites|length }} 个相关网站 &nbsp;|&nbsp; 点「搜狗查看」即可浏览该号近期文章</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="back"><a href="{{ url_for('index') }}">← 返回活动列表</a></div>
+
+  <div class="sect">一、公众号 <small>链接跳转搜狗微信，按该号名称搜索其文章（微信无公开主页，这是最稳的查看方式）</small></div>
+  <table class="src">
+    <thead><tr><th style="width:26%">公众号全称</th><th style="width:18%">体系</th><th style="width:16%">地区</th><th>查看</th></tr></thead>
+    <tbody>
+    {% for a in accounts %}
+      <tr>
+        <td><b>{{ a.name }}</b></td>
+        <td><span class="tag">{{ a.group }}</span></td>
+        <td class="dist">{{ a.district }}</td>
+        <td><a href="{{ a.url }}" target="_blank" rel="noopener">搜狗查看 ↗</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="sect">二、相关网站 <small>政府门户 / 文旅 / 少年宫 / 图书馆 / 博物馆 / 景区</small></div>
+  <table class="src">
+    <thead><tr><th style="width:30%">名称</th><th style="width:16%">类型</th><th style="width:14%">备注</th><th>网址</th></tr></thead>
+    <tbody>
+    {% for s in sites %}
+      <tr>
+        <td><b>{{ s[0] }}</b></td>
+        <td><span class="tag">{{ s[1] }}</span></td>
+        <td class="dist">{{ s[3] }}</td>
+        <td><a href="{{ s[2] }}" target="_blank" rel="noopener">{{ s[2] }} ↗</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="back" style="margin-top:22px"><a href="{{ url_for('index') }}">← 返回活动列表</a></div>
+</main>
+
+<footer class="ft wrap">
+  公众号名称经搜狗微信实测；网站域名经可达性校验。微信无公开主页，故链接为搜狗搜索入口。
+</footer>
+</body>
+</html>
