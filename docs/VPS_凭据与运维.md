@@ -501,10 +501,12 @@ curl -s -u qilin:0805 http://127.0.0.1/tour/ -o /dev/null -w '%{http_code}\n'
 
 ### 8.7 多来源（政府 / 公众号 / 豆瓣同城）与左侧导航
 
-- 来源分三类，左侧栏切换（`?stype=gov|wechat|douban`）：
-  - **政府发布**：13 区县门户 + 文旅（`source` 不是"公众号/豆瓣同城"的）
+- 来源分六类，左侧栏切换（`?stype=gov|wechat|douban|hzqsn|damai|huodongxing`）：
+  - **政府发布**：13 区县门户 + 文旅（`source` 不是"公众号/豆瓣同城/少年宫/大麦/活动行"的）
   - **公众号**：搜狗微信（`source='公众号'`）
   - **豆瓣同城**：`source='豆瓣同城'`
+  - **少年宫**：`source='少年宫'`
+  - **大麦 / 活动行**：电脑端采集（见下），`source='大麦'|'活动行'`
 - **豆瓣同城采集**（`douban()`，VPS 可直接抓，无需登录）：
   - ⚠️ 首页默认/`?start=`/`?type=` 都只返回同样 **10 条**（分页与 type 参数已失效）
   - 真正入口是**路径式分类页 + 区页**：`/events/week-all`、`future-all`、`week-kids`、`week-exhibition`、`week-drama`、`week-comedy`、`week-film`、`week-salon`、`week-party`、`week-course`、`week-sports`、`week-travel`、`week-commonweal`、`week-competition`、`week-others`，以及各区 `week-all-<区id>`（上城 129367 / 拱墅 129370 / 西湖 129371 / 滨江 129372 / 萧山 129373 / 余杭 129374 / 临平 131703 / 富阳 129378 / 临安 129379 / 桐庐 129375 / 淳安 129376 / 建德 129377 / 钱塘 129369）
@@ -512,13 +514,18 @@ curl -s -u qilin:0805 http://127.0.0.1/tour/ -o /dev/null -w '%{http_code}\n'
   - **用结束日期做 event_date**（多日活动不被提前删）；`published_at` 留空；按 `location` 归区
   - 合并去重后 **杭州约 90 条**（脱口秀/戏剧/展览/亲子科学秀/手作/读书会等）
   - 另有 RSS `.../events/feed/weekly`（50 条）可作补充
+- **少年宫采集**（`hzqsn()`，VPS 可直接抓）：杭州青少年活动中心 `www.hzqsn.com`
+  - 入口：首页 + 「活动天地」「研学交流」分类页，正则取 `/article/detail/id...` 文章链接 + 标题
+  - 附近文字提取日期/地点/报名方式；**NON_EVENT 黑名单过滤非活动**（使用说明/操作指南/获奖名单/公示等）
+  - 约 20 条候选 → 入库 **11 条**（国防营/板栗亲子营/研学营/杭州话公益课/剪纸榫卯课等）
+  - 来源 `少年宫`，侧栏独立入口
 - **区县归一（`norm_district` / `guess_district`）**：
   - 街道/社区并入所属区：**星桥 → 临平**（区域筛选只按"区"分，不出现"星桥"这种街道项）
   - 来源名归位：`文旅`（杭州文旅门户）→ 杭州
   - **豆瓣/大麦/活动行按地址里的区县归位**（如地址"萧山区…"→萧山、"上城区…"→上城），识别不到才留"杭州"
   - `_rec` 落库前统一归一，入库接口（ingest）对原生来源同样按 location 猜区
 - **排序**：活动日 >= 今天的按活动日**由近到远**排在前，其余按发布时间倒序（"近期可去"优先）。
-- VPS 定时任务现为 `gov → douban → enrich` 三步（均含过期清理）。
+- VPS 定时任务现为 `gov → douban → hzqsn → enrich` 四步（均含过期清理），`tour-collect.timer` 约 3 小时一轮。
 - **大麦 / 活动行（必须住宅 IP）**：两者都按"云 IP"封禁——大麦返回阿里 `punish` 页（`cloud_ip_bl`），活动行 403，VPS/沙箱均进不去。
   因此放在**电脑端** `pc_client/push_wechat.py` 的 `fetch_damai()` / `fetch_huodongxing()`：
   - 大麦：`search.damai.cn/searchajax.html?cty=330100&keyword=亲子&currPage=1`，解析 `pageData.resultData`（name/projectid/showtime/venue/price_str）

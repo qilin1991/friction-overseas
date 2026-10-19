@@ -134,7 +134,8 @@ NEG_KW = ["通告", "公告", "通知", "部署会", "座谈会", "慰问", "换
           "爆竹", "赛事", "夺冠", "首胜", "战胜", "亮相", "比分", "决赛", "季军", "亚军",
           "招聘", "就业", "岗位", "用工", "求职", "面试", "人才引进", "事业单位", "劳动合同制",
           "应届毕业", "医学类", "教师招聘", "公开招聘", "拟聘", "劳务派遣",
-          "昨日", "上周", "日前", "圆满", "落幕", "收官", "回顾", "成功举办", "顺利举办", "已开跑"]
+          "昨日", "上周", "日前", "圆满", "落幕", "收官", "回顾", "成功举办", "顺利举办", "已开跑",
+          "使用说明", "操作指南", "报名系统", "获奖名单", "名单公布", "公示"]
 EXPLICIT = ["报名", "招募", "名额", "扫码", "开放报名", "报名中"]
 
 CAT_MAP = [
@@ -717,9 +718,43 @@ def douban(sess, limit_days=180):
     return out
 
 
+def hzqsn(sess):
+    """杭州青少年活动中心（少年宫）：活动/公益课/研学。"""
+    out, seen = [], set()
+    urls = ["https://www.hzqsn.com/",
+            "https://www.hzqsn.com/category/id15095043274417421.htm",
+            "https://www.hzqsn.com/category/id14345793535515407908.htm"]
+    for u in urls:
+        try:
+            r = sess.get(u, timeout=20)
+            r.encoding = "utf-8"
+        except Exception as e:
+            print("  hzqsn err:", e)
+            continue
+        soup = BeautifulSoup(r.text, "html.parser")
+        for a in soup.find_all("a", href=True):
+            h = a["href"]
+            t = clean_title(a.get_text(" ", strip=True))
+            if "/article/detail/id" not in h or h in seen or len(t) < 6:
+                continue
+            if h.startswith("/"):
+                h = "https://www.hzqsn.com" + h
+            if not is_joinable(t):
+                continue
+            seen.add(h)
+            p = a.find_parent(["li", "div"])
+            near = p.get_text(" ", strip=True) if p else ""
+            pub = extract_date(near, h) or ""
+            ev, loc, sg = extract_fields(near + " " + t)
+            dist = guess_district(t + " " + near) or "杭州"
+            out.append(_rec(t, h, "少年宫", "杭州青少年活动中心", dist, "", pub, t, ev, loc, sg))
+        time.sleep(1)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", choices=["gov", "sogou", "douban", "bdb", "enrich", "expire", "all"], default="all")
+    ap.add_argument("--only", choices=["gov", "sogou", "douban", "hzqsn", "bdb", "enrich", "expire", "all"], default="all")
     ap.add_argument("--days", type=int, default=120)
     ap.add_argument("--enrich-limit", type=int, default=60)
     ap.add_argument("--delay", type=float, default=14.0, help="搜狗每查询间隔秒数")
@@ -751,6 +786,17 @@ def main():
             print("douban| 豆瓣同城 -> %d 条" % len(ditems))
         except Exception as e:
             print("  douban 失败:", e)
+
+    if args.only in ("hzqsn", "all"):
+        try:
+            qitems = hzqsn(sess)
+            for it in qitems:
+                if upsert(conn, it):
+                    n += 1
+            conn.commit()
+            print("hzqsn | 少年宫 -> %d 条" % len(qitems))
+        except Exception as e:
+            print("  少年宫失败:", e)
 
     if args.only in ("sogou", "all"):
         captcha = 0

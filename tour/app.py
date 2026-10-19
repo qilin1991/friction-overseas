@@ -72,11 +72,13 @@ def index():
     if category:
         where.append("category=?"); args.append(category)
     if stype == "gov":
-        where.append("source NOT IN ('公众号','豆瓣同城','大麦','活动行')")
+        where.append("source NOT IN ('公众号','豆瓣同城','大麦','活动行','少年宫')")
     elif stype == "wechat":
         where.append("source='公众号'")
     elif stype == "douban":
         where.append("source='豆瓣同城'")
+    elif stype == "hzqsn":
+        where.append("source='少年宫'")
     elif stype == "damai":
         where.append("source='大麦'")
     elif stype == "huodongxing":
@@ -115,9 +117,10 @@ def index():
     total = q("SELECT COUNT(*) FROM event")[0][0]
     last = q("SELECT MAX(last_seen) FROM event")[0][0] or "—"
     n_all = total
-    n_gov = q("SELECT COUNT(*) FROM event WHERE source NOT IN ('公众号','豆瓣同城','大麦','活动行')")[0][0]
+    n_gov = q("SELECT COUNT(*) FROM event WHERE source NOT IN ('公众号','豆瓣同城','大麦','活动行','少年宫')")[0][0]
     n_wechat = q("SELECT COUNT(*) FROM event WHERE source='公众号'")[0][0]
     n_douban = q("SELECT COUNT(*) FROM event WHERE source='豆瓣同城'")[0][0]
+    n_qsn = q("SELECT COUNT(*) FROM event WHERE source='少年宫'")[0][0]
     n_damai = q("SELECT COUNT(*) FROM event WHERE source='大麦'")[0][0]
     n_hx = q("SELECT COUNT(*) FROM event WHERE source='活动行'")[0][0]
 
@@ -125,7 +128,8 @@ def index():
                            district=district, category=category, stype=stype,
                            only_open=only_open, family=family, days=days, kw=kw,
                            total=total, last=last, n_all=n_all, n_gov=n_gov,
-                           n_wechat=n_wechat, n_douban=n_douban, n_damai=n_damai, n_hx=n_hx)
+                           n_wechat=n_wechat, n_douban=n_douban, n_qsn=n_qsn,
+                           n_damai=n_damai, n_hx=n_hx)
 
 
 @app.get("/tour/sources")
