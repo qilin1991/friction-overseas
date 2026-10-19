@@ -205,9 +205,12 @@ def api_ingest():
             _ev, _loc, _sg = C.extract_fields(_sum + " " + title)   # 从摘要抽活动时间/地点/报名
             if not _ev:
                 _ev = C.guess_event_date(_sum, _pub)               # 摘要里裸日期粗猜（带窗口）
+            _dist = C.norm_district(it.get("district") or "杭州")
+            if _native:   # 豆瓣/大麦/活动行：按地址里的区县归位
+                _dist = C.guess_district((it.get("location") or _loc) + " " + title) or _dist
             rec = C._rec(
-                title, it.get("url") or "", it.get("source") or "公众号",
-                it.get("account") or "", it.get("district") or "杭州",
+                title, it.get("url") or "", _src,
+                it.get("account") or "", _dist,
                 it.get("column") or "", _pub,
                 _sum, it.get("event_date") or _ev,
                 it.get("location") or _loc, it.get("signup_method") or _sg)

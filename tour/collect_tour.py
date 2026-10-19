@@ -152,6 +152,34 @@ CAT_MAP = [
 ]
 
 
+DISTRICT_NAMES = ["上城", "拱墅", "西湖", "滨江", "萧山", "余杭", "临平", "钱塘",
+                  "富阳", "临安", "桐庐", "淳安", "建德"]
+
+
+def guess_district(text):
+    """从地址/标题里识别杭州区县（星桥归临平）。识别不到返回 ''。"""
+    t = text or ""
+    if "星桥" in t:
+        return "临平"
+    for d in DISTRICT_NAMES:
+        if (d + "区") in t or (d + "县") in t or (d + "市") in t:
+            return d
+    for d in DISTRICT_NAMES:
+        if d in t:
+            return d
+    return ""
+
+
+def norm_district(d):
+    """区县归一：街道/社区并入所属区（星桥→临平）；来源名（文旅）归到杭州。"""
+    d = (d or "").strip()
+    if d.startswith("星桥"):
+        return "临平"
+    if d in ("文旅", "杭州文旅"):
+        return "杭州"
+    return d
+
+
 def classify(text):
     for cat, kws in CAT_MAP:
         if any(k in text for k in kws):
@@ -299,7 +327,8 @@ def upsert(conn, rec):
 
 
 def _rec(title, url, source, account, district, col, pub, summary="", ev="", loc="", signup=""):
-    # 公众号：搜狗 link 的 token 每次不同，用「标题+账号」做稳定去重键；其余按归一化 URL
+    district = norm_district(district)     # 星桥→临平
+    # 公众号：搜狗 link 的 token 每次不同，用「标题+区域」做稳定去重键；其余按归一化 URL
     if source == "公众号":
         key = "T|" + (title or "") + "|" + (district or "")
     else:
@@ -668,7 +697,8 @@ def douban(sess, limit_days=180):
             ev = endd or startd                       # 用结束日期做过期依据（多日活动不被提前删）
             loc = li.select_one("meta[itemprop=location]")
             location = (loc.get("content", "") if loc else "").replace("杭州 ", "").strip()
-            out.append(_rec(title, href, "豆瓣同城", "", "杭州", "", "", title, ev, location, ""))
+            dist = guess_district(location) or "杭州"      # 按地址里的区县归位
+            out.append(_rec(title, href, "豆瓣同城", "", dist, "", "", title, ev, location, ""))
         time.sleep(1.2)
     return out
 

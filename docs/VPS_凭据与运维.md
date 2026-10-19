@@ -510,6 +510,11 @@ curl -s -u qilin:0805 http://127.0.0.1/tour/ -o /dev/null -w '%{http_code}\n'
   - 条目 `li.list-entry`：标题 `.title a`、`<time itemprop=startDate/endDate>`、地点 `meta[itemprop=location]`
   - **用结束日期做 event_date**（多日活动不被提前删）；`published_at` 留空
   - 当前杭州近期约 10 条（脱口秀/沉浸式剧/手作/评弹/读书会等）
+- **区县归一（`norm_district` / `guess_district`）**：
+  - 街道/社区并入所属区：**星桥 → 临平**（区域筛选只按"区"分，不出现"星桥"这种街道项）
+  - 来源名归位：`文旅`（杭州文旅门户）→ 杭州
+  - **豆瓣/大麦/活动行按地址里的区县归位**（如地址"萧山区…"→萧山、"上城区…"→上城），识别不到才留"杭州"
+  - `_rec` 落库前统一归一，入库接口（ingest）对原生来源同样按 location 猜区
 - **排序**：活动日 >= 今天的按活动日**由近到远**排在前，其余按发布时间倒序（"近期可去"优先）。
 - VPS 定时任务现为 `gov → douban → enrich` 三步（均含过期清理）。
 - **大麦 / 活动行（必须住宅 IP）**：两者都按"云 IP"封禁——大麦返回阿里 `punish` 页（`cloud_ip_bl`），活动行 403，VPS/沙箱均进不去。
