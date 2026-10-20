@@ -1,0 +1,662 @@
+{
+ "query": "brake pad friction material composition",
+ "google_xhr": {
+  "status": 200,
+  "bytes": 32312,
+  "is_json": true,
+  "top_keys": [
+   "results"
+  ],
+  "results_keys": [
+   "total_num_results",
+   "total_num_pages",
+   "many_results",
+   "num_page",
+   "cluster",
+   "chem_exhausted",
+   "summary",
+   "landscape"
+  ],
+  "total_num_results": 135144,
+  "num_results": null,
+  "clusters": 1,
+  "sample_keys": [
+   "result"
+  ],
+  "sample": [
+   {
+    "result": [
+     {
+      "id": "patent/TR2024017448A2/en",
+      "rank": 0,
+      "patent": {
+       "title": " A friction material for disc brake pads",
+       "snippet": " The invention relates to a disc brake pad plate, which enables the brake pad to be mounted on the vehicle&#39;s brake system, and a disc brake pad containing friction material positioned on the disc brake pad plate to perform the braking operation, for use in hydraulically driven brakes of light &hellip;",
+       "priority_date": "2024-12-03",
+       "filing_date": "2024-12-03",
+       "publication_date": "2024-12-23",
+       "inventor": "Özcan Onur",
+       "assignee": "Eren Balatacilik Sanayi Ve Ticaret Anonim Sirketi",
+       "publication_number": "TR2024017448A2",
+       "language": "en",
+       "thumbnail": "",
+       "pdf": "",
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "TR",
+           "best_patent_stage": {
+            "state": "UNKNOWN"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": true,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/US10302165B2/en",
+      "rank": 1,
+      "patent": {
+       "title": " Non-asbestos friction material composition, friction material using same, and &hellip;",
+       "snippet": " A non-asbestos frictional material composition is provided, which is capable of provide a frictional material with low environmental load and with excellent friction coefficient, anti-crack properties, and abrasion resistance compared with conventional ones. Furthermore, a frictional material and &hellip;",
+       "priority_date": "2010-11-19",
+       "filing_date": "2011-11-07",
+       "grant_date": "2019-05-28",
+       "publication_date": "2019-05-28",
+       "inventor": "Takashi Kikudome",
+       "assignee": "Hitachi Chemical Company, Ltd.",
+       "publication_number": "US10302165B2",
+       "language": "en",
+       "thumbnail": "",
+       "pdf": "7b/c0/d2/76c968caa6261f/US10302165.pdf",
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "JP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/US10626934B2/en",
+      "rank": 2,
+      "patent": {
+       "title": " Non-asbestos friction material composition, friction material using same, and &hellip;",
+       "snippet": " A non-asbestos frictional material composition is provided, which is capable of provide a frictional material with low environmental load and with excellent friction coefficient, anti-crack properties, and abrasion resistance compared with conventional ones. Furthermore, a frictional material and &hellip;",
+       "priority_date": "2010-11-19",
+       "filing_date": "2017-12-12",
+       "grant_date": "2020-04-21",
+       "publication_date": "2020-04-21",
+       "inventor": "Takashi Kikudome",
+       "assignee": "Hitachi Chemical Company, Ltd.",
+       "publication_number": "US10626934B2",
+       "language": "en",
+       "thumbnail": "",
+       "pdf": "95/ea/35/6eb92f02f12982/US10626934.pdf",
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "JP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/US4926978A/en",
+      "rank": 3,
+      "patent": {
+       "title": " Friction pad for use with disc brake",
+       "snippet": " Improved friction pads for use with disc brake. The pad has a central main portion and a peripheral portion which are formed of different matrices having different compositions. The matrix of the central main portion contains a hard substance or substances having a specified range of hardness &hellip;",
+       "priority_date": "1989-05-25",
+       "filing_date": "1989-06-02",
+       "grant_date": "1990-05-22",
+       "publication_date": "1990-05-22",
+       "inventor": "Katsuhiro Shibata",
+       "assignee": "Honda Giken Kogyo Kabushiki Kaisha",
+       "publication_number": "US4926978A",
+       "language": "en",
+       "thumbnail": "3f/d4/79/60131606fdb4ca/US4926978-drawings-page-2.png",
+       "pdf": "5f/ef/a3/d2a154d4e67051/US4926978.pdf",
+       "figures": [
+        {
+         "thumbnail": "d7/a2/0d/05be792174127b/US4926978-drawings-page-2.png",
+         "full": "d1/eb/9b/334fdceafa8d45/US4926978-drawings-page-2.png"
+        }
+       ],
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/JP6281755B1/en",
+      "rank": 4,
+      "patent": {
+       "title": " Friction material composition, and friction material and friction member using &hellip;",
+       "snippet": " Coefficient of friction during high-speed and high-load braking, whether or not containing copper that may cause contamination of rivers, lakes, oceans, etc. Provided are a friction material composition that can provide a friction material that is excellent in wear resistance and attack of a &hellip;",
+       "priority_date": "2016-04-21",
+       "filing_date": "2016-04-21",
+       "grant_date": "2018-02-21",
+       "publication_date": "2018-02-21",
+       "inventor": "和昭 松葉",
+       "assignee": "日立化成株式会社",
+       "publication_number": "JP6281755B1",
+       "language": "en",
+       "thumbnail": "3e/4e/04/0ab059ab7bd1b3/0006281755-5.png",
+       "pdf": "80/2e/cd/aac473d88ed72b/JP6281755B1.pdf",
+       "figures": [
+        {
+         "thumbnail": "ee/2e/b2/cc19b680315ab5/0006281755-5.png",
+         "full": "41/4d/52/814bf451aba57a/0006281755-5.png"
+        }
+       ],
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "EP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "JP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "KR",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "MX",
+           "best_patent_stage": {
+            "state": "UNKNOWN"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/JP7169981B2/en",
+      "rank": 5,
+      "patent": {
+       "title": " Friction material composition, friction material and friction member using &hellip;",
+       "snippet": " A friction material composition containing a binder, an organic filler, an inorganic filler, and a fiber base material, does not contain elemental copper or does not contain more than 0.5% by weight of copper, containing α-alumina and γ-alumina at a mass ratio of 1:8 to 1:5, The total amount of α- &hellip;",
+       "priority_date": "2017-10-11",
+       "filing_date": "2018-10-10",
+       "grant_date": "2022-11-11",
+       "publication_date": "2022-11-11",
+       "inventor": "真理 光本",
+       "assignee": "昭和電工マテリアルズ株式会社",
+       "publication_number": "JP7169981B2",
+       "language": "en",
+       "thumbnail": "",
+       "pdf": "65/70/e0/a82da8b0630cb3/JP7169981B2.pdf",
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "CN",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "JP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/US10400389B2/en",
+      "rank": 6,
+      "patent": {
+       "title": " Composite friction materials having carbon nanotube and carbon nanofiber &hellip;",
+       "snippet": " A textile-reinforced composite friction material is provided by the present invention that includes a nonwoven needlepunched fiber mat, a resin matrix impregnated within and onto the fiber mat, and a carbon nanomaterial dispersed within the resin matrix. The carbon nanomaterial is preferably &hellip;",
+       "priority_date": "2005-10-11",
+       "filing_date": "2014-06-18",
+       "grant_date": "2019-09-03",
+       "publication_date": "2019-09-03",
+       "inventor": "Peter Filip",
+       "assignee": "Board Of Trustees At Southern Illinois University",
+       "publication_number": "US10400389B2",
+       "language": "en",
+       "thumbnail": "a7/b8/be/e84d9e5201446d/US10400389-20190903-D00000.png",
+       "pdf": "be/68/d2/8c17a570d72630/US10400389.pdf",
+       "figures": [
+        {
+         "thumbnail": "7c/ca/ec/3f25cfb1761b96/US10400389-20190903-D00000.png",
+         "full": "61/b1/3a/c0d7b454af2a91/US10400389-20190903-D00000.png"
+        },
+        {
+         "thumbnail": "a7/87/3a/4f292fa6e0ce6b/US10400389-20190903-D00001.png",
+         "full": "47/a1/f7/8c29531ef91a34/US10400389-20190903-D00001.png"
+        },
+        {
+         "thumbnail": "71/5b/73/036adf39cab48b/US10400389-20190903-D00002.png",
+         "full": "d7/11/f9/d4ec2542648ee1/US10400389-20190903-D00002.png"
+        },
+        {
+         "thumbnail": "ae/ee/94/8da17623f5e4cb/US10400389-20190903-D00003.png",
+         "full": "33/4a/b4/af2df1623d889a/US10400389-20190903-D00003.png"
+        },
+        {
+         "thumbnail": "44/aa/5f/ad42facb260214/US10400389-20190903-D00004.png",
+         "full": "69/02/82/6fd25a69582fba/US10400389-20190903-D00004.png"
+        },
+        {
+         "thumbnail": "e0/ad/14/71940c813fdd8b/US10400389-20190903-D00005.png",
+         "full": "e0/16/67/faebbb535bbc17/US10400389-20190903-D00005.png"
+        },
+        {
+         "thumbnail": "80/23/c4/b319d3c959285b/US10400389-20190903-D00006.png",
+         "full": "eb/9d/66/d8ecb89af32a66/US10400389-20190903-D00006.png"
+        },
+        {
+         "thumbnail": "06/c3/8c/4affaf49646a5c/US10400389-20190903-D00007.png",
+         "full": "e3/4d/c3/56deda52775a6e/US10400389-20190903-D00007.png"
+        }
+       ],
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "EP",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/TWI461321B/en",
+      "rank": 7,
+      "patent": {
+       "title": " Friction material composition, friction material using the same and friction &hellip;",
+       "snippet": " A friction material composition comprising a binder, a fiber base material, an abrasive material, an inorganic filler, and an organic filler, wherein the friction material composition is a NAO-based friction material composition, and the friction material composition contains a niobate as the &hellip;",
+       "priority_date": "2010-08-09",
+       "filing_date": "2011-08-05",
+       "grant_date": "2014-11-21",
+       "publication_date": "2014-11-21",
+       "inventor": "Takashi Kikudome",
+       "assignee": "Hitachi Chemical Co Ltd",
+       "publication_number": "TWI461321B",
+       "language": "en",
+       "thumbnail": "",
+       "pdf": "10/44/af/aee1e06d1be8fa/TWI461321B.pdf",
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "CN",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "JP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "TW",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/US9410591B2/en",
+      "rank": 8,
+      "patent": {
+       "title": " Friction material composition, friction material using the same, and friction &hellip;",
+       "snippet": " Provided is a friction material composition comprising: a binder; a fibrous base material; an abrasive material; an inorganic filler; and an organic filler, wherein the friction material composition further comprises: at least one selected from the group consisting of zinc, a cellulose fiber as &hellip;",
+       "priority_date": "2009-06-01",
+       "filing_date": "2014-09-24",
+       "grant_date": "2016-08-09",
+       "publication_date": "2016-08-09",
+       "inventor": "Mitsuo Unno",
+       "assignee": "Hitachi Chemical Company, Ltd",
+       "publication_number": "US9410591B2",
+       "language": "en",
+       "thumbnail": "",
+       "pdf": "4b/8d/19/6c861a1ba2f2fb/US9410591.pdf",
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "EP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "CN",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "JP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "KR",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/KR101904546B1/en",
+      "rank": 9,
+      "patent": {
+       "title": " Friction material",
+       "snippet": " &lt;Task&gt; The present invention relates to a friction material used for a disc brake pad and a brake shoe of an automobile braking device, and provides a friction material having sufficient and stable braking force and sufficient mechanical strength. [Solution] Wherein the friction material contains &hellip;",
+       "priority_date": "2011-03-22",
+       "filing_date": "2012-03-16",
+       "grant_date": "2018-10-04",
+       "publication_date": "2018-10-04",
+       "inventor": "카즈히데 야마모토",
+       "assignee": "닛신보 브레이크 가부시키가이샤",
+       "publication_number": "KR101904546B1",
+       "language": "en",
+       "thumbnail": "51/68/78/f1a9c92c25fa67/112012021589855-pat00004.png",
+       "pdf": "0d/9e/d9/29c32584b68215/KR101904546B1.pdf",
+       "figures": [
+        {
+         "thumbnail": "1c/3e/25/83234ca80047a3/112012021589855-pat00004.png",
+         "full": "7d/dc/55/ca4cc3c9ed1ea2/112012021589855-pat00004.png"
+        },
+        {
+         "thumbnail": "8a/81/b6/81fbf03c6e3f50/112012021589855-pat00005.png",
+         "full": "7f/5f/53/e7e9ef10ca2761/112012021589855-pat00005.png"
+        },
+        {
+         "thumbnail": "3a/b5/58/2a9956b099031f/112012021589855-pat00006.png",
+         "full": "d3/02/c5/398c8120e90f72/112012021589855-pat00006.png"
+        },
+        {
+         "thumbnail": "d5/60/c0/a5892f7b511102/112012021589855-pat00007.png",
+         "full": "29/62/c8/963bd5b2b1420b/112012021589855-pat00007.png"
+        }
+       ],
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "WO",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "EP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "US",
+           "best_patent_stage": {
+            "state": "NOT_ACTIVE"
+           }
+          },
+          {
+           "country_code": "CN",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "JP",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          },
+          {
+           "country_code": "KR",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     }
+    ]
+   }
+  ],
+  "page1_status": 200,
+  "page1_first": [
+   null
+  ],
+  "pagination_differs": false
+ },
+ "google_detail": {
+  "patent": "US6080797A",
+  "status": 200,
+  "bytes": 522308,
+  "meta_desc": "\n     There is disclosed a porous moisture-absorbing and desorbing polymer, characterized in that, said polymer is an organic polymer containing 2.0-12.0 meq/g of carboxyl-groups of a salt type, having a cross-linking structure and having macropores of not less than 1 m 2  /g of ",
+  "has_abstract_block": true,
+  "assignee": [],
+  "inventor": [],
+  "dates": [
+   [
+    "priorArtDate",
+    "1998-07-01"
+   ],
+   [
+    "priorityDate",
+    "1998-07-01"
+   ],
+   [
+    "filingDate",
+    "1999-05-28"
+   ],
+   [
+    "publicationDate",
+    "2000-06-27"
+   ]
+  ],
+  "captcha": false
+ },
+ "ops_nokey": {
+  "status": 403,
+  "bytes": 208,
+  "body": "<error><code>403</code><message>This request has been rejected due to the violation of Fair Use policy</message><moreInfo>https://www.epo.org/service-support/ordering/fair-use.html</moreInfo>\n\t\t\t\t</error>\n\t\t\t"
+ },
+ "patentsview_nokey": {
+  "status": 0,
+  "bytes": 55,
+  "body": "ERR URLError(gaierror(-2, 'Name or service not known'))"
+ },
+ "patentscope": {
+  "status": 200,
+  "bytes": 556013,
+  "has_result_table": true,
+  "captcha": true
+ },
+ "espacenet": {
+  "status": 403,
+  "bytes": 1,
+  "cloudflare": false
+ }
+}
