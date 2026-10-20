@@ -1,0 +1,52 @@
+name: patent-fetch
+on:
+  workflow_dispatch:
+    inputs:
+      pages:
+        description: "每个组合抓几页"
+        required: false
+        default: "2"
+      detail:
+        description: "是否抓详情页(1/0)"
+        required: false
+        default: "1"
+      country:
+        description: "国别（逗号分隔）"
+        required: false
+        default: "US,EP,JP,WO,KR,DE"
+      queries:
+        description: "自定义检索词（逗号分隔，留空用内置 12 个）"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 抓 Google Patents
+        run: |
+          python scripts/patent_fetch.py \
+            --pages "${{ github.event.inputs.pages }}" \
+            --detail "${{ github.event.inputs.detail }}" \
+            --country "${{ github.event.inputs.country }}" \
+            --queries "${{ github.event.inputs.queries }}" \
+            --out data/patent_google.jsonl
+      - name: 提交产物
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name  "patent-fetch-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -f data/patent_google.jsonl 2>/dev/null || true
+          git diff --cached --quiet && echo "无产物变更" || {
+            git commit -m "chore: google patents batch [skip ci]"
+            git push
+          }
