@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-10-19T18:48:22.385915+00:00",
+  "probed_at": "2026-10-20T05:03:59.163201+00:00",
   "runner": {
     "hostname": "runnervmxehtw",
-    "egress_ip": "132.196.20.105"
+    "egress_ip": "134.33.77.221"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 33184,
+      "bytes": 33177,
       "verdict": "OK",
       "ok": true
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 56692,
+      "bytes": 56409,
       "verdict": "OK",
       "ok": true
     },
@@ -46,7 +46,7 @@
       "url": "https://www.underhoodservice.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 32822,
+      "bytes": 32955,
       "verdict": "OK",
       "ok": true
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 38272,
+      "bytes": 38252,
       "verdict": "OK",
       "ok": true
     },
@@ -64,7 +64,7 @@
       "url": "https://www.tmdfriction.com/en/news",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3286,
+      "bytes": 3234,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -73,7 +73,7 @@
       "url": "https://unece.org/transport/vehicle-regulations",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3182,
+      "bytes": 3173,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -100,7 +100,7 @@
       "url": "https://www.sae.org/news",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 15274,
+      "bytes": 3087,
       "verdict": "OK",
       "ok": true
     },
@@ -108,10 +108,10 @@
       "name": "US EPA",
       "url": "https://www.epa.gov/newsreleases",
       "kind": "对标-应通",
-      "status": 200,
-      "bytes": 14353,
-      "verdict": "OK",
-      "ok": true
+      "status": null,
+      "bytes": 0,
+      "verdict": "异常: SSLError(MaxRetryError(\"HTTPSConnectionPool(host='www.epa.gov', port=4",
+      "ok": false
     },
     {
       "name": "Bosch 新闻室",
@@ -125,17 +125,17 @@
   ],
   "summary": {
     "total": 13,
-    "ok": 7,
-    "blocked": 6,
+    "ok": 6,
+    "blocked": 7,
     "waf": 3,
     "waf_ok": 4,
     "waf_total": 10,
-    "ctrl_ok": 3,
+    "ctrl_ok": 2,
     "ctrl_total": 3,
-    "egress_ip": "132.196.20.105",
+    "egress_ip": "134.33.77.221",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
-    "control_group_ok": "3/3"
+    "control_group_ok": "2/3"
   }
 }
