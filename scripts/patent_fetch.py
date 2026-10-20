@@ -33,25 +33,35 @@ import urllib.request
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36")
 
+# 🔴 检索词必须是「引号精确短语 + 自由词」：实测裸长 query（如
+#    "non-asbestos friction material composition" 不加引号）配 country: 时
+#    排序会崩 —— 首条变成 "Engineered fuel feed stock"。
+#    加引号后 total 从 48927 收敛到 40/278，且前 10 条全命中。
 QUERIES = [
-    "non-asbestos friction material composition",
-    "brake pad friction material composition",
-    "friction material composition weight percent",
-    "NAO brake pad friction material",
-    "disc brake pad friction composition",
-    "brake lining composition asbestos free",
-    "friction material binder fiber filler lubricant abrasive",
-    "brake friction material phenolic resin composition",
-    "friction material composition copper free",
-    "brake pad friction material manufacturing method",
-    "friction material composition ceramic fiber",
-    "brake block friction material composition railway",
+    '"friction material composition"',
+    '"non-asbestos friction material"',
+    '"brake pad" "friction material"',
+    '"friction material" "weight percent"',
+    '"brake lining" composition',
+    '"friction material" "phenolic resin"',
+    '"brake block" "friction material"',
+    '"friction material" binder fiber filler',
+    '"NAO" "friction material"',
+    '"friction material" copper free',
+    '"friction material" ceramic fiber',
+    '"disc brake pad" composition',
+    '"friction material" "parts by weight"',
+    '"brake friction material" aramid',
 ]
-COUNTRIES = ["US", "EP", "JP", "WO", "KR", "DE", "CN", "FR", "GB", "IT"]
+COUNTRIES = ["US", "EP", "JP", "WO", "KR", "DE", "FR", "GB", "IT", "CN"]
 
 # 配方/组成语义（决定是否抓详情页）
 FORM = re.compile(r"composition|formulation|weight percent|wt\s?%|by weight|"
                   r"parts by weight|mixture|composite|配方|组合物", re.I)
+
+# 相关性硬闸门：标题或摘要必须落在摩擦/制动语义内（剔除排序崩坏时的噪声）
+FRIC = re.compile(r"friction|brake|braking|tribolog|clutch|lining|pad\b|"
+                  r"摩擦|制动|刹车", re.I)
 
 
 def fetch(url, timeout=40, headers=None):
@@ -167,11 +177,17 @@ def detail(pn):
     return {"abstract": ab[:1800], "claims": cl[:1800], "meta_assignee": ass[:3]}
 
 
+def base_key(pn):
+    """US10626934B2 / US10626934A1 视为同一申请 → 去掉种类代码去重。"""
+    m = re.match(r"^([A-Z]{2}\d{4,})", pn or "")
+    return m.group(1) if m else pn
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--queries", default="")
     ap.add_argument("--country", default="US,EP,JP,WO,KR,DE")
-    ap.add_argument("--pages", type=int, default=2)
+    ap.add_argument("--pages", type=int, default=8)
     ap.add_argument("--detail", type=int, default=0)
     ap.add_argument("--detail-cap", type=int, default=400)
     ap.add_argument("--out", default="data/patent_google.jsonl")
@@ -184,40 +200,51 @@ def main():
         for c in cts:
             combos.append((q, "%s country:%s" % (q, c)))
 
-    print("组合数 %d（%d 词 × %d 国别）页数 %d" % (len(combos), len(qs), len(cts), a.pages),
-          flush=True)
+    print("组合数 %d（%d 词 × %d 国别）每组合上限 %d 页" % (
+        len(combos), len(qs), len(cts), a.pages), flush=True)
+    # 🔴 不用 &num=100：实测生效但排序崩坏（首条变无关专利）。每页固定 10 条。
     pager = detect_pager(combos[0][1])
-    numx = detect_num(combos[0][1])
-    print("翻页写法: %r  每页放大: %r" % (pager or "无（只取首页）", numx or "默认"),
-          flush=True)
+    print("翻页写法: %r" % (pager or "无（只取首页）"), flush=True)
 
     seen, rows = set(), []
+    n_skip = 0
     for i, (q, full) in enumerate(combos):
-        got = 0
+        got, total = 0, None
         for p in range(a.pages):
-            extra = numx + ((pager % p) if (pager and p) else "")
+            extra = (pager % p) if (pager and p) else ""
             st, b = fetch(xhr_url(full, extra), headers={"Accept": "application/json"})
             if st != 200:
                 break
             try:
-                items = flatten(json.loads(b.decode("utf-8", "replace")))
+                j = json.loads(b.decode("utf-8", "replace"))
+                items = flatten(j)
+                if total is None:
+                    total = (j.get("results") or {}).get("total_num_results")
             except Exception as e:  # noqa: BLE001
                 print("  !! 解析失败 %s: %s" % (full[:40], repr(e)[:80]), flush=True)
                 break
             new = 0
             for it in items:
-                if it["pn"] in seen:
+                key = base_key(it["pn"])
+                if key in seen:
                     continue
-                seen.add(it["pn"])
+                seen.add(key)
+                txt = (it["title"] or "") + " " + (it["snippet"] or "")
+                if not FRIC.search(txt):      # 排序崩坏时的噪声闸门
+                    n_skip += 1
+                    continue
                 it["q"] = q
                 rows.append(it)
                 new += 1
             got += new
             if not items:
                 break
-            time.sleep(0.8)
-        print("  [%d/%d] %-52s 新增 %d（累计 %d）" % (
-            i + 1, len(combos), full[:52], got, len(rows)), flush=True)
+            # 自适应：命中总数不足时别空翻
+            if total and (p + 1) * 10 >= int(total):
+                break
+            time.sleep(0.7)
+        print("  [%d/%d] %-56s total=%-7s 新增 %d（累计 %d，闸门剔 %d）" % (
+            i + 1, len(combos), full[:56], total, got, len(rows), n_skip), flush=True)
         if len(rows) > 6000:
             print("  !! 已达上限，停止", flush=True)
             break
