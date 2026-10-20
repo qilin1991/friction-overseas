@@ -1,0 +1,43 @@
+{
+ "total": 135144,
+ "n_flat": 1,
+ "result_keys": [
+  "result",
+  "result[0].id = patent/TR2024017448A2/en",
+  "result[0].rank = 0",
+  "result[0].patent",
+  "result[0].is_similar_document = True",
+  "result[0].entity_matches",
+  "result[0].measure_matches"
+ ],
+ "sample_json": "{\"result\": [{\"id\": \"patent/TR2024017448A2/en\", \"rank\": 0, \"patent\": {\"title\": \" A friction material for disc brake pads\", \"snippet\": \" The invention relates to a disc brake pad plate, which enables the brake pad to be mounted on the vehicle&#39;s brake system, and a disc brake pad containing friction material positioned on the disc brake pad plate to perform the braking operation, for use in hydraulically driven brakes of light &hellip;\", \"priority_date\": \"2024-12-03\", \"filing_date\": \"2024-12-03\", \"publication_date\": \"2024-12-23\", \"inventor\": \"Özcan Onur\", \"assignee\": \"Eren Balatacilik Sanayi Ve Ticaret Anonim Sirketi\", \"publication_number\": \"TR2024017448A2\", \"language\": \"en\", \"thumbnail\": \"\", \"pdf\": \"\", \"family_metadata\": {\"aggregated\": {\"country_status\": [{\"country_code\": \"TR\", \"best_patent_stage\": {\"state\": \"UNKNOWN\"}}]}}}, \"is_similar_document\": true, \"entity_matches\": {\"additional\": 0}, \"measure_matches\": {}}, {\"id\": \"patent/US10302165B2/en\", \"rank\": 1, \"patent\": {\"title\": \" Non-asbestos friction material composition, friction material using same, and &hellip;\", \"snippet\": \" A non-asbestos frictional material composition is provided, which is capable of provide a frictional material with low environmental load and with excellent friction coefficient, anti-crack properties, and abrasion resistance compared with conventional ones. Furthermore, a frictional material and &hellip;\", \"priority_date\": \"2010-11-19\", \"filing_date\": \"2011-11-07\", \"grant_date\": \"2019-05-28\", \"publication_date\": \"2019-05-28\", \"inventor\": \"Takashi Kikudome\", \"assignee\": \"Hitachi Chemical Company, Ltd.\", \"publication_number\": \"US10302165B2\", \"language\": \"en\", \"thumbnail\": \"\", \"pdf\": \"7b/c0/d2/76c968caa6261f/US10302165.pdf\", \"family_metadata\": {\"aggregated\": {\"country_status\": [{\"country_code\": \"WO\", \"best_patent_stage\": {\"state\": \"NOT_ACTIVE\"}}, {\"country_code\": \"US\", \"best_patent_stage\": {\"state\": \"ACTIVE\"}}, {\"country_code\": \"JP\", \"best_patent_stage\": {\"state\": \"ACTIVE\"}}]}}}, \"is_similar_document\": false, \"entity_matches\": {\"additional\": 0}, \"measure_matches\": {}}, {\"id\": \"patent/US10626934B2/en\", \"rank\": 2, \"patent\": {\"title\": \" Non-asbestos friction material composition, friction material using same, and &hellip;\", \"snippet\": \" A non-asbestos frictional material composition is provided, which is capable of provide a frictional material with low environmental load and with excellent friction coefficient, anti-crack properties, and abrasion resistance compared with conventional ",
+ "page_tests": {
+  "base": [
+   0,
+   "ERR AttributeError(\"'list' object has no attribute 'get'\")"
+  ],
+  "q_page1": [
+   0,
+   "ERR AttributeError(\"'list' object has no attribute 'get'\")"
+  ],
+  "param_page1": [
+   0,
+   "ERR AttributeError(\"'list' object has no attribute 'get'\")"
+  ],
+  "param_num_start": [
+   0,
+   "ERR AttributeError(\"'list' object has no attribute 'get'\")"
+  ],
+  "q_num100": [
+   0,
+   "ERR AttributeError(\"'list' object has no attribute 'get'\")"
+  ]
+ },
+ "detail_pn": "ERR AttributeError(\"'list' object has no attribute 'get'\")",
+ "detail_status": 0,
+ "meta_tags": [],
+ "schema_keys": [],
+ "abstract_html": "",
+ "claims_snippet": "",
+ "assignee_ctx": ""
+}
