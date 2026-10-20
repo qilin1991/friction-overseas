@@ -6,6 +6,10 @@ on:
         description: "备注"
         required: false
         default: "patent channel probe"
+      script:
+        description: "要跑的脚本（仓库内路径）"
+        required: false
+        default: "scripts/probe_patent.py"
 
 permissions:
   contents: write
@@ -20,14 +24,14 @@ jobs:
         with:
           python-version: '3.11'
       - name: 探测国外专利通道可达性
-        run: python scripts/probe_patent.py
+        run: python ${{ github.event.inputs.script || 'scripts/probe_patent.py' }}
       - name: 提交产物
         if: always()
         continue-on-error: true
         run: |
           git config user.name  "patent-probe-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add -f out/patent_probe.json 2>/dev/null || true
+          git add -f out/patent_probe.json out/patent_probe2.json 2>/dev/null || true
           git diff --cached --quiet && echo "无产物变更" || {
             git commit -m "chore: patent probe artifacts [skip ci]"
             git push
