@@ -9,4 +9,5 @@ WorkingDirectory=/opt/tour
 ExecStart=/opt/friction/venv/bin/python -u /opt/tour/collect_tour.py --only gov
 ExecStart=/opt/friction/venv/bin/python -u /opt/tour/collect_tour.py --only douban
 ExecStart=/opt/friction/venv/bin/python -u /opt/tour/collect_tour.py --only hzqsn
+ExecStart=/opt/friction/venv/bin/python -u /opt/tour/collect_tour.py --only sogou --batch 30 --delay 20
 ExecStart=/opt/friction/venv/bin/python -u /opt/tour/collect_tour.py --only enrich

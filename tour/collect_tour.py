@@ -29,6 +29,7 @@ from bs4 import BeautifulSoup
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(BASE, "tour.db")
+CURSOR = os.path.join(BASE, "_sogou_cursor.json")
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
@@ -85,14 +86,13 @@ SOGOU_QUERIES = [
     ("杭州 青少年 活动", "杭州"), ("杭州 儿童 活动", "杭州"),
 ]
 
-# 自动派生：sources.py 里所有「街道·社区」账号一律纳入采集查询（新增号只改 sources.py 一处）
+# 自动派生：sources.py 里所有账号（政务清单含政府/工会/文旅/街道社区等）纳入采集查询（新增号只改 sources.py 一处）
 try:
     import sources as _SRC
     for _n, _g, _d in _SRC.ACCOUNTS:
-        if _g == "街道·社区":
-            _dist = "星桥" if _d.startswith("临平·星桥") else _d.split("·")[0]
-            if all(_n != q for q, _ in SOGOU_QUERIES):
-                SOGOU_QUERIES.append((_n, _dist))
+        _dist = "星桥" if _d.startswith("临平·星桥") else _d.split("·")[0]
+        if all(_n != q for q, _ in SOGOU_QUERIES):
+            SOGOU_QUERIES.append((_n, _dist))
 except Exception as _e:
     print("  [warn] 未能从 sources.py 派生街道号:", _e)
 ACCOUNT_DISTRICT = {
@@ -758,6 +758,7 @@ def main():
     ap.add_argument("--days", type=int, default=120)
     ap.add_argument("--enrich-limit", type=int, default=60)
     ap.add_argument("--delay", type=float, default=14.0, help="搜狗每查询间隔秒数")
+    ap.add_argument("--batch", type=int, default=60, help="搜狗分批轮采：每轮跑多少个账号（0=全量）")
     args = ap.parse_args()
     ensure_schema()
     sess = requests.Session()
@@ -801,18 +802,33 @@ def main():
     if args.only in ("sogou", "all"):
         captcha = 0
         got = 0
-        for qy, dist in SOGOU_QUERIES:
+        # 分批轮采：游标记录「下一轮该从哪个账号继续」，逐个推进（被拦 break 也不丢进度）
+        queries = list(SOGOU_QUERIES)
+        cur = 0
+        if os.path.exists(CURSOR):
+            try:
+                cur = int(json.load(open(CURSOR)).get("i", 0)) % len(queries)
+            except Exception:
+                cur = 0
+        nsel = args.batch if (args.batch and args.batch > 0) else len(queries)
+        nsel = min(nsel, len(queries))
+        print("sogou | 轮采第 %d-%d / 共 %d" % (cur + 1, cur + nsel, len(queries)))
+        for k in range(nsel):
+            idx = (cur + k) % len(queries)
+            qy, dist = queries[idx]
             items, cap = sogou(sess, qy, dist, args.days)
             for it in items:
                 if upsert(conn, it):
                     n += 1
                     got += 1
             conn.commit()
+            # 游标推进到「下一个」，无论成功与否（跑过就前进，避免空转）
+            json.dump({"i": (idx + 1) % len(queries)}, open(CURSOR, "w"))
             print("sogou | %-22s -> %d%s" % (qy, len(items), " [captcha]" if cap else ""))
             if cap:
                 captcha += 1
                 if captcha >= 4:
-                    print("  captcha 连续 %d 次，本轮停止" % captcha)
+                    print("  captcha 连续 %d 次，本轮停止（游标已存到 %d）" % (captcha, (idx + 1) % len(queries)))
                     break
                 time.sleep(120)      # 被拦就冷却 2 分钟再继续
             else:
