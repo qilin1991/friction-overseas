@@ -45,8 +45,12 @@ jobs:
         run: |
           git config user.name  "patent-fetch-bot"
           git config user.email "bot@users.noreply.github.com"
+          # 🔴 并发 run 都会 commit：先 rebase 到远端最新，否则 push 被 non-fast-forward
+          #    拒绝且本步骤 continue-on-error 会静默吞掉产物
+          git pull --rebase --autostash origin main || true
           git add -f data/patent_google.jsonl 2>/dev/null || true
           git diff --cached --quiet && echo "无产物变更" || {
             git commit -m "chore: google patents batch [skip ci]"
+            git pull --rebase --autostash origin main || true
             git push
           }
