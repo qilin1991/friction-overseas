@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-10-21T05:04:46.257199+00:00",
+  "probed_at": "2026-10-21T17:34:19.662334+00:00",
   "runner": {
-    "hostname": "runnervmxehtw",
-    "egress_ip": "13.89.125.206"
+    "hostname": "runnervm8k3b6",
+    "egress_ip": "40.76.185.17"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 33234,
+      "bytes": 33191,
       "verdict": "OK",
       "ok": true
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 56362,
+      "bytes": 55741,
       "verdict": "OK",
       "ok": true
     },
@@ -37,7 +37,7 @@
       "url": "https://www.ccjdigital.com/",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3249,
+      "bytes": 3261,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -46,7 +46,7 @@
       "url": "https://www.underhoodservice.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 32949,
+      "bytes": 32672,
       "verdict": "OK",
       "ok": true
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 41933,
+      "bytes": 41678,
       "verdict": "OK",
       "ok": true
     },
@@ -64,7 +64,7 @@
       "url": "https://www.tmdfriction.com/en/news",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3234,
+      "bytes": 3233,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -73,7 +73,7 @@
       "url": "https://unece.org/transport/vehicle-regulations",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3179,
+      "bytes": 3183,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -109,7 +109,7 @@
       "url": "https://www.epa.gov/newsreleases",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 14311,
+      "bytes": 14281,
       "verdict": "OK",
       "ok": true
     },
@@ -118,7 +118,7 @@
       "url": "https://www.bosch-presse.de/pressportal/de/en/",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 163219,
+      "bytes": 163035,
       "verdict": "OK",
       "ok": true
     }
@@ -132,7 +132,7 @@
     "waf_total": 10,
     "ctrl_ok": 3,
     "ctrl_total": 3,
-    "egress_ip": "13.89.125.206",
+    "egress_ip": "40.76.185.17",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
