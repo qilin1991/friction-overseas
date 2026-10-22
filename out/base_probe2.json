@@ -1,0 +1,22 @@
+{
+ "service_mailto": {
+  "status": 200,
+  "len": 135,
+  "head": "{\"error\": \"Access denied for IP address 52.154.19.224 and user agent FrictionLit/1.0 (https://example.org; mailto:qilin@example.com).\"}"
+ },
+ "service_plain": {
+  "status": 200,
+  "len": 87,
+  "head": "{\"error\": \"Access denied for IP address 52.154.19.224 and user agent FrictionLit/1.0.\"}"
+ },
+ "python_default": {
+  "status": 200,
+  "len": 90,
+  "head": "{\"error\": \"Access denied for IP address 52.154.19.224 and user agent Python-urllib/3.11.\"}"
+ },
+ "curl": {
+  "status": 200,
+  "len": 80,
+  "head": "{\"error\": \"Access denied for IP address 52.154.19.224 and user agent curl/8.0.\"}"
+ }
+}
