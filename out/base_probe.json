@@ -1,0 +1,22 @@
+{
+ "json": {
+  "status": 200,
+  "ctype": "application/json; charset=UTF-8",
+  "len": 183,
+  "head": "{\"error\": \"Access denied for IP address 4.242.196.151 and user agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36.\"}",
+  "numFound": null,
+  "n_docs": 0
+ },
+ "xml": {
+  "status": 200,
+  "ctype": "text/xml; charset=UTF-8",
+  "len": 225,
+  "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n<error>Access denied for IP address 4.242.196.151 and user agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36.</error>"
+ },
+ "paging": {
+  "offset0": "",
+  "offset10": "",
+  "start10": "",
+  "page10": ""
+ }
+}
