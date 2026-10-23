@@ -1,13 +1,7 @@
 {
- "updated_at": "2026-10-23T13:51:34Z",
- "generator": "friction-actions/translate_body.py",
+ "updated_at": "2026-10-23T17:45:32.671128+00:00",
+ "generator": "friction-actions/translate_content.py",
  "count": 2,
- "done_this_run": 2,
- "seconds": 0.0,
- "stats": {
-  "CACHE": 2,
-  "BATCH": 1
- },
  "zh": {
   "https://www.epa.gov/asbestos/list-uses-covered-under-april-2019-final-rule-restrictions-discontinued-uses-asbestos": {
    "title_zh": "2019 年 4 月最终规则涵盖的用途列表；对停止使用石棉的限制",
