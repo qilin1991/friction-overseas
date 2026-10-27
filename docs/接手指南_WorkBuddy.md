@@ -1,3 +1,6 @@
+> ⚠️ 安全提示：本文件原版曾在公开仓库 `qilin1991/friction-overseas` 的 `main` 分支泄露真实
+> VPS SSH 密码与站点 Basic Auth 明文，已被发现并轮换。下方已脱敏，明文凭据**严禁**写入任何仓库。
+>
 # Friction 摩擦材料站 · 接手指南（给电脑版 WorkBuddy）
 
 > 写于 2026-10-06 凌晨。目标：任何一个新的 WorkBuddy 会话（云端沙箱或电脑版）
@@ -64,11 +67,11 @@ VPS 只做"拉回来 + 存 + 展示"。
 
 | 项目 | 位置 / 值 | 说明 |
 |---|---|---|
-| VPS SSH | `ubuntu@146.56.250.224`，密码 `Lm~~1991cloud`，sudo 免密 | **不要**用 root |
-| 站点 Basic Auth | `qilin` / `0805` | nginx `.htpasswd_work` |
+| VPS SSH | `ubuntu@146.56.250.224`，密码 `‹VPS_SSH_PASSWORD›（已轮换，见私有凭据库）`，sudo 免密 | **不要**用 root |
+| 站点 Basic Auth | `qilin` / `‹SITE_BASIC_AUTH›（已轮换）` | nginx `.htpasswd_work` |
 | DB 文件 | `/opt/friction/data/friction.db` | 属主 archive |
 | COS 凭据 | `/opt/friction/.deploy.env`（chmod 600） | 由 `cos_cred.py` 加载，代码里已无 AKID |
-| GitHub Token | `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` | 登录 `qilin1991` |
+| GitHub Token | `‹GITHUB_PAT›（已失效，待吊销）` | 登录 `qilin1991` |
 | 沙箱推送工具 | `/workspace/gh_push.py`、`gh_dispatch_translate.py` | Contents API 直更文件（git 直连不稳） |
 
 ---
@@ -77,7 +80,7 @@ VPS 只做"拉回来 + 存 + 展示"。
 
 ```bash
 # 连 VPS（沙箱里用 sshpass，电脑版直接用系统 ssh / Termius）
-sshpass -p 'Lm~~1991cloud' ssh -o StrictHostKeyChecking=no ubuntu@146.56.250.224
+sshpass -p '‹VPS_SSH_PASSWORD›（已轮换，见私有凭据库）' ssh -o StrictHostKeyChecking=no ubuntu@146.56.250.224
 
 sudo systemctl restart friction         # 改了数据后必须重启，页面才刷新（有缓存）
 sudo systemctl status friction archive-backup.timer friction-backup.timer
