@@ -1,3 +1,6 @@
+> ⚠️ 安全提示：本文件原版曾在公开仓库 `qilin1991/friction-overseas` 的 `main` 分支泄露真实
+> VPS SSH 密码与站点 Basic Auth 明文，已被发现并轮换。下方已脱敏，明文凭据**严禁**写入任何仓库。
+>
 # Friction Hub · VPS 凭据与运维手册
 
 > 更新：2026-10-01 14:18
@@ -8,12 +11,12 @@
 | 项目 | 值 |
 |---|---|
 | 账号 | **ubuntu** |
-| 密码 | `Lm~~1991cloud` |
+| 密码 | `‹VPS_SSH_PASSWORD›（已轮换，见私有凭据库）` |
 | 主机 | `146.56.250.224` |
 | root 权限 | ubuntu **可免密 sudo**，直接 `sudo xxx` |
 
 ```bash
-sshpass -p 'Lm~~1991cloud' ssh -o StrictHostKeyChecking=no ubuntu@146.56.250.224
+sshpass -p '‹VPS_SSH_PASSWORD›（已轮换，见私有凭据库）' ssh -o StrictHostKeyChecking=no ubuntu@146.56.250.224
 ```
 
 **⚠️ 不要再用 root 登录** —— root 密码未知，且实测被拒。
@@ -32,7 +35,7 @@ sshpass -p 'Lm~~1991cloud' ssh -o StrictHostKeyChecking=no ubuntu@146.56.250.224
 | 项目 | 值 |
 |---|---|
 | 地址 | http://146.56.250.224/friction/ |
-| Basic Auth | `qilin` / `0805` |
+| Basic Auth | `qilin` / `‹SITE_BASIC_AUTH›（已轮换）` |
 
 ## 四、GitHub Token（两个，别搞混）
 
@@ -207,7 +210,7 @@ pipeline.ingest()  →  scoring.py(领域评分 LEXICON + cluster_id 落库)  �
 sudo -u archive /opt/friction/venv/bin/python /opt/friction/tag_backfill.py          # dry-run
 sudo -u archive /opt/friction/venv/bin/python /opt/friction/tag_backfill.py --apply  # 写库
 sudo systemctl restart friction
-curl -s -u qilin:0805 'http://127.0.0.1/friction/news?tag=报告' | grep -o '/friction/article/[0-9]*' | sort -u | wc -l
+curl -s -u qilin:‹SITE_BASIC_AUTH›（已轮换） 'http://127.0.0.1/friction/news?tag=报告' | grep -o '/friction/article/[0-9]*' | sort -u | wc -l
 ```
 ⚠️ VPS 上改 `/opt/friction` 下的文件必须用 `sudo -u archive`，否则 archive 用户后续写不动；
    跑 python 要用 `/opt/friction/venv/bin/python`（系统 python3 没装 flask）。
