@@ -2,16 +2,22 @@ name: fetch-url
 
 # 通用单页抓取（给 VPS 的 /wproxy gh 出口用）
 #
-# 背景：/wproxy 现有三个出口（CF Worker / VPS 直连 / WARP）都是拿着 VPS 或
-# CF 边缘的 IP 去请求，被 WAF 挡的站三个一起挂。Actions runner 是 Azure 海外
-# 机房出口，常能直接过。
+# 背景：/wproxy 现有三个出口（CF Worker / VPS 直连 / WARP）都拿着 VPS 或 CF 边缘
+# 的 IP 去请求，被 WAF 挡的站三个一起挂。Actions runner 是 Azure 海外机房出口，常能过。
 #
-# 调用方：VPS -> POST /repos/qilin1991/friction-overseas/actions/workflows/fetch-url.yml/dispatches
-#         -> 轮询 run -> 下载 artifact(page) -> 读 page.json
-# 代价：一次抓取 = 一次 workflow，冷启动 30~60s，只适合偶发取单页，不要拿它翻页。
+# 🔴 为什么不用 upload-artifact 回传：artifact 的 archive_download_url 会 302 到
+#    pipelines.actions.githubusercontent.com，该域名在 VPS（腾讯云）上 TLS 握手被
+#    reset，下不动。改成把结果 commit 到 data/gh_fetch/<key>.json，
+#    VPS 直接用 api.github.com 的 contents 接口读（这条通）。
+#
+# 调用方：VPS -> dispatch（带随机 key）-> 轮询 run -> 读 contents
 on:
   workflow_dispatch:
     inputs:
+      key:
+        description: '调用方生成的随机 key（决定结果文件路径，同时用来防串号）'
+        required: true
+        type: string
       url:
         description: '目标 URL（http/https）'
         required: true
@@ -28,11 +34,11 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: fetch-url-${{ github.event.inputs.url }}
-  cancel-in-progress: true
+  group: fetch-url-${{ github.event.inputs.key }}
+  cancel-in-progress: false
 
 jobs:
   fetch:
@@ -63,6 +69,7 @@ jobs:
 
       - name: 抓取
         env:
+          KEY: ${{ github.event.inputs.key }}
           TARGET_URL: ${{ github.event.inputs.url }}
           MODE: ${{ github.event.inputs.mode }}
           USE_BROWSER: ${{ github.event.inputs.browser }}
@@ -70,14 +77,23 @@ jobs:
           set +e
           EXTRA=""
           if [ "$USE_BROWSER" = "1" ]; then EXTRA="--browser"; fi
-          python3 scripts/gh_fetch.py --url "$TARGET_URL" --mode "$MODE" $EXTRA --out page.json
+          python3 scripts/gh_fetch.py --url "$TARGET_URL" --mode "$MODE" \
+            $EXTRA --key "$KEY" --out page.json
           echo "抓取退出码 $?"
 
-      - name: 回传结果
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: page
-          path: page.json
-          retention-days: 1
-          if-no-files-found: warn
+      - name: 回写结果到仓库
+        run: |
+          set -e
+          mkdir -p data/gh_fetch
+          cp page.json "data/gh_fetch/${{ github.event.inputs.key }}.json"
+          find data/gh_fetch -type f -mmin +60 -delete || true
+          git config user.name  "gh-relay-bot"
+          git config user.email "gh-relay-bot@users.noreply.github.com"
+          git add -A data/gh_fetch
+          if git diff --cached --quiet; then
+            echo "无变化，跳过提交"
+          else
+            git commit -m "gh-fetch: ${{ github.event.inputs.key }}"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
