@@ -1,0 +1,83 @@
+name: fetch-url
+
+# 通用单页抓取（给 VPS 的 /wproxy gh 出口用）
+#
+# 背景：/wproxy 现有三个出口（CF Worker / VPS 直连 / WARP）都是拿着 VPS 或
+# CF 边缘的 IP 去请求，被 WAF 挡的站三个一起挂。Actions runner 是 Azure 海外
+# 机房出口，常能直接过。
+#
+# 调用方：VPS -> POST /repos/qilin1991/friction-overseas/actions/workflows/fetch-url.yml/dispatches
+#         -> 轮询 run -> 下载 artifact(page) -> 读 page.json
+# 代价：一次抓取 = 一次 workflow，冷启动 30~60s，只适合偶发取单页，不要拿它翻页。
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '目标 URL（http/https）'
+        required: true
+        type: string
+      mode:
+        description: 'html（原样 HTML）或 text（抽正文）'
+        required: false
+        default: 'html'
+        type: string
+      browser:
+        description: '1 = 用 Chromium（JS 渲染 / 过 Cloudflare 挑战），0 = 纯 requests'
+        required: false
+        default: '0'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fetch-url-${{ github.event.inputs.url }}
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install --quiet requests beautifulsoup4 lxml trafilatura
+
+      - name: 装 Chromium（按需）
+        if: ${{ github.event.inputs.browser == '1' }}
+        continue-on-error: true
+        run: |
+          pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+
+      - name: 打印出口 IP
+        run: curl -s https://api.ipify.org && echo
+
+      - name: 抓取
+        env:
+          TARGET_URL: ${{ github.event.inputs.url }}
+          MODE: ${{ github.event.inputs.mode }}
+          USE_BROWSER: ${{ github.event.inputs.browser }}
+        run: |
+          set +e
+          EXTRA=""
+          if [ "$USE_BROWSER" = "1" ]; then EXTRA="--browser"; fi
+          python3 scripts/gh_fetch.py --url "$TARGET_URL" --mode "$MODE" $EXTRA --out page.json
+          echo "抓取退出码 $?"
+
+      - name: 回传结果
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: page
+          path: page.json
+          retention-days: 1
+          if-no-files-found: warn
