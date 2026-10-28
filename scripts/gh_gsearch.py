@@ -105,11 +105,12 @@ def main():
     ap.add_argument("--q", required=True)
     ap.add_argument("--num", type=int, default=20)
     ap.add_argument("--hl", default="en")
+    ap.add_argument("--key", default="", help="调用方的随机 key，原样回写进结果")
     ap.add_argument("--out", default="results.json")
     args = ap.parse_args()
 
     t0 = time.time()
-    result = {"q": args.q, "ok": False, "error": "", "items": []}
+    result = {"key": args.key, "q": args.q, "ok": False, "error": "", "items": []}
 
     try:
         from playwright.sync_api import sync_playwright
