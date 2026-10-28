@@ -1,0 +1,74 @@
+name: gsearch
+
+# Google 搜索（真浏览器），给 VPS 的 /wproxy/g 与 archive 检索链用
+#
+# 为什么只能在 Actions 上跑：Google 对无 JS 的请求一律回 `enablejs` 拦截页
+# （2026-10 实测 gbv=1 / udm=14 全部失效），必须真浏览器执行 JS；
+# VPS 直连被墙、CF Worker 出口被 Google 429。
+#
+# 调用方：VPS -> dispatch -> 轮询 run -> 下载 artifact(results) -> 读 results.json
+on:
+  workflow_dispatch:
+    inputs:
+      q:
+        description: '搜索词'
+        required: true
+        type: string
+      num:
+        description: '要多少条（10~30）'
+        required: false
+        default: '20'
+        type: string
+      hl:
+        description: '界面语言（en / zh-CN）'
+        required: false
+        default: 'en'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gsearch-${{ github.event.inputs.q }}
+  cancel-in-progress: true
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 装 Chromium
+        continue-on-error: true
+        run: |
+          python -m pip install --upgrade pip
+          pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+
+      - name: 打印出口 IP
+        run: curl -s https://api.ipify.org && echo
+
+      - name: 搜索
+        env:
+          Q: ${{ github.event.inputs.q }}
+          NUM: ${{ github.event.inputs.num }}
+          HL: ${{ github.event.inputs.hl }}
+        run: |
+          set +e
+          python3 scripts/gh_gsearch.py --q "$Q" --num "${NUM:-20}" --hl "${HL:-en}" --out results.json
+          echo "搜索退出码 $?"
+
+      - name: 回传结果
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: results
+          path: results.json
+          retention-days: 1
+          if-no-files-found: warn
