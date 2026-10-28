@@ -2,14 +2,19 @@ name: gsearch
 
 # Google 搜索（真浏览器），给 VPS 的 /wproxy/g 与 archive 检索链用
 #
-# 为什么只能在 Actions 上跑：Google 对无 JS 的请求一律回 `enablejs` 拦截页
+# 为什么只能在 Actions 上跑：Google 对无 JS 的请求一律回 enablejs 拦截页
 # （2026-10 实测 gbv=1 / udm=14 全部失效），必须真浏览器执行 JS；
 # VPS 直连被墙、CF Worker 出口被 Google 429。
 #
-# 调用方：VPS -> dispatch -> 轮询 run -> 下载 artifact(results) -> 读 results.json
+# 🔴 结果不用 artifact 回传（pipelines.actions.githubusercontent.com 在 VPS 上被 reset），
+#    改为 commit 到 data/gh_search/<key>.json，VPS 用 contents 接口读。
 on:
   workflow_dispatch:
     inputs:
+      key:
+        description: '调用方生成的随机 key'
+        required: true
+        type: string
       q:
         description: '搜索词'
         required: true
@@ -26,11 +31,11 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: gsearch-${{ github.event.inputs.q }}
-  cancel-in-progress: true
+  group: gsearch-${{ github.event.inputs.key }}
+  cancel-in-progress: false
 
 jobs:
   search:
@@ -56,19 +61,29 @@ jobs:
 
       - name: 搜索
         env:
+          KEY: ${{ github.event.inputs.key }}
           Q: ${{ github.event.inputs.q }}
           NUM: ${{ github.event.inputs.num }}
           HL: ${{ github.event.inputs.hl }}
         run: |
           set +e
-          python3 scripts/gh_gsearch.py --q "$Q" --num "${NUM:-20}" --hl "${HL:-en}" --out results.json
+          python3 scripts/gh_gsearch.py --q "$Q" --num "${NUM:-20}" --hl "${HL:-en}" \
+            --key "$KEY" --out results.json
           echo "搜索退出码 $?"
 
-      - name: 回传结果
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: results
-          path: results.json
-          retention-days: 1
-          if-no-files-found: warn
+      - name: 回写结果到仓库
+        run: |
+          set -e
+          mkdir -p data/gh_search
+          cp results.json "data/gh_search/${{ github.event.inputs.key }}.json"
+          find data/gh_search -type f -mmin +60 -delete || true
+          git config user.name  "gh-relay-bot"
+          git config user.email "gh-relay-bot@users.noreply.github.com"
+          git add -A data/gh_search
+          if git diff --cached --quiet; then
+            echo "无变化，跳过提交"
+          else
+            git commit -m "gh-search: ${{ github.event.inputs.key }}"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
