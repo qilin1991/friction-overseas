@@ -39,7 +39,10 @@ EXTRACT_JS = r"""
     snippet = snippet.replace(/\s+/g, ' ').trim();
     const title = (h3.innerText || '').trim();
     if (snippet.startsWith(title)) snippet = snippet.slice(title.length).trim();
-    out.push({title, href, snippet: snippet.slice(0, 400)});
+    let cite = '';
+    const c = box ? box.querySelector('cite') : null;
+    if (c) cite = (c.innerText || '').replace(/\s+/g, ' ').trim();
+    out.push({title, href, snippet: snippet.slice(0, 400), cite});
   }
   return out;
 }
@@ -47,7 +50,7 @@ EXTRACT_JS = r"""
 
 
 def unwrap(href):
-    """把 /url?q= 形式的跳转链还原成目标地址。"""
+    """把 /url?q= 形式的跳转链还原成目标地址（老式）。"""
     try:
         sp = urllib.parse.urlsplit(href)
         if sp.path in ("/url", "/url/"):
@@ -59,7 +62,33 @@ def unwrap(href):
     return href
 
 
-def run_query(page, q, num, hl):
+def _is_google(href):
+    try:
+        h = urllib.parse.urlsplit(href).netloc.lower()
+    except Exception:
+        return False
+    return h.startswith("google.") or ".google." in h or h == "google.com"
+
+
+def resolve_redirect(ctx, href, hops=3):
+    """Google 现在把结果链接包成 /goto?url=<protobuf token>，解不开，
+    只能用浏览器上下文发一次不跟随的请求读 Location。"""
+    cur = href
+    for _ in range(hops):
+        if not _is_google(cur):
+            return cur
+        try:
+            r = ctx.request.get(cur, max_redirects=0, timeout=15000)
+            loc = (r.headers or {}).get("location", "")
+        except Exception:
+            return cur
+        if not loc:
+            return cur
+        cur = urllib.parse.urljoin(cur, loc)
+    return cur
+
+
+def run_query(page, ctx, q, num, hl):
     url = (
         "https://www.google.com/search?q=" + urllib.parse.quote_plus(q)
         + f"&num={num}&hl={hl}&pws=0"
@@ -93,6 +122,8 @@ def run_query(page, q, num, hl):
     items = page.evaluate(EXTRACT_JS) or []
     for it in items:
         it["href"] = unwrap(it.get("href", ""))
+        if _is_google(it["href"]):
+            it["href"] = resolve_redirect(ctx, it["href"])
     items = [i for i in items if i.get("title") and i.get("href")]
 
     if not items and "enablejs" in html:
@@ -126,7 +157,7 @@ def main():
                 extra_http_headers={"Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8"},
             )
             page = ctx.new_page()
-            result.update(run_query(page, args.q, args.num, args.hl))
+            result.update(run_query(page, ctx, args.q, args.num, args.hl))
             if not result.get("items") and result.get("ok"):
                 print("  结果为空，换 udm=14 再试一次")
                 page.goto(
@@ -138,6 +169,8 @@ def main():
                 items = page.evaluate(EXTRACT_JS) or []
                 for it in items:
                     it["href"] = unwrap(it.get("href", ""))
+                    if _is_google(it["href"]):
+                        it["href"] = resolve_redirect(ctx, it["href"])
                 result["items"] = [i for i in items if i.get("title") and i.get("href")]
             browser.close()
     except Exception as e:
