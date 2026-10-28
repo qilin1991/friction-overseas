@@ -158,11 +158,12 @@ def main():
     ap.add_argument("--url", required=True)
     ap.add_argument("--mode", default="html", choices=["html", "text"])
     ap.add_argument("--browser", action="store_true", help="用 Chromium（JS 页 / CF 挑战）")
+    ap.add_argument("--key", default="", help="调用方的随机 key，原样回写进结果")
     ap.add_argument("--out", default="page.json")
     args = ap.parse_args()
 
     t0 = time.time()
-    result = {"url": args.url, "mode": args.mode, "ok": False, "error": ""}
+    result = {"key": args.key, "url": args.url, "mode": args.mode, "ok": False, "error": ""}
 
     data = None
     if args.browser:
