@@ -1,0 +1,44 @@
+name: epmc-lookup
+
+# 在 Azure runner 上查 Europe PMC 的 OA 全文 PDF URL。VPS 直连/WARP/relay 都被
+# Europe PMC 的 Cloudflare 拦，只有 Actions(Azure IP) 能查到。结果写回仓库
+# data/epmc_result.json，VPS 侧 _oa_europepmc.py 拉取后下载 PDF。
+# 触发：workflow_dispatch，inputs.dois = JSON 数组字符串。
+on:
+  workflow_dispatch:
+    inputs:
+      dois:
+        description: 'JSON array of DOIs to look up'
+        required: true
+        default: '[]'
+
+permissions:
+  contents: write
+
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 查询 Europe PMC OA PDF
+        env:
+          DOIS: ${{ github.event.inputs.dois }}
+        run: python scripts/epmc_lookup.py
+
+      - name: 提交结果
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name  "epmc-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -f data/epmc_result.json
+          git diff --cached --quiet && echo "无产物变更" || {
+            git commit -m "chore: epmc lookup result [skip ci]"
+            git push
+          }
