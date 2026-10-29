@@ -54,6 +54,12 @@ def norm_doi(s):
 
 def main():
     raw = os.environ.get("DOIS", "[]")
+    # 优先用 VPS 提交的待查清单（避免 workflow_dispatch 字符串输入的长度上限）
+    if os.path.exists("data/epmc_pending.json"):
+        try:
+            raw = open("data/epmc_pending.json", encoding="utf-8").read()
+        except Exception:
+            pass
     try:
         dois = [norm_doi(x) for x in json.loads(raw) if norm_doi(x)]
     except Exception:
