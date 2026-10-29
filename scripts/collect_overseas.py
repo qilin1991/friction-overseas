@@ -127,6 +127,40 @@ SOURCES = [
      "link_re": r"bodyshopbusiness\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
      "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
      "base": "https://www.bodyshopbusiness.com", "region": "海外", "tag": "售后市场", "translate": True},
+    # ===== 2026-10-29 信源扩充：四级通道时代（fetch-relay/WARP/Exa/GT）新增 =====
+    # VPS 实测 direct 200：列表页可静态抓；正文由 VPS 级联（relay→cf→exa）补全
+    {"name": "Knorr-Bremse", "list_url": "https://newsroom.knorr-bremse.com/en/",
+     "link_re": r"newsroom\.knorr-bremse\.com/en/[a-z0-9\-]{10,}/?$",
+     "exclude_url": r"/(?:press-mailing-list|media-contacts|media-gallery|imprint|privacy)(?:/|$)",
+     "base": "https://newsroom.knorr-bremse.com", "region": "海外",
+     "tag": "商用车制动", "translate": True},
+    {"name": "Nisshinbo", "list_url": "https://www.nisshinbo.co.jp/english/news/",
+     "link_re": r"nisshinbo\.co\.jp/nish/english/(?:news|release)/[a-z0-9\-_/]{6,}\.html?$",
+     "base": "https://www.nisshinbo.co.jp", "region": "海外",
+     "tag": "摩擦材料", "translate": True},
+    {"name": "Tenneco", "list_url": "https://www.tenneco.com/news-and-features",
+     "link_re": r"tenneco\.com/news-and-features/(?:features/)?[a-z0-9\-]{6,}",
+     "base": "https://www.tenneco.com", "region": "海外",
+     "tag": "制动系统", "translate": True},
+    {"name": "Tires & Parts", "list_url": "https://tiresandparts.net/",
+     "list_url2": "https://tiresandparts.net/news/",
+     "link_re": r"tiresandparts\.net/(?:news|press-releases?)/[a-z0-9\-]+/[a-z0-9\-]{8,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|category|page|about|contact|advertise|feed|comments|wp-json|mag)(?:/|$)",
+     "base": "https://tiresandparts.net", "region": "海外",
+     "tag": "轮胎制动", "translate": True},
+    # Babcox 系（与 brakeandfrontend 同 CMS）：VPS/relay 403，但 Azure 大概率可直连
+    # （同集团 brakeandfrontend/underhoodservice 在 Azure 实测 200）；聚合兜底已加
+    {"name": "Modern Tire Dealer", "list_url": "https://www.moderntiredealer.com/",
+     "link_re": r"moderntiredealer\.com/(?!(?:tag|author|category|page|about)/)[a-z0-9\-]{12,}/?$",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.moderntiredealer.com", "region": "海外",
+     "tag": "售后市场", "translate": True},
+    # Endeavor 系（与 ratchetandwrench 同 CMS，/article/<id>/<slug>）
+    {"name": "Vehicle Service Pros", "list_url": "https://www.vehicleservicepros.com/",
+     "link_re": r"vehicleservicepros\.com/(?:home/)?article/\d{6,}/[a-z0-9\-]{4,}",
+     "exclude_url": r"/(?:tag|tags|author|authors|category|categories|page|topics|topic|search|about|contact|advertise|subscribe|newsletter|events|webinars|podcast|video|whitepapers|resources|jobs|privacy|terms|sitemap)(?:/|$)",
+     "base": "https://www.vehicleservicepros.com", "region": "海外",
+     "tag": "售后技术", "translate": True},
 ]
 
 # 摩擦相关性过滤（与 friction-site 的 FRICTION_KEYWORDS 对齐）
