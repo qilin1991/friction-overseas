@@ -46,6 +46,14 @@ AGG_TARGETS = [
     ("Tire Review",        "tirereview.com",        "brake"),
     ("Auto Service World", "autoserviceworld.com",  "brake"),
     ("Vehicle Service Pros","vehicleservicepros.com","brake"),
+    # 2026-10-29 信源扩充：WAF/JS 壳/直连被拦的制动巨头，走聚合兜底
+    ("Brembo",            "brembo.com",            "brake"),
+    ("Meritor",           "meritor.com",           "brake"),
+    ("Bendix",            "bendixvc.com",          "brake"),
+    ("Haldex",            "haldex.com",            "brake"),
+    ("ZF Aftermarket",    "zf.com",                "brake"),
+    ("Hitachi Astemo",    "astemo.com",            "brake"),
+    ("Modern Tire Dealer", "moderntiredealer.com", "brake"),
 ]
 
 # 行业通稿：不限定站点，直接按行业主题检索（补充覆盖面）
