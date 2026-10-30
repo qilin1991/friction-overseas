@@ -1,0 +1,1 @@
+{"key": "b2ff30007f9d124a", "url": "https://api.cerebras.ai/v1/models", "mode": "text", "ok": true, "error": "", "status": 403, "final_url": "https://api.cerebras.ai/v1/models", "charset": "ascii", "bytes": 30, "via": "requests", "title": "", "challenged": true, "elapsed": 0.4, "text": "{\"detail\":\"Not authenticated\"}", "text_len": 30}
