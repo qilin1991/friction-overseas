@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-11-05T07:06:40.340226+00:00",
+  "probed_at": "2026-11-05T20:12:24.994663+00:00",
   "runner": {
-    "hostname": "runnervm48cm3",
-    "egress_ip": "40.124.217.228"
+    "hostname": "runnervm7aw5e",
+    "egress_ip": "172.174.157.119"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 62201,
+      "bytes": 62185,
       "verdict": "OK",
       "ok": true
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 58836,
+      "bytes": 59005,
       "verdict": "OK",
       "ok": true
     },
@@ -37,7 +37,7 @@
       "url": "https://www.ccjdigital.com/",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3257,
+      "bytes": 3271,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -46,7 +46,7 @@
       "url": "https://www.underhoodservice.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 61675,
+      "bytes": 61478,
       "verdict": "OK",
       "ok": true
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 67390,
+      "bytes": 67263,
       "verdict": "OK",
       "ok": true
     },
@@ -64,7 +64,7 @@
       "url": "https://www.tmdfriction.com/en/news",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3285,
+      "bytes": 3283,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -73,7 +73,7 @@
       "url": "https://unece.org/transport/vehicle-regulations",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3179,
+      "bytes": 3183,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -109,7 +109,7 @@
       "url": "https://www.epa.gov/newsreleases",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 14345,
+      "bytes": 14307,
       "verdict": "OK",
       "ok": true
     },
@@ -132,7 +132,7 @@
     "waf_total": 10,
     "ctrl_ok": 3,
     "ctrl_total": 3,
-    "egress_ip": "40.124.217.228",
+    "egress_ip": "172.174.157.119",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
