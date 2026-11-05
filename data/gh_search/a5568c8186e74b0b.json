@@ -1,0 +1,41 @@
+{
+ "key": "a5568c8186e74b0b",
+ "q": "openai",
+ "ok": true,
+ "error": "",
+ "items": [
+  {
+   "title": "Research",
+   "href": "https://openai.com/research/index/",
+   "snippet": "Web results Research OpenAI https://openai.com › research We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems. Building safe and beneficial ...",
+   "cite": "https://openai.com › research"
+  },
+  {
+   "title": "The next phase of enterprise AI",
+   "href": "https://openai.com/index/next-phase-of-enterprise-ai/",
+   "snippet": "OpenAI https://openai.com › index › next-phase-of-enterprise-ai Apr 8, 2026 — OpenAI outlines the next phase of enterprise AI, as adoption accelerates across industries with Frontier, ChatGPT Enterprise, Codex, ...",
+   "cite": "https://openai.com › index › next-phase-of-enterprise-ai"
+  },
+  {
+   "title": "ChatGPT is now a partner for your most ambitious work",
+   "href": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+   "snippet": "OpenAI https://openai.com › index › chatgpt-for-your-most-am... Jul 9, 2026 — ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into ...",
+   "cite": "https://openai.com › index › chatgpt-for-your-most-am..."
+  },
+  {
+   "title": "Key concepts | OpenAI API",
+   "href": "https://www.google.com/goto?url=CAESbAHEIkXXgIOBjdlpTfUdPOwdeUjskDnBMI4igOV4Ht-5Sg4qmyIY7vXkK5oAXzNyl0smAR9wbTEe5T5EzzUb8zXu1moJXHiSbIy3m0u1KXsuNA3089uQZg_SEuES5EYDs1mBgWCiXWRvp77SXw",
+   "snippet": "OpenAI Developers https://developers.openai.com › api › docs › concepts OpenAI offers text embedding models that take as input a text string and produce as output an embedding vector. Embeddings are useful for search, clustering, ...Read more",
+   "cite": "https://developers.openai.com › api › docs › concepts"
+  },
+  {
+   "title": "Introducing OpenAI o1",
+   "href": "https://www.google.com/goto?url=CAESUwHEIkXXG7NvDcO5ukdbm48V5OMQHPg1gm2E6Zgh_VUGoYALY3JMg_taLGxFsXyNN2m-ueIMzsnJNrysaZZ_4q2SdjJP2WeyOzK33BOBS77fazZL",
+   "snippet": "OpenAI https://openai.com › ... Sep 11, 2024 — We've developed a new series of AI models designed to spend more time thinking before they respond. They can reason through complex tasks and ...Read more",
+   "cite": "https://openai.com › ..."
+  }
+ ],
+ "final_url": "https://www.google.com/search?q=openai&num=5&hl=en&pws=0&sei=MHvsavzIDOTCkPIP-OCXCA",
+ "count": 5,
+ "elapsed": 4.0
+}
