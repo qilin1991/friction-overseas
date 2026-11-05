@@ -1,0 +1,17 @@
+{
+ "key": "ec1c2cd262e397e9",
+ "q": "openai",
+ "ok": true,
+ "error": "",
+ "items": [
+  {
+   "title": "OpenAI | Research & Deployment",
+   "href": "https://openai.com/",
+   "snippet": "OpenAI https://openai.com We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems.",
+   "cite": "https://openai.com"
+  }
+ ],
+ "final_url": "https://www.google.com/search?q=openai&num=5&hl=en&pws=0&sei=XXvsar34MOit5NoPyYSN0Qk",
+ "count": 1,
+ "elapsed": 3.2
+}
