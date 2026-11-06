@@ -1,0 +1,35 @@
+{
+ "key": "f7aa71d140b9666c",
+ "q": "openai",
+ "ok": true,
+ "error": "",
+ "items": [
+  {
+   "title": "Research",
+   "href": "https://openai.com/research/index/",
+   "snippet": "Web results Research OpenAI https://openai.com › research We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems. Building safe and beneficial ...",
+   "cite": "https://openai.com › research"
+  },
+  {
+   "title": "AI Platforms to Accelerate your Business",
+   "href": "https://openai.com/business/",
+   "snippet": "OpenAI https://openai.com › business A complete AI platform for your business Work faster with AI for writing, researching, creating, and everyday problem-solving.",
+   "cite": "https://openai.com › business"
+  },
+  {
+   "title": "ChatGPT is now a partner for your most ambitious work",
+   "href": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+   "snippet": "Web results ChatGPT is now a partner for your most ambitious work OpenAI https://openai.com › index › chatgpt-for-your-most-am... Jul 9, 2026 — ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into ...",
+   "cite": "https://openai.com › index › chatgpt-for-your-most-am..."
+  },
+  {
+   "title": "The next phase of enterprise AI",
+   "href": "https://www.google.com/goto?url=CAEScgHEIkXXei9iZst-HRVZROJ1nJa_gwuOFtaFrPnpn4zPE03rVEVmexPmNgLMU9kCBGNQgVvzEqJJJ7S6qtvpEmKkRFfHFrrDykPC7qWaIGKN2rRNs2uRHoMbhiuNuonKKsa9D02UgeufXU3YZ4FstKlrqQ",
+   "snippet": "OpenAI https://openai.com › index › next-phase-of-enterprise-ai Apr 8, 2026 — OpenAI outlines the next phase of enterprise AI, as adoption accelerates across industries with Frontier, ChatGPT Enterprise, Codex, ...",
+   "cite": "https://openai.com › index › next-phase-of-enterprise-ai"
+  }
+ ],
+ "final_url": "https://www.google.com/search?q=openai&num=5&hl=en&pws=0&sei=pU3tauC0CdOgptQP5ZrbiQQ",
+ "count": 4,
+ "elapsed": 4.2
+}
