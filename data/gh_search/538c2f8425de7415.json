@@ -1,0 +1,41 @@
+{
+ "key": "538c2f8425de7415",
+ "q": "youtube.com",
+ "ok": true,
+ "error": "",
+ "items": [
+  {
+   "title": "YouTube",
+   "href": "https://www.youtube.com/",
+   "snippet": "YouTube https://www.youtube.com Mar 5, 2024 — Share your videos with friends, family, and the world.",
+   "cite": "https://www.youtube.com"
+  },
+  {
+   "title": "YouTube",
+   "href": "http://www.youtube.com/my_videos_copyright?visit_id=639295369521797719-562394513&hl=en-GB&rd=1",
+   "snippet": "Web results YouTube Google Help https://support.google.com › copyright_counternotice Share your videos with friends, family and the world.",
+   "cite": "https://support.google.com › copyright_counternotice"
+  },
+  {
+   "title": "YouTube",
+   "href": "https://accounts.google.com/v3/signin/identifier?dsh=1349009210144600791&service=youtube&flowName=WebLiteSignIn&flowEntry=ServiceLogin&ifkv=AU9NCcwQLaxxi4qmatgD41_2jgOfGomJCl1FEIAMqNnSaXw7up0R9bkCodOdcO8gHUhbHpd07c2q",
+   "snippet": "Web results YouTube Google Accounts https://accounts.google.com › signin › identifier Sign in. to continue to YouTube. Email or phone. Forgot email? Not your computer? Use Guest mode to sign in privately. Learn more about using Guest mode.Read more",
+   "cite": "https://accounts.google.com › signin › identifier"
+  },
+  {
+   "title": "YouTube - Apps on Google Play",
+   "href": "https://play.google.com/store/apps/details?id=com.google.android.youtube",
+   "snippet": "Google Play https://play.google.com › store › apps › details Get the official YouTube app on Android phones and tablets. See what the world is watching -- from the hottest music videos to what's popular in gaming, ...Read more",
+   "cite": "https://play.google.com › store › apps › details"
+  },
+  {
+   "title": "YouTube",
+   "href": "https://www.facebook.com/youtube/",
+   "snippet": "Web results YouTube Facebook · YouTube 108.9M+ followers YouTube. 108858711 followers · 148166 talking about this. The latest and greatest music videos, trends and channels from YouTube.",
+   "cite": "108.9M+ followers"
+  }
+ ],
+ "final_url": "https://www.google.com/search?q=youtube.com&num=20&hl=en&pws=0&sei=tVrtavjcIryMwbkP19XbgAM",
+ "count": 5,
+ "elapsed": 3.7
+}
