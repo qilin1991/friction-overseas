@@ -1,0 +1,35 @@
+{
+ "key": "9a48b61106df80a4",
+ "q": "openai",
+ "ok": true,
+ "error": "",
+ "items": [
+  {
+   "title": "OpenAI | Research & Deployment",
+   "href": "https://openai.com/",
+   "snippet": "OpenAI https://openai.com We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems.",
+   "cite": "https://openai.com"
+  },
+  {
+   "title": "OpenAI",
+   "href": "https://en.wikipedia.org/wiki/OpenAI",
+   "snippet": "Wikipedia https://en.wikipedia.org › wiki › OpenAI OpenAI is an American artificial intelligence (AI) public benefit corporation (PBC) headquartered in San Francisco, California.Read more",
+   "cite": "https://en.wikipedia.org › wiki › OpenAI"
+  },
+  {
+   "title": "OpenAI",
+   "href": "https://www.linkedin.com/company/openai",
+   "snippet": "LinkedIn · OpenAI 12.1M+ followers OpenAI is an AI research and deployment company dedicated to ensuring that general-purpose artificial intelligence benefits all of humanity.Read more",
+   "cite": "12.1M+ followers"
+  },
+  {
+   "title": "ChatGPT: Chat, Work, Create & Code with AI",
+   "href": "https://www.google.com/goto?url=CAESUAHEIkXXNwm0a3Vn7o6ZvgpUax6rojl4wJbM3_aEqW4fJIxzZqw1mo_8hc5kh5Eq2nW64DrOmi6qQRmOKnL1MqJswUZ4rwCPk7TSOQKC9q-z",
+   "snippet": "ChatGPT https://chatgpt.com Use ChatGPT to answer questions, write, create images, complete work, and code—all in one place. Get started for free or download the app.",
+   "cite": "https://chatgpt.com"
+  }
+ ],
+ "final_url": "https://www.google.com/search?q=openai&num=20&hl=en&pws=0&sei=d03tauzPI66O8L0P0cnU0Qc",
+ "count": 4,
+ "elapsed": 5.5
+}
