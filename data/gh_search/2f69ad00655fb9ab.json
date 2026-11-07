@@ -1,0 +1,35 @@
+{
+ "key": "2f69ad00655fb9ab",
+ "q": "openai",
+ "ok": true,
+ "error": "",
+ "items": [
+  {
+   "title": "OpenAI",
+   "href": "https://www.youtube.com/OpenAI",
+   "snippet": "Web results OpenAI YouTube · OpenAI 2.1M+ followers OpenAI's mission is to ensure that artificial general intelligence benefits all of humanity. Introducing GPT-6 Astra: the most intelligent and aligned model in ...",
+   "cite": "2.1M+ followers"
+  },
+  {
+   "title": "ChatGPT is now a partner for your most ambitious work",
+   "href": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+   "snippet": "OpenAI https://openai.com › index › chatgpt-for-your-most-am... Jul 9, 2026 — ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into ...",
+   "cite": "https://openai.com › index › chatgpt-for-your-most-am..."
+  },
+  {
+   "title": "Build on the OpenAI API Platform",
+   "href": "https://platform.openai.com/ai-text-classifier",
+   "snippet": "OpenAI Platform https://platform.openai.com › ai-text-classifier Sign up or login with an OpenAI account to build with the OpenAI API. Practical examples and best practices",
+   "cite": "https://platform.openai.com › ai-text-classifier"
+  },
+  {
+   "title": "Research",
+   "href": "https://www.google.com/goto?url=CAESXwHEIkXXTtYdWmLYsog8cz11jDffU4oKFbQ1Uq4q2kMqkqoIDrSJE1horeqNORejE4tlamWcGwXMHIWKKWsx5D4j2p0paWVVINzcSakXpX7ZmI-dMi3tzl8nY2GLRBXE&gsessionid=6ftAWBNaWGPRHpXcnBmZqBiHXBu6m2x_3ktewLVePYv-_kZ2jGIang",
+   "snippet": "OpenAI https://openai.com › research We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems. Building safe and beneficial ...",
+   "cite": "https://openai.com › research"
+  }
+ ],
+ "final_url": "https://www.google.com/search?q=openai&num=5&hl=en&pws=0&sei=803vavn4DseLwbkPn7-S2QI",
+ "count": 4,
+ "elapsed": 4.1
+}
