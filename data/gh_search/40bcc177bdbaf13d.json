@@ -1,0 +1,65 @@
+{
+ "key": "40bcc177bdbaf13d",
+ "q": "google.com",
+ "ok": true,
+ "error": "",
+ "items": [
+  {
+   "title": "Google",
+   "href": "https://www.google.com/?gws_rd=ssl",
+   "snippet": "Web results Google Google http://www.google.com Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking ...",
+   "cite": "http://www.google.com"
+  },
+  {
+   "title": "Google Accounts: Sign in",
+   "href": "https://accounts.google.com/v3/signin/identifier?continue=https://accounts.google.com/&followup=https://accounts.google.com/&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1676776653:1794060000368752",
+   "snippet": "Web results Google Accounts: Sign in Google Accounts https://accounts.google.com Loading. Sign in. Use your Google Account. Email or phone. Forgot email? CAPTCHA image of text used to distinguish humans from robots.Read more",
+   "cite": "https://accounts.google.com"
+  },
+  {
+   "title": "Learn More About Google's Secure and Protected Accounts",
+   "href": "https://www.google.com/account/about/",
+   "snippet": "Google https://www.google.com › account › about Sign in to your Google Account and learn how to set up security and other account notifications to create a personalized, secure experience.",
+   "cite": "https://www.google.com › account › about"
+  },
+  {
+   "title": "Google Help",
+   "href": "https://support.google.com/",
+   "snippet": "Google Help https://support.google.com Choose a Google product · Google Chrome · Google Account · YouTube · Gmail · Google Play · Google Search · Google AdSense · Gemini Apps · Pixel Phone · Google ...Read more",
+   "cite": "https://support.google.com"
+  },
+  {
+   "title": "Google One: Get More Storage, More AI capabilities, and ...",
+   "href": "https://one.google.com/about/",
+   "snippet": "Google One https://one.google.com › about Google One bundles cloud storage, powerful AI capabilities, and helpful features across Google — all in one shareable plan. $8.00",
+   "cite": "https://one.google.com › about"
+  },
+  {
+   "title": "Sign in",
+   "href": "https://myaccount.google.com/intro/security",
+   "snippet": "Google https://myaccount.google.com › intro › security To review and adjust your security settings and get recommendations to help you keep your account secure, sign in to your account. Sign in.Read more",
+   "cite": "https://myaccount.google.com › intro › security"
+  },
+  {
+   "title": "Welcome to My Activity - Google",
+   "href": "https://myactivity.google.com/",
+   "snippet": "My Activity https://myactivity.google.com Sign in to review and manage your activity, including things you've searched for, websites you've visited, and videos you've watched.",
+   "cite": "https://myactivity.google.com"
+  },
+  {
+   "title": "Google for Education - Online Resources for Teachers ...",
+   "href": "https://edu.google.com/",
+   "snippet": "Google for Education https://edu.google.com Access interactive teaching tools online at no cost, including lesson plans, apps, and games that empower educators to advance learning in the classroom.",
+   "cite": "https://edu.google.com"
+  },
+  {
+   "title": "Google Maps",
+   "href": "https://www.google.com/maps",
+   "snippet": "Google Maps https://maps.google.com Find local businesses, view maps and get driving directions in Google Maps. Directions. Get directions. Explore. Attractions near me · Restaurants near me ...Read more",
+   "cite": "https://maps.google.com"
+  }
+ ],
+ "final_url": "https://www.google.com/search?q=google.com&num=20&hl=en&pws=0&sei=3S7varDXL86h0PEPt7P-oAU",
+ "count": 9,
+ "elapsed": 5.1
+}
