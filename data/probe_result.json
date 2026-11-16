@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-11-15T19:02:02.358230+00:00",
+  "probed_at": "2026-11-16T06:56:37.507294+00:00",
   "runner": {
     "hostname": "runnervmccnms",
-    "egress_ip": "52.162.137.104"
+    "egress_ip": "13.71.228.202"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 33372,
+      "bytes": 33458,
       "verdict": "OK",
       "ok": true
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 58401,
+      "bytes": 58201,
       "verdict": "OK",
       "ok": true
     },
@@ -37,7 +37,7 @@
       "url": "https://www.ccjdigital.com/",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3273,
+      "bytes": 3250,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -46,7 +46,7 @@
       "url": "https://www.underhoodservice.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 32452,
+      "bytes": 32449,
       "verdict": "OK",
       "ok": true
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 38249,
+      "bytes": 38288,
       "verdict": "OK",
       "ok": true
     },
@@ -64,7 +64,7 @@
       "url": "https://www.tmdfriction.com/en/news",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3232,
+      "bytes": 3237,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -73,7 +73,7 @@
       "url": "https://unece.org/transport/vehicle-regulations",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3146,
+      "bytes": 3148,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -82,7 +82,7 @@
       "url": "https://www.autonews.com/europe/",
       "kind": "Akamai",
       "status": 403,
-      "bytes": 379,
+      "bytes": 381,
       "verdict": "WAF 拒绝",
       "ok": false
     },
@@ -100,7 +100,7 @@
       "url": "https://www.sae.org/news",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 3086,
+      "bytes": 15274,
       "verdict": "OK",
       "ok": true
     },
@@ -109,7 +109,7 @@
       "url": "https://www.epa.gov/newsreleases",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 14350,
+      "bytes": 14314,
       "verdict": "OK",
       "ok": true
     },
@@ -132,7 +132,7 @@
     "waf_total": 10,
     "ctrl_ok": 3,
     "ctrl_total": 3,
-    "egress_ip": "52.162.137.104",
+    "egress_ip": "13.71.228.202",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
