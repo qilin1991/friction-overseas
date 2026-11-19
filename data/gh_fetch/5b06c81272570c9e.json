@@ -1,0 +1,1 @@
+{"key": "5b06c81272570c9e", "url": "https://www.theses.fr/2021SORUS502", "mode": "html", "ok": false, "error": "requests: ConnectTimeout: HTTPSConnectionPool(host='www.theses.fr', port=443): Max retries exceeded with url: /2021SORUS502 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.thes", "elapsed": 10.6}
