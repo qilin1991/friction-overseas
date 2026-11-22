@@ -1,8 +1,8 @@
 {
-  "probed_at": "2026-11-22T07:11:05.718132+00:00",
+  "probed_at": "2026-11-22T19:54:59.585274+00:00",
   "runner": {
     "hostname": "runnervm0hi8g",
-    "egress_ip": "20.64.182.232"
+    "egress_ip": "20.169.103.115"
   },
   "results": [
     {
@@ -10,7 +10,7 @@
       "url": "https://www.counterman.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 33571,
+      "bytes": 33493,
       "verdict": "OK",
       "ok": true
     },
@@ -19,7 +19,7 @@
       "url": "https://www.tirebusiness.com/",
       "kind": "Akamai",
       "status": 403,
-      "bytes": 372,
+      "bytes": 374,
       "verdict": "WAF 拒绝",
       "ok": false
     },
@@ -28,7 +28,7 @@
       "url": "https://www.fleetowner.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 59548,
+      "bytes": 59198,
       "verdict": "OK",
       "ok": true
     },
@@ -37,7 +37,7 @@
       "url": "https://www.ccjdigital.com/",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3247,
+      "bytes": 3255,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -55,7 +55,7 @@
       "url": "https://www.aftermarketnews.com/",
       "kind": "CF企业级",
       "status": 200,
-      "bytes": 38354,
+      "bytes": 38360,
       "verdict": "OK",
       "ok": true
     },
@@ -73,7 +73,7 @@
       "url": "https://unece.org/transport/vehicle-regulations",
       "kind": "CF企业级",
       "status": 403,
-      "bytes": 3152,
+      "bytes": 3148,
       "verdict": "403 Forbidden",
       "ok": false
     },
@@ -109,7 +109,7 @@
       "url": "https://www.epa.gov/newsreleases",
       "kind": "对标-应通",
       "status": 200,
-      "bytes": 14290,
+      "bytes": 14301,
       "verdict": "OK",
       "ok": true
     },
@@ -132,7 +132,7 @@
     "waf_total": 10,
     "ctrl_ok": 3,
     "ctrl_total": 3,
-    "egress_ip": "20.64.182.232",
+    "egress_ip": "20.169.103.115",
     "verdict": "✅ WAF 组突破 4 个 —— Azure IP 有效，可以照此搭建采集",
     "waf_group_ok": 4,
     "waf_group_total": 10,
