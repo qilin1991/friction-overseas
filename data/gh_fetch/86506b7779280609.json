@@ -1,0 +1,1 @@
+{"key": "86506b7779280609", "url": "https://readgzh.com/api/health", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='readgzh.com', port=443): Max retries exceeded with url: /api/health (Caused by NameResolutionError(\"HTTPSConnection(host='readgzh.com'", "elapsed": 0.1}
