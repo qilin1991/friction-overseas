@@ -1,0 +1,1 @@
+{"key": "6b5da033bbff8582", "url": "https://api-inference.huggingface.co/models", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='api-inference.huggingface.co', port=443): Max retries exceeded with url: /models (Caused by NameResolutionError(\"HTTPSConnection(host=", "elapsed": 0.1}
