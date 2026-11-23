@@ -1,0 +1,1 @@
+{"key": "7e58b37e2ba2b831", "url": "https://api.coincap.io/v2/assets?limit=1", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='api.coincap.io', port=443): Max retries exceeded with url: /v2/assets?limit=1 (Caused by NameResolutionError(\"HTTPSConnection(host='ap", "elapsed": 0.1}
