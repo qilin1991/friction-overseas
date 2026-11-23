@@ -1,0 +1,1 @@
+{"key": "14ac63d531ad6235", "url": "https://api.trimwise.ai/health", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='api.trimwise.ai', port=443): Max retries exceeded with url: /health (Caused by NameResolutionError(\"HTTPSConnection(host='api.trimwise", "elapsed": 0.1}
