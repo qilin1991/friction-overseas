@@ -1,0 +1,1 @@
+{"key": "a6e31b6de3505072", "url": "https://api.runtimebuzz.com/articles?query=ai", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='api.runtimebuzz.com', port=443): Max retries exceeded with url: /articles?query=ai (Caused by NameResolutionError(\"HTTPSConnection(hos", "elapsed": 0.1}
