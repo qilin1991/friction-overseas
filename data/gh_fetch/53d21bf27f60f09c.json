@@ -1,0 +1,1 @@
+{"key": "53d21bf27f60f09c", "url": "https://pricing.dev/api/v1/tools?limit=1", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='pricing.dev', port=443): Max retries exceeded with url: /api/v1/tools?limit=1 (Caused by NameResolutionError(\"HTTPSConnection(host='pr", "elapsed": 0.1}
