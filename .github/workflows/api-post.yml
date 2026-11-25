@@ -1,0 +1,87 @@
+name: api-post
+
+# GA runner (Azure 出口) 带 GitHub Secrets 转发一次 POST 到目标 LLM API。
+# 用于 VPS 机房 IP / WARP / CF Worker 都被 WAF 挡时的低频兜底调用。
+# 结果 commit 回仓库 data/gh_api_post/<key>.json, VPS 用 contents API 读。
+on:
+  workflow_dispatch:
+    inputs:
+      key:
+        description: '调用方随机 key (结果文件名 + 防串号)'
+        required: true
+        type: string
+      url:
+        description: '目标 POST URL'
+        required: true
+        type: string
+      payload:
+        description: 'JSON 请求体 (model/messages 等)'
+        required: true
+        type: string
+      model:
+        description: '覆盖 payload.model (可选)'
+        required: false
+        default: ''
+        type: string
+      secret_name:
+        description: '从哪个 GitHub Secret 读 key (如 GROQ_API_KEY)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: api-post-${{ github.event.inputs.key }}
+  cancel-in-progress: false
+
+jobs:
+  call:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 装依赖
+        run: pip install --quiet requests
+      - name: 打印出口 IP
+        run: curl -s https://api.ipify.org && echo
+      - name: 调 API
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SENSENOVA_API_KEY: ${{ secrets.SENSENOVA_API_KEY }}
+        run: |
+          set +e
+          SECRET_VAL=""
+          case "${{ github.event.inputs.secret_name }}" in
+            GROQ_API_KEY) SECRET_VAL="$GROQ_API_KEY" ;;
+            OPENROUTER_API_KEY) SECRET_VAL="$OPENROUTER_API_KEY" ;;
+            SENSENOVA_API_KEY) SECRET_VAL="$SENSENOVA_API_KEY" ;;
+          esac
+          export CALL_SECRET="$SECRET_VAL"
+          python3 scripts/gh_api_post.py \
+            --url '${{ github.event.inputs.url }}' \
+            --payload '${{ github.event.inputs.payload }}' \
+            --model '${{ github.event.inputs.model }}' \
+            --secret-name CALL_SECRET \
+            --key '${{ github.event.inputs.key }}' \
+            --out result.json
+      - name: 回写结果
+        run: |
+          set -e
+          mkdir -p data/gh_api_post
+          cp result.json "data/gh_api_post/${{ github.event.inputs.key }}.json"
+          find data/gh_api_post -type f -mmin +60 -delete || true
+          git config user.name "gh-relay-bot"
+          git config user.email "gh-relay-bot@users.noreply.github.com"
+          git add -A data/gh_api_post
+          if git diff --cached --quiet; then
+            echo "无变化, 跳过提交"
+          else
+            git commit -m "api-post: ${{ github.event.inputs.key }}"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
