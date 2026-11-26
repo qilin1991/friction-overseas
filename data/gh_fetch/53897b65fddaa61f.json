@@ -1,0 +1,1 @@
+{"key": "53897b65fddaa61f", "url": "https://www.fabulus.org/", "mode": "html", "ok": false, "error": "requests: SSLError: HTTPSConnectionPool(host='www.fabulus.org', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] ", "elapsed": 0.3}
