@@ -1,0 +1,1 @@
+{"key": "4115ddfaf04a9578", "url": "https://www.divasforum.com/", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='www.divasforum.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.divasforum.", "elapsed": 0.1}
