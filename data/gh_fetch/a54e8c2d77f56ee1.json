@@ -1,0 +1,1 @@
+{"key": "a54e8c2d77f56ee1", "url": "https://www.slsbn.net/", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='www.slsbn.net', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.slsbn.net', port", "elapsed": 0.1}
