@@ -1,0 +1,1 @@
+{"key": "1508777f0f18d670", "url": "https://www.animekaos.org/", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='www.animekaos.org', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.animekaos.or", "elapsed": 0.1}
