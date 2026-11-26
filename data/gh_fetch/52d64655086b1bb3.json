@@ -1,0 +1,1 @@
+{"key": "52d64655086b1bb3", "url": "https://www.foro-xxx.com/", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='www.foro-xxx.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.foro-xxx.com'", "elapsed": 0.1}
