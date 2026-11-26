@@ -1,0 +1,1 @@
+{"key": "f8f34d90d1a889d4", "url": "https://www.chanmar.net/", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='www.chanmar.net', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.chanmar.net', ", "elapsed": 0.1}
