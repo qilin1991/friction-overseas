@@ -1,0 +1,1 @@
+{"key": "44b2d91d8bb2e10c", "url": "https://www.pastiemadness.net/", "mode": "html", "ok": false, "error": "requests: ConnectionError: HTTPSConnectionPool(host='www.pastiemadness.net', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.pastiema", "elapsed": 0.1}
